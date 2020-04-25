@@ -1,9 +1,9 @@
 @startuml
 :Actor: --> (startSimulation)
 :Actor: --> (endSimulation)
-:Actor: --> (showField)
-:Actor: ---> (setFieldHeight)
-:Actor: ---> (setFieldWidth)
+:Actor: --> (showMeadow)
+:Actor: ---> (setMeadowHeight)
+:Actor: ---> (setMeadowWidth)
 :Actor: ---> (setNumberOfEachAnimal)
 :Actor: ---> (setNumberOfWaterholes)
 :Actor: ---> (showStatistics)
