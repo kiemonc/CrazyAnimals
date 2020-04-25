@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+
+\begin{document}
+{\Large Symulacja łąki}\newline
+Język: Java
+
+Symulacja polega na pokazaniu \textcolor{blue}{łąki} (\textcolor{red}{o ustawionym przez użytkownika} \textcolor{blue}{rozmiarze}) po której \textcolor{red}{poruszają się} \textcolor{blue}{zwierzęta}. Będą nimi: \textcolor{blue}{krowy, owce, wilki, koty i myszy.} Na początku działania symulacji \textcolor{red}{zostaną one rozmieszczone} na losowych \textcolor{blue}{polach} w losowej liczebności (jednak \textcolor{blue}{maksymalna i minimalna początkowa liczba osobników każdego gatunku} \textcolor{red}{będzie ustalona przed rozpoczęciem symulacji}). Każdy \textcolor{blue}{gatunek zwierząt} \textcolor{red}{będzie się poruszał} po \textcolor{blue}{łące}
+z \textcolor{blue}{charakterystyczną prędkością} i \textcolor{red}{z czasem będzie się starzeć i umierać ze starości}. Aby zapobiec wymarciu \textcolor{blue}{gatunku} przy spotkaniu \textcolor{blue}{dwóch zwierząt przeciwnej płci} \textcolor{red}{powstanie} \textcolor{blue}{trzecie 
+o zerowym wieku i posiadające jedną z dwóch płci} (50\% prawdopodobieństwa).
+
+\textcolor{blue}{Zwierzęta różnych gatunków} przy spotkaniu \textcolor{blue}{na jednym polu} będą mogły \textcolor{red}{wchodzić ze sobą w interakcje}. \textcolor{blue}{Koty} po spotkaniu z \textcolor{blue}{myszami} \textcolor{red}{zjadają je}. \textcolor{blue}{Wilki}, w celu zyskania pożywienia, \textcolor{red}{mogą zaatakować} \textcolor{blue}{wszystkie zwierzęta}, ale \textcolor{blue}{prawdopodobieństwo przeprowadzenia skutecznego ataku} nie jest stuprocentowe we wszystkich przypadkach: z \textcolor{blue}{myszą} – 100\%, 
+z \textcolor{blue}{kotem} – 80\%, z \textcolor{blue}{owcą} – 60\%, z \textcolor{blue}{krową} – 40\%. Jeżeli \textcolor{blue}{atak} \textcolor{red}{skończy się niepowodzeniem} to \textcolor{blue}{zwierzęta} \textcolor{red}{rozchodzą się osłabione}. Poza tymi przypadkami na jednym \textcolor{blue}{polu} \textcolor{red}{nie może przebywać więcej niż jedno zwierzę}.
+
+Na \textcolor{blue}{wolnych polach} podczas działania symulacji \textcolor{red}{ będzie się pojawiało} \textcolor{blue}{losowo rozmieszczane pożywienie} potrzebne \textcolor{blue}{zwierzętom} do przetrwania. Będzie to \textcolor{blue}{trawa} (dla \textcolor{blue}{krów 
+i owiec}) oraz \textcolor{blue}{ser} (dla \textcolor{blue}{myszy}). Gdy jakieś \textcolor{blue}{zwierzę} \textcolor{red}{napotka na} \textcolor{blue}{pożywienie którym nie może się pożywić} to \textcolor{red}{zostaje ono zniszczone}. \textcolor{blue}{Przy krawędzi łąki} \textcolor{red}{będzie usytuowany} \textcolor{blue}{wodopój} (jeden lub więcej – \textcolor{red}{ustala użytkownik} przed rozpoczęciem symulacji), \textcolor{red}{z którego będą mogły w każdej chwili korzystać} aby zaspokoić \textcolor{blue}{pragnienie}. 
+
+Symulacja \textcolor{red}{zakończy się} gdy \textcolor{blue}{wszystkie zwierzęta} \textcolor{red}{zginą} lub gdy któryś z \textcolor{blue}{gatunków} \textcolor{red}{osiągnie ustaloną przed rozpoczęciem symulacji liczebność}. Po zakończeniu \textcolor{red}{zostaną pokazane} \textcolor{blue}{statystyki symulacji dla każdego gatunku: maksymalna liczba zwierząt, całkowita liczba zwierząt, liczba zabitych oraz czas trwania symulacji. Statystyki} te \textcolor{red}{zostaną również zapisane} do \textcolor{blue}{pliku}, którego \textcolor{blue}{nazwa} \textcolor{red}{zostanie podana} na początku.
+
+\end{document}
