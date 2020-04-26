@@ -1,0 +1,46 @@
+@startuml
+class Feed [[java:Area.Feed]] {
+}
+class Meadow [[java:Area.Meadow]] {
+	-Integer width
+	-Integer height
+	-Field[][] tab
+	~Meadow(Integer width, Integer height, Integer numWaterholes, Integer numFeeds)
+	~Meadow()
+	-void buildMap()
+	-void initialFeed(Integer numFeeds)
+	-void spreadFeed()
+	-void initialWaterholes(Integer numWaterholes)
+	-void initialAnimals()
+}
+class Field [[java:Area.Field]] {
+	-Animal[] animal
+	-Integer numAnimals
+	~Field()
+	~boolean isEmpty()
+	+void putFeed(Feed feed)
+	+void putAnimal(Animal animal)
+}
+class Feed [[java:Area.Feed]] {
+}
+
+Meadow *-- "*" Field : field
+class Waterhole [[java:Area.Waterhole]] {
+}
+Field *-- Feed : feed
+class Waterhole [[java:Area.Waterhole]] {
+}
+Field *-- Waterhole : waterhole
+class Waterhole [[java:Area.Waterhole]] {
+}
+class Chees [[java:Area.Chees]] {
+}
+class Feed [[java:Area.Feed]] {
+}
+Feed <|-- Chees
+class Grass [[java:Area.Grass]] {
+}
+class Feed [[java:Area.Feed]] {
+}
+Feed <|-- Grass
+@enduml
