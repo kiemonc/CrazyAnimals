@@ -10,6 +10,7 @@ public class Field {
 	private Feed feed;
 	private Animal[] animal;
 	private Integer numAnimals;
+	private Waterhole waterhole;
 	
 	Field() {
 		numAnimals = 0;
