@@ -8,7 +8,7 @@ package Area;
 public class Field {
 
 	private Feed feed;
-	private Animal[] animal;
+	private Animal.Animal[] animal;
 	private Integer numAnimals;
 	private Waterhole waterhole;
 	
@@ -21,7 +21,7 @@ public class Field {
 		this.feed = feed;
 	}
 	
-	public void putAnimal(Animal animal) {
+	public void putAnimal(Animal.Animal animal) {
 		this.animal[numAnimals] = animal;
 		numAnimals++;
 	}
