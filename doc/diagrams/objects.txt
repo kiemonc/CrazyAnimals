@@ -1,5 +1,25 @@
 @startuml
 hide members
+package Animal {
+	abstract class Animal
+	class Wolf
+	class Mouse
+	class Sheep
+	class Cat
+	class Cow
+}
+package Main {
+	class Control
+	class Parameters
+	class Simulation
+}
+
+package Area {
+	class Meadow
+	class Field
+	class Feed
+	class Waterhole
+}
 class Simulation [[java:Main.Simulation]] {
 	-double startTime
 	-int numIteration
