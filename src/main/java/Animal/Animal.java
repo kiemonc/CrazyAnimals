@@ -1,7 +1,8 @@
+package Animal;
 /**
  * 
  */
-package Animal;
+
 
 /**
  * @author jakub
@@ -9,9 +10,10 @@ package Animal;
  */
 public abstract class Animal implements IAnimal{
 	
-	private int hunger, thirst, age;
-	private static double movementSpeed;
-	private boolean isMale;
+	protected int hunger, thirst, age, positionX, positionY;
+	protected boolean isMale;
+	
+	public static int [] maxPopulation = new int[5], population = new int[5];
 	
 	public Animal() {
 		this(0, 0, 0, true);
