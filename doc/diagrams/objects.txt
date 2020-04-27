@@ -1,0 +1,171 @@
+@startuml
+hide members
+class Simulation [[java:Main.Simulation]] {
+	-double startTime
+	-int numIteration
+	-Area.Meadow meadow
+	-Animal.Animal[] animals
+	+Simulation(Parameters parameters)
+	+Simulation()
+	-void setParameteres()
+	-void initialMeadow()
+	-void initialAnimals()
+	+void mainLoop()
+	-void doIteration()
+	-void showCurrentState()
+	-boolean ifEnd()
+	-void updateMeadowState()
+	-void updateAnimalsState()
+	-void doInteractionsBetweenAnimals()
+}
+class Parameters [[java:Main.Parameters]] {
+	+int meadowWidth
+	+int meadowHeight
+	+int numWaterholes
+	+int[] startMaxNum
+	+int[] startMinNum
+	+int[] endMaxNum
+	+int[] endMinNum
+	+Parameters(String inputString)
+	+Parameters()
+}
+class Control [[java:Main.Control]] {
+	-String statisticsPath
+	-void startSimulation()
+	-void showStatistics()
+	-void saveStatistics()
+	-void setParamiters()
+	+{static}void main(String[] args)
+}
+class Simulation [[java:Main.Simulation]] {
+}
+Control *-- Simulation : simulation
+class Parameters [[java:Main.Parameters]] {
+}
+Control *-- Parameters : parameters
+class Feed [[java:Area.Feed]] {
+	-{static}int[] numAll
+	-{static}int[] numMax
+	-{static}int[] numEaten
+	-{static}int[] numDestroyed
+	-String name
+	~Feed()
+	+String getName()
+	~{static}int getNumAll()
+	~{static}int getNumMax()
+	~{static}int getNumEaten()
+	~{static}int getNumDestroyed()
+	+void beEaten()
+	+void beDestroyed()
+}
+
+class Meadow [[java:Area.Meadow]] {
+	-int width
+	-int height
+	-Field[][] tab
+	~Meadow(int width, int height, int numWaterholes, int numFeeds)
+	~Meadow()
+	-void initialFeed(int numFeeds)
+	-void initialWaterholes(int numWaterholes)
+	-void spreadNewFeed()
+	+void doIteration()
+}
+class Field [[java:Area.Field]] {
+	~Field()
+	+boolean isEmpty()
+	+void putFeed()
+	+Feed getFeed()
+	+boolean isWaterhole()
+}
+class Feed [[java:Area.Feed]] {
+}
+Field *--- Feed : feed
+class Waterhole [[java:Area.Waterhole]] {
+}
+Field *-- Waterhole : waterhole
+class Waterhole [[java:Area.Waterhole]] {
+	-{static}int number
+	~Waterhole()
+	~{static}int getNumber()
+}
+
+Meadow *-- "*" Field : field
+
+Simulation *-- Meadow : meadow
+Simulation *-- "*" Animal : animal
+abstract class Animal [[java:Animal.Animal]] {
+	#int hunger
+	#int thirst
+	#int age
+	#int positionX
+	#int positionY
+	#int iterationsToMove
+	#boolean isMale
+	+{static}int[] maxPopulation
+	+{static}int[] population
+	+Animal()
+	+Animal(int hunger, int thirst, int age, boolean isMale)
+	+void moveTo(int direction)
+	+void drink()
+	+void die()
+	+void getOlder()
+	+boolean wantToMove()
+}
+
+class Wolf [[java:Animal.Wolf]] {
+	+{static}int movementSpeed
+	+Wolf()
+	+Wolf(int hunger, int thirst, int age, boolean isMale)
+	+void eat(String target)
+	+boolean canEat(String target)
+	+void multiply()
+}
+abstract class Animal [[java:Animal.Animal]] {
+}
+Animal <|-- Wolf
+
+class Sheep [[java:Animal.Sheep]] {
+	+{static}int movementSpeed
+	+Sheep()
+	+Sheep(int hunger, int thirst, int age, boolean isMale)
+	+void eat(String target)
+	+boolean canEat(String target)
+	+void multiply()
+}
+abstract class Animal [[java:Animal.Animal]] {
+}
+Animal <|-- Sheep
+class Mouse [[java:Animal.Mouse]] {
+	+{static}int movementSpeed
+	+Mouse()
+	+Mouse(int hunger, int thirst, int age, boolean isMale)
+	+void eat(String target)
+	+boolean canEat(String target)
+	+void multiply()
+}
+abstract class Animal [[java:Animal.Animal]] {
+}
+Animal <|-- Mouse
+class Cat [[java:Animal.Cat]] {
+	+{static}int movementSpeed
+	+Cat()
+	+Cat(int hunger, int thirst, int age, boolean isMale)
+	+void eat(String target)
+	+boolean canEat(String target)
+	+void multiply()
+}
+abstract class Animal [[java:Animal.Animal]] {
+}
+Animal <|-- Cat
+class Cow [[java:Animal.Cow]] {
+	+{static}int movementSpeed
+	+Cow()
+	+Cow(int hunger, int thirst, int age, boolean isMale)
+	+void eat(String target)
+	+boolean canEat(String target)
+	+void multiply()
+}
+abstract class Animal [[java:Animal.Animal]] {
+}
+Animal <|-- Cow
+@enduml
