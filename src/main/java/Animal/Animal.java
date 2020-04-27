@@ -3,6 +3,7 @@ package Animal;
  * 
  */
 
+import Area.Field;
 
 /**
  * @author jakub
@@ -10,7 +11,7 @@ package Animal;
  */
 public abstract class Animal implements IAnimal{
 	
-	protected int hunger, thirst, age, positionX, positionY;
+	protected int hunger, thirst, age, positionX, positionY, iterationsToMove;
 	protected boolean isMale;
 	
 	public static int [] maxPopulation = new int[5], population = new int[5];
@@ -24,5 +25,21 @@ public abstract class Animal implements IAnimal{
 		this.thirst = thirst;
 		this.age = age;
 		this.isMale = isMale;
+	}
+	public void moveTo(Field target) {
+		
+	}
+	public void drink() {
+		
+	}
+	public void die() {
+		
+	}
+	public void getOlder() {
+		
+	}
+	public boolean wantToMove() {
+		
+		return false;
 	}
 }
