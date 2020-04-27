@@ -5,7 +5,6 @@ public final class Simulation {
 	private int numIteration;
 	private Area.Meadow meadow;
 	private Animal.Animal[] animals;
-	private Parameters parameters;
 	
 	public Simulation(Parameters parameters) {}
 	public Simulation() {}
@@ -15,6 +14,7 @@ public final class Simulation {
 	
 	public void mainLoop() {}
 	private void doIteration() {}
+	private void showCurrentState() {}
 	private boolean ifEnd() {return false;}
 
 	private void updateMeadowState() {}

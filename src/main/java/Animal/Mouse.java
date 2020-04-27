@@ -17,6 +17,6 @@ public class Mouse extends Animal {
 	}
 
 	public void eat(String target) {}
-	public void canEat(String target) {}
+	public boolean canEat(String target) {return false;}
 	public void multiply() {}
 }
