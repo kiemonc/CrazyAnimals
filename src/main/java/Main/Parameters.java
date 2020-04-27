@@ -7,19 +7,15 @@ package Main;
  * @author Mikołaj
  * Klasa komunikuje się z użytkownikiem, ustawia i przechowuje parametry początkowe
  */
-public class Parameters {
+public final class Parameters {
+	public Parameters(String inputString) {}
+	public Parameters() {}
 	public int meadowWidth;
 	public int meadowHeight;
 	public int numWaterholes;
 	
-	public int maxNumCat;
-	public int minNumCat;
-	public int maxNumMouse;
-	public int minNumMouse;
-	public int maxNumCow;
-	public int minNumCow;
-	public int maxNumSheep;
-	public int minNumSheep;
-	public int maxNumWolf;
-	public int minNumWolf;
+	public int[] startMaxNum;
+	public int[] startMinNum;
+	public int[] endMaxNum;
+	public int[] endMinNum;
 }

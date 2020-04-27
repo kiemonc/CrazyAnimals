@@ -1,11 +1,24 @@
 package Main;
 
-public class Simulation {
+public final class Simulation {
 	private double startTime;
 	private int numIteration;
+	private Area.Meadow meadow;
+	private Animal.Animal[] animals;
+	private Parameters parameters;
 	
-	Simulation() {}
-	public void setStartTime() {}
-	public double getStartTime() {return startTime;}
-	public void doIteration() {}
+	public Simulation(Parameters parameters) {}
+	public Simulation() {}
+	private void setParameteres() {}
+	private void initialMeadow() {}
+	private void initialAnimals() {}
+	
+	public void mainLoop() {}
+	private void doIteration() {}
+	private boolean ifEnd() {return false;}
+
+	private void updateMeadowState() {}
+	private void updaetAnimalsState() {}
+	private void doInteractionsBetweenAnimals() {}
+	
 }
