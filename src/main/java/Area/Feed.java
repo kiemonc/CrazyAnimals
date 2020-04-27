@@ -7,7 +7,7 @@ package Area;
  * @author Mikołaj
  *
  */
-public final class Feed {
+public final class Feed implements IFeed {
 	private static int[] numAll;
 	private static int[] numMax;
 	private static int[] numEaten;
@@ -22,6 +22,6 @@ public final class Feed {
 	static int getNumEaten() {return numEaten[1];}
 	static int getNumDestroyed() {return numDestroyed[1];}
 	
-	public void beeEaten() {}
-	public void beeDestroyed() {}
+	public void beEaten() {}
+	public void beDestroyed() {}
 }

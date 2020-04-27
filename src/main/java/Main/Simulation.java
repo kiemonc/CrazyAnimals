@@ -18,7 +18,7 @@ public final class Simulation {
 	private boolean ifEnd() {return false;}
 
 	private void updateMeadowState() {}
-	private void updaetAnimalsState() {}
+	private void updateAnimalsState() {}
 	private void doInteractionsBetweenAnimals() {}
 	
 }
