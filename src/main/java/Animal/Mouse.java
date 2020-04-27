@@ -10,27 +10,13 @@ package Animal;
 public class Mouse extends Animal {
 	public static final int movementSpeed = 1;
 
-	public Mouse() {
-		
-	}
+	public Mouse() {super();}
 	
-	public Mouse(int hunger, int thirst, int age, boolean isMale)
-	{
+	public Mouse(int hunger, int thirst, int age, boolean isMale){
 		super(hunger, thirst, age, isMale);
 	}
 
-	public void eat(Object target) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void canEat(Object target) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void multiply() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void eat(String target) {}
+	public void canEat(String target) {}
+	public void multiply() {}
 }

@@ -3,17 +3,14 @@ package Animal;
  * 
  */
 
-
-import Area.Field;
-
 /**
  * @author jakub
  *
  */
 public interface IAnimal {
-	public void eat(Object target);
-	public void canEat(Object target);
-	public void moveTo(Field target);
+	public void eat(String target);
+	public void canEat(String target);
+	public void moveTo(int direction);
 	public void multiply();
 	public void drink();
 	public void die();

@@ -3,11 +3,9 @@ package Animal;
  * 
  */
 
-import Area.Field;
-
 /**
  * @author jakub
- *
+ * Klasa zawiera wspólne parametry i operacje dla zwierz¹t
  */
 public abstract class Animal implements IAnimal{
 	
@@ -16,9 +14,7 @@ public abstract class Animal implements IAnimal{
 	
 	public static int [] maxPopulation = new int[5], population = new int[5];
 	
-	public Animal() {
-		this(0, 0, 0, true);
-	}
+	public Animal() {this(0, 0, 0, true);}
 	
 	public Animal(int hunger, int thirst, int age, boolean isMale) {
 		this.hunger = hunger;
@@ -26,20 +22,9 @@ public abstract class Animal implements IAnimal{
 		this.age = age;
 		this.isMale = isMale;
 	}
-	public void moveTo(Field target) {
-		
-	}
-	public void drink() {
-		
-	}
-	public void die() {
-		
-	}
-	public void getOlder() {
-		
-	}
-	public boolean wantToMove() {
-		
-		return false;
-	}
+	public void moveTo(int direction) {}
+	public void drink() {}
+	public void die() {}
+	public void getOlder() {}
+	public boolean wantToMove() {return false;}
 }
