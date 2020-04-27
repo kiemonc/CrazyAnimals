@@ -7,7 +7,7 @@ package Animal;
  * @author jakub
  *
  */
-public abstract class Animal{
+public abstract class Animal implements IAnimal{
 	
 	private int hunger, thirst, age;
 	private static double movementSpeed;
