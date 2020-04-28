@@ -2,7 +2,7 @@ package Area;
 
 /**
  * @author Mikołaj
- * Klasa, która przechowuje informacje o zawartości danego pola na łące
+ * Klasa, która przechowuje informacje o zawartości danego pola na łące. Przechowuje informację o tym czy na danym polu znajduje się pożywienie dla zwierząt oraz przechowuje to pożywienie.
  */
 
 public class Field {

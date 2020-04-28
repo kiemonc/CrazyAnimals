@@ -5,7 +5,7 @@ package Main;
 
 /**
  * @author Mikołaj
- * Klasa odpowiada za startowanie i konczenie symulacji. W niej też znajduje się główna pętla powodująca iterowanie symulacji
+ * Klasa odpowiada za startowanie i konczenie symulacji. Przechowuje ścieżkę do pliku wyjściowego statystyk.  Klasa generuje i zapisuje statystyki po zakończeniu symualcji.
  */
 public final class Control {
 	private Simulation simulation;
@@ -18,6 +18,7 @@ public final class Control {
 	private void showStatistics() {}
 	private void saveStatistics() {}
 	private void setParamiters() {}
+
 
 	
 	

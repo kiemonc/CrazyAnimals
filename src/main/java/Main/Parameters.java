@@ -5,7 +5,8 @@ package Main;
 
 /**
  * @author Mikołaj
- * Klasa komunikuje się z użytkownikiem, ustawia i przechowuje parametry początkowe
+ * Klasa komunikuje się z użytkownikiem, ustawia i przechowuje parametry początkowe, czyli minialne i maksymalne liczebności każdego gatunku zwierząt, wymiary łąki oraz liczbę wodopojów.
+ * Klasa ustawia i przechowuje liczbę wodopojów.
  */
 public final class Parameters {
 	public Parameters(String inputString) {}

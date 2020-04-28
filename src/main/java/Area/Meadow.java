@@ -5,7 +5,8 @@ package Area;
 
 /**
  * @author Mikołaj
- * Klasa odpowiada za przechowywanie informacji o stanie łąki. Klasa składa się z pól składowych. 
+ * Klasa odpowiada za przechowywanie informacji o stanie łąki. Klasa składa się z pól składowych. Rozmieszcza wopoje oraz pożywienie podczas inicjalizacji planszy. 
+ * Rozmieszcza nowe pożywienie podczas trwania symulacji.
  */
 public final class Meadow {
 	
