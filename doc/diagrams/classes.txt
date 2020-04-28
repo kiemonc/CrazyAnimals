@@ -43,6 +43,10 @@ Control *-- Simulation : simulation
 class Parameters [[java:Main.Parameters]] {
 }
 Control *-- Parameters : parameters
+
+
+
+
 class Feed [[java:Area.Feed]] {
 	-{static}int[] numAll
 	-{static}int[] numMax
@@ -86,20 +90,22 @@ class Field [[java:Area.Field]] {
 }
 class Feed [[java:Area.Feed]] {
 }
-Field *--- Feed : feed
-class Waterhole [[java:Area.Waterhole]] {
-}
-Field *-- Waterhole : waterhole
+Field *-- Feed : feed
 class Waterhole [[java:Area.Waterhole]] {
 	-{static}int number
 	~Waterhole()
 	~{static}int getNumber()
 }
+class Field [[java:Area.Field]] {
+}
+Field <|-- Waterhole
+Meadow *-- "*" Field : field 
 
-Meadow *-- "*" Field : field
 
 Simulation *-- Meadow : meadow
-Simulation *-- "*" Animal : animal
+Simulation *---- "*" Animal : animal
+
+
 abstract class Animal [[java:Animal.Animal]] {
 	#int hunger
 	#int thirst
@@ -125,16 +131,16 @@ class Wolf [[java:Animal.Wolf]] {
 	+{static}int movementSpeed
 	+Wolf()
 	+Wolf(int hunger, int thirst, int age, boolean isMale)
-	+void eat(String target)
-	+boolean canEat(String target)
+	+void eat(Object target)
+	+boolean canEat(Object target)
 	+void multiply()
 }
-abstract class Animal [[java:Animal.Animal]] {
+class Animal [[java:Animal.Animal]] {
 }
 Animal <|-- Wolf
 interface IAnimal [[java:Animal.IAnimal]] {
-	void eat(String target)
-	boolean canEat(String target)
+	void eat(Object target)
+	boolean canEat(Object target)
 	void moveTo(int direction)
 	void multiply()
 	void drink()
@@ -146,44 +152,44 @@ class Sheep [[java:Animal.Sheep]] {
 	+{static}int movementSpeed
 	+Sheep()
 	+Sheep(int hunger, int thirst, int age, boolean isMale)
-	+void eat(String target)
-	+boolean canEat(String target)
+	+void eat(Object target)
+	+boolean canEat(Object target)
 	+void multiply()
 }
-abstract class Animal [[java:Animal.Animal]] {
+class Animal [[java:Animal.Animal]] {
 }
-Animal <|-- Sheep
+Animal <|--- Sheep
 class Mouse [[java:Animal.Mouse]] {
 	+{static}int movementSpeed
 	+Mouse()
 	+Mouse(int hunger, int thirst, int age, boolean isMale)
-	+void eat(String target)
-	+boolean canEat(String target)
+	+void eat(Object target)
+	+boolean canEat(Object target)
 	+void multiply()
 }
-abstract class Animal [[java:Animal.Animal]] {
+class Animal [[java:Animal.Animal]] {
 }
 Animal <|-- Mouse
 class Cat [[java:Animal.Cat]] {
 	+{static}int movementSpeed
 	+Cat()
 	+Cat(int hunger, int thirst, int age, boolean isMale)
-	+void eat(String target)
-	+boolean canEat(String target)
+	+void eat(Object target)
+	+boolean canEat(Object target)
 	+void multiply()
 }
-abstract class Animal [[java:Animal.Animal]] {
+class Animal [[java:Animal.Animal]] {
 }
-Animal <|-- Cat
+Animal <|--- Cat
 class Cow [[java:Animal.Cow]] {
 	+{static}int movementSpeed
 	+Cow()
 	+Cow(int hunger, int thirst, int age, boolean isMale)
-	+void eat(String target)
-	+boolean canEat(String target)
+	+void eat(Object target)
+	+boolean canEat(Object target)
 	+void multiply()
 }
-abstract class Animal [[java:Animal.Animal]] {
+class Animal [[java:Animal.Animal]] {
 }
 Animal <|-- Cow
 @enduml

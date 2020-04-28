@@ -7,7 +7,7 @@ package Area;
  * @author Mikołaj
  * 
  */
-public final class Waterhole {
+public final class Waterhole extends Field{
 	private static int number;
 	
 	

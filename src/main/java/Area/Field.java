@@ -5,10 +5,9 @@ package Area;
  * Klasa, która przechowuje informacje o zawartości danego pola na łące
  */
 
-public final class Field {
+public class Field {
 
 	private Feed feed;
-	private Waterhole waterhole;
 	
 	Field() {
 		
