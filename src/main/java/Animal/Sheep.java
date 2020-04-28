@@ -16,7 +16,7 @@ public class Sheep extends Animal {
 		super(hunger, thirst, age, isMale);
 	}
 
-	public void eat(String target) {}
-	public boolean canEat(String target) {return false;}
+	public void eat(Object target) {}
+	public boolean canEat(Object target) {return false;}
 	public void multiply() {}
 }
