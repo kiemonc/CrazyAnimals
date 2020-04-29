@@ -111,8 +111,8 @@ object "sheep2 : Sheep" as Sheep2 {
 	hunger = 21
 	thirst = 51
 	age = 4
-	positionX = 3
-	positionY = 1
+	positionX = 1
+	positionY = 4
 	iterationsToMove = 1
 	isMale = false
 }
