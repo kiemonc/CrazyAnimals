@@ -30,7 +30,9 @@ class Parameters [[java:Main.Parameters]] {
 	+Parameters()
 }
 class Control [[java:Main.Control]] {
+	-Simulation simulation
 	-String statisticsPath
+	-Parameters parameters
 	-void startSimulation()
 	-void showStatistics()
 	-void saveStatistics()

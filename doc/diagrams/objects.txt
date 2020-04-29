@@ -1,191 +1,228 @@
 @startuml
-hide members
-package Animal {
-	abstract class Animal
-	class Wolf
-	class Mouse
-	class Sheep
-	class Cat
-	class Cow
+
+
+
+
+object "simulation : Simulation" as Simulation {
+	startTime = 1588195080
+	numIteration = 51
+	meadow = "meadow"
+	animals[]
 }
-package Main {
-	class Control
-	class Parameters
-	class Simulation
+object "parameters : Parameters" as Parameters {
+	meadowWidth = 5
+	meadowHeight = 5
+	numWaterholes = 1
+	startMaxNum[0..4] = 4
+	startMinNum[0..4] = 2
+	endMaxNum[0..4] = 10
+	endMinNum[0..4] = 0
+
+}
+object "control : Control" as Control {
+	statisticsPath = "C:\statistics.txt"
+	parameters = "parameters"
+	simulation = "simulation"
 }
 
-package Area {
-	class Meadow
-	class Field
-	class Feed
-	class Waterhole
+Control *-- Simulation : executes_iterations
+Control *-- Parameters : sets_parameters
+
+
+
+
+
+
+object "meadow : Meadow" as Meadow {
+	width = 5
+	height = 5
+	tab[5][5]
 }
-class Simulation [[java:Main.Simulation]] {
-	-double startTime
-	-int numIteration
-	-Area.Meadow meadow
-	-Animal.Animal[] animals
-	+Simulation(Parameters parameters)
-	+Simulation()
-	-void setParameteres()
-	-void initialMeadow()
-	-void initialAnimals()
-	+void mainLoop()
-	-void doIteration()
-	-void showCurrentState()
-	-boolean ifEnd()
-	-void updateMeadowState()
-	-void updateAnimalsState()
-	-void doInteractionsBetweenAnimals()
+object "field1 : Field" as Field1 {
+	feed = "grass1"
 }
-class Parameters [[java:Main.Parameters]] {
-	+int meadowWidth
-	+int meadowHeight
-	+int numWaterholes
-	+int[] startMaxNum
-	+int[] startMinNum
-	+int[] endMaxNum
-	+int[] endMinNum
-	+Parameters(String inputString)
-	+Parameters()
+object "field2 : Field" as Field2 {
+	feed = "cheese1"
 }
-class Control [[java:Main.Control]] {
-	-String statisticsPath
-	-void startSimulation()
-	-void showStatistics()
-	-void saveStatistics()
-	-void setParamiters()
-	+{static}void main(String[] args)
+object "field3 : Field" as Field3 {
+	feed = null
 }
-class Simulation [[java:Main.Simulation]] {
-}
-Control *-- Simulation : simulation
-class Parameters [[java:Main.Parameters]] {
-}
-Control *-- Parameters : parameters
-class Feed [[java:Area.Feed]] {
-	-{static}int[] numAll
-	-{static}int[] numMax
-	-{static}int[] numEaten
-	-{static}int[] numDestroyed
+
+object "grass1 : Feed" as Feed1 {
+	{static}numAll[0] = 1
+	{static}numAll[1] = 1
+	{static}numMax[0] = 4
+	{static}numMax[1] = 3
+	{static}numEaten[0] = 9
+	{static}numEaten[1] = 6
+	{static}numDestroyed[0] = 7
+	{static}numDestroyed[0] = 2
 	-String name
-	~Feed()
-	+String getName()
-	~{static}int getNumAll()
-	~{static}int getNumMax()
-	~{static}int getNumEaten()
-	~{static}int getNumDestroyed()
-	+void beEaten()
-	+void beDestroyed()
 }
 
-class Meadow [[java:Area.Meadow]] {
-	-int width
-	-int height
-	-Field[][] tab
-	~Meadow(int width, int height, int numWaterholes, int numFeeds)
-	~Meadow()
-	-void initialFeed(int numFeeds)
-	-void initialWaterholes(int numWaterholes)
-	-void spreadNewFeed()
-	+void doIteration()
-}
-class Field [[java:Area.Field]] {
-	~Field()
-	+boolean isEmpty()
-	+void putFeed()
-	+Feed getFeed()
-	+boolean isWaterhole()
-}
-class Feed [[java:Area.Feed]] {
-}
-Field *--- Feed : feed
-class Waterhole [[java:Area.Waterhole]] {
-}
-Field *-- Waterhole : waterhole
-class Waterhole [[java:Area.Waterhole]] {
-	-{static}int number
-	~Waterhole()
-	~{static}int getNumber()
+object "cheese1 : Feed" as Feed2 {
+	{static}numAll[0] = 1
+	{static}numAll[1] = 1
+	{static}numMax[0] = 4
+	{static}numMax[1] = 3
+	{static}numEaten[0] = 9
+	{static}numEaten[1] = 6
+	{static}numDestroyed[0] = 7
+	{static}numDestroyed[0] = 2
+	name = "cheese"
 }
 
-Meadow *-- "*" Field : field
 
-Simulation *-- Meadow : meadow
-Simulation *-- "*" Animal : animal
-abstract class Animal [[java:Animal.Animal]] {
-	#int hunger
-	#int thirst
-	#int age
-	#int positionX
-	#int positionY
-	#int iterationsToMove
-	#boolean isMale
-	+{static}int[] maxPopulation
-	+{static}int[] population
-	+Animal()
-	+Animal(int hunger, int thirst, int age, boolean isMale)
-	+void moveTo(int direction)
-	+void drink()
-	+void die()
-	+void getOlder()
-	+boolean wantToMove()
+Field1 *-- Feed1 : is_included
+Field2 *-- Feed2 : is_included
+
+Meadow *-- Field1 : is_part
+Meadow *-- Field2 : is_part
+Meadow *-- "22" Field3 : is_part
+
+object "waterhole1 : Waterhole" as Waterhole {
+	{static}number = 1
 }
 
-class Wolf [[java:Animal.Wolf]] {
-	+{static}int movementSpeed
-	+Wolf()
-	+Wolf(int hunger, int thirst, int age, boolean isMale)
-	+void eat(String target)
-	+boolean canEat(String target)
-	+void multiply()
-}
-abstract class Animal [[java:Animal.Animal]] {
-}
-Animal <|-- Wolf
+Meadow *-- Waterhole : is_part
 
-class Sheep [[java:Animal.Sheep]] {
-	+{static}int movementSpeed
-	+Sheep()
-	+Sheep(int hunger, int thirst, int age, boolean isMale)
-	+void eat(String target)
-	+boolean canEat(String target)
-	+void multiply()
+Simulation *----- Meadow : is_managed
+
+
+
+
+object "sheep1 : Sheep" as Sheep1 {
+	{static}movementSpeed = 2
+	{static}maxPopulation = 9
+	{static}population = 2
+	hunger = 10
+	thirst = 15
+	age = 18
+	positionX = 0
+	positionY = 1
+	iterationsToMove = 3
+	isMale = true
 }
-abstract class Animal [[java:Animal.Animal]] {
+
+object "sheep2 : Sheep" as Sheep2 {
+	{static}movementSpeed = 2
+	{static}maxPopulation = 9
+	{static}population = 2
+	hunger = 21
+	thirst = 51
+	age = 4
+	positionX = 3
+	positionY = 1
+	iterationsToMove = 1
+	isMale = false
 }
-Animal <|-- Sheep
-class Mouse [[java:Animal.Mouse]] {
-	+{static}int movementSpeed
-	+Mouse()
-	+Mouse(int hunger, int thirst, int age, boolean isMale)
-	+void eat(String target)
-	+boolean canEat(String target)
-	+void multiply()
+
+Simulation *-- Sheep1 : is_managed_as_animal
+Simulation *-- Sheep2 : is_managed_as_animal
+
+
+object "wolf1 : Wolf" as Wolf1 {
+	{static}movementSpeed = 5
+	{static}maxPopulation = 4
+	{static}population = 3
+	hunger = 10
+	thirst = 15
+	age = 18
+	positionX = 2
+	positionY = 4
+	iterationsToMove = 3
+	isMale = true
 }
-abstract class Animal [[java:Animal.Animal]] {
+
+object "wolf2 : Wolf" as Wolf2 {
+	{static}movementSpeed = 5
+	{static}maxPopulation = 4
+	{static}population = 3
+	hunger = 21
+	thirst = 51
+	age = 4
+	positionX = 3
+	positionY = 1
+	iterationsToMove = 1
+	isMale = false
 }
-Animal <|-- Mouse
-class Cat [[java:Animal.Cat]] {
-	+{static}int movementSpeed
-	+Cat()
-	+Cat(int hunger, int thirst, int age, boolean isMale)
-	+void eat(String target)
-	+boolean canEat(String target)
-	+void multiply()
+
+object "wolf3 : Wolf" as Wolf3 {
+	{static}movementSpeed = 5
+	{static}maxPopulation = 4
+	{static}population = 3
+	hunger = 56
+	thirst = 23
+	age = 9
+	positionX = 3
+	positionY = 2
+	iterationsToMove = 4
+	isMale = false
 }
-abstract class Animal [[java:Animal.Animal]] {
+
+Simulation *-- Wolf1 : is_managed_as_animal
+Simulation *-- Wolf2 : is_managed_as_animal
+Simulation *-- Wolf3 : is_managed_as_animal
+
+object "Cat1 : Cat" as Cat1 {
+	{static}movementSpeed = 7
+	{static}maxPopulation = 3
+	{static}population = 1
+	hunger = 34
+	thirst = 65
+	age = 6
+	positionX = 3
+	positionY = 3
+	iterationsToMove = 3
+	isMale = false
 }
-Animal <|-- Cat
-class Cow [[java:Animal.Cow]] {
-	+{static}int movementSpeed
-	+Cow()
-	+Cow(int hunger, int thirst, int age, boolean isMale)
-	+void eat(String target)
-	+boolean canEat(String target)
-	+void multiply()
+
+Simulation *-- Cat1 : is_managed_as_animal
+
+object "cow1 : Cow" as Cow1 {
+	{static}movementSpeed = 3
+	{static}maxPopulation = 8
+	{static}population = 2
+	hunger = 18
+	thirst = 98
+	age = 32
+	positionX = 4
+	positionY = 3
+	iterationsToMove = 1
+	isMale = true
 }
-abstract class Animal [[java:Animal.Animal]] {
+
+object "cow2 : Cow" as Cow2 {
+	{static}movementSpeed = 3
+	{static}maxPopulation = 8
+	{static}population = 2
+	hunger = 86
+	thirst = 21
+	age = 15
+	positionX = 4
+	positionY = 4
+	iterationsToMove = 5
+	isMale = false
 }
-Animal <|-- Cow
+
+Simulation *-- Cow1 : is_managed_as_animal
+Simulation *-- Cow2 : is_managed_as_animal
+
+
+object "mouse1 : Mouse" as Mouse1 {
+	{static}movementSpeed = 6
+	{static}maxPopulation = 9
+	{static}population = 1
+	hunger = 56
+	thirst = 34
+	age = 3
+	positionX = 2
+	positionY = 0
+	iterationsToMove = 0
+	isMale = true
+}
+
+
+Simulation *-- Mouse1 : is_managed_as_animal
+
 @enduml
