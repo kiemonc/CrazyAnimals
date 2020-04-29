@@ -3,11 +3,14 @@
  */
 package Area;
 
+import Animal.IEatable;
+
 /**
  * @author Mikołaj
+ *	Klasa przechowuje informacje na temat danego rodzaju pożywienia, tj. aktualna ilość, maksymalna ilość, ilość zjedzonych i ilość zniszczonych
  *
  */
-public final class Feed implements IFeed {
+public final class Feed implements IEatable {
 	private static int[] numAll;
 	private static int[] numMax;
 	private static int[] numEaten;

@@ -8,8 +8,8 @@ package Animal;
  *
  */
 public interface IAnimal {
-	public void eat(Object target);
-	public boolean canEat(Object target);
+	public void eat(IEatable target);
+	public boolean canEat(IEatable target);
 	public void moveTo(int direction);
 	public void multiply();
 	public void drink();

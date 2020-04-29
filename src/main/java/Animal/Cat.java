@@ -16,7 +16,7 @@ public class Cat extends Animal {
 		super(hunger, thirst, age, isMale);
 	}
 	
-	public void eat(Object target) {}
-	public boolean canEat(Object target) {return false;}
+	public void eat(IEatable target) {}
+	public boolean canEat(IEatable target) {return false;}
 	public void multiply() {}
 }

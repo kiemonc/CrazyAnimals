@@ -1,13 +1,10 @@
 package Animal;
-/**
- * 
- */
 
 /**
  * @author jakub
- * Klasa zawiera wspólne parametry i operacje dla zwierz¹t
+ * Klasa zawiera wspï¿½lne parametry i operacje dla zwierzï¿½t
  */
-public abstract class Animal implements IAnimal{
+public abstract class Animal implements IAnimal, IEatable{
 	
 	protected int hunger, thirst, age, positionX, positionY, iterationsToMove;
 	protected boolean isMale;
@@ -27,4 +24,5 @@ public abstract class Animal implements IAnimal{
 	public void die() {}
 	public void getOlder() {}
 	public boolean wantToMove() {return false;}
+	public void beEaten() {}
 }
