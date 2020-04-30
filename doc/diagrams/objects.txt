@@ -57,7 +57,7 @@ object "grass1 : Feed" as Feed1 {
 	{static}numEaten[1] = 6
 	{static}numDestroyed[0] = 7
 	{static}numDestroyed[0] = 2
-	-String name
+	name = "grass"
 }
 
 object "cheese1 : Feed" as Feed2 {
