@@ -99,7 +99,7 @@ class Field [[java:Area.Field]] {
 Field <|-- Waterhole
 
 
-Meadow *-- Field : field
+Meadow *-- "*" Field : field
 Simulation *-- Meadow : meadow
 Simulation *---- "*" Animal : animal
 
@@ -140,7 +140,7 @@ class Wolf [[java:Animal.Wolf]] {
 	+boolean canEat(IEatable target)
 	+void multiply()
 }
-class Animal [[java:Animal.Animal]] {
+abstract class Animal [[java:Animal.Animal]] {
 }
 Animal <|-- Wolf
 interface IAnimal [[java:Animal.IAnimal]] {
@@ -161,7 +161,7 @@ class Sheep [[java:Animal.Sheep]] {
 	+boolean canEat(IEatable target)
 	+void multiply()
 }
-class Animal [[java:Animal.Animal]] {
+abstract class Animal [[java:Animal.Animal]] {
 }
 Animal <|--- Sheep
 class Mouse [[java:Animal.Mouse]] {
@@ -172,7 +172,7 @@ class Mouse [[java:Animal.Mouse]] {
 	+boolean canEat(IEatable target)
 	+void multiply()
 }
-class Animal [[java:Animal.Animal]] {
+abstract class Animal [[java:Animal.Animal]] {
 }
 Animal <|-- Mouse
 class Cat [[java:Animal.Cat]] {
@@ -183,7 +183,7 @@ class Cat [[java:Animal.Cat]] {
 	+boolean canEat(IEatable target)
 	+void multiply()
 }
-class Animal [[java:Animal.Animal]] {
+abstract class Animal [[java:Animal.Animal]] {
 }
 Animal <|--- Cat
 class Cow [[java:Animal.Cow]] {
@@ -194,7 +194,7 @@ class Cow [[java:Animal.Cow]] {
 	+boolean canEat(IEatable target)
 	+void multiply()
 }
-class Animal [[java:Animal.Animal]] {
+abstract class Animal [[java:Animal.Animal]] {
 }
 Animal <|-- Cow
 @enduml
