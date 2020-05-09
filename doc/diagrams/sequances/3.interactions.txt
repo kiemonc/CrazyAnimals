@@ -1,0 +1,31 @@
+@startuml
+participant animal as "animal:Animal"
+participant field as "field:Field"
+[-> animal : interact with new field,\neat another animal\nor multiplay with another animal
+activate animal
+animal -> field : are you waterhole?
+animal <- field : answer
+
+alt if field is waterhole
+animal -> animal : drink
+end
+
+animal -> field : do you have any food?
+animal <- field : anwer
+
+alt if field has eatable food 
+animal -> animal : eat
+end
+
+animal -> field : do you contain any animal?
+animal <- field : answer
+
+alt if field contains animal of the same species \nand I am a female
+animal -> animal : multiply
+[<- animal : 
+else if field contains animal one the species, which I can eat
+animal -> animal : eat
+[<- animal : give reference to eaten animal
+deactivate animal
+end
+@enduml
