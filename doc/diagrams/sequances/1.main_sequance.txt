@@ -2,7 +2,7 @@
 
 participant simulation as "simulation:Simulation"
 participant animals as "animals:IAnimal"
-participant map as "map:Map"
+participant map as "meadow:Meadow"
 participant animalsCreator as "animalsCreator:IAnimalsCreator"
 
 [-> simulation : start simulation
