@@ -1,4 +1,5 @@
 @startuml
+title Simulation
 [*] --> Initialized
 Initialized --> Checking
 Checking : Checking end conditions

@@ -1,4 +1,5 @@
 @startuml
+title Animal
 [*] --> Initialized
 Initialized --> Checking : put on meadow
 Checking : Checking hunger, thirst and age
