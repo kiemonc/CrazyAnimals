@@ -1,0 +1,20 @@
+@startuml
+title Animal
+[*] --> Initialized
+Initialized --> Checking : put on meadow
+Checking : Checking hunger, thirst and age
+Checking --> [*] : parameters \nare critical
+Checking --> Moving : parameters \nare ok
+Moving : While iterationsToMove > 0
+Moving --> Settlement : move
+Moving --> Checking : can't move \nanywhere
+Settlement : Checking the content of the field
+Settlement --> Eating : feed or eatable animal
+Eating --> Checking
+Settlement --> Drinking : waterhole
+Drinking --> Checking
+Settlement --> Multiplying : animal of \nthe same species \nand different gender
+Multiplying -----> Checking
+Settlement --> Checking : nothing
+Settlement --> Moving : can't move there
+@enduml
