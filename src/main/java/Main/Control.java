@@ -3,6 +3,7 @@
  */
 package Main;
 
+
 /**
  * @author Mikołaj
  * Klasa odpowiada za startowanie i konczenie symulacji. Przechowuje ścieżkę do pliku wyjściowego statystyk.  Klasa generuje i zapisuje statystyki po zakończeniu symualcji.
@@ -27,7 +28,7 @@ public final class Control {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 }
