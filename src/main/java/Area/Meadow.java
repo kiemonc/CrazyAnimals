@@ -12,13 +12,21 @@ public final class Meadow {
 	
 	private int width;
 	private int height;
-	private Field[][] tab;
+	private IField[][] tab;
+	
+/**
+ * Konstruktor klasy Meadow tworzy łąke z zadanymi parametrami początkowymi
+ * @param width Szerokość łąki
+ * @param height Wysokość łąki
+ * @param numWaterholes Ilość wodopoi
+ * @param numFeeds Początkowa ilość pożywienia
+ */
 	Meadow(int width, int height, int numWaterholes, int numFeeds) {
 		//wiersze i kolumny są numerowane tak samo jak w macierzy
-		tab = new Field[height][width];
-		for(int i = 0; i < height; i++) {
-			for(int j = 0; j < width; j++) {
-				tab[i][j] = new Field();
+		tab = new IField[height][width];
+		for(int y = 0; y < height; y++) {
+			for(int x = 0; x < width; x++) {
+				tab[y][x] = new Field(x,y);
 			}
 		}
 		
