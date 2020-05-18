@@ -3,32 +3,31 @@
  */
 package Main;
 
-
 /**
- * @author Miko≈Çaj
- * Klasa odpowiada za startowanie i konczenie symulacji. Przechowuje ≈õcie≈ºkƒô do pliku wyj≈õciowego statystyk.  Klasa generuje i zapisuje statystyki po zako≈Ñczeniu symualcji.
+ * @author Miko≥aj
+ * Klasa odpowiada za startowanie i konczenie symulacji. Przechowuje úcieøkÍ do pliku wyjúciowego statystyk.  Klasa generuje i zapisuje statystyki po zakoÒczeniu symualcji.
  */
 public final class Control {
-	private Simulation simulation;
+	private static Simulation simulation;
 
-	private String statisticsPath;
-	private Parameters parameters;
+	private static String statisticsPath;
+	private static Parameters parameters;
 	
 	
-	private void startSimulation() {}
-	private void showStatistics() {}
-	private void saveStatistics() {}
-	private void setParamiters() {}
+	private static void startSimulation() {}
+	private static void showStatistics() {}
+	private static void saveStatistics() {}
+	private static void setParamiters() {}
 
 
 	
 	
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		parameters = new Parameters();
+		simulation = new Simulation(parameters);
 		
+		simulation.runSimulation();
+
 	}
 
 }

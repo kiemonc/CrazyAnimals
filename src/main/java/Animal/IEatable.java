@@ -1,11 +1,13 @@
 package Animal;
 
 /**
- * 
- * @author MikoÅ‚aj
- * Interfejs odpowiada za gruopanie obiektÃ³w z klas Animal i Feed, ktÃ³re mogÄ… zostaÄ‡ zjedzone przez obiekty klasy Animal.
+ * Interfejs odpowiada za grupowanie obiektów z klas Animal i Feed, które mog¹ zostaæ zjedzone przez obiekty klasy Animal
+ * @author Miko³aj
  */
 
 public interface IEatable {
+	/**
+	 * 
+	 */
 	public void beEaten();
 }

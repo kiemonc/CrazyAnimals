@@ -4,8 +4,8 @@ package Animal;
  */
 
 /**
+ * Interfejs przechowuj¹cy operacje klasy Animal
  * @author jakub
- *
  */
 public interface IAnimal {
 	/**
@@ -20,12 +20,12 @@ public interface IAnimal {
 	 */
 	public boolean canEat(IEatable target);
 	/**
-	 * Pozwala zmieniæ pozycjê zwierzêcia
+	 * Pozwala zmieniæ pozycjê zwierzêcia na inn¹, losowo wybran¹ spoœród pól s¹siednich do obecnego
 	 * @param direction - kierunek ruchu
 	 */
-	public void moveTo(int direction);
+	public void move(Area.IMeadow meadow);
 	/**
-	 * Tworzy nowe zwierzê z dwóch zwierz¹t przeciwnej p³ci
+	 * Tworzy nowe zwierzê z dwóch zwierz¹t przeciwnej p³cic oraz tego samego gatunku
 	 */
 	public void multiply();
 	/**
@@ -40,6 +40,10 @@ public interface IAnimal {
 	 * Zwiêksza wiek zwierzêcia o 1
 	 */
 	public void getOlder();
+	/**
+	 * Wykonuje iteracjê, tzn. zwiêksza g³ód oraz pragnienie i zmniejsza iloœæ iteracji do wykonania ruchu
+	 */
+	public void doIteration();
 	/**
 	 * Okreœla czy zwierzê chce siê ruszyæ
 	 * @return true - chce, false - nie chce
