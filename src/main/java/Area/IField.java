@@ -10,5 +10,6 @@ public interface IField {
 	public void destroy(IEatable eatable);
 	public List<IAnimal> getAnimals();
 	public void seatAnimal(IAnimal animal);
-	public void putFeed();
+	public void putNewFeed();
+	public int [] getCoordinates();
 }

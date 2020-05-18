@@ -12,7 +12,7 @@ public final class Waterhole extends Field{
 	
 	
 /**
- * Konstruktor klasy Waterhole korzysta z konostruktora klasy Animal, po której Waterhole dziedziczy. Dodatkowo zlicza powstałe obiekty
+ * Konstruktor klasy Waterhole korzysta z konostruktora klasy Field, po której Waterhole dziedziczy. Dodatkowo zlicza powstałe obiekty
  * @param positionX
  * @param positionY
  */

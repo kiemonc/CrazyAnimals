@@ -78,7 +78,7 @@ public class Field implements IField{
  * Metoda rozpoznaje czy na danym polu znajduje się aktualnie pożywienie i ewentualnie je usuwa
  * i w to miejsce wkłada nowo wygenerowane pożywienie
  */
-	public void putFeed() {
+	public void putNewFeed() {
 		if(feed != null) {
 			feed.beDestroyed();
 		}
@@ -96,5 +96,13 @@ public class Field implements IField{
 		} else if(animals.contains(eatable)) {
 			animals.remove(eatable);
 		}
+	}
+
+/**
+ * @return Współrzędne pola
+ */
+	public int [] getCoordinates() {
+		int [] coordinates = {positionX,positionY};
+		return coordinates;
 	}
 }
