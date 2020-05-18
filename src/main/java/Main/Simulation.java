@@ -1,5 +1,8 @@
 package Main;
 
+import java.util.List;
+import java.util.LinkedList;
+
 /**
  * @author Mikołaj
  * Klasa odpowiada za przebieg symulacji. W niej znajduje się główna pętla symulacji. Koordynuje działania zwierząt i wymusza między nimi interakcje, takie jak rozmnażanie się, zaspokojenie pragnienia czy głodu. 
@@ -10,23 +13,55 @@ package Main;
 
 public final class Simulation {
 	private double startTime;
+	private Parameters parameters;
 	private int numIteration;
 	private Area.Meadow meadow;
-	private Animal.Animal[] animals;
+	private List<Animal.IAnimal> animals;
 	
-	public Simulation(Parameters parameters) {}
-	public Simulation() {}
-	private void setParameteres() {}
-	private void initialMeadow() {}
-	private void initialAnimals() {}
+	public Simulation(Parameters parameters) {
+		this.parameters = parameters;
+		meadow = new Area.Meadow(parameters.meadowWidth, parameters.meadowHeight, parameters.numWaterholes, parameters.meadowHeight*parameters.meadowWidth/10);
+		
+		numIteration = 0;
+	}
 	
-	private void mainLoop() {}
-	private void doIteration() {}
-	private void showCurrentState() {}
-	private boolean ifEnd() {return false;}
+/**
+ * Startuje i konczy sumylacje	
+ */
+	public void runSimulation() {
+		while(!ifEnd()) {
+			numIteration++;
+			mainLoop();
+		}
+	}
+	private void mainLoop() {
+		meadow.doIteration();
+		for(Animal.IAnimal animal: animals) {
+			animal.move();
+		}
+		for(Animal.IAnimal animal: animals) {
+			animal.doIteration();
+		}
+	}
 
-	private void updateMeadowState() {}
-	private void updateAnimalsState() {}
-	private void doInteractionsBetweenAnimals() {}
+/**
+ * Wyświetla aktualny stan sumlacji w przyjaznej dla użytkownika formie
+ */
+	private void showCurrentState() {}
+	
+/**
+ * Sprawdza czy zostały spełnione warunki końca symulacji
+ * Wartości końcowe symulacji są akceptowalne. Przekroczenie tego zakresu zatrzymuje symulacje
+ * @return Wartość logiczna odpowiadająca na pytanie czy nastąpił koniec symulacji
+ */
+	private boolean ifEnd() {
+		for(int i = 0; i < 5; i++) {
+			if(Animal.Animal.population[i] < parameters.endMinNum[i] || Animal.Animal.population[i] > parameters.endMaxNum[i]) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	
 }

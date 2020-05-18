@@ -29,17 +29,24 @@ public class Field implements IField{
 	}
 	
 /**
- * Metoda informuje czy dane pole jest aktualnie puste, tzn. czy znajdują się na nim jakieś zwierzęta lub jakieś pożywienie
+ * Informuje czy na danym polu znajduje się jakiekolwiek pożywienie
  * @return boolean 	Wartość logiczna odpowiadająca na pytanie czy pole jest aktualnie puste
  */
-	public boolean isEmpty() {
-		if(animals.isEmpty() && feed==null) return true;
-		else return false;
+	public boolean anyFeed() {
+		return !(feed==null);
+	}
+	
+/**
+ * Informuje czy na danym polu znajduje się jakiekolwiek zwierzę
+ * @return
+ */
+	public boolean anyAnimal() {
+		return !animals.isEmpty();
 	}
 
 
 /**
- * Metoda zwraca listę obiektów, które da się zjeść, do listy zwierząt dokleja pożywienie, jeśli znajduje się aktualnie na danym polu. Jeśli pole jest puste zwraca wartość null
+ * Zwraca listę obiektów, które da się zjeść, do listy zwierząt dokleja pożywienie, jeśli znajduje się aktualnie na danym polu. Jeśli pole jest puste zwraca wartość null
  * @return Lista obiektów dających się zjeść
  */
 	public List<IEatable> getEatable() {
@@ -90,7 +97,7 @@ public class Field implements IField{
  * Metoda usuwa dany obiekt z listy obietków zawartych w obiekcie klasy Field. Może to być obiekt typu Field lub IAnimal, które implementuję interfejs IEatable
  * @param eatable Obiekt do zniszczenia
  */
-	public void destroy(IEatable eatable) {
+	public void destroyEatable(IEatable eatable) {
 		if(feed==eatable) {
 			feed = null;
 		} else if(animals.contains(eatable)) {

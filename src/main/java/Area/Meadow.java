@@ -27,7 +27,7 @@ public final class Meadow implements IMeadow {
  * @param numWaterholes Ilość wodopoi
  * @param numFeeds Początkowa ilość pożywienia
  */
-	Meadow(int width, int height, int numWaterholes, int numFeeds) {
+	public Meadow(int width, int height, int numWaterholes, int numFeeds) {
 		fields = new LinkedList<List<IField>>();
 		//wiersze i kolumny są numerowane tak samo jak w macierzy
 		//pole o współrzędnych (0,0) znajduje się w lewym górnym rogu.
@@ -147,11 +147,43 @@ public final class Meadow implements IMeadow {
 /**
  * Dokłada pożywienie w poszczególnych iteracjach symulacji. Dokłada taką ilość pożywienia by utrzymywać stałą wartość pożywienia na łącem jednak liczba dołożonego pożywienia w danej iteracji nie może przekroczyć zadanej wartości.
  */
-	private void spreadNewFeed() {}
+	private void spreadNewFeed() {
+		List<IField> list = getRandomFields(height*width/10);
+		for(IField field : list) {
+			field.putNewFeed();
+		}
+	}
+
+/**
+ * Wykonuje rutynowe czyności, które są niezbędne podczas iterowania symulacji, czyli m.in. rozkłada nowe pożywienie
+ */
 	public void doIteration() {
 		spreadNewFeed();
 	}
 
+	
+/**
+ * Zwraca listę losowych pól w liczbie zadanej w parametrze
+ * @param numFields liczba pól do zwrócenia
+ * @return List<IField> lista losowych pól
+ */
+	public List<IField> getRandomFields(int numFields) {
+		List<IField> allFields = new LinkedList<IField>();
+		for(int i = 0; i < height; i++) {
+			allFields.addAll(fields.get(i));
+		}
+		
+		List<IField> randomFields = new LinkedList<IField>();
+		
+		for(int i = 0; i < numFields; i++) {
+			if(allFields.isEmpty()) break;
+			int randomIndex = random.nextInt(allFields.size());
+			randomFields.set(i, allFields.get(randomIndex));
+			allFields.remove(randomIndex);
+		}
+		
+		return randomFields;
+	}
 
 	
 }
