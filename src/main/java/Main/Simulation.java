@@ -16,12 +16,14 @@ public final class Simulation {
 	private Parameters parameters;
 	private int numIteration;
 	private Area.Meadow meadow;
+	private Animal.IAnimalCreator animalCreator;
 	private List<Animal.IAnimal> animals;
 	
 	public Simulation(Parameters parameters) {
 		this.parameters = parameters;
 		meadow = new Area.Meadow(parameters.meadowWidth, parameters.meadowHeight, parameters.numWaterholes, parameters.meadowHeight*parameters.meadowWidth/10);
-		
+		animalCreator = new Animal.AnimalCreator();
+		animals = animalCreator.createAnimals(parameters.startNum[0], parameters.startNum[1], parameters.startNum[2], parameters.startNum[3], parameters.startNum[4], meadow);
 		numIteration = 0;
 	}
 	
@@ -37,7 +39,9 @@ public final class Simulation {
 	private void mainLoop() {
 		meadow.doIteration();
 		for(Animal.IAnimal animal: animals) {
-			animal.move();
+			if(animal.wantToMove()) {
+				animal.move(meadow);
+			}
 		}
 		for(Animal.IAnimal animal: animals) {
 			animal.doIteration();
@@ -56,7 +60,7 @@ public final class Simulation {
  */
 	private boolean ifEnd() {
 		for(int i = 0; i < 5; i++) {
-			if(Animal.Animal.population[i] < parameters.endMinNum[i] || Animal.Animal.population[i] > parameters.endMaxNum[i]) {
+			if(Animal.AnimalStats.getCurrentPopulation()[i] < parameters.endMinNum[i] || Animal.AnimalStats.getCurrentPopulation()[i] > parameters.endMaxNum[i]) {
 				return true;
 			}
 		}

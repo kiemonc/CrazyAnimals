@@ -7,9 +7,9 @@ import Animal.IEatable;
 import java.util.Random;
 
 /**
+ * 
+ * Klasa przechowuje informacje na temat danego rodzaju pożywienia, tj. aktualna liczba, maksymalna liczba, liczba zjedzonych i liczba zniszczonych
  * @author Mikołaj
- *	Klasa przechowuje informacje na temat danego rodzaju pożywienia, tj. aktualna liczba, maksymalna liczba, liczba zjedzonych i liczba zniszczonych
- *
  */
 public final class Feed implements IEatable {
 	//[0] - grass; [1] - cheese

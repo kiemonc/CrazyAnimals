@@ -6,10 +6,11 @@ import java.util.Random;
 
 
 /**
- * @author Mikołaj
+ * 
  * Klasa odpowiada za przechowywanie informacji o stanie łąki. Klasa składa się z pól składowych. Rozmieszcza wopoje oraz pożywienie podczas inicjalizacji planszy. 
  * Rozmieszcza nowe pożywienie podczas trwania symulacji.
  * Zawiera dwuwymiarową listę pól.
+ * @author Mikołaj
  */
 public final class Meadow implements IMeadow {
 	
@@ -107,11 +108,7 @@ public final class Meadow implements IMeadow {
 		}
 	}
 	
-/**
- * Metoda wyszukuje i tworzy listę sąsiadów
- * @param field Pole, którego sąsiadów należy znalezć
- * @return lista najbliższych sąsiadów
- */
+
 	public List<IField> getNeighbours(IField field) {
 		int x = field.getCoordinates()[0];
 		int y = field.getCoordinates()[1];
@@ -154,19 +151,13 @@ public final class Meadow implements IMeadow {
 		}
 	}
 
-/**
- * Wykonuje rutynowe czyności, które są niezbędne podczas iterowania symulacji, czyli m.in. rozkłada nowe pożywienie
- */
+
 	public void doIteration() {
 		spreadNewFeed();
 	}
 
 	
-/**
- * Zwraca listę losowych pól w liczbie zadanej w parametrze
- * @param numFields liczba pól do zwrócenia
- * @return List<IField> lista losowych pól
- */
+
 	public List<IField> getRandomFields(int numFields) {
 		List<IField> allFields = new LinkedList<IField>();
 		for(int i = 0; i < height; i++) {
