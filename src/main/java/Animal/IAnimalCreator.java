@@ -6,47 +6,47 @@ import Area.IMeadow;
 import Area.IField;
 
 /**
- * Interfejs przechowuj¹cy operacje klasy AnimalCreator
+ * Interfejs przechowujÄ…cy operacje klasy AnimalCreator
  * @author jakub
  */
 public interface IAnimalCreator {
 	/**
-	 * Tworzy zwierzêta w podanej liczbie i rozmieszcza je losowo na ³¹ce
-	 * @param nrOfCats liczba kotów
-	 * @param nrOfCows liczba krów
+	 * Tworzy zwierzÄ™ta w podanej liczbie i rozmieszcza je losowo na Å‚Ä…ce
+	 * @param nrOfCats liczba kotÃ³w
+	 * @param nrOfCows liczba krÃ³w
 	 * @param nrOfMouses liczba myszy
 	 * @param nrOfSheeps liczba owiec
-	 * @param nrOfWolves liczba wilków
-	 * @return referencja do listy zwierz¹t
+	 * @param nrOfWolves liczba wilkÃ³w
+	 * @return referencja do listy zwierzÄ…t
 	 */
 	public List<Animal> createAnimals(int nrOfCats, int nrOfCows, int nrOfMouses, int nrOfSheeps, int nrOfWolves, IMeadow meadow);
 	/**
 	 * Tworzy jednego kota i umieszcza go na podanym polu
-	 * @param field pole na którym ma zostaæ umieszczony kot
+	 * @param field pole na ktÃ³rym ma zostaÄ‡ umieszczony kot
 	 * @return referencja do utworzonego kota
 	 */
 	public Cat createCat(IField field);
 	/**
-	 * Tworzy jedn¹ krowê i umieszcza j¹ na podanym polu
-	 * @param field pole na którym ma zostaæ umieszczona krowa
+	 * Tworzy jednÄ… krowÄ™ i umieszcza jÄ… na podanym polu
+	 * @param field pole na ktÃ³rym ma zostaÄ‡ umieszczona krowa
 	 * @return referencja do utworzonej krowy
 	 */
 	public Cow createCow(IField field);
 	/**
 	 * Tworzy jednego wilka i umieszcza go na podanym polu
-	 * @param field pole na którym ma zostaæ umieszczony wilk
+	 * @param field pole na ktÃ³rym ma zostaÄ‡ umieszczony wilk
 	 * @return referencja do utworzonego wilka
 	 */
 	public Wolf createWolf(IField field);
 	/**
-	 * Tworzy jedn¹ mysz i umieszcza j¹ na podanym polu
-	 * @param field pole na którym ma zostaæ umieszczona mysz
+	 * Tworzy jednÄ… mysz i umieszcza jÄ… na podanym polu
+	 * @param field pole na ktÃ³rym ma zostaÄ‡ umieszczona mysz
 	 * @return referencja do utworzonej myszy
 	 */
 	public Mouse createMouse(IField field);
 	/**
-	 * Tworzy jedn¹ owcê i umieszcza j¹ na podanym polu
-	 * @param field pole na którym ma zostaæ umieszczona owca
+	 * Tworzy jednÄ… owcÄ™ i umieszcza jÄ… na podanym polu
+	 * @param field pole na ktÃ³rym ma zostaÄ‡ umieszczona owca
 	 * @return referencja do utworzonej owcy
 	 */
 	public Sheep createSheep(IField field);

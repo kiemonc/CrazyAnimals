@@ -9,20 +9,20 @@ import Area.Feed;
 import Area.IField;
 
 /**
- * Klasa przechowuje wartoœæ prêdkoœci z jak¹ poruszaj¹ siê krowy oraz operacje charakterystyczne dla tego gatunku.
- * Pozwala odró¿niæ krowy od innych zwierz¹t
+ * Klasa przechowuje wartoÅ›Ä‡ prÄ™dkoÅ›ci z jakÄ… poruszajÄ… siÄ™ krowy oraz operacje charakterystyczne dla tego gatunku.
+ * Pozwala odrÃ³Å¼niÄ‡ krowy od innych zwierzÄ…t
  * @author jakub
  */
 public class Cow extends Animal {
 	public static final int movementSpeed = 1;
 	public static int maxPopulation, currentPopulation;
 	/**
-	 * Konstruktor tworzy krowê, nadaje jej pocz¹tkowe parametry i umieszcza na podanym polu
-	 * @param hunger pocz¹tkowy g³ód
-	 * @param thirst pocz¹tkowe pragnienie
+	 * Konstruktor tworzy krowÄ™, nadaje jej poczÄ…tkowe parametry i umieszcza na podanym polu
+	 * @param hunger poczÄ…tkowy gÅ‚Ã³d
+	 * @param thirst poczÄ…tkowe pragnienie
 	 * @param age wiek
-	 * @param isMale zmienna logiczna odpowiadaj¹ca na pytanie: czy zwierzê jest p³ci mêskiej?
-	 * @param field pole na którym zostanie umieszczone zwierzê
+	 * @param isMale zmienna logiczna odpowiadajÄ…ca na pytanie: czy zwierzÄ… jest pÅ‚ci mÄ™skiej?
+	 * @param field pole na ktÃ³rym zostanie umieszczone zwierzÄ™
 	 */
 	public Cow(int hunger, int thirst, int age, boolean isMale, IField field){
 		super(hunger, thirst, age, isMale, field);

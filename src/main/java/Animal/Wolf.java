@@ -8,20 +8,20 @@ import java.util.Random;
 import Area.IField;
 
 /**
- * Klasa przechowuje wartoœæ prêdkoœci z jak¹ poruszaj¹ siê wilki oraz operacje charakterystyczne dla tego gatunku.
- * Pozwala odró¿niæ wilki od innych zwierz¹t
+ * Klasa przechowuje wartoÅ›Ä‡ prÄ™dkoÅ›ci z jakÄ… poruszajÄ… siÄ… wilki oraz operacje charakterystyczne dla tego gatunku.
+ * Pozwala odrÃ³Å¼niÄ‡ wilki od innych zwierzÄ…t
  * @author jakub
  */
 public class Wolf extends Animal {
 	public static final int movementSpeed = 1;
 	public static int maxPopulation, currentPopulation;
 	/**
-	 * Konstruktor tworzy wilka, nadaje mu pocz¹tkowe parametry i umieszcza na podanym polu
-	 * @param hunger pocz¹tkowy g³ód
-	 * @param thirst pocz¹tkowe pragnienie
+	 * Konstruktor tworzy wilka, nadaje mu poczÄ…tkowe parametry i umieszcza na podanym polu
+	 * @param hunger poczÄ…tkowy gÅ‚Ã³d
+	 * @param thirst poczÄ…tkowe pragnienie
 	 * @param age wiek
-	 * @param isMale zmienna logiczna odpowiadaj¹ca na pytanie: czy zwierzê jest p³ci mêskiej?
-	 * @param field pole na którym zostanie umieszczone zwierzê
+	 * @param isMale zmienna logiczna odpowiadajÄ…ca na pytanie: czy zwierzÄ™ jest pÅ‚ci mÄ™skiej?
+	 * @param field pole na ktÃ³rym zostanie umieszczone zwierzÄ™
 	 */
 	public Wolf(int hunger, int thirst, int age, boolean isMale, IField field){
 		super(hunger, thirst, age, isMale, field);

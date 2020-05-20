@@ -10,7 +10,7 @@ import java.util.Random;
 import Area.IField;
 import Area.IMeadow;
 /**
- * Klasa odpowiada za tworzenie zadanej liczby zwierz¹t i umieszczanie ich losowo na ³¹ce
+ * Klasa odpowiada za tworzenie zadanej liczby zwierzÄ…t i umieszczanie ich losowo na Å‚Ä…ce
  * @author jakub
  */
 public class AnimalCreator implements IAnimalCreator{
