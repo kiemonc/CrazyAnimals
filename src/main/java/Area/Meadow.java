@@ -16,8 +16,8 @@ public final class Meadow implements IMeadow {
 	
 	private int width;
 	private int height;
-	private List<List<IField>> fields;
-	private List<IField> fieldsWithoutFeed;
+	private LinkedList<LinkedList<IField>> fields;
+	private LinkedList<IField> fieldsWithoutFeed;
 	private Random random = new Random(0);
 	
 /**
@@ -29,7 +29,7 @@ public final class Meadow implements IMeadow {
  * @param numFeeds Początkowa ilość pożywienia
  */
 	public Meadow(int width, int height, int numWaterholes, int numFeeds) {
-		fields = new LinkedList<List<IField>>();
+		fields = new LinkedList<LinkedList<IField>>();
 		fieldsWithoutFeed = new LinkedList<IField>();
 		//wiersze i kolumny są numerowane tak samo jak w macierzy
 		//pole o współrzędnych (0,0) znajduje się w lewym górnym rogu.
