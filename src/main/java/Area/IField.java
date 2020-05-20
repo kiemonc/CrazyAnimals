@@ -26,7 +26,7 @@ public interface IField {
 	
 	/**
 	 * Metoda ustawia zwierzę na danym polu
-	 * @param IAnimal ustawiane zwierzę
+	 * @param animal - ustawiane zwierzę
 	 */
 	public void seatAnimal(IAnimal animal);
 	

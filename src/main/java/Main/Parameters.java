@@ -26,8 +26,9 @@ public final class Parameters {
 		int [] endMaxNum = {3,3,3,3,3};
 		this.endMaxNum = endMaxNum;
 		
+		startNum = new int[5];
 		for(int i = 0; i < 5; i++) {
-			startNum[i] = random.nextInt(startMaxNum[i]) + startMinNum[i];
+			startNum[i] = 5;//startNum[i] = random.nextInt(this.startMaxNum[i]) + this.startMinNum[i];
 		}
 	}
 	

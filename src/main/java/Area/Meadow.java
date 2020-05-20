@@ -30,6 +30,7 @@ public final class Meadow implements IMeadow {
  */
 	public Meadow(int width, int height, int numWaterholes, int numFeeds) {
 		fields = new LinkedList<List<IField>>();
+		fieldsWithoutFeed = new LinkedList<IField>();
 		//wiersze i kolumny są numerowane tak samo jak w macierzy
 		//pole o współrzędnych (0,0) znajduje się w lewym górnym rogu.
 		for(int y = 0; y < height; y++) {

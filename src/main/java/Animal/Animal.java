@@ -57,7 +57,7 @@ public abstract class Animal implements IAnimal, IEatable{
 		field.destroyEatable(this);
 	}
 	public boolean isDying() {
-		if(this.age >= 100 || this.hunger >= 100 || this.thirst >= 100) //???
+		if(this.age >= 100 || this.hunger >= 100 || this.thirst >= 100)
 			return true;
 		else return false;
 	}

@@ -22,7 +22,7 @@ public final class Feed implements IEatable {
 	private static Random random = new Random(0);
 /**
  * Konstruktor klasy Feed tworzy pożywienie, nadaje mu odpowiednią losową nazwę oraz dolicza kolejne obiekty do statystyki
- * @param Nic
+ * 
  */
 	public Feed() {
 		if(random.nextBoolean()) {
