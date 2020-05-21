@@ -178,6 +178,30 @@ public final class Meadow implements IMeadow {
 		
 		return randomFields;
 	}
-
+	
+	@Override
+	public String toString() {
+		String string = "";
+		string += printLine();
+		for(LinkedList<IField> row : fields) {
+			string += "|";
+			for(IField field : row) {
+				string += field;
+				string += "|";
+			}
+			string += "\n";
+		}
+		string += printLine();
+		return string;
+	}
+	
+	private String printLine() {
+		String string = "";
+		for(int i = 0; i < width*4+width+1; i++) {
+			string += "_";
+		}
+		string += "\n";
+		return string;
+	}
 	
 }

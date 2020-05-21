@@ -45,16 +45,23 @@ public class Field implements IField{
 		if(animals.isEmpty() && feed==null) {
 			return null;
 		}
+		
 		List<IEatable> eatable = new LinkedList<IEatable>();
 		if(!animals.isEmpty() && feed!=null) {
-			eatable.add((IEatable)animals);
+			addAnimalsToList(eatable);
 			eatable.add((IEatable)feed);
 		} else if(animals.isEmpty() && feed!=null) {
 			eatable.add((IEatable)feed);
 		} else if(!animals.isEmpty() && feed==null) {
-			eatable.add((IEatable)animals);
+			addAnimalsToList(eatable);
 		}
 		return eatable;
+	}
+	
+	private void addAnimalsToList(List<IEatable> list) {
+		for(IAnimal animal : animals) {
+			list.add((IEatable)animal);
+		}
 	}
 	
 
@@ -89,5 +96,21 @@ public class Field implements IField{
 	public int [] getCoordinates() {
 		int [] coordinates = {positionX,positionY};
 		return coordinates;
+	}
+	
+	@Override
+	public String toString() {
+		String string = "";
+		for(IAnimal animal : animals) {
+			string += animal;
+		}
+		if(feed != null) {
+			string += feed;
+		}
+		
+		while(string.length() < 4) {
+			string += " ";
+		}
+		return string;
 	}
 }

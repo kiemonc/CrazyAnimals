@@ -3,6 +3,7 @@ package Animal;
  * 
  */
 
+import java.util.List;
 import java.util.Random;
 
 import Area.Feed;
@@ -14,8 +15,7 @@ import Area.IField;
  * @author jakub
  */
 public class Sheep extends Animal {
-	public static final int movementSpeed = 1;
-	public static int maxPopulation, currentPopulation;
+	private static final int movementSpeed = 1;
 	/**
 	 * Konstruktor tworzy owcę, nadaje jej początkowe parametry i umieszcza na podanym polu
 	 * @param hunger początkowy głód
@@ -34,8 +34,29 @@ public class Sheep extends Animal {
 				return true;
 		return false;
 		}
+	public boolean canMoveThere(IField field) {
+		if(field.anyAnimal())
+		{
+			List<IAnimal> animals = field.getAnimals();
+			for(int i = 0; i < animals.size(); i++)
+			{
+				if(!(animals.get(i) instanceof Sheep && animals.get(i).isMale() != this.isMale))
+					return false;
+			}
+		}
+		return true;
+	}
+	public boolean canMultiply(IAnimal animal) {
+		if(animal instanceof Sheep && animal.isMale() != this.isMale())
+			return true;
+		return false;
+	}
 	public void multiply() {
 		Random random = new Random();
 		this.field.seatAnimal(new Sheep(0, 0, 0, random.nextBoolean(), this.field));
+	}
+	public int getMovementSpeed() {return movementSpeed;}
+	public String toString() {
+		return (this.isMale) ? "S" : "s";
 	}
 }
