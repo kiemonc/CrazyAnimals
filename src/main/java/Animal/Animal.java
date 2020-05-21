@@ -15,6 +15,7 @@ public abstract class Animal implements IAnimal{
 	protected int hunger, thirst, age, iterationsToMove;
 	protected boolean isMale;
 	protected IField field;
+	private boolean isDead;
 	private Random random = new Random();
 	
 	/**
@@ -31,13 +32,14 @@ public abstract class Animal implements IAnimal{
 		this.age = age;
 		this.isMale = isMale;
 		this.field = field;
+		isDead = false;
 	}
 	public boolean isMale() {
 		return isMale;
 	}
 	public void eat(IEatable target) {
 		target.beEaten();
-		this.hunger -= 50;
+		hunger = (hunger > 50) ? hunger - 50 : 0;
 	}
 	public void move(IMeadow meadow) {
 		List<IField> fields = meadow.getNeighbours(this.field);
@@ -55,7 +57,7 @@ public abstract class Animal implements IAnimal{
 		this.field = chosenField;
 		iterationsToMove = this.getMovementSpeed();
 	}
-	public void drink() {this.thirst -= 30;}
+	public void drink() {thirst = (thirst > 30) ? thirst - 30 : 0;}
 	public void die() {
 		if(this instanceof Cat)
 			AnimalStats.takeAnimal(0);
@@ -68,6 +70,7 @@ public abstract class Animal implements IAnimal{
 		else if(this instanceof Wolf)
 			AnimalStats.takeAnimal(4);
 		field.destroyEatable(this);
+		isDead = true;
 	}
 	public boolean isDying() {
 		if(age >= 100 || hunger >= 100 || thirst >= 100)
