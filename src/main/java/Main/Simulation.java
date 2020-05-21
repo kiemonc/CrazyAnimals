@@ -60,7 +60,7 @@ public final class Simulation {
  */
 	private boolean ifEnd() {
 		for(int i = 0; i < 5; i++) {
-			if(Animal.AnimalStats.getCurrentPopulation()[i] < parameters.endMinNum[i] || Animal.AnimalStats.getCurrentPopulation()[i] > parameters.endMaxNum[i]) {
+			if(Animal.AnimalStats.getCurrentPopulation()[i] < parameters.endMinNum[i] || (parameters.endMaxNum[i]!= -1 && Animal.AnimalStats.getCurrentPopulation()[i] > parameters.endMaxNum[i])) {
 				return true;
 			}
 		}

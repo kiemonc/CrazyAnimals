@@ -14,21 +14,24 @@ public final class Parameters {
 	
 	public Parameters() {
 		random = new Random(0);
-		meadowWidth = 100;
-		meadowHeight = 100;
-		numWaterholes = 10;
-		int [] startMinNum = {1,1,1,1,1};
+		meadowWidth = 4;
+		meadowHeight = 4;
+		numWaterholes = 14;
+		int [] startMinNum = {1,0,0,0,0};
 		this.startMinNum = startMinNum;
-		int [] startMaxNum = {4,4,4,4,4};
+		int [] startMaxNum = {1,0,0,0,0};
 		this.startMaxNum = startMaxNum;
-		int [] endMinNum = {2,2,2,2,2};
+		int [] endMinNum = {0,-1,-1,-1,-1};
 		this.endMinNum = endMinNum;
-		int [] endMaxNum = {10,10,10,10,10};
+		int [] endMaxNum = {2,-1,-1,-1,-1};
 		this.endMaxNum = endMaxNum;
 		
 		startNum = new int[5];
 		for(int i = 0; i < 5; i++) {
-			startNum[i] = 5;//startNum[i] = random.nextInt(this.startMaxNum[i]) + this.startMinNum[i];
+			if(startMaxNum[i] > 0) {
+				startNum[i] = random.nextInt(this.startMaxNum[i]) + this.startMinNum[i];
+			}
+			else startNum[i] = 0;
 		}
 	}
 	
