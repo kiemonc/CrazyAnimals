@@ -3,33 +3,46 @@
  */
 package Main;
 
+import java.util.Random;
 /**
- * @author Miko³aj
- * Klasa komunikuje siê z u¿ytkownikiem, ustawia i przechowuje parametry pocz¹tkowe, czyli minialne i maksymalne liczebnoœci ka¿dego gatunku zwierz¹t, wymiary ³¹ki oraz liczbê wodopojów.
- * Klasa ustawia i przechowuje liczbê wodopojów.
+ * @author MikoÅ‚aj
+ * Klasa komunikuje siÄ™ z uÅ¼ytkownikiem, ustawia i przechowuje parametry poczÄ…tkowe, czyli minialne i maksymalne liczebnoÅ›ci kaÅ¼dego gatunku zwierzÄ…t, wymiary Å‚Ä…ki oraz liczbÄ™ wodopojÃ³w.
+ * Klasa ustawia i przechowuje liczbÄ™ wodopojÃ³w.
  */
 public final class Parameters {
+	Random random;
+	
 	public Parameters() {
-		meadowWidth = 100;
-		meadowHeight = 100;
-		numWaterholes = 10;
-		int [] startMinNum = {1,1,1,1,1};
+		random = new Random(0);
+		meadowWidth = 4;
+		meadowHeight = 4;
+		numWaterholes = 14;
+		int [] startMinNum = {1,0,0,0,0};
 		this.startMinNum = startMinNum;
-		int [] startMaxNum = {4,4,4,4,4};
+		int [] startMaxNum = {1,0,0,0,0};
 		this.startMaxNum = startMaxNum;
-		int [] endMinNum = {2,2,2,2,2};
+		int [] endMinNum = {0,-1,-1,-1,-1};
 		this.endMinNum = endMinNum;
-		int [] endMaxNum = {3,3,3,3,3};
+		int [] endMaxNum = {2,-1,-1,-1,-1};
 		this.endMaxNum = endMaxNum;
 		
+		startNum = new int[5];
+		for(int i = 0; i < 5; i++) {
+			if(startMaxNum[i] > 0) {
+				startNum[i] = random.nextInt(this.startMaxNum[i]) + this.startMinNum[i];
+			}
+			else startNum[i] = 0;
+		}
 	}
-
+	
 	public final int meadowWidth;
 	public final int meadowHeight;
 	public final int numWaterholes;
 	
 	
 	//[0]cat [1]cow [2]mouse [3]sheep [4]wolf
+	public int[] startNum;
+	
 	public final int[] startMaxNum;
 	public final int[] startMinNum;
 	public final int[] endMaxNum;

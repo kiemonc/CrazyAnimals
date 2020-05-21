@@ -21,7 +21,7 @@ public interface IAnimal {
 	public boolean canEat(IEatable target);
 	/**
 	 * Pozwala zmienić pozycję zwierzęcia na inną, losowo wybraną spośród pól sąsiednich do obecnego
-	 * @param direction - kierunek ruchu
+	 * @param meadow - referencja do łąki
 	 */
 	public void move(Area.IMeadow meadow);
 	/**
@@ -45,8 +45,14 @@ public interface IAnimal {
 	 */
 	public void doIteration();
 	/**
-	 * Okre�la czy zwierzę chce się ruszyć
+	 * Określa czy zwierzę chce się ruszyć
 	 * @return true - chce, false - nie chce
 	 */
 	public boolean wantToMove();
+	/**
+	 * Pozwala wyświetlić zwierzę jako znak
+	 * @return ciąg znaków, który zawiera jeden znak - reprezentację zwierzęcia
+	 */
+	@Override
+	public String toString();
 }

@@ -7,9 +7,9 @@ import Animal.IEatable;
 import java.util.Random;
 
 /**
- * @author Miko³aj
- *	Klasa przechowuje informacje na temat danego rodzaju po¿ywienia, tj. aktualna liczba, maksymalna liczba, liczba zjedzonych i liczba zniszczonych
- *
+ * 
+ * Klasa przechowuje informacje na temat danego rodzaju poÅ¼ywienia, tj. aktualna liczba, maksymalna liczba, liczba zjedzonych i liczba zniszczonych
+ * @author MikoÅ‚aj
  */
 public final class Feed implements IEatable {
 	//[0] - grass; [1] - cheese
@@ -21,10 +21,14 @@ public final class Feed implements IEatable {
 	private String name;
 	private static Random random = new Random(0);
 /**
- * Konstruktor klasy Feed tworzy po¿ywienie, nadaje mu odpowiedni¹ losow¹ nazwê oraz dolicza kolejne obiekty do statystyki
- * @param Nic
+ * Konstruktor klasy Feed tworzy poÅ¼ywienie, nadaje mu odpowiedniÄ… losowÄ… nazwÄ™ oraz dolicza kolejne obiekty do statystyki
+ * 
  */
 	public Feed() {
+		numAll = new int[2];
+		numMax = new int[2];
+		numEaten = new int[2];
+		numDestroyed = new int[2];
 		if(random.nextBoolean()) {
 			this.name = "grass";
 			numAll[0]++;
@@ -41,15 +45,15 @@ public final class Feed implements IEatable {
 	}
 	
 /**
- * Metoda zwraca nazwe danego po¿ywienia
- * @return String Nazwa po¿ywienia
+ * Metoda zwraca nazwe danego poÅ¼ywienia
+ * @return String Nazwa poÅ¼ywienia
  */
 	public String getName() {return name;}
 	
 /**
- * Metoda zwraca aktualn¹ liczba wszystkich obiektów danego rodzaju
- * @param name Rodzaj po¿ywienia
- * @return Aktualna liczba obietków
+ * Metoda zwraca aktualnÄ… liczba wszystkich obiektÃ³w danego rodzaju
+ * @param name Rodzaj poÅ¼ywienia
+ * @return Aktualna liczba obietkÃ³w
  */
 	static int getNumAll(String name) {
 		if(name=="grass") {return numAll[0];}
@@ -58,9 +62,9 @@ public final class Feed implements IEatable {
 	}
 
 /**
- * Metoda zwraca maksymaln¹ liczba wszystkich obiektów danego rodzaju
- * @param name Rodzaj po¿ywienia
- * @return Maksymalna liczba obiektów
+ * Metoda zwraca maksymalnÄ… liczba wszystkich obiektÃ³w danego rodzaju
+ * @param name Rodzaj poÅ¼ywienia
+ * @return Maksymalna liczba obiektÃ³w
  */
 	static int getNumMax(String name) {
 		if(name=="grass") {return numMax[0];}
@@ -69,9 +73,9 @@ public final class Feed implements IEatable {
 	}
 	
 /**
- * Metoda zwraca zjedzon¹ liczba wszystkich obiektów danego rodzaju
- * @param name Rodzaj po¿ywienia
- * @return Liczba zjedzonych obietków
+ * Metoda zwraca zjedzonÄ… liczba wszystkich obiektÃ³w danego rodzaju
+ * @param name Rodzaj poÅ¼ywienia
+ * @return Liczba zjedzonych obietkÃ³w
  */
 	static int getNumEaten(String name) {
 		if(name=="grass") {return numEaten[0];}
@@ -80,9 +84,9 @@ public final class Feed implements IEatable {
 	}
 	
 /**
- * Metoda zwraca zniszczon¹ liczba wszystkich obiektów danego rodzaju
- * @param name Rodzaj po¿ywienia
- * @return  Liczba zniszczonych obiektów
+ * Metoda zwraca zniszczonÄ… liczba wszystkich obiektÃ³w danego rodzaju
+ * @param name Rodzaj poÅ¼ywienia
+ * @return  Liczba zniszczonych obiektÃ³w
  */
 	static int getNumDestroyed(String name) {
 		if(name=="grass") {return numDestroyed[0];}
@@ -91,7 +95,7 @@ public final class Feed implements IEatable {
 	}
 
 /**
- * Metoda dolicza obiekt do statystyki obiektów zjedzonych i niszczy obiekt w polu, na którym obecnie siê znajduje
+ * Metoda dolicza obiekt do statystyki obiektÃ³w zjedzonych i niszczy obiekt w polu, na ktÃ³rym obecnie siÄ™ znajduje
  */
 	public void beEaten() {
 		if(name=="grass") {
@@ -103,7 +107,7 @@ public final class Feed implements IEatable {
 	}
 	
 /**
- * Metoda dolicza obiekt do statystyki obiektów zniszczonych i niszczy obiekt w polu, na którym obecnie siê znajduje
+ * Metoda dolicza obiekt do statystyki obiektÃ³w zniszczonych i niszczy obiekt w polu, na ktÃ³rym obecnie siÄ™ znajduje
  */
 	public void beDestroyed() {
 		if(name=="grass") {

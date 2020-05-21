@@ -4,8 +4,8 @@
 package Main;
 
 /**
- * @author Miko≥aj
- * Klasa odpowiada za startowanie i konczenie symulacji. Przechowuje úcieøkÍ do pliku wyjúciowego statystyk.  Klasa generuje i zapisuje statystyki po zakoÒczeniu symualcji.
+ * @author Miko≈Çaj
+ * Klasa odpowiada za startowanie i konczenie symulacji. Przechowuje ≈õcie≈ºkƒô do pliku wyj≈õciowego statystyk.  Klasa generuje i zapisuje statystyki po zako≈Ñczeniu symualcji.
  */
 public final class Control {
 	private static Simulation simulation;

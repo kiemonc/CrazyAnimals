@@ -1,0 +1,14 @@
+@startuml
+title Main activity
+start
+:Set start and finish parameters;
+:Initialize meadow and animals;
+:Put animals on the meadow;
+
+repeat
+  :Evaluate each animal's turn;
+repeat while (Finish parameters achieved?) is (no)
+:Show and save statistics;
+stop
+
+@enduml

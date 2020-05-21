@@ -39,4 +39,7 @@ public class Cow extends Animal {
 		Random random = new Random();
 		this.field.seatAnimal(new Cow(0, 0, 0, random.nextBoolean(), this.field));
 	}
+	public String toString() {
+		return (this.isMale) ? "C" : "c";
+	}
 }

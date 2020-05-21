@@ -39,4 +39,7 @@ public class Mouse extends Animal {
 		Random random = new Random();
 		this.field.seatAnimal(new Mouse(0, 0, 0, random.nextBoolean(), this.field));
 	}
+	public String toString() {
+		return (this.isMale) ? "M" : "m";
+	}
 }

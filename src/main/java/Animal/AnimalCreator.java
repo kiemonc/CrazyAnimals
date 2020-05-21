@@ -16,10 +16,10 @@ import Area.IMeadow;
 public class AnimalCreator implements IAnimalCreator{
 	private Random random = new Random();
 	
-	public List<Animal> createAnimals(int nrOfCats, int nrOfCows, int nrOfMouses, int nrOfSheeps, int nrOfWolves, IMeadow meadow) {
+	public List<IAnimal> createAnimals(int nrOfCats, int nrOfCows, int nrOfMouses, int nrOfSheeps, int nrOfWolves, IMeadow meadow) {
 		List<IField> fields = meadow.getRandomFields(nrOfCats + nrOfCows + nrOfMouses + nrOfSheeps + nrOfWolves);
 		int fieldsIndex = 0;
-		List<Animal> list = new ArrayList<Animal>();
+		List<IAnimal> list = new ArrayList<IAnimal>();
 		for(int i = 0; i < nrOfCats; i++)   {list.add(createCat(fields.get(fieldsIndex++)));}
 		for(int i = 0; i < nrOfCows; i++)   {list.add(createCow(fields.get(fieldsIndex++)));}
 		for(int i = 0; i < nrOfMouses; i++) {list.add(createMouse(fields.get(fieldsIndex++)));}

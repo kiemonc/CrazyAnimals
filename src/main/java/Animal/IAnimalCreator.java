@@ -19,7 +19,7 @@ public interface IAnimalCreator {
 	 * @param nrOfWolves liczba wilków
 	 * @return referencja do listy zwierząt
 	 */
-	public List<Animal> createAnimals(int nrOfCats, int nrOfCows, int nrOfMouses, int nrOfSheeps, int nrOfWolves, IMeadow meadow);
+	public List<IAnimal> createAnimals(int nrOfCats, int nrOfCows, int nrOfMouses, int nrOfSheeps, int nrOfWolves, IMeadow meadow);
 	/**
 	 * Tworzy jednego kota i umieszcza go na podanym polu
 	 * @param field pole na którym ma zostać umieszczony kot

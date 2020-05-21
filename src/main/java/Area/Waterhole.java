@@ -4,15 +4,16 @@
 package Area;
 
 /**
- * @author Miko砤j
- * Klasa przechowuje informacje na temat ilo渃i wodopoj體 na 彻ce. Powoduje, 縠 pole, kt髍e jest wodopojem, jest rozr罂nialne ze zwyk硑m polem.
+ * 
+ * Klasa przechowuje informacje na temat ilo艣ci wodopoj贸w na 艂膮ce. Powoduje, 偶e pole, kt贸re jest wodopojem, jest rozr贸偶nialne ze zwyk艂ym polem.
+ * @author Miko艂aj
  */
 public final class Waterhole extends Field{
 	private static int number = 0;
 	
 	
 /**
- * Konstruktor klasy Waterhole korzysta z konostruktora klasy Field, po kt髍ej Waterhole dziedziczy. Dodatkowo zlicza powsta砮 obiekty
+ * Konstruktor klasy Waterhole korzysta z konostruktora klasy Field, po kt贸rej Waterhole dziedziczy. Dodatkowo zlicza powsta艂e obiekty
  * @param positionX
  * @param positionY
  */
@@ -23,7 +24,7 @@ public final class Waterhole extends Field{
 	
 /**
  * 
- * @return Liczba obiekt體 klasy Waterhole
+ * @return Liczba obiekt贸w klasy Waterhole
  */
 	static int getNumber() {return number;}
 }

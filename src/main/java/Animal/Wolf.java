@@ -39,4 +39,7 @@ public class Wolf extends Animal {
 		Random random = new Random();
 		this.field.seatAnimal(new Wolf(0, 0, 0, random.nextBoolean(), this.field));
 	}
+	public String toString() {
+		return (this.isMale) ? "W" : "w";
+	}
 }

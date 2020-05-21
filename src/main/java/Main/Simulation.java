@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.LinkedList;
 
 /**
- * @author Miko³aj
- * Klasa odpowiada za przebieg symulacji. W niej znajduje siê g³ówna pêtla symulacji. Koordynuje dzia³ania zwierz¹t i wymusza miêdzy nimi interakcje, takie jak rozmna¿anie siê, zaspokojenie pragnienia czy g³odu. 
- * Generuje zwierzêta i daje sygna³ klasie Meadow do inicjalizacji.
- * Wyœwietla aktualny stan symulacji.
- * Odpowiada za sprawdzanie warunków koñca symulacji.
+ * @author MikoÅ‚aj
+ * Klasa odpowiada za przebieg symulacji. W niej znajduje siÄ™ gÅ‚Ã³wna pÄ™tla symulacji. Koordynuje dziaÅ‚ania zwierzÄ…t i wymusza miÄ™dzy nimi interakcje, takie jak rozmnaÅ¼anie siÄ™, zaspokojenie pragnienia czy gÅ‚odu. 
+ * Generuje zwierzÄ™ta i daje sygnaÅ‚ klasie Meadow do inicjalizacji.
+ * WyÅ›wietla aktualny stan symulacji.
+ * Odpowiada za sprawdzanie warunkÃ³w koÅ„ca symulacji.
  */
 
 public final class Simulation {
@@ -16,12 +16,14 @@ public final class Simulation {
 	private Parameters parameters;
 	private int numIteration;
 	private Area.Meadow meadow;
+	private Animal.IAnimalCreator animalCreator;
 	private List<Animal.IAnimal> animals;
 	
 	public Simulation(Parameters parameters) {
 		this.parameters = parameters;
 		meadow = new Area.Meadow(parameters.meadowWidth, parameters.meadowHeight, parameters.numWaterholes, parameters.meadowHeight*parameters.meadowWidth/10);
-		
+		animalCreator = new Animal.AnimalCreator();
+		animals = animalCreator.createAnimals(parameters.startNum[0], parameters.startNum[1], parameters.startNum[2], parameters.startNum[3], parameters.startNum[4], meadow);
 		numIteration = 0;
 	}
 	
@@ -37,7 +39,9 @@ public final class Simulation {
 	private void mainLoop() {
 		meadow.doIteration();
 		for(Animal.IAnimal animal: animals) {
-			animal.move();
+			if(animal.wantToMove()) {
+				animal.move(meadow);
+			}
 		}
 		for(Animal.IAnimal animal: animals) {
 			animal.doIteration();
@@ -45,18 +49,18 @@ public final class Simulation {
 	}
 
 /**
- * Wyœwietla aktualny stan sumlacji w przyjaznej dla u¿ytkownika formie
+ * WyÅ›wietla aktualny stan sumlacji w przyjaznej dla uÅ¼ytkownika formie
  */
 	private void showCurrentState() {}
 	
 /**
- * Sprawdza czy zosta³y spe³nione warunki koñca symulacji
- * Wartoœci koñcowe symulacji s¹ akceptowalne. Przekroczenie tego zakresu zatrzymuje symulacje
- * @return Wartoœæ logiczna odpowiadaj¹ca na pytanie czy nast¹pi³ koniec symulacji
+ * Sprawdza czy zostaÅ‚y speÅ‚nione warunki koÅ„ca symulacji
+ * WartoÅ›ci koÅ„cowe symulacji sÄ… akceptowalne. Przekroczenie tego zakresu zatrzymuje symulacje
+ * @return WartoÅ›Ä‡ logiczna odpowiadajÄ…ca na pytanie czy nastÄ…piÅ‚ koniec symulacji
  */
 	private boolean ifEnd() {
 		for(int i = 0; i < 5; i++) {
-			if(Animal.Animal.population[i] < parameters.endMinNum[i] || Animal.Animal.population[i] > parameters.endMaxNum[i]) {
+			if(Animal.AnimalStats.getCurrentPopulation()[i] < parameters.endMinNum[i] || (parameters.endMaxNum[i]!= -1 && Animal.AnimalStats.getCurrentPopulation()[i] > parameters.endMaxNum[i])) {
 				return true;
 			}
 		}

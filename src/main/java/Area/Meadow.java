@@ -1,36 +1,40 @@
 package Area;
 
-import java.util.List;
 import java.util.LinkedList;
+
 import java.util.Random;
 
 
 /**
- * @author Miko³aj
- * Klasa odpowiada za przechowywanie informacji o stanie ³¹ki. Klasa sk³ada siê z pól sk³adowych. Rozmieszcza wopoje oraz po¿ywienie podczas inicjalizacji planszy. 
- * Rozmieszcza nowe po¿ywienie podczas trwania symulacji.
- * Zawiera dwuwymiarow¹ listê pól.
+ * 
+ * Klasa odpowiada za przechowywanie informacji o stanie Å‚Ä…ki. Klasa skÅ‚ada siÄ™ z pÃ³l skÅ‚adowych. Rozmieszcza wopoje oraz poÅ¼ywienie podczas inicjalizacji planszy. 
+ * Rozmieszcza nowe poÅ¼ywienie podczas trwania symulacji.
+ * Zawiera dwuwymiarowÄ… LinkedListÄ™ pÃ³l.
+ * @author MikoÅ‚aj
  */
 public final class Meadow implements IMeadow {
 	
 	private int width;
 	private int height;
-	private List<List<IField>> fields;
-	private List<IField> fieldsWithoutFeed;
+	private LinkedList<LinkedList<IField>> fields;
+	private LinkedList<IField> fieldsWithoutFeed;
 	private Random random = new Random(0);
 	
 /**
- * Konstruktor klasy Meadow tworzy ³¹ke z zadanymi parametrami pocz¹tkowymi
- * Generuje dwuwymiarow¹ listê pól oraz dodaje pola do listy pól bez po¿ywienia
- * @param width Szerokoœæ ³¹ki
- * @param height Wysokoœæ ³¹ki
- * @param numWaterholes Iloœæ wodopoi
- * @param numFeeds Pocz¹tkowa iloœæ po¿ywienia
+ * Konstruktor klasy Meadow tworzy Å‚Ä…ke z zadanymi parametrami poczÄ…tkowymi
+ * Generuje dwuwymiarowÄ… LinkedListÄ™ pÃ³l oraz dodaje pola do LinkedListy pÃ³l bez poÅ¼ywienia
+ * @param width SzerokoÅ›Ä‡ Å‚Ä…ki
+ * @param height WysokoÅ›Ä‡ Å‚Ä…ki
+ * @param numWaterholes IloÅ›Ä‡ wodopoi
+ * @param numFeeds PoczÄ…tkowa iloÅ›Ä‡ poÅ¼ywienia
  */
 	public Meadow(int width, int height, int numWaterholes, int numFeeds) {
-		fields = new LinkedList<List<IField>>();
-		//wiersze i kolumny s¹ numerowane tak samo jak w macierzy
-		//pole o wspó³rzêdnych (0,0) znajduje siê w lewym górnym rogu.
+		fields = new LinkedList<LinkedList<IField>>();
+		fieldsWithoutFeed = new LinkedList<IField>();
+		this.width = width;
+		this.height = height;
+		//wiersze i kolumny sÄ… numerowane tak samo jak w macierzy
+		//pole o wspÃ³Å‚rzÄ™dnych (0,0) znajduje siÄ™ w lewym gÃ³rnym rogu.
 		for(int y = 0; y < height; y++) {
 			fields.add(new LinkedList<IField>());
 			for(int x = 0; x < width; x++) {
@@ -44,13 +48,13 @@ public final class Meadow implements IMeadow {
 	}
 	
 /**
- * Inicjalizuje po¿ywienie w liczbie zadanej w parametrze. Inicjalizacja odbywa siê w sposób losowy.	
- * @param numFeeds Liczba po¿ywienia
+ * Inicjalizuje poÅ¼ywienie w liczbie zadanej w parametrze. Inicjalizacja odbywa siÄ™ w sposÃ³b losowy.	
+ * @param numFeeds Liczba poÅ¼ywienia
  */
 	private void initialFeed(int numFeeds) {
-		//lista przechowuje wspó³rzêdne pól, na których nie zosta³o jeszcze po³o¿one po¿ywienie
+		//LinkedLista przechowuje wspÃ³Å‚rzÄ™dne pÃ³l, na ktÃ³rych nie zostaÅ‚o jeszcze poÅ‚oÅ¼one poÅ¼ywienie
 		//int[0] - x; int[1] - y
-		List<int[]> coordinates = new LinkedList<int[]>();
+		LinkedList<int[]> coordinates = new LinkedList<int[]>();
 		for(int y = 0; y < height; y++) {
 			for(int x = 0; x < width; x++) {
 				int [] newCoordinates = {x,y};
@@ -67,21 +71,21 @@ public final class Meadow implements IMeadow {
 	}
 	
 /**
- * Metoda inicjalizuje wodopoje w takiej iloœci jaka zosta³a podana w argumencie. Podmienia referencje do wodopoi w liœcie pól. Rozmieszcza wodopoje jedynie na brzegach planszy.
- * Podmienia pola w liœcie pól nie posiadaj¹cych po¿ywienia na wygenerowane wodopoje.
- * @param numWaterholes - iloœæ wodopi
+ * Metoda inicjalizuje wodopoje w takiej iloÅ›ci jaka zostaÅ‚a podana w argumencie. Podmienia referencje do wodopoi w liÅ›cie pÃ³l. Rozmieszcza wodopoje jedynie na brzegach planszy.
+ * Podmienia pola w liÅ›cie pÃ³l nie posiadajÄ…cych poÅ¼ywienia na wygenerowane wodopoje.
+ * @param numWaterholes - iloÅ›Ä‡ wodopi
  */
 	private void initialWaterholes(int numWaterholes) {
-		//lista dwuwymiarowej tablicy licz ca³owitych zawieraj¹ca wspó³rzêdne pól, które nie s¹ wodopojami 
+		//LinkedLista dwuwymiarowej tablicy licz caÅ‚owitych zawierajÄ…ca wspÃ³Å‚rzÄ™dne pÃ³l, ktÃ³re nie sÄ… wodopojami 
 		//int[0] - x; int[1] - y
-		List<int[]> usualFields = new LinkedList<int[]>();
+		LinkedList<int[]> usualFields = new LinkedList<int[]>();
 		
 		for(int i = 0; i < width; i++) {
-			//góra
+			//gÃ³ra
 			int [] coordinates = {i,0};
 			usualFields.add(coordinates);
 			
-			//dó³
+			//dÃ³Å‚
 			coordinates[0] = i;
 			coordinates[1] = height-1;
 			usualFields.add(coordinates);
@@ -107,15 +111,11 @@ public final class Meadow implements IMeadow {
 		}
 	}
 	
-/**
- * Metoda wyszukuje i tworzy listê s¹siadów
- * @param field Pole, którego s¹siadów nale¿y znalezæ
- * @return lista najbli¿szych s¹siadów
- */
-	public List<IField> getNeighbours(IField field) {
+
+	public LinkedList<IField> getNeighbours(IField field) {
 		int x = field.getCoordinates()[0];
 		int y = field.getCoordinates()[1];
-		List<IField> neighbours = new LinkedList<IField>();
+		LinkedList<IField> neighbours = new LinkedList<IField>();
 		if(x > 0) {
 			neighbours.add(fields.get(y).get(x-1));
 			if(y > 0) {
@@ -145,40 +145,34 @@ public final class Meadow implements IMeadow {
 	}
 	
 /**
- * Dok³ada po¿ywienie w poszczególnych iteracjach symulacji. Dok³ada tak¹ iloœæ po¿ywienia by utrzymywaæ sta³¹ wartoœæ po¿ywienia na ³¹cem jednak liczba do³o¿onego po¿ywienia w danej iteracji nie mo¿e przekroczyæ zadanej wartoœci.
+ * DokÅ‚ada poÅ¼ywienie w poszczegÃ³lnych iteracjach symulacji. DokÅ‚ada takÄ… iloÅ›Ä‡ poÅ¼ywienia by utrzymywaÄ‡ staÅ‚Ä… wartoÅ›Ä‡ poÅ¼ywienia na Å‚Ä…cem jednak liczba doÅ‚oÅ¼onego poÅ¼ywienia w danej iteracji nie moÅ¼e przekroczyÄ‡ zadanej wartoÅ›ci.
  */
 	private void spreadNewFeed() {
-		List<IField> list = getRandomFields(height*width/10);
-		for(IField field : list) {
+		LinkedList<IField> LinkedList = getRandomFields(height*width/10);
+		for(IField field : LinkedList) {
 			field.putNewFeed();
 		}
 	}
 
-/**
- * Wykonuje rutynowe czynoœci, które s¹ niezbêdne podczas iterowania symulacji, czyli m.in. rozk³ada nowe po¿ywienie
- */
+
 	public void doIteration() {
 		spreadNewFeed();
 	}
 
 	
-/**
- * Zwraca listê losowych pól w liczbie zadanej w parametrze
- * @param numFields liczba pól do zwrócenia
- * @return List<IField> lista losowych pól
- */
-	public List<IField> getRandomFields(int numFields) {
-		List<IField> allFields = new LinkedList<IField>();
+
+	public LinkedList<IField> getRandomFields(int numFields) {
+		LinkedList<IField> allFields = new LinkedList<IField>();
 		for(int i = 0; i < height; i++) {
 			allFields.addAll(fields.get(i));
 		}
 		
-		List<IField> randomFields = new LinkedList<IField>();
+		LinkedList<IField> randomFields = new LinkedList<IField>();
 		
 		for(int i = 0; i < numFields; i++) {
 			if(allFields.isEmpty()) break;
 			int randomIndex = random.nextInt(allFields.size());
-			randomFields.set(i, allFields.get(randomIndex));
+			randomFields.add(allFields.get(randomIndex));
 			allFields.remove(randomIndex);
 		}
 		

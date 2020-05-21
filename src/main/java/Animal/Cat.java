@@ -32,4 +32,7 @@ public class Cat extends Animal {
 		Random random = new Random();
 		this.field.seatAnimal(new Cat(0, 0, 0, random.nextBoolean(), this.field));
 	}
+	public String toString() {
+		return (this.isMale) ? "K" : "k";
+	}
 }
