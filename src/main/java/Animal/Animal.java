@@ -86,7 +86,9 @@ public abstract class Animal implements IAnimal{
 			List<IEatable> eatable = field.getEatable();
 			for(int i = 0; i < eatable.size(); i++)
 				if(canEat(eatable.get(i)))
-					eat(eatable.get(i));;
+					eat(eatable.get(i));
+				else if(eatable.get(i) instanceof Area.Feed)
+					field.destroyEatable(eatable.get(i));
 		}
 		if(field.getAnimals().size() > 1) {
 			List<IAnimal> animals = field.getAnimals();
