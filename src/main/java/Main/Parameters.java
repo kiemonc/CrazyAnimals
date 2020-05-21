@@ -23,7 +23,7 @@ public final class Parameters {
 		this.startMaxNum = startMaxNum;
 		int [] endMinNum = {2,2,2,2,2};
 		this.endMinNum = endMinNum;
-		int [] endMaxNum = {3,3,3,3,3};
+		int [] endMaxNum = {10,10,10,10,10};
 		this.endMaxNum = endMaxNum;
 		
 		startNum = new int[5];
