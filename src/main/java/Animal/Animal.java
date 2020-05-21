@@ -52,10 +52,11 @@ public abstract class Animal implements IAnimal{
 		IField chosenField;
 		do {
 		chosenField = fields.get(random.nextInt(fields.size()));
-		}while(this.canMoveThere(chosenField) == false);
+		}while(canMoveThere(chosenField) == false);
 		chosenField.seatAnimal(this);
-		this.field = chosenField;
-		iterationsToMove = this.getMovementSpeed();
+		field.destroyEatable(this);
+		field = chosenField;
+		iterationsToMove = getMovementSpeed();
 	}
 	public void drink() {thirst = (thirst > 30) ? thirst - 30 : 0;}
 	public void die() {
