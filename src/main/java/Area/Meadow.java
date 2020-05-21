@@ -1,7 +1,7 @@
 package Area;
 
-import java.util.List;
 import java.util.LinkedList;
+
 import java.util.Random;
 
 
@@ -9,7 +9,7 @@ import java.util.Random;
  * 
  * Klasa odpowiada za przechowywanie informacji o stanie łąki. Klasa składa się z pól składowych. Rozmieszcza wopoje oraz pożywienie podczas inicjalizacji planszy. 
  * Rozmieszcza nowe pożywienie podczas trwania symulacji.
- * Zawiera dwuwymiarową listę pól.
+ * Zawiera dwuwymiarową LinkedListę pól.
  * @author Mikołaj
  */
 public final class Meadow implements IMeadow {
@@ -22,7 +22,7 @@ public final class Meadow implements IMeadow {
 	
 /**
  * Konstruktor klasy Meadow tworzy łąke z zadanymi parametrami początkowymi
- * Generuje dwuwymiarową listę pól oraz dodaje pola do listy pól bez pożywienia
+ * Generuje dwuwymiarową LinkedListę pól oraz dodaje pola do LinkedListy pól bez pożywienia
  * @param width Szerokość łąki
  * @param height Wysokość łąki
  * @param numWaterholes Ilość wodopoi
@@ -31,6 +31,8 @@ public final class Meadow implements IMeadow {
 	public Meadow(int width, int height, int numWaterholes, int numFeeds) {
 		fields = new LinkedList<LinkedList<IField>>();
 		fieldsWithoutFeed = new LinkedList<IField>();
+		this.width = width;
+		this.height = height;
 		//wiersze i kolumny są numerowane tak samo jak w macierzy
 		//pole o współrzędnych (0,0) znajduje się w lewym górnym rogu.
 		for(int y = 0; y < height; y++) {
@@ -50,9 +52,9 @@ public final class Meadow implements IMeadow {
  * @param numFeeds Liczba pożywienia
  */
 	private void initialFeed(int numFeeds) {
-		//lista przechowuje współrzędne pól, na których nie zostało jeszcze położone pożywienie
+		//LinkedLista przechowuje współrzędne pól, na których nie zostało jeszcze położone pożywienie
 		//int[0] - x; int[1] - y
-		List<int[]> coordinates = new LinkedList<int[]>();
+		LinkedList<int[]> coordinates = new LinkedList<int[]>();
 		for(int y = 0; y < height; y++) {
 			for(int x = 0; x < width; x++) {
 				int [] newCoordinates = {x,y};
@@ -74,9 +76,9 @@ public final class Meadow implements IMeadow {
  * @param numWaterholes - ilość wodopi
  */
 	private void initialWaterholes(int numWaterholes) {
-		//lista dwuwymiarowej tablicy licz całowitych zawierająca współrzędne pól, które nie są wodopojami 
+		//LinkedLista dwuwymiarowej tablicy licz całowitych zawierająca współrzędne pól, które nie są wodopojami 
 		//int[0] - x; int[1] - y
-		List<int[]> usualFields = new LinkedList<int[]>();
+		LinkedList<int[]> usualFields = new LinkedList<int[]>();
 		
 		for(int i = 0; i < width; i++) {
 			//góra
@@ -110,10 +112,10 @@ public final class Meadow implements IMeadow {
 	}
 	
 
-	public List<IField> getNeighbours(IField field) {
+	public LinkedList<IField> getNeighbours(IField field) {
 		int x = field.getCoordinates()[0];
 		int y = field.getCoordinates()[1];
-		List<IField> neighbours = new LinkedList<IField>();
+		LinkedList<IField> neighbours = new LinkedList<IField>();
 		if(x > 0) {
 			neighbours.add(fields.get(y).get(x-1));
 			if(y > 0) {
@@ -146,8 +148,8 @@ public final class Meadow implements IMeadow {
  * Dokłada pożywienie w poszczególnych iteracjach symulacji. Dokłada taką ilość pożywienia by utrzymywać stałą wartość pożywienia na łącem jednak liczba dołożonego pożywienia w danej iteracji nie może przekroczyć zadanej wartości.
  */
 	private void spreadNewFeed() {
-		List<IField> list = getRandomFields(height*width/10);
-		for(IField field : list) {
+		LinkedList<IField> LinkedList = getRandomFields(height*width/10);
+		for(IField field : LinkedList) {
 			field.putNewFeed();
 		}
 	}
@@ -159,18 +161,18 @@ public final class Meadow implements IMeadow {
 
 	
 
-	public List<IField> getRandomFields(int numFields) {
-		List<IField> allFields = new LinkedList<IField>();
+	public LinkedList<IField> getRandomFields(int numFields) {
+		LinkedList<IField> allFields = new LinkedList<IField>();
 		for(int i = 0; i < height; i++) {
 			allFields.addAll(fields.get(i));
 		}
 		
-		List<IField> randomFields = new LinkedList<IField>();
+		LinkedList<IField> randomFields = new LinkedList<IField>();
 		
 		for(int i = 0; i < numFields; i++) {
 			if(allFields.isEmpty()) break;
 			int randomIndex = random.nextInt(allFields.size());
-			randomFields.set(i, allFields.get(randomIndex));
+			randomFields.add(allFields.get(randomIndex));
 			allFields.remove(randomIndex);
 		}
 		

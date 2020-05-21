@@ -25,6 +25,10 @@ public final class Feed implements IEatable {
  * 
  */
 	public Feed() {
+		numAll = new int[2];
+		numMax = new int[2];
+		numEaten = new int[2];
+		numDestroyed = new int[2];
 		if(random.nextBoolean()) {
 			this.name = "grass";
 			numAll[0]++;
