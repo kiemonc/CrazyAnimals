@@ -54,6 +54,11 @@ public interface IAnimal extends IEatable{
 	 */
 	public void die();
 	/**
+	 * Określa czy zwierzę umarło czy nie
+	 * @return true - umarło, false - żyje
+	 */
+	public boolean isDead();
+	/**
 	 * Wykonuje iterację, tzn. zwiększa głód, pragnienie oraz wiek i zmniejsza ilość iteracji do wykonania ruchu
 	 */
 	public void doIteration();

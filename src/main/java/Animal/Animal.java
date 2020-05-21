@@ -77,6 +77,7 @@ public abstract class Animal implements IAnimal{
 			return true;
 		else return false;
 	}
+	public boolean isDead() {return isDead;}
 	public void doIteration() {
 		if(isDying())
 			die();
