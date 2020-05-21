@@ -10,7 +10,7 @@ import Area.IMeadow;
  * Klasa zawiera wspólne parametry i operacje które mogą zostać wykonane na każdym zwierzęciu
  * @author jakub
  */
-public abstract class Animal implements IAnimal, IEatable{
+public abstract class Animal implements IAnimal{
 	
 	protected int hunger, thirst, age, iterationsToMove;
 	protected boolean isMale;
@@ -32,17 +32,30 @@ public abstract class Animal implements IAnimal, IEatable{
 		this.isMale = isMale;
 		this.field = field;
 	}
+	public boolean isMale() {
+		return isMale;
+	}
 	public void eat(IEatable target) {
 		target.beEaten();
-		this.hunger = 0;
+		this.hunger -= 50;
 	}
 	public void move(IMeadow meadow) {
 		List<IField> fields = meadow.getNeighbours(this.field);
-		IField chosenField = fields.get(random.nextInt(fields.size()));
+		boolean canMoveAnywhere = false;
+		for(int i = 0; i < fields.size(); i++)
+			if(this.canMoveThere(fields.get(i)))
+				canMoveAnywhere = true;
+		if(canMoveAnywhere == false)
+			return;
+		IField chosenField;
+		do {
+		chosenField = fields.get(random.nextInt(fields.size()));
+		}while(this.canMoveThere(chosenField) == false);
 		chosenField.seatAnimal(this);
 		this.field = chosenField;
+		iterationsToMove = this.getMovementSpeed();
 	}
-	public void drink() {this.thirst = 0;}
+	public void drink() {this.thirst -= 30;}
 	public void die() {
 		if(this instanceof Cat)
 			AnimalStats.takeAnimal(0);
@@ -57,17 +70,33 @@ public abstract class Animal implements IAnimal, IEatable{
 		field.destroyEatable(this);
 	}
 	public boolean isDying() {
-		if(this.age >= 100 || this.hunger >= 100 || this.thirst >= 100)
+		if(age >= 100 || hunger >= 100 || thirst >= 100)
 			return true;
 		else return false;
 	}
-	public void getOlder() {this.age++;}
 	public void doIteration() {
-		this.hunger++;
-		this.thirst++;
-		if(this.iterationsToMove > 0)
-			this.iterationsToMove--;
+		if(isDying())
+			die();
+		if(field.getEatable().size() > 1) {
+			List<IEatable> eatable = field.getEatable();
+			for(int i = 0; i < eatable.size(); i++)
+				if(canEat(eatable.get(i)))
+					eat(eatable.get(i));;
+		}
+		if(field.getAnimals().size() > 1) {
+			List<IAnimal> animals = field.getAnimals();
+			for(int i = 0; i < animals.size(); i++)
+				if(canMultiply(animals.get(i)) && isMale() == false)
+					multiply();
+		}
+		if(field instanceof Area.Waterhole)
+			this.drink();
+		hunger++;
+		thirst++;
+		if(!wantToMove())
+			iterationsToMove--;
+		age++;
 	}
-	public boolean wantToMove() {return (this.iterationsToMove == 0 ? true : false);}
-	public void beEaten() {this.die();}
+	public boolean wantToMove() {return (iterationsToMove == 0 ? true : false);}
+	public void beEaten() {die();}
 }

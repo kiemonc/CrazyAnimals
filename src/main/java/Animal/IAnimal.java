@@ -7,12 +7,17 @@ package Animal;
  * Interfejs przechowujący operacje klasy Animal
  * @author jakub
  */
-public interface IAnimal {
+public interface IAnimal extends IEatable{
 	/**
 	 * Sprawia, że obiekt zostaje zjedzony przez zwierzę
 	 * @param target - jedzony obiekt
 	 */
 	public void eat(IEatable target);
+	/**
+	 * Określa płeć zwierzęcia
+	 * @return true - męska, false - żeńska
+	 */
+	public boolean isMale();
 	/**
 	 * Określa czy zwierzę może zjeść dany obiekt
 	 * @param target - sprawdzany obiekt
@@ -24,6 +29,18 @@ public interface IAnimal {
 	 * @param meadow - referencja do łąki
 	 */
 	public void move(Area.IMeadow meadow);
+	/**
+	 * Pozwala stwierdzić czy zwierzę może ruszyć się na zadane pole
+	 * @param field sprawdzane pole
+	 * @return true - może się ruszyć, false - nie może się ruszyć
+	 */
+	public boolean canMoveThere(Area.IField field);
+	/**
+	 * Określa czy zwierze może się rozmnożyć z podanym zwierzęciem
+	 * @param animal sprawdzane zwierzę
+	 * @return true - może, false - nie może
+	 */
+	public boolean canMultiply(IAnimal animal);
 	/**
 	 * Tworzy nowe zwierzę z dwóch zwierząt przeciwnej płcic oraz tego samego gatunku
 	 */
@@ -37,11 +54,7 @@ public interface IAnimal {
 	 */
 	public void die();
 	/**
-	 * Zwiększa wiek zwierzęcia o 1
-	 */
-	public void getOlder();
-	/**
-	 * Wykonuje iterację, tzn. zwiększa głód oraz pragnienie i zmniejsza ilość iteracji do wykonania ruchu
+	 * Wykonuje iterację, tzn. zwiększa głód, pragnienie oraz wiek i zmniejsza ilość iteracji do wykonania ruchu
 	 */
 	public void doIteration();
 	/**
@@ -49,6 +62,11 @@ public interface IAnimal {
 	 * @return true - chce, false - nie chce
 	 */
 	public boolean wantToMove();
+	/**
+	 * Pozwala pobrać prędkość z jaką poruszają się zwierzęta (dokładnie mówiąc: ilość iteracji które muszą minąć aby zwierzę wykonało ruch)
+	 * @return prędkość
+	 */
+	public int getMovementSpeed();
 	/**
 	 * Pozwala wyświetlić zwierzę jako znak
 	 * @return ciąg znaków, który zawiera jeden znak - reprezentację zwierzęcia
