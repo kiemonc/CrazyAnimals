@@ -22,16 +22,15 @@ public class Wolf extends Animal {
 	 * @param isMale zmienna logiczna odpowiadająca na pytanie: czy zwierzę jest płci męskiej?
 	 * @param field pole na którym zostanie umieszczone zwierzę
 	 */
-	public Wolf(int hunger, int thirst, int age, boolean isMale, IField field){
-		super(hunger, thirst, age, isMale, field);
+	public Wolf(int hunger, int thirst, int age, boolean isMale, IField field, Random random){
+		super(hunger, thirst, age, isMale, field, random);
 		AnimalStats.addAnimal(4);
 	}
 	public boolean canEat(IEatable target) {
-		Random rnd = new Random();
 		if(target instanceof Mouse)     return true;
-		else if(target instanceof Cat)  return (rnd.nextInt() % 10 < 8 ? true : false);//80%
-		else if(target instanceof Sheep)return (rnd.nextInt() % 10 < 6 ? true : false);//60%
-		else if(target instanceof Cow)  return (rnd.nextInt() % 10 < 4 ? true : false);//40%
+		else if(target instanceof Cat)  return (random.nextInt() % 10 < 8 ? true : false);//80%
+		else if(target instanceof Sheep)return (random.nextInt() % 10 < 6 ? true : false);//60%
+		else if(target instanceof Cow)  return (random.nextInt() % 10 < 4 ? true : false);//40%
 		return false;
 		}
 	public boolean canMultiply(IAnimal animal) {
@@ -40,12 +39,10 @@ public class Wolf extends Animal {
 		return false;
 	}
 	public void multiply() {
-		Random random = new Random();
-		child = new Wolf(0, 0, 0, random.nextBoolean(), field);
+		child = new Wolf(0, 0, 0, random.nextBoolean(), field, random);
 		field.seatAnimal(child);
 	}
 	public int getMovementSpeed() {return movementSpeed;}
-	public String toString() {
-		return (isMale) ? "W" : "w";
-	}
+	@Override
+	public String toString() {return (isMale()) ? "W" : "w";}
 }

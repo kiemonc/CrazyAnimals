@@ -23,8 +23,8 @@ public class Mouse extends Animal {
 	 * @param isMale zmienna logiczna odpowiadająca na pytanie: czy zwierzę jest płci męskiej?
 	 * @param field pole na którym zostanie umieszczone zwierzę
 	 */
-	public Mouse(int hunger, int thirst, int age, boolean isMale, IField field){
-		super(hunger, thirst, age, isMale, field);
+	public Mouse(int hunger, int thirst, int age, boolean isMale, IField field, Random random){
+		super(hunger, thirst, age, isMale, field, random);
 		AnimalStats.addAnimal(2);
 	}
 	
@@ -40,12 +40,10 @@ public class Mouse extends Animal {
 		return false;
 	}
 	public void multiply() {
-		Random random = new Random();
-		child = new Mouse(0, 0, 0, random.nextBoolean(), field);
+		child = new Mouse(0, 0, 0, random.nextBoolean(), field, random);
 		field.seatAnimal(child);
 	}
 	public int getMovementSpeed() {return movementSpeed;}
-	public String toString() {
-		return (isMale) ? "M" : "m";
-	}
+	@Override
+	public String toString() {return (isMale()) ? "M" : "m";}
 }

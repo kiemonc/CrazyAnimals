@@ -13,11 +13,11 @@ import Area.IMeadow;
 public abstract class Animal implements IAnimal{
 	
 	protected int hunger, thirst, age, iterationsToMove;
-	protected boolean isMale;
 	protected IField field;
-	private boolean isDead;
 	protected IAnimal child;
-	private Random random = new Random();
+	protected Random random = new Random();
+	
+	private boolean isMale, isDead;
 	
 	/**
 	 * Konstruktor tworzy zwierzę, nadaje mu początkowe parametry i umieszcza na podanym polu
@@ -27,7 +27,8 @@ public abstract class Animal implements IAnimal{
 	 * @param isMale zmienna logiczna odpowiadająca na pytanie: czy zwierzę jest płci męskiej?
 	 * @param field pole na którym zostanie umieszczone zwierzę
 	 */
-	public Animal(int hunger, int thirst, int age, boolean isMale, IField field) {
+	public Animal(int hunger, int thirst, int age, boolean isMale, IField field, Random random) {
+		this.random = random;
 		this.hunger = hunger;
 		this.thirst = thirst;
 		this.age = age;
@@ -35,10 +36,9 @@ public abstract class Animal implements IAnimal{
 		this.field = field;
 		isDead = false;
 		child = null;
+		field.seatAnimal(this);
 	}
-	public boolean isMale() {
-		return isMale;
-	}
+	public boolean isMale() {return isMale;}
 	public void eat(IEatable target) {
 		target.beEaten();
 		hunger = (hunger > 50) ? hunger - 50 : 0;

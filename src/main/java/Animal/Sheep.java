@@ -23,8 +23,8 @@ public class Sheep extends Animal {
 	 * @param isMale zmienna logiczna odpowiadająca na pytanie: czy zwierzę jest płci męskiej?
 	 * @param field pole na którym zostanie umieszczone zwierzę
 	 */
-	public Sheep(int hunger, int thirst, int age, boolean isMale, IField field){
-		super(hunger, thirst, age, isMale, field);
+	public Sheep(int hunger, int thirst, int age, boolean isMale, IField field, Random random){
+		super(hunger, thirst, age, isMale, field, random);
 		AnimalStats.addAnimal(3);
 	}
 	public boolean canEat(IEatable target) {
@@ -39,12 +39,10 @@ public class Sheep extends Animal {
 		return false;
 	}
 	public void multiply() {
-		Random random = new Random();
-		child = new Sheep(0, 0, 0, random.nextBoolean(), field);
+		child = new Sheep(0, 0, 0, random.nextBoolean(), field, random);
 		field.seatAnimal(child);
 	}
 	public int getMovementSpeed() {return movementSpeed;}
-	public String toString() {
-		return (isMale) ? "S" : "s";
-	}
+	@Override
+	public String toString() {return (isMale()) ? "S" : "s";}
 }
