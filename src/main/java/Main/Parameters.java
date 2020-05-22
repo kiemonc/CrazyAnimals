@@ -14,12 +14,12 @@ public final class Parameters {
 	
 	public Parameters(Random random) {
 		this.random = random;
-		meadowWidth = 3;
-		meadowHeight = 3;
+		meadowWidth = 2;
+		meadowHeight = 2;
 		numWaterholes = 0;
-		int [] startMinNum = {0,6,0,0,1};
+		int [] startMinNum = {0,3,0,0,0};
 		this.startMinNum = startMinNum;
-		int [] startMaxNum = {0,6,0,0,1};
+		int [] startMaxNum = {0,3,0,0,0};
 		this.startMaxNum = startMaxNum;
 		int [] endMinNum = {0,-1,-1,-1,-1};
 		this.endMinNum = endMinNum;

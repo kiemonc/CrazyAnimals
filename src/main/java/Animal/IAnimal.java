@@ -78,6 +78,16 @@ public interface IAnimal extends IEatable{
 	 */
 	public IAnimal hasChild();
 	/**
+	 * Pozwala ustawić wartość zmiennej movedAfterMultiplying
+	 * @param boolean wartość przypisywana do tej zmiennej
+	 */
+	public void setMovedAfterMultiplying(boolean value);
+	/**
+	 * Pozwala pobrać wartość zmiennej movedAfterMultiplying
+	 * @return wartość
+	 */
+	public boolean getMovedAfterMultiplying();
+	/**
 	 * Pozwala wyświetlić zwierzę jako znak
 	 * @return ciąg znaków, który zawiera jeden znak - reprezentację zwierzęcia
 	 */

@@ -39,8 +39,11 @@ public class Wolf extends Animal {
 		return false;
 	}
 	public void multiply() {
-		child = new Wolf(0, 0, 0, random.nextBoolean(), field, random);
-		//field.seatAnimal(child);
+		if(getMovedAfterMultiplying() && !isMale()) {
+			child = new Wolf(0, 0, 0, random.nextBoolean(), field, random);
+			child.setMovedAfterMultiplying(false);
+		}
+		setMovedAfterMultiplying(false);
 	}
 	public int getMovementSpeed() {return movementSpeed;}
 	@Override
