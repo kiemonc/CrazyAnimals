@@ -14,16 +14,16 @@ public final class Parameters {
 	
 	public Parameters() {
 		random = new Random(0);
-		meadowWidth = 4;
-		meadowHeight = 4;
+		meadowWidth = 5;
+		meadowHeight = 5;
 		numWaterholes = 14;
-		int [] startMinNum = {1,0,0,0,0};
+		int [] startMinNum = {5,0,0,0,0};
 		this.startMinNum = startMinNum;
-		int [] startMaxNum = {1,0,0,0,0};
+		int [] startMaxNum = {5,0,0,0,0};
 		this.startMaxNum = startMaxNum;
 		int [] endMinNum = {0,-1,-1,-1,-1};
 		this.endMinNum = endMinNum;
-		int [] endMaxNum = {2,-1,-1,-1,-1};
+		int [] endMaxNum = {20,-1,-1,-1,-1};
 		this.endMaxNum = endMaxNum;
 		
 		startNum = new int[5];

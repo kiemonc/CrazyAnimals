@@ -18,17 +18,18 @@ public final class Meadow implements IMeadow {
 	private int height;
 	private LinkedList<LinkedList<IField>> fields;
 	private LinkedList<IField> fieldsWithoutFeed;
-	private Random random = new Random(0);
+	private Random random;
 	
 /**
  * Konstruktor klasy Meadow tworzy łąke z zadanymi parametrami początkowymi
  * Generuje dwuwymiarową LinkedListę pól oraz dodaje pola do LinkedListy pól bez pożywienia
- * @param width Szerokość łąki
- * @param height Wysokość łąki
- * @param numWaterholes Ilość wodopoi
- * @param numFeeds Początkowa ilość pożywienia
+ * @param width - Szerokość łąki
+ * @param height - Wysokość łąki
+ * @param numWaterholes - Ilość wodopoi
+ * @param numFeeds - Początkowa ilość pożywienia
  */
-	public Meadow(int width, int height, int numWaterholes, int numFeeds) {
+	public Meadow(int width, int height, int numWaterholes, int numFeeds, Random random) {
+		this.random = random;
 		fields = new LinkedList<LinkedList<IField>>();
 		fieldsWithoutFeed = new LinkedList<IField>();
 		this.width = width;
@@ -38,7 +39,7 @@ public final class Meadow implements IMeadow {
 		for(int y = 0; y < height; y++) {
 			fields.add(new LinkedList<IField>());
 			for(int x = 0; x < width; x++) {
-				Field field = new Field(x,y);
+				Field field = new Field(x,y, random);
 				fields.get(y).add(field);
 				fieldsWithoutFeed.add(field);
 			}
@@ -49,7 +50,7 @@ public final class Meadow implements IMeadow {
 	
 /**
  * Inicjalizuje pożywienie w liczbie zadanej w parametrze. Inicjalizacja odbywa się w sposób losowy.	
- * @param numFeeds Liczba pożywienia
+ * @param numFeeds - Liczba pożywienia
  */
 	private void initialFeed(int numFeeds) {
 		//LinkedLista przechowuje współrzędne pól, na których nie zostało jeszcze położone pożywienie
@@ -106,12 +107,17 @@ public final class Meadow implements IMeadow {
 			if(usualFields.isEmpty()) break;
 			int randomIndex = random.nextInt(usualFields.size());
 			int [] coordinates = usualFields.get(randomIndex);
-			fields.get(coordinates[1]).set(coordinates[0], new Waterhole(coordinates[0], coordinates[1]));
+			fields.get(coordinates[1]).set(coordinates[0], new Waterhole(coordinates[0], coordinates[1], random));
 			usualFields.remove(randomIndex);
 		}
 	}
 	
-
+/**
+ * Pobiera z listy pól najbliższych sąsiadów pola podanego jako parametr. Najbliższych sąsiadów rozumie się jako pola, których współrzędne różnią się maksymalnie o 1 od współrzędnych pola podanego jako parametr.
+ * @param field - pole, którego sąsiadów należy znalezć
+ * @return lista sąsiadów
+ */
+	@Override
 	public LinkedList<IField> getNeighbours(IField field) {
 		int x = field.getCoordinates()[0];
 		int y = field.getCoordinates()[1];
@@ -154,13 +160,21 @@ public final class Meadow implements IMeadow {
 		}
 	}
 
-
+/**
+ * Wykonuje rutynowe czynności, które należy wykonać podczas jednej iteracji symulacji.
+ * W tym przypadku tylko rozkłada nowe pożywienie.
+ */
+	@Override
 	public void doIteration() {
 		spreadNewFeed();
 	}
 
-	
-
+/**
+ * Wybiera losowe pola z listy wszystkich pól. Po wybraniu jednego pola usuwa je z tymczasowej listy, by nie móc trafić losowa na to samo pole drugi raz.
+ * @param numFields - liczba pól do zwrócenia
+ * @return losowe pola
+ */
+	@Override
 	public LinkedList<IField> getRandomFields(int numFields) {
 		LinkedList<IField> allFields = new LinkedList<IField>();
 		for(int i = 0; i < height; i++) {
@@ -179,6 +193,11 @@ public final class Meadow implements IMeadow {
 		return randomFields;
 	}
 	
+
+/**
+ * Sumuje ciągi znakowe konkertnych pól i odpowiednio je formatuje. Dodaje z znaki | międzi pola oraz dodaje linie poziome na początku na na końcu łąki.
+ * @return Ciąg znaków przedstawiający łąkę
+ */
 	@Override
 	public String toString() {
 		String string = "";
@@ -195,6 +214,10 @@ public final class Meadow implements IMeadow {
 		return string;
 	}
 	
+/**
+ * Zwraca ciąg podkreślników, który jest ramka dla łąki o odpowiedniej długości
+ * @return łańcuch tekstowy składajacy się z podkreślników
+ */
 	private String printLine() {
 		String string = "";
 		for(int i = 0; i < width*4+width+1; i++) {

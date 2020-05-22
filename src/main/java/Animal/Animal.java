@@ -13,10 +13,11 @@ import Area.IMeadow;
 public abstract class Animal implements IAnimal{
 	
 	protected int hunger, thirst, age, iterationsToMove;
-	protected boolean isMale;
 	protected IField field;
-	private boolean isDead;
-	private Random random = new Random();
+	protected IAnimal child;
+	protected Random random = new Random();
+	
+	private boolean isMale, isDead;
 	
 	/**
 	 * Konstruktor tworzy zwierzę, nadaje mu początkowe parametry i umieszcza na podanym polu
@@ -26,20 +27,33 @@ public abstract class Animal implements IAnimal{
 	 * @param isMale zmienna logiczna odpowiadająca na pytanie: czy zwierzę jest płci męskiej?
 	 * @param field pole na którym zostanie umieszczone zwierzę
 	 */
-	public Animal(int hunger, int thirst, int age, boolean isMale, IField field) {
+	public Animal(int hunger, int thirst, int age, boolean isMale, IField field, Random random) {
+		this.random = random;
 		this.hunger = hunger;
 		this.thirst = thirst;
 		this.age = age;
 		this.isMale = isMale;
 		this.field = field;
 		isDead = false;
+		child = null;
+		field.seatAnimal(this);
 	}
-	public boolean isMale() {
-		return isMale;
-	}
+	public boolean isMale() {return isMale;}
 	public void eat(IEatable target) {
 		target.beEaten();
 		hunger = (hunger > 50) ? hunger - 50 : 0;
+	}
+	public boolean canMoveThere(IField field) {
+		if(field.anyAnimal())
+		{
+			List<IAnimal> animals = field.getAnimals();
+			for(int i = 0; i < animals.size(); i++)
+			{
+				if(!(canEat(animals.get(i)) || canMultiply(animals.get(i))))
+					return false;
+			}
+		}
+		return true;
 	}
 	public void move(IMeadow meadow) {
 		List<IField> fields = meadow.getNeighbours(this.field);
@@ -80,13 +94,17 @@ public abstract class Animal implements IAnimal{
 	}
 	public boolean isDead() {return isDead;}
 	public void doIteration() {
-		if(isDying())
+		if(isDying()){
 			die();
+			return;
+		}
 		if(field.getEatable().size() > 1) {
 			List<IEatable> eatable = field.getEatable();
 			for(int i = 0; i < eatable.size(); i++)
 				if(canEat(eatable.get(i)))
-					eat(eatable.get(i));;
+					eat(eatable.get(i));
+				else if(eatable.get(i) instanceof Area.Feed)
+					field.destroyEatable(eatable.get(i));
 		}
 		if(field.getAnimals().size() > 1) {
 			List<IAnimal> animals = field.getAnimals();
@@ -103,5 +121,10 @@ public abstract class Animal implements IAnimal{
 		age++;
 	}
 	public boolean wantToMove() {return (iterationsToMove == 0 ? true : false);}
+	public IAnimal hasChild() {
+		IAnimal tmp = child;
+		child = null;
+		return tmp;
+		}
 	public void beEaten() {die();}
 }

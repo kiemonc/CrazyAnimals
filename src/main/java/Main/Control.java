@@ -21,7 +21,10 @@ public final class Control {
 
 
 	
-	
+/** 
+ * Metoda startująca cały program
+ * @param args - Nie używane
+ */
 	public static void main(String[] args) {
 		parameters = new Parameters();
 		simulation = new Simulation(parameters);

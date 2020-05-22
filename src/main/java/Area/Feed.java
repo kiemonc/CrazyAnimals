@@ -19,12 +19,11 @@ public final class Feed implements IEatable {
 	private static int[] numDestroyed;
 	
 	private String name;
-	private static Random random = new Random(0);
 /**
  * Konstruktor klasy Feed tworzy pożywienie, nadaje mu odpowiednią losową nazwę oraz dolicza kolejne obiekty do statystyki
  * 
  */
-	public Feed() {
+	public Feed(Random random) {
 		numAll = new int[2];
 		numMax = new int[2];
 		numEaten = new int[2];
@@ -43,6 +42,7 @@ public final class Feed implements IEatable {
 			}
 		}
 	}
+	
 	
 /**
  * Metoda zwraca nazwe danego pożywienia
@@ -118,10 +118,14 @@ public final class Feed implements IEatable {
 		}
 	}
 	
+/**
+ * Konweruje dane pożywienie na znak
+ * @return g - grass, h - cheese, " " - inne przypadki
+ */
 	@Override 
 	public String toString() { 
 		if(name=="grass") return "g";
 		if(name=="cheese") return "h";
-		return "-";
+		return " ";
 	}
 }

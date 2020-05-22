@@ -1,6 +1,7 @@
 package Animal;
 
 import java.util.List;
+import java.util.Random;
 
 import Area.IMeadow;
 import Area.IField;
@@ -19,7 +20,7 @@ public interface IAnimalCreator {
 	 * @param nrOfWolves liczba wilków
 	 * @return referencja do listy zwierząt
 	 */
-	public List<IAnimal> createAnimals(int nrOfCats, int nrOfCows, int nrOfMouses, int nrOfSheeps, int nrOfWolves, IMeadow meadow);
+	public List<IAnimal> createAnimals(int nrOfCats, int nrOfCows, int nrOfMouses, int nrOfSheeps, int nrOfWolves, IMeadow meadow, Random random);
 	/**
 	 * Tworzy jednego kota i umieszcza go na podanym polu
 	 * @param field pole na którym ma zostać umieszczony kot

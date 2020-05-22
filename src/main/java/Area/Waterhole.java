@@ -3,6 +3,8 @@
  */
 package Area;
 
+import java.util.Random;
+
 /**
  * 
  * Klasa przechowuje informacje na temat ilości wodopojów na łące. Powoduje, że pole, które jest wodopojem, jest rozróżnialne ze zwykłym polem.
@@ -17,8 +19,8 @@ public final class Waterhole extends Field{
  * @param positionX
  * @param positionY
  */
-	Waterhole(int positionX, int positionY) {
-		super(positionX, positionY);
+	Waterhole(int positionX, int positionY, Random random) {
+		super(positionX, positionY, random);
 		number++;
 	}
 	

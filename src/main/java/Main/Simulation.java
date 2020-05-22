@@ -2,6 +2,8 @@ package Main;
 
 import java.util.List;
 import java.util.LinkedList;
+import java.util.Random;
+
 
 /**
  * @author Mikołaj
@@ -18,12 +20,13 @@ public final class Simulation {
 	private Area.Meadow meadow;
 	private Animal.IAnimalCreator animalCreator;
 	private List<Animal.IAnimal> animals;
+	private Random random = new Random(0);
 	
 	public Simulation(Parameters parameters) {
 		this.parameters = parameters;
-		meadow = new Area.Meadow(parameters.meadowWidth, parameters.meadowHeight, parameters.numWaterholes, parameters.meadowHeight*parameters.meadowWidth/10);
+		meadow = new Area.Meadow(parameters.meadowWidth, parameters.meadowHeight, parameters.numWaterholes, parameters.meadowHeight*parameters.meadowWidth/10, random);
 		animalCreator = new Animal.AnimalCreator();
-		animals = animalCreator.createAnimals(parameters.startNum[0], parameters.startNum[1], parameters.startNum[2], parameters.startNum[3], parameters.startNum[4], meadow);
+		animals = animalCreator.createAnimals(parameters.startNum[0], parameters.startNum[1], parameters.startNum[2], parameters.startNum[3], parameters.startNum[4], meadow, random);
 		numIteration = 0;
 	}
 	
@@ -35,9 +38,24 @@ public final class Simulation {
 			numIteration++;
 			mainLoop();
 		}
+		System.out.println("Koniec symulacji");
 	}
+	
+/**
+ * Zawiera wszystkie czynności wykonywane podczas jednej iteracji symualcji
+ * Czyli pokazywanie łąki, iterację łąki, przemiszczanie się i usuwanie zwierząt oraz interakcję pomiędzy zwierzętami
+ */
 	private void mainLoop() {
+		showCurrentState();
 		meadow.doIteration();
+		removeOrMoveAnimals();
+		interactionsBetweenAnimals();
+	}
+	
+/**
+ * Usuwa z listy zwierzęta, które już nie żyją
+ */
+	private void removeOrMoveAnimals() {
 		for(Animal.IAnimal animal: animals) {
 			if(animal.isDead()) {
 				animals.remove(animal);
@@ -47,10 +65,20 @@ public final class Simulation {
 				animal.move(meadow);
 			}
 		}
+	}
+	
+/**
+ * Iteruje po liście zwierząt i każe im wykonywać między sobą interakcje
+ * Dodaje do listy zwierząt nowo powstałe zwierzęta
+ */
+	private void interactionsBetweenAnimals() {
+		LinkedList<Animal.IAnimal> children = new LinkedList<Animal.IAnimal>();
 		for(Animal.IAnimal animal: animals) {
 			animal.doIteration();
+			Animal.IAnimal child = animal.hasChild();
+			if(child != null) children.add(child);
 		}
-		showCurrentState();
+		animals.addAll(children);
 	}
 
 /**
