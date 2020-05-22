@@ -20,10 +20,11 @@ public final class Simulation {
 	private Area.Meadow meadow;
 	private Animal.IAnimalCreator animalCreator;
 	private List<Animal.IAnimal> animals;
-	private Random random = new Random(0);
+	private Random random;
 	
-	public Simulation(Parameters parameters) {
+	public Simulation(Parameters parameters, Random random) {
 		this.parameters = parameters;
+		this.random = random;
 		meadow = new Area.Meadow(parameters.meadowWidth, parameters.meadowHeight, parameters.numWaterholes, parameters.meadowHeight*parameters.meadowWidth/10, random);
 		animalCreator = new Animal.AnimalCreator();
 		animals = animalCreator.createAnimals(parameters.startNum[0], parameters.startNum[1], parameters.startNum[2], parameters.startNum[3], parameters.startNum[4], meadow, random);
@@ -34,6 +35,7 @@ public final class Simulation {
  * Startuje i kończy sumylacje	
  */
 	public void runSimulation() {
+		showCurrentState();
 		while(!ifEnd()) {
 			numIteration++;
 			mainLoop();
@@ -46,10 +48,11 @@ public final class Simulation {
  * Czyli pokazywanie łąki, iterację łąki, przemiszczanie się i usuwanie zwierząt oraz interakcję pomiędzy zwierzętami
  */
 	private void mainLoop() {
-		showCurrentState();
 		meadow.doIteration();
 		removeOrMoveAnimals();
 		interactionsBetweenAnimals();
+		System.out.println(numIteration);
+		showCurrentState();
 	}
 	
 /**
@@ -64,6 +67,7 @@ public final class Simulation {
 			if(animal.wantToMove()) {
 				animal.move(meadow);
 			}
+			
 		}
 	}
 	

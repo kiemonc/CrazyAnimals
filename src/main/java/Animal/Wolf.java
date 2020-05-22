@@ -40,7 +40,7 @@ public class Wolf extends Animal {
 	}
 	public void multiply() {
 		child = new Wolf(0, 0, 0, random.nextBoolean(), field, random);
-		field.seatAnimal(child);
+		//field.seatAnimal(child);
 	}
 	public int getMovementSpeed() {return movementSpeed;}
 	@Override

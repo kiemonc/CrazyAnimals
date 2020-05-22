@@ -12,14 +12,14 @@ import java.util.Random;
 public final class Parameters {
 	Random random;
 	
-	public Parameters() {
-		random = new Random(0);
-		meadowWidth = 5;
-		meadowHeight = 5;
-		numWaterholes = 14;
-		int [] startMinNum = {5,0,0,0,0};
+	public Parameters(Random random) {
+		this.random = random;
+		meadowWidth = 3;
+		meadowHeight = 3;
+		numWaterholes = 0;
+		int [] startMinNum = {0,6,0,0,1};
 		this.startMinNum = startMinNum;
-		int [] startMaxNum = {5,0,0,0,0};
+		int [] startMaxNum = {0,6,0,0,1};
 		this.startMaxNum = startMaxNum;
 		int [] endMinNum = {0,-1,-1,-1,-1};
 		this.endMinNum = endMinNum;

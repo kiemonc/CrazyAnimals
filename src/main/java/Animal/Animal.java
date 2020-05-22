@@ -108,9 +108,13 @@ public abstract class Animal implements IAnimal{
 		}
 		if(field.getAnimals().size() > 1) {
 			List<IAnimal> animals = field.getAnimals();
-			for(int i = 0; i < animals.size(); i++)
-				if(canMultiply(animals.get(i)) && isMale() == false)
+			for(int i = 0; i < animals.size(); i++) {
+				if(canMultiply(animals.get(i)) && isMale() == false) {
 					multiply();
+					break;
+				}
+			}
+				
 		}
 		if(field instanceof Area.Waterhole)
 			this.drink();
