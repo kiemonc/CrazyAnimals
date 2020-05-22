@@ -40,6 +40,7 @@ public final class Simulation {
 			numIteration++;
 			mainLoop();
 		}
+
 		System.out.println("Koniec symulacji");
 	}
 	

@@ -12,14 +12,14 @@ import java.util.Random;
 public final class Parameters {
 	Random random;
 	
-	public Parameters(Random random) {
+	public Parameters(Random random) throws BadParametersException {
 		this.random = random;
-		meadowWidth = 2;
-		meadowHeight = 2;
-		numWaterholes = 0;
-		int [] startMinNum = {0,3,0,0,0};
+		meadowWidth = 5;
+		meadowHeight = 5;
+		numWaterholes = 18;
+		int [] startMinNum = {1,1,1,1,1};
 		this.startMinNum = startMinNum;
-		int [] startMaxNum = {0,3,0,0,0};
+		int [] startMaxNum = {3,3,3,3,3};
 		this.startMaxNum = startMaxNum;
 		int [] endMinNum = {0,-1,-1,-1,-1};
 		this.endMinNum = endMinNum;
@@ -27,12 +27,29 @@ public final class Parameters {
 		this.endMaxNum = endMaxNum;
 		
 		startNum = new int[5];
+		
+		
+		int startMinNumAnimals = 0, startMaxNumAnimals = 0, endMaxNumAnimals = 0, endMinNumAnimals = 0;
 		for(int i = 0; i < 5; i++) {
-			if(startMaxNum[i] > 0) {
-				startNum[i] = random.nextInt(this.startMaxNum[i]) + this.startMinNum[i];
+			if(startMinNum[i] < endMinNum[i] || (startMaxNum[i] > endMaxNum[i] && endMaxNum[i] >= 0) || startMaxNum[i] - startMinNum[i] < 0 || startMinNum[i] < 0 || endMinNum[i] < -1 || endMaxNum[i] < -1) {
+				throw new BadParametersException();
 			}
-			else startNum[i] = 0;
+			startMaxNumAnimals += startMaxNum[i]; 
+			startMinNumAnimals += startMinNum[i];
+			endMinNumAnimals += endMinNum[i];
+			endMaxNumAnimals += endMaxNum[i];
 		}
+		if(meadowHeight < 2 || meadowWidth < 2 ||startMinNumAnimals <= 0 || endMinNumAnimals < -4 || startMaxNumAnimals >= meadowHeight*meadowWidth || endMaxNumAnimals >= 2* meadowHeight*meadowWidth || numWaterholes > 2*(meadowHeight+meadowWidth-1)) {
+			throw new BadParametersException();
+		}
+		
+		for(int i = 0; i < 5; i++) {
+			if(startMaxNum[i] - startMinNum[i] > 0) {
+				startNum[i] = random.nextInt(this.startMaxNum[i] - this.startMinNum[i]) + this.startMinNum[i];
+			}
+			else startNum[i] = startMinNum[i];
+		}
+		
 	}
 	
 	public final int meadowWidth;

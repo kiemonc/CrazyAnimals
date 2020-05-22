@@ -29,7 +29,12 @@ public final class Control {
  * @param args - Nie używane
  */
 	public static void main(String[] args) {
+		try {
 		parameters = new Parameters(random);
+		} catch (BadParametersException e) {
+			System.out.println("Bad parameters");
+			return;
+		}
 		simulation = new Simulation(parameters, random);
 		
 		simulation.runSimulation();
