@@ -34,8 +34,11 @@ public class Cat extends Animal {
 		return false;
 	}
 	public void multiply() {
-		child = new Cat(0, 0, 0, random.nextBoolean(), field, random);
-		field.seatAnimal(child);
+		if(getMovedAfterMultiplying() && !isMale()) {
+			child = new Cat(0, 0, 0, random.nextBoolean(), field, random);
+			child.setMovedAfterMultiplying(false);
+		}
+		setMovedAfterMultiplying(false);
 	}
 	public int getMovementSpeed() {return movementSpeed;}
 	@Override

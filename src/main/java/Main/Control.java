@@ -3,11 +3,14 @@
  */
 package Main;
 
+import java.util.Random;
+
 /**
  * @author Mikołaj
  * Klasa odpowiada za startowanie i konczenie symulacji. Przechowuje ścieżkę do pliku wyjściowego statystyk.  Klasa generuje i zapisuje statystyki po zakończeniu symualcji.
  */
 public final class Control {
+	private static Random random = new Random(0);
 	private static Simulation simulation;
 
 	private static String statisticsPath;
@@ -21,10 +24,13 @@ public final class Control {
 
 
 	
-	
+/** 
+ * Metoda startująca cały program
+ * @param args - Nie używane
+ */
 	public static void main(String[] args) {
-		parameters = new Parameters();
-		simulation = new Simulation(parameters);
+		parameters = new Parameters(random);
+		simulation = new Simulation(parameters, random);
 		
 		simulation.runSimulation();
 

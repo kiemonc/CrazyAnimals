@@ -14,10 +14,10 @@ public abstract class Animal implements IAnimal{
 	
 	protected int hunger, thirst, age, iterationsToMove;
 	protected IField field;
-	protected IAnimal child;
+	protected IAnimal child = null;
 	protected Random random = new Random();
 	
-	private boolean isMale, isDead;
+	private boolean isMale, isDead = false, movedAfterMultiplying = true;
 	
 	/**
 	 * Konstruktor tworzy zwierzę, nadaje mu początkowe parametry i umieszcza na podanym polu
@@ -34,8 +34,6 @@ public abstract class Animal implements IAnimal{
 		this.age = age;
 		this.isMale = isMale;
 		this.field = field;
-		isDead = false;
-		child = null;
 		field.seatAnimal(this);
 	}
 	public boolean isMale() {return isMale;}
@@ -44,11 +42,11 @@ public abstract class Animal implements IAnimal{
 		hunger = (hunger > 50) ? hunger - 50 : 0;
 	}
 	public boolean canMoveThere(IField field) {
-		if(field.anyAnimal())
-		{
+		if(field.anyAnimal()){
 			List<IAnimal> animals = field.getAnimals();
-			for(int i = 0; i < animals.size(); i++)
-			{
+			if(animals.size() >= 3)
+				return false;
+			for(int i = 0; i < animals.size(); i++){
 				if(!(canEat(animals.get(i)) || canMultiply(animals.get(i))))
 					return false;
 			}
@@ -71,6 +69,7 @@ public abstract class Animal implements IAnimal{
 		field.destroyEatable(this);
 		field = chosenField;
 		iterationsToMove = getMovementSpeed();
+		setMovedAfterMultiplying(true);
 	}
 	public void drink() {thirst = (thirst > 30) ? thirst - 30 : 0;}
 	public void die() {
@@ -108,9 +107,13 @@ public abstract class Animal implements IAnimal{
 		}
 		if(field.getAnimals().size() > 1) {
 			List<IAnimal> animals = field.getAnimals();
-			for(int i = 0; i < animals.size(); i++)
-				if(canMultiply(animals.get(i)) && isMale() == false)
+			for(int i = 0; i < animals.size(); i++) {
+				if(canMultiply(animals.get(i)) && !isMale()) {
+					animals.get(i).multiply();
 					multiply();
+					break;
+				}
+			}
 		}
 		if(field instanceof Area.Waterhole)
 			this.drink();
@@ -126,5 +129,7 @@ public abstract class Animal implements IAnimal{
 		child = null;
 		return tmp;
 		}
+	public void setMovedAfterMultiplying(boolean value) {movedAfterMultiplying = value;}
+	public boolean getMovedAfterMultiplying() {return movedAfterMultiplying;}
 	public void beEaten() {die();}
 }

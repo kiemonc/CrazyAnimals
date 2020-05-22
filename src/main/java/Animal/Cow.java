@@ -27,7 +27,6 @@ public class Cow extends Animal {
 		super(hunger, thirst, age, isMale, field, random);
 		AnimalStats.addAnimal(1);
 	}
-
 	public boolean canEat(IEatable target) {
 		if(target instanceof Feed)
 			if(((Feed)target).getName() == "grass")
@@ -40,8 +39,11 @@ public class Cow extends Animal {
 		return false;
 	}
 	public void multiply() {
-		child = new Cow(0, 0, 0, random.nextBoolean(), field, random);
-		field.seatAnimal(child);
+		if(getMovedAfterMultiplying() && !isMale()) {
+			child = new Cow(0, 0, 0, random.nextBoolean(), field, random);
+			child.setMovedAfterMultiplying(false);
+		}
+		setMovedAfterMultiplying(false);
 	}
 	public int getMovementSpeed() {return movementSpeed;}
 	@Override
