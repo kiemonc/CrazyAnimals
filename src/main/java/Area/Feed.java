@@ -117,4 +117,11 @@ public final class Feed implements IEatable {
 			numDestroyed[1]++;
 		}
 	}
+	
+	@Override 
+	public String toString() { 
+		if(name=="grass") return "g";
+		if(name=="cheese") return "h";
+		return "-";
+	}
 }

@@ -28,7 +28,7 @@ public final class Simulation {
 	}
 	
 /**
- * Startuje i konczy sumylacje	
+ * Startuje i kończy sumylacje	
  */
 	public void runSimulation() {
 		while(!ifEnd()) {
@@ -39,6 +39,10 @@ public final class Simulation {
 	private void mainLoop() {
 		meadow.doIteration();
 		for(Animal.IAnimal animal: animals) {
+			if(animal.isDead()) {
+				animals.remove(animal);
+				break;
+			}
 			if(animal.wantToMove()) {
 				animal.move(meadow);
 			}
@@ -46,12 +50,15 @@ public final class Simulation {
 		for(Animal.IAnimal animal: animals) {
 			animal.doIteration();
 		}
+		showCurrentState();
 	}
 
 /**
  * Wyświetla aktualny stan sumlacji w przyjaznej dla użytkownika formie
  */
-	private void showCurrentState() {}
+	private void showCurrentState() {
+		System.out.println(meadow);
+	}
 	
 /**
  * Sprawdza czy zostały spełnione warunki końca symulacji

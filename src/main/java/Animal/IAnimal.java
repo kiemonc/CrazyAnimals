@@ -73,6 +73,11 @@ public interface IAnimal extends IEatable{
 	 */
 	public int getMovementSpeed();
 	/**
+	 * Jeżeli zwierzę posiada dziecko to metoda zwraca to dziecko i usuwa je ze swojej pamięci
+	 * @return referencja do nowego zwierzęcia lub null
+	 */
+	public IAnimal hasChild();
+	/**
 	 * Pozwala wyświetlić zwierzę jako znak
 	 * @return ciąg znaków, który zawiera jeden znak - reprezentację zwierzęcia
 	 */

@@ -16,6 +16,7 @@ public abstract class Animal implements IAnimal{
 	protected boolean isMale;
 	protected IField field;
 	private boolean isDead;
+	protected IAnimal child;
 	private Random random = new Random();
 	
 	/**
@@ -33,6 +34,7 @@ public abstract class Animal implements IAnimal{
 		this.isMale = isMale;
 		this.field = field;
 		isDead = false;
+		child = null;
 	}
 	public boolean isMale() {
 		return isMale;
@@ -40,6 +42,18 @@ public abstract class Animal implements IAnimal{
 	public void eat(IEatable target) {
 		target.beEaten();
 		hunger = (hunger > 50) ? hunger - 50 : 0;
+	}
+	public boolean canMoveThere(IField field) {
+		if(field.anyAnimal())
+		{
+			List<IAnimal> animals = field.getAnimals();
+			for(int i = 0; i < animals.size(); i++)
+			{
+				if(!(canEat(animals.get(i)) || canMultiply(animals.get(i))))
+					return false;
+			}
+		}
+		return true;
 	}
 	public void move(IMeadow meadow) {
 		List<IField> fields = meadow.getNeighbours(this.field);
@@ -80,8 +94,10 @@ public abstract class Animal implements IAnimal{
 	}
 	public boolean isDead() {return isDead;}
 	public void doIteration() {
-		if(isDying())
+		if(isDying()){
 			die();
+			return;
+		}
 		if(field.getEatable().size() > 1) {
 			List<IEatable> eatable = field.getEatable();
 			for(int i = 0; i < eatable.size(); i++)
@@ -105,5 +121,10 @@ public abstract class Animal implements IAnimal{
 		age++;
 	}
 	public boolean wantToMove() {return (iterationsToMove == 0 ? true : false);}
+	public IAnimal hasChild() {
+		IAnimal tmp = child;
+		child = null;
+		return tmp;
+		}
 	public void beEaten() {die();}
 }
