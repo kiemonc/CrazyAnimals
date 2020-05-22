@@ -12,7 +12,7 @@ import Area.IField;
 public class Cat extends Animal {
 	private static final int movementSpeed = 1;
 	/**
-	 * Konstruktor tworzy kota, nadaje mu pocz�tkowe parametry i umieszcza na podanym polu
+	 * Konstruktor tworzy kota, nadaje mu początkowe parametry i umieszcza na podanym polu
 	 * @param hunger początkowy głód
 	 * @param thirst początkowe pragnienie
 	 * @param age wiek

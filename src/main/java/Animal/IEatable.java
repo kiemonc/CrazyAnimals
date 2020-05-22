@@ -7,7 +7,7 @@ package Animal;
 
 public interface IEatable {
 	/**
-	 * 
+	 * Pozwala zniszczyć zjedzony obiekt (zwierzę lub jedzenie)
 	 */
 	public void beEaten();
 }
