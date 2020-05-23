@@ -56,7 +56,7 @@ public abstract class Animal implements IAnimal{
 		setMovedAfterMultiplying(true);
 	}
 	public void doIteration() {
-		if(field == null)
+		if(isDead())
 			return;
 		if(age >= 100 || hunger >= 100 || thirst >= 100){
 			die();
@@ -144,7 +144,6 @@ public abstract class Animal implements IAnimal{
 		else if(this instanceof Wolf)
 			AnimalStats.takeAnimal(4);
 		field.destroyEatable(this);
-		field = null;
 		isDead = true;
 	}
 }
