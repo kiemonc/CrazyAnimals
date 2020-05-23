@@ -6,7 +6,8 @@ import javax.swing.JPanel;
 
 public class Frame extends JFrame {
 
-	
+	private static final long serialVersionUID = -2236147160962102591L;
+
 	public Frame() {
 		super("Simulation");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -13,14 +13,14 @@ public final class Control {
 	private static Random random = new Random(0);
 	private static Simulation simulation;
 
-	private static String statisticsPath;
+	//private static String statisticsPath;
 	private static Parameters parameters;
 	
 	
-	private static void startSimulation() {}
-	private static void showStatistics() {}
-	private static void saveStatistics() {}
-	private static void setParamiters() {}
+	//private static void startSimulation() {}
+	//private static void showStatistics() {}
+	//private static void saveStatistics() {}
+	//private static void setParamiters() {}
 
 
 	

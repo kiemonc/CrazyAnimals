@@ -19,7 +19,7 @@ public final class Parameters {
 		numWaterholes = 18;
 		int [] startMinNum = {1,1,1,1,1};
 		this.startMinNum = startMinNum;
-		int [] startMaxNum = {3,3,3,3,3};
+		int [] startMaxNum = {1,1,1,1,1};
 		this.startMaxNum = startMaxNum;
 		int [] endMinNum = {0,-1,-1,-1,-1};
 		this.endMinNum = endMinNum;

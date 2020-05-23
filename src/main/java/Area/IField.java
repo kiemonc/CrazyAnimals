@@ -49,7 +49,7 @@ public interface IField {
 	
 	/**
 	 * Informuje czy na danym polu znajduje się jakiekolwiek zwierzę
-	 * @return
+	 * @return true - jest zwierzę, false - nie ma zwierzęcia
 	 */
 	public boolean anyAnimal();
 }

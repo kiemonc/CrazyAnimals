@@ -21,6 +21,7 @@ public class Wolf extends Animal {
 	 * @param age wiek
 	 * @param isMale zmienna logiczna odpowiadająca na pytanie: czy zwierzę jest płci męskiej?
 	 * @param field pole na którym zostanie umieszczone zwierzę
+	 * @param random referencja do zmiennej typu Random
 	 */
 	public Wolf(int hunger, int thirst, int age, boolean isMale, IField field, Random random){
 		super(hunger, thirst, age, isMale, field, random);

@@ -21,7 +21,7 @@ public final class Feed implements IEatable {
 	private String name;
 /**
  * Konstruktor klasy Feed tworzy pożywienie, nadaje mu odpowiednią losową nazwę oraz dolicza kolejne obiekty do statystyki
- * 
+ * @param random - referencja do wspólnego dla całej symulacji obiektu random
  */
 	public Feed(Random random) {
 		numAll = new int[2];
