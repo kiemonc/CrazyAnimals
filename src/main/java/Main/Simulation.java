@@ -101,6 +101,9 @@ public final class Simulation {
 			if(Animal.AnimalStats.getCurrentPopulation()[i] < parameters.endMinNum[i] || (parameters.endMaxNum[i]!= -1 && Animal.AnimalStats.getCurrentPopulation()[i] > parameters.endMaxNum[i])) {
 				return true;
 			}
+		if(parameters.maxIterationNum <= numIteration) {
+			return true;
+		}
 		}
 		return false;
 	}

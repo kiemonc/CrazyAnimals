@@ -10,22 +10,24 @@ import java.util.Random;
  * Klasa ustawia i przechowuje liczbę wodopojów.
  */
 public final class Parameters {
-	Random random;
+	private Random random;
 	
 	public Parameters(Random random) throws BadParametersException {
 		this.random = random;
-		meadowWidth = 5;
-		meadowHeight = 5;
-		numWaterholes = 18;
-		int [] startMinNum = {1,1,1,1,1};
+		meadowWidth = 20;
+		meadowHeight = 20;
+		numWaterholes = 70;
+		
+		int [] startMinNum = {0,0,150,0,0};
 		this.startMinNum = startMinNum;
-		int [] startMaxNum = {1,1,1,1,1};
+		int [] startMaxNum = {0,0,150,0,0};
 		this.startMaxNum = startMaxNum;
-		int [] endMinNum = {0,-1,-1,-1,-1};
+		int [] endMinNum = {-1,-1,1,-1,-1};
 		this.endMinNum = endMinNum;
-		int [] endMaxNum = {20,-1,-1,-1,-1};
+		int [] endMaxNum = {-1,-1,-1,-1,-1};
 		this.endMaxNum = endMaxNum;
 		
+		this.maxIterationNum = 100;
 		startNum = new int[5];
 		
 		
@@ -39,7 +41,7 @@ public final class Parameters {
 			endMinNumAnimals += endMinNum[i];
 			endMaxNumAnimals += endMaxNum[i];
 		}
-		if(meadowHeight < 2 || meadowWidth < 2 ||startMinNumAnimals <= 0 || endMinNumAnimals < -4 || startMaxNumAnimals >= meadowHeight*meadowWidth || endMaxNumAnimals >= 2* meadowHeight*meadowWidth || numWaterholes > 2*(meadowHeight+meadowWidth-1)) {
+		if(meadowHeight < 2 || meadowWidth < 2 || startMinNumAnimals <= 0 || endMinNumAnimals < -5 || startMaxNumAnimals >= meadowHeight*meadowWidth || endMaxNumAnimals >= 2* meadowHeight*meadowWidth || numWaterholes > 2*(meadowHeight+meadowWidth-1)) {
 			throw new BadParametersException();
 		}
 		
@@ -52,17 +54,56 @@ public final class Parameters {
 		
 	}
 	
+	/**
+	 * Szerokość łąki liczona w polach
+	 */
 	public final int meadowWidth;
+	
+	/**
+	 * Wysokość łąki liczona w polach
+	 */
 	public final int meadowHeight;
+	
+	/**
+	 * Liczba wodopoi
+	 */
 	public final int numWaterholes;
 	
+	/**
+	 * Maksymalna liczba iteracji. Iteracja o zadanym numerze jest ostatnią wykonywaną.
+	 */
+	public final int maxIterationNum;
 	
-	//[0]cat [1]cow [2]mouse [3]sheep [4]wolf
+	
+	/**
+	 * Tablica liczebności zwierząt podczas startu symulacji
+	 * [0] - cat; [1] - cow; [2] - mouse; [3] - sheep; [4] - wolf
+	 */
 	public int[] startNum;
 	
+	/**
+	 * Tablica maksymalnych liczebności zwierząt podczas startu symulacji
+	 * [0] - cat; [1] - cow; [2] - mouse; [3] - sheep; [4] - wolf
+	 */
 	public final int[] startMaxNum;
+	/**
+	 * Tablica minimalnych liczebności zwierząt podczas startu symulacji
+	 * [0] - cat; [1] - cow; [2] - mouse; [3] - sheep; [4] - wolf
+	 */
 	public final int[] startMinNum;
+	
+	/**
+	 * Tablica maksymalnych liczebności zwierząt. Przekroczenie, którejkowiek wartości kończy symulację.
+	 * -1 oznacza, że liczebność danego gatunku nie jest brana pod uwagę
+	 * [0] - cat; [1] - cow; [2] - mouse; [3] - sheep; [4] - wolf
+	 */
 	public final int[] endMaxNum;
+	
+	/**
+	 * Tablica minimalnej liczebności zwierząt. Przekroczenie, którejkowiek wartości kończy symulację.
+	 * -1 oznacza, że liczebność danego gatunku nie jest brana pod uwagę
+	 * [0] - cat; [1] - cow; [2] - mouse; [3] - sheep; [4] - wolf
+	 */
 	public final int[] endMinNum;
 	
 }

@@ -56,17 +56,20 @@ public abstract class Animal implements IAnimal{
 		setMovedAfterMultiplying(true);
 	}
 	public void doIteration() {
+		if(field == null)
+			return;
 		if(age >= 100 || hunger >= 100 || thirst >= 100){
 			die();
 			return;
 		}
 		if(field.getEatable().size() > 1) {
 			List<IEatable> eatable = field.getEatable();
-			for(int i = 0; i < eatable.size(); i++)
+			for(int i = 0; i < eatable.size(); i++) {
 				if(canEat(eatable.get(i)))
 					eat(eatable.get(i));
-				else if(eatable.get(i) instanceof Area.Feed)
+				if(eatable.get(i) instanceof Area.Feed)
 					field.destroyEatable(eatable.get(i));
+			}
 		}
 		if(field.getAnimals().size() > 1) {
 			List<IAnimal> animals = field.getAnimals();
@@ -141,6 +144,7 @@ public abstract class Animal implements IAnimal{
 		else if(this instanceof Wolf)
 			AnimalStats.takeAnimal(4);
 		field.destroyEatable(this);
+		field = null;
 		isDead = true;
 	}
 }
