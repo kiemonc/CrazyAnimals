@@ -58,15 +58,16 @@ public final class Simulation {
  * Usuwa z listy zwierzęta, które już nie żyją
  */
 	private void removeOrMoveAnimals() {
-		for(Animal.IAnimal animal: animals) {
+		for(int i = 0; i < animals.size(); i++) {
+			Animal.IAnimal animal = animals.get(i);
 			if(animal.isDead()) {
 				animals.remove(animal);
-				break;
+				i--;
+				continue;
 			}
 			if(animal.wantToMove()) {
 				animal.move(meadow);
 			}
-			
 		}
 	}
 	

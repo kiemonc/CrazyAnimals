@@ -10,6 +10,10 @@ import java.util.Random;
  * Klasa odpowiada za startowanie i konczenie symulacji. Przechowuje ścieżkę do pliku wyjściowego statystyk.  Klasa generuje i zapisuje statystyki po zakończeniu symualcji.
  */
 public final class Control {
+	
+	/**
+	 * Referencja do obiektu random, umożliwiająca ustwienie wartości seed, która determinuje całą symulacje.
+	 */
 	private static Random random = new Random(0);
 	private static Simulation simulation;
 
@@ -32,7 +36,6 @@ public final class Control {
 		try {
 		parameters = new Parameters(random);
 		} catch (BadParametersException e) {
-			System.out.println("Bad parameters");
 			return;
 		}
 		simulation = new Simulation(parameters, random);

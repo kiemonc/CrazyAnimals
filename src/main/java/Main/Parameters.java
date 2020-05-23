@@ -10,24 +10,23 @@ import java.util.Random;
  * Klasa ustawia i przechowuje liczbę wodopojów.
  */
 public final class Parameters {
-	private Random random;
+
 	
 	public Parameters(Random random) throws BadParametersException {
-		this.random = random;
-		meadowWidth = 20;
-		meadowHeight = 20;
-		numWaterholes = 70;
+		meadowWidth = 30;
+		meadowHeight = 30;
+		numWaterholes = 100;
 		
-		int [] startMinNum = {0,0,150,0,0};
+		int [] startMinNum = {100,100,100,100,50};
 		this.startMinNum = startMinNum;
-		int [] startMaxNum = {0,0,150,0,0};
+		int [] startMaxNum = {100,100,100,100,50};
 		this.startMaxNum = startMaxNum;
-		int [] endMinNum = {-1,-1,1,-1,-1};
+		int [] endMinNum = {-1,-1,-1,-1,-1};
 		this.endMinNum = endMinNum;
 		int [] endMaxNum = {-1,-1,-1,-1,-1};
 		this.endMaxNum = endMaxNum;
 		
-		this.maxIterationNum = 100;
+		this.maxIterationNum = 1000;
 		startNum = new int[5];
 		
 		
