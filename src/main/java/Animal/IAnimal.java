@@ -39,7 +39,7 @@ public interface IAnimal extends IEatable{
 	public boolean isDead();
 	/**
 	 * Pozwala ustawić wartość zmiennej movedAfterMultiplying
-	 * @param boolean wartość przypisywana do tej zmiennej
+	 * @param value wartość przypisywana do tej zmiennej
 	 */
 	public void setMovedAfterMultiplying(boolean value);
 	/**

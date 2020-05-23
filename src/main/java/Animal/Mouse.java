@@ -16,12 +16,13 @@ import Area.IField;
 public class Mouse extends Animal {
 	private static final int movementSpeed = 1;
 	/**
-	 * Konstruktor tworzy mysz, nadaje jej pocz�tkowe parametry i umieszcza na podanym polu
+	 * Konstruktor tworzy mysz, nadaje jej początkowe parametry i umieszcza na podanym polu
 	 * @param hunger początkowy głód
 	 * @param thirst początkowe pragnienie
 	 * @param age wiek
 	 * @param isMale zmienna logiczna odpowiadająca na pytanie: czy zwierzę jest płci męskiej?
 	 * @param field pole na którym zostanie umieszczone zwierzę
+	 * @param random referencja do zmiennej typu Random
 	 */
 	public Mouse(int hunger, int thirst, int age, boolean isMale, IField field, Random random){
 		super(hunger, thirst, age, isMale, field, random);

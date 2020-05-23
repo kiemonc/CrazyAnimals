@@ -25,6 +25,7 @@ public abstract class Animal implements IAnimal{
 	 * @param age wiek
 	 * @param isMale zmienna logiczna odpowiadająca na pytanie: czy zwierzę jest płci męskiej?
 	 * @param field pole na którym zostanie umieszczone zwierzę
+	 * @param random referencja do zmiennnej typu Random
 	 */
 	public Animal(int hunger, int thirst, int age, boolean isMale, IField field, Random random) {
 		this.random = random;
@@ -55,7 +56,7 @@ public abstract class Animal implements IAnimal{
 		setMovedAfterMultiplying(true);
 	}
 	public void doIteration() {
-		if(isDying()){
+		if(age >= 100 || hunger >= 100 || thirst >= 100){
 			die();
 			return;
 		}
@@ -96,11 +97,6 @@ public abstract class Animal implements IAnimal{
 	public boolean getMovedAfterMultiplying() {return movedAfterMultiplying;}
 	public void beEaten() {die();}
 	
-	private boolean isDying() {
-		if(age >= 100 || hunger >= 100 || thirst >= 100)
-			return true;
-		else return false;
-	}
 	/**
 	 * Pozwala stwierdzić czy zwierzę może ruszyć się na zadane pole
 	 * @param field sprawdzane pole
