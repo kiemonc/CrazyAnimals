@@ -3,4 +3,4 @@
 /**
  * Pakiet grupuje klasy zarzadzające zachowaniem zwierząt
  */
-package Animal;
+package objectProgramming.crazyAnimals.animal;

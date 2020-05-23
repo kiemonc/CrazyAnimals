@@ -1,4 +1,4 @@
-package Animal;
+package objectProgramming.crazyAnimals.animal;
 /**
  * 
  */
@@ -17,7 +17,7 @@ public interface IAnimal extends IEatable{
 	 * Pozwala zmienić pozycję zwierzęcia na inną, losowo wybraną spośród pól sąsiednich do obecnego
 	 * @param meadow - referencja do łąki
 	 */
-	public void move(Area.IMeadow meadow);
+	public void move(objectProgramming.crazyAnimals.area.IMeadow meadow);
 	/**
 	 * Wykonuje iterację, tzn. zwiększa głód, pragnienie oraz wiek i zmniejsza ilość iteracji do wykonania ruchu
 	 */

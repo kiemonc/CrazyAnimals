@@ -1,10 +1,10 @@
-package Animal;
+package objectProgramming.crazyAnimals.animal;
 
 import java.util.List;
 import java.util.Random;
 
-import Area.IField;
-import Area.IMeadow;
+import objectProgramming.crazyAnimals.area.IField;
+import objectProgramming.crazyAnimals.area.IMeadow;
 
 /**
  * Klasa zawiera wspólne parametry i operacje które mogą zostać wykonane na każdym zwierzęciu
@@ -67,7 +67,7 @@ public abstract class Animal implements IAnimal{
 			for(int i = 0; i < eatable.size(); i++) {
 				if(canEat(eatable.get(i)))
 					eat(eatable.get(i));
-				if(eatable.get(i) instanceof Area.Feed)
+				if(eatable.get(i) instanceof objectProgramming.crazyAnimals.area.Feed)
 					field.destroyEatable(eatable.get(i));
 			}
 		}
@@ -81,7 +81,7 @@ public abstract class Animal implements IAnimal{
 				}
 			}
 		}
-		if(field instanceof Area.Waterhole)
+		if(field instanceof objectProgramming.crazyAnimals.area.Waterhole)
 			this.drink();
 		hunger += 5;
 		thirst += 5;

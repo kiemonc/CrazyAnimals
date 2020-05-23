@@ -1,8 +1,8 @@
-package Animal;
+package objectProgramming.crazyAnimals.animal;
 
 import java.util.Random;
 
-import Area.IField;
+import objectProgramming.crazyAnimals.area.IField;
 
 /**
  * Klasa przechowuje wartość prędkości z jaką poruszają się koty oraz operacje charakterystyczne dla tego gatunku.

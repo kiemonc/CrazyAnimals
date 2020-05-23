@@ -1,4 +1,4 @@
-package Area;
+package objectProgramming.crazyAnimals.area;
 
 import java.util.LinkedList;
 

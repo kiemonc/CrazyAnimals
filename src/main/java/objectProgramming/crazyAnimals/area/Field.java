@@ -1,10 +1,11 @@
-package Area;
+package objectProgramming.crazyAnimals.area;
 
-import Animal.IAnimal;
-import Animal.IEatable;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.Random;
+
+import objectProgramming.crazyAnimals.animal.IAnimal;
+import objectProgramming.crazyAnimals.animal.IEatable;
 
 /**
  * 

@@ -1,4 +1,4 @@
-package Main;
+package objectProgramming.crazyAnimals.main;
 
 public class BadParametersException extends Exception {
 

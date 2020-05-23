@@ -1,14 +1,14 @@
 /**
  * 
  */
-package Animal;
+package objectProgramming.crazyAnimals.animal;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import Area.IField;
-import Area.IMeadow;
+import objectProgramming.crazyAnimals.area.IField;
+import objectProgramming.crazyAnimals.area.IMeadow;
 /**
  * Klasa odpowiada za tworzenie zadanej liczby zwierząt i umieszczanie ich losowo na łące
  * @author jakub

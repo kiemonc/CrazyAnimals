@@ -1,10 +1,11 @@
 /**
  * 
  */
-package Area;
+package objectProgramming.crazyAnimals.area;
 
-import Animal.IEatable;
 import java.util.Random;
+
+import objectProgramming.crazyAnimals.animal.IEatable;
 
 /**
  * 

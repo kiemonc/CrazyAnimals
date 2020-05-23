@@ -1,4 +1,4 @@
-package Main;
+package objectProgramming.crazyAnimals.main;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;

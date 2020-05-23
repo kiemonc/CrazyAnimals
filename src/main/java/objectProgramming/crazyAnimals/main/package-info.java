@@ -3,4 +3,4 @@
  */
 
 
-package Main;
+package objectProgramming.crazyAnimals.main;

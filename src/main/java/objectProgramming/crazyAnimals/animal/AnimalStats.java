@@ -1,7 +1,7 @@
 /**
  * 
  */
-package Animal;
+package objectProgramming.crazyAnimals.animal;
 
 /**
  * Klasa odpowiada za zbieranie statystyk dotyczących populacji zwierząt podczas działania symulacji

@@ -1,9 +1,9 @@
-package Animal;
+package objectProgramming.crazyAnimals.animal;
 
 import java.util.List;
 import java.util.Random;
 
-import Area.IMeadow;
+import objectProgramming.crazyAnimals.area.IMeadow;
 
 /**
  * Interfejs przechowujący operacje klasy AnimalCreator

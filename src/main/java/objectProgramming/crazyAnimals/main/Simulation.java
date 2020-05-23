@@ -1,4 +1,4 @@
-package Main;
+package objectProgramming.crazyAnimals.main;
 
 import java.util.List;
 import java.util.LinkedList;
@@ -17,14 +17,14 @@ public final class Simulation {
 	//private double startTime;
 	private Parameters parameters;
 	private int numIteration;
-	private Area.Meadow meadow;
-	private Animal.IAnimalCreator animalCreator;
-	private List<Animal.IAnimal> animals;
+	private objectProgramming.crazyAnimals.area.Meadow meadow;
+	private objectProgramming.crazyAnimals.animal.IAnimalCreator animalCreator;
+	private List<objectProgramming.crazyAnimals.animal.IAnimal> animals;
 	
 	public Simulation(Parameters parameters, Random random) {
 		this.parameters = parameters;
-		meadow = new Area.Meadow(parameters.meadowWidth, parameters.meadowHeight, parameters.numWaterholes, parameters.meadowHeight*parameters.meadowWidth/10, random);
-		animalCreator = new Animal.AnimalCreator();
+		meadow = new objectProgramming.crazyAnimals.area.Meadow(parameters.meadowWidth, parameters.meadowHeight, parameters.numWaterholes, parameters.meadowHeight*parameters.meadowWidth/10, random);
+		animalCreator = new objectProgramming.crazyAnimals.animal.AnimalCreator();
 		animals = animalCreator.createAnimals(parameters.startNum[0], parameters.startNum[1], parameters.startNum[2], parameters.startNum[3], parameters.startNum[4], meadow, random);
 		numIteration = 0;
 	}
@@ -59,7 +59,7 @@ public final class Simulation {
  */
 	private void removeOrMoveAnimals() {
 		for(int i = 0; i < animals.size(); i++) {
-			Animal.IAnimal animal = animals.get(i);
+			objectProgramming.crazyAnimals.animal.IAnimal animal = animals.get(i);
 			if(animal.isDead()) {
 				animals.remove(animal);
 				i--;
@@ -76,10 +76,10 @@ public final class Simulation {
  * Dodaje do listy zwierząt nowo powstałe zwierzęta
  */
 	private void interactionsBetweenAnimals() {
-		LinkedList<Animal.IAnimal> children = new LinkedList<Animal.IAnimal>();
-		for(Animal.IAnimal animal: animals) {
+		LinkedList<objectProgramming.crazyAnimals.animal.IAnimal> children = new LinkedList<objectProgramming.crazyAnimals.animal.IAnimal>();
+		for(objectProgramming.crazyAnimals.animal.IAnimal animal: animals) {
 			animal.doIteration();
-			Animal.IAnimal child = animal.hasChild();
+			objectProgramming.crazyAnimals.animal.IAnimal child = animal.hasChild();
 			if(child != null) children.add(child);
 		}
 		animals.addAll(children);
@@ -99,7 +99,7 @@ public final class Simulation {
  */
 	private boolean ifEnd() {
 		for(int i = 0; i < 5; i++) {
-			if(Animal.AnimalStats.getCurrentPopulation()[i] < parameters.endMinNum[i] || (parameters.endMaxNum[i]!= -1 && Animal.AnimalStats.getCurrentPopulation()[i] > parameters.endMaxNum[i])) {
+			if(objectProgramming.crazyAnimals.animal.AnimalStats.getCurrentPopulation()[i] < parameters.endMinNum[i] || (parameters.endMaxNum[i]!= -1 && objectProgramming.crazyAnimals.animal.AnimalStats.getCurrentPopulation()[i] > parameters.endMaxNum[i])) {
 				return true;
 			}
 		if(parameters.maxIterationNum <= numIteration) {

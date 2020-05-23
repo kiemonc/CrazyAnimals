@@ -1,8 +1,9 @@
-package Area;
+package objectProgramming.crazyAnimals.area;
 
-import Animal.IEatable;
-import Animal.IAnimal;
 import java.util.List;
+
+import objectProgramming.crazyAnimals.animal.IAnimal;
+import objectProgramming.crazyAnimals.animal.IEatable;
 
 public interface IField {
 	
