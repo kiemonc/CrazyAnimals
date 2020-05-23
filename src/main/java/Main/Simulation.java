@@ -14,17 +14,15 @@ import java.util.Random;
  */
 
 public final class Simulation {
-	private double startTime;
+	//private double startTime;
 	private Parameters parameters;
 	private int numIteration;
 	private Area.Meadow meadow;
 	private Animal.IAnimalCreator animalCreator;
 	private List<Animal.IAnimal> animals;
-	private Random random;
 	
 	public Simulation(Parameters parameters, Random random) {
 		this.parameters = parameters;
-		this.random = random;
 		meadow = new Area.Meadow(parameters.meadowWidth, parameters.meadowHeight, parameters.numWaterholes, parameters.meadowHeight*parameters.meadowWidth/10, random);
 		animalCreator = new Animal.AnimalCreator();
 		animals = animalCreator.createAnimals(parameters.startNum[0], parameters.startNum[1], parameters.startNum[2], parameters.startNum[3], parameters.startNum[4], meadow, random);
@@ -40,6 +38,7 @@ public final class Simulation {
 			numIteration++;
 			mainLoop();
 		}
+
 		System.out.println("Koniec symulacji");
 	}
 	

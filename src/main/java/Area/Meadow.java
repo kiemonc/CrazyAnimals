@@ -27,6 +27,7 @@ public final class Meadow implements IMeadow {
  * @param height - Wysokość łąki
  * @param numWaterholes - Ilość wodopoi
  * @param numFeeds - Początkowa ilość pożywienia
+ * @param random - Wspólny dla całej symulacji obiekt random
  */
 	public Meadow(int width, int height, int numWaterholes, int numFeeds, Random random) {
 		this.random = random;

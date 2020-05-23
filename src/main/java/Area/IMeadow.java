@@ -13,7 +13,7 @@ public interface IMeadow {
 	/**
 	 * Zwraca listę losowych pól w liczbie zadanej w parametrze
 	 * @param numFields liczba pól do zwrócenia
-	 * @return List<IField> lista losowych pól
+	 * @return lista losowych pól
 	 */
 	public List<IField> getRandomFields(int numFields);
 	
