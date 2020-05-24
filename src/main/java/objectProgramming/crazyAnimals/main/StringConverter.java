@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class StringConverter implements IParameterSplitter{
 	/**
 	 * Metoda konwertuje string licz oddzielonych przecinkami, na tablice liczb o długości 5
-	 * @param string - łańcuch wejściowy
+	 * @param value - łańcuch wejściowy
 	 * @return lista liczb
 	 */
 	  @Override

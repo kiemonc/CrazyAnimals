@@ -8,20 +8,36 @@ import com.beust.jcommander.Parameter;
 import java.util.List;
 import java.util.Random;
 /**
+ * 
+ * Ustawia i przechowuje parametry początkowe, czyli minialne i maksymalne liczebności każdego gatunku zwierząt, wymiary łąki oraz liczbę wodopojów.
+ * Przechwytuje sparsowane argumenty funkcji Control.maio(String args);
+ * Sprawdza poprawność agrumentów.
+ * Przedział możliwej początkowej liczbeności gatunku musi zawierać się w przedziale końcowym liczebności.
+ * Na łące początkowo musi znajdować się conajmniej 1 zwierzę.
+ * Liczby początkowe nie mogę być mniejsze od 0.
+ * Końcowe liczby mogą równać się -1 w przypadku gdy dana wartość ma nie być sprawdzana w warunkach końcowych symulacji.
+ * Początkowa liczba zwierząt musi być mniejsza od liczby pól.
+ * Liczba wodopoi musi być większa od 0, ale musi być mniejsza bądz równa liczbie pól znajdujących się przy krawędzi łąki.
+ * Maksymalna liczba iteracji musi być większa od 0.
  * @author Mikołaj
- * Klasa komunikuje się z użytkownikiem, ustawia i przechowuje parametry początkowe, czyli minialne i maksymalne liczebności każdego gatunku zwierząt, wymiary łąki oraz liczbę wodopojów.
- * Klasa ustawia i przechowuje liczbę wodopojów.
- * Li
  */
 public final class Parameters {
 	
-	
+/**
+ * Referencja do obietku Radnom wspólnego dla całej symulacji
+ */
 	private Random random;
 	
 	public Parameters(Random random) {
 		this.random = random;
 	}
 	
+/**
+ * Ustawia parametry przechwycone podczas parsowania lub pozostawia domyślne wartości.
+ * Sprawdza zgodność parametrów opisaną w opisie klasy Parameters.
+ * Kiedy parametry okazują się być niezgodne wyrzuca wyjątek.
+ * @throws BadParametersException - wyjątek sprzeczności agumentów
+ */
 	public void setParametrs() throws BadParametersException {
 
 		
@@ -40,7 +56,7 @@ public final class Parameters {
 			endMinNumAnimals += endMinNum[i];
 			endMaxNumAnimals += endMaxNum[i];
 		}
-		if(maxIterationNum <= 0 || meadowHeight < 2 || meadowWidth < 2 || startMinNumAnimals <= 0 || endMinNumAnimals < -5 || startMaxNumAnimals >= meadowHeight*meadowWidth || endMaxNumAnimals >= 2* meadowHeight*meadowWidth || numWaterholes > 2*(meadowHeight+meadowWidth-1)) {
+		if(maxIterationNum <= 0 || meadowHeight < 2 || meadowWidth < 2 || startMinNumAnimals <= 0 || endMinNumAnimals < -5 || startMaxNumAnimals >= meadowHeight*meadowWidth || endMaxNumAnimals >= 2* meadowHeight*meadowWidth || numWaterholes > 2*(meadowHeight+meadowWidth-1) || numWaterholes < 1) {
 			throw new BadParametersException();
 		}
 		

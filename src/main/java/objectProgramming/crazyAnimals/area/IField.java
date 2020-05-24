@@ -5,6 +5,14 @@ import java.util.List;
 import objectProgramming.crazyAnimals.animal.IAnimal;
 import objectProgramming.crazyAnimals.animal.IEatable;
 
+/**
+ * Udostępnia metody potrzebne obiektom przebywającym na danym polu, głównie zwierzętom.
+ * Zawiera metody odpowiedzialne za dawanie i niszczenie pożywienia znajdującego się na danym polu, sprawdzanie czy jest ono zajęte, rozkłądanie nowego pożywienia, umieszczanie nowego zwierzęcia.
+ *
+ * @author Mikołaj
+ *
+ */
+
 public interface IField {
 	
 	/**

@@ -1,6 +1,14 @@
 package objectProgramming.crazyAnimals.area;
 
 import java.util.List;
+
+/**
+ * Interfejs odpowiedzialny za udostępnianie metod niezbędnych do współpracy z łąką.
+ * Zawiera takie metody jak: pobieranie sąsiadów danego pola, udostępnianie losowych pól o zadanej licznie, wykananie jednej iteracji.
+ * @author Mikołaj
+ *
+ */
+
 public interface IMeadow {
 	
 	/**
