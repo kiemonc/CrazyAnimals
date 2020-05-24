@@ -14,7 +14,8 @@ import java.util.Random;
  * Li
  */
 public final class Parameters {
-
+	
+	
 	private Random random;
 	
 	public Parameters(Random random) {
@@ -141,27 +142,15 @@ public final class Parameters {
 	private void initializeNumAnimals() {
 		if(startMinNumList != null && startMinNumList.size() == 5) {
 			startMinNum = listToTable(startMinNumList);
-		} else {
-			int [] newTable = {1,1,1,1,1};
-			startMinNum = newTable;
 		}
 		if(startMaxNumList != null && startMaxNumList.size() == 5) {
 			startMaxNum = listToTable(startMaxNumList);
-		} else {
-			int [] newTable = {1,1,1,1,1};
-			startMaxNum = newTable;
 		}
 		if(endMinNumList != null && endMinNumList.size() == 5) {
 			endMinNum = listToTable(endMinNumList);
-		} else {
-			int [] newTable = {-1,-1,-1,-1,-1};
-			endMinNum = newTable;
 		}
 		if(endMaxNumList != null && endMaxNumList.size() == 5) {
 			endMaxNum = listToTable(endMaxNumList);
-		} else {
-			int [] newTable = {-1,-1,-1,-1,-1};
-			endMaxNum = newTable;
 		}
 		
 	}

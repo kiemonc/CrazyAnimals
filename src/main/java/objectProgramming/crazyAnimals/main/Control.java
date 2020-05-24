@@ -37,8 +37,9 @@ public final class Control {
  * W przypadku gdy wprowadzone parametry nie spełniają określonych tam warunków, zostanie wurzycony wyjątek.
  * Symulację determinujemy zmianą wartości seed w konstruktorze powyższej zmiennej Random random
  * Aby uruchomić sumylacje z parametrami można skorzystać z parsowania argumentów tekstowych. 
- * Po wpisaniu "--help" wyświetla się instrukcja 
- * @param args - Nie używane
+ * Po wpisaniu "--help" wyświetla się instrukcja
+ * Przykładowe parametry: "-h 10 -w 10 -i 100 -sMin 1,1,1,1,1 -sMax 5,5,5,5,5 -eMin -1,-1,-1,-1,-1 -eMax 10,10,10,10,10 -wh 15"
+ * @param args - parametry startowe aplikacji
  */
 	public static void main(String[] args) {
 		parameters = new Parameters(random);
