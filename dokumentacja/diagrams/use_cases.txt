@@ -1,0 +1,12 @@
+@startuml
+:Actor: --> (startSimulation)
+:Actor: --> (endSimulation)
+:Actor: --> (showMeadow)
+:Actor: ---> (setMeadowHeight)
+:Actor: ---> (setMeadowWidth)
+:Actor: ---> (setNumberOfEachAnimal)
+:Actor: ---> (setNumberOfWaterholes)
+:Actor: ---> (showStatistics)
+:Actor: -----> (setStatisticsFilePath)
+:Actor: -----> (saveStatisticsFile)
+@enduml

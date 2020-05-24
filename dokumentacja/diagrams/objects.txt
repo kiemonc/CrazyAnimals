@@ -1,0 +1,228 @@
+@startuml
+
+
+
+
+object "simulation : Simulation" as Simulation {
+	startTime = 1588195080
+	numIteration = 51
+	meadow = "meadow"
+	animals[]
+}
+object "parameters : Parameters" as Parameters {
+	meadowWidth = 5
+	meadowHeight = 5
+	numWaterholes = 1
+	startMaxNum[0..4] = 4
+	startMinNum[0..4] = 2
+	endMaxNum[0..4] = 10
+	endMinNum[0..4] = 0
+
+}
+object "control : Control" as Control {
+	statisticsPath = "C:\statistics.txt"
+	parameters = "parameters"
+	simulation = "simulation"
+}
+
+Control *-- Simulation : executes_iterations
+Control *-- Parameters : sets_parameters
+
+
+
+
+
+
+object "meadow : Meadow" as Meadow {
+	width = 5
+	height = 5
+	tab[5][5]
+}
+object "field1 : Field" as Field1 {
+	feed = "grass1"
+}
+object "field2 : Field" as Field2 {
+	feed = "cheese1"
+}
+object "field3 : Field" as Field3 {
+	feed = null
+}
+
+object "grass1 : Feed" as Feed1 {
+	{static}numAll[0] = 1
+	{static}numAll[1] = 1
+	{static}numMax[0] = 4
+	{static}numMax[1] = 3
+	{static}numEaten[0] = 9
+	{static}numEaten[1] = 6
+	{static}numDestroyed[0] = 7
+	{static}numDestroyed[0] = 2
+	name = "grass"
+}
+
+object "cheese1 : Feed" as Feed2 {
+	{static}numAll[0] = 1
+	{static}numAll[1] = 1
+	{static}numMax[0] = 4
+	{static}numMax[1] = 3
+	{static}numEaten[0] = 9
+	{static}numEaten[1] = 6
+	{static}numDestroyed[0] = 7
+	{static}numDestroyed[0] = 2
+	name = "cheese"
+}
+
+
+Field1 *-- Feed1 : is_included
+Field2 *-- Feed2 : is_included
+
+Meadow *-- Field1 : is_part
+Meadow *-- Field2 : is_part
+Meadow *-- "22" Field3 : is_part
+
+object "waterhole1 : Waterhole" as Waterhole {
+	{static}number = 1
+}
+
+Meadow *-- Waterhole : is_part
+
+Simulation *----- Meadow : is_managed
+
+
+
+
+object "sheep1 : Sheep" as Sheep1 {
+	{static}movementSpeed = 2
+	{static}maxPopulation = 9
+	{static}population = 2
+	hunger = 10
+	thirst = 15
+	age = 18
+	positionX = 0
+	positionY = 1
+	iterationsToMove = 3
+	isMale = true
+}
+
+object "sheep2 : Sheep" as Sheep2 {
+	{static}movementSpeed = 2
+	{static}maxPopulation = 9
+	{static}population = 2
+	hunger = 21
+	thirst = 51
+	age = 4
+	positionX = 1
+	positionY = 4
+	iterationsToMove = 1
+	isMale = false
+}
+
+Simulation *-- Sheep1 : is_managed_as_animal
+Simulation *-- Sheep2 : is_managed_as_animal
+
+
+object "wolf1 : Wolf" as Wolf1 {
+	{static}movementSpeed = 5
+	{static}maxPopulation = 4
+	{static}population = 3
+	hunger = 10
+	thirst = 15
+	age = 18
+	positionX = 2
+	positionY = 4
+	iterationsToMove = 3
+	isMale = true
+}
+
+object "wolf2 : Wolf" as Wolf2 {
+	{static}movementSpeed = 5
+	{static}maxPopulation = 4
+	{static}population = 3
+	hunger = 21
+	thirst = 51
+	age = 4
+	positionX = 3
+	positionY = 1
+	iterationsToMove = 1
+	isMale = false
+}
+
+object "wolf3 : Wolf" as Wolf3 {
+	{static}movementSpeed = 5
+	{static}maxPopulation = 4
+	{static}population = 3
+	hunger = 56
+	thirst = 23
+	age = 9
+	positionX = 3
+	positionY = 2
+	iterationsToMove = 4
+	isMale = false
+}
+
+Simulation *-- Wolf1 : is_managed_as_animal
+Simulation *-- Wolf2 : is_managed_as_animal
+Simulation *-- Wolf3 : is_managed_as_animal
+
+object "Cat1 : Cat" as Cat1 {
+	{static}movementSpeed = 7
+	{static}maxPopulation = 3
+	{static}population = 1
+	hunger = 34
+	thirst = 65
+	age = 6
+	positionX = 3
+	positionY = 3
+	iterationsToMove = 3
+	isMale = false
+}
+
+Simulation *-- Cat1 : is_managed_as_animal
+
+object "cow1 : Cow" as Cow1 {
+	{static}movementSpeed = 3
+	{static}maxPopulation = 8
+	{static}population = 2
+	hunger = 18
+	thirst = 98
+	age = 32
+	positionX = 4
+	positionY = 3
+	iterationsToMove = 1
+	isMale = true
+}
+
+object "cow2 : Cow" as Cow2 {
+	{static}movementSpeed = 3
+	{static}maxPopulation = 8
+	{static}population = 2
+	hunger = 86
+	thirst = 21
+	age = 15
+	positionX = 4
+	positionY = 4
+	iterationsToMove = 5
+	isMale = false
+}
+
+Simulation *-- Cow1 : is_managed_as_animal
+Simulation *-- Cow2 : is_managed_as_animal
+
+
+object "mouse1 : Mouse" as Mouse1 {
+	{static}movementSpeed = 6
+	{static}maxPopulation = 9
+	{static}population = 1
+	hunger = 56
+	thirst = 34
+	age = 3
+	positionX = 2
+	positionY = 0
+	iterationsToMove = 0
+	isMale = true
+}
+
+
+Simulation *-- Mouse1 : is_managed_as_animal
+
+@enduml

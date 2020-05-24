@@ -1,0 +1,19 @@
+@startuml
+actor Actor
+participant control as "control:Control"
+participant simulation as "simulation:Simulation"
+Actor -> control : start program, set parameters
+activate control
+
+control -> simulation : start simulation with parameters given
+activate simulation
+
+
+simulation -> control : end simulation
+deactivate simulation
+
+Actor <- control : show and save statistics, end program
+deactivate control
+
+
+@enduml
