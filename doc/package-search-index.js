@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"objectProgramming.crazyAnimals.animal"},{"l":"objectProgramming.crazyAnimals.area"},{"l":"objectProgramming.crazyAnimals.main"}]

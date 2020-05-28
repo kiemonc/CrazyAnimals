@@ -1,0 +1,39 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{indentfirst}
+\author{Mikołaj Chmielecki, Jakub Mroziński}
+\title{Projektowanie Obiektowe - Projekt\\Etap 2 - dwie propozycje symulacji}
+
+
+
+\begin{document}
+\maketitle
+	\section{Jezyk programowania}
+		Symulacja zostanie zaimplementowana w języku Java
+	\section{Dwie propozycje symulacji}
+		\subsection{Symulacja kurnika}
+			\indent	
+			Symulacja ma za zadanie przedstawić łańcuch pokarmowy zwierząt. Będzie ona prezentowała jedynie mały wycinek łańcucha pokarmowego. W symulacji będą występować kury i koguty oraz lisy. Wiadomo, że kury i koguty są zjadane przez lisy, lecz na potrzeby urozmaicenia symulacji przyjmujemy, że pewna liczba kogutów jest w stanie zjeść lisa. Kury i koguty rozmnażają się kiedy się spotkają, tzn. po spotkaniu kura przez zadany czas znosi jajko i je wysiaduje, następnie jajko przez zadany czas pozostaje samo, a następnie wykluwa się z niego kura lub kogut (z wcześniej zadanym prawdopodobieństwem wyklucia konkretnej płci). \\
+			\indent
+Symulacja przebiega na planszy o zadanych wcześniej wymiarach. Rozpoczyna się w momencie otrzymania od użytkownika odpowiedniego sygnału, a kończy się w momencie pozostania na planszy pojedynczego gatunku zwierząt, czyli lisów lub kur, lub gdy zostanie przekroczony zadany czas graniczny symulacji. Zwierzątka chodzą w losowy sposób po planszy przechodząc pomiędzy polami, mogą one spotykać się na tych samych polach i podczas spotkania będzie zachodzić między nimi interakcja. Kiedy lis spotka się z kurą, kogutem lub jajkiem wtedy je zjada. W szczególności kiedy lis zje jajko, lis rozmnaża się (po prostu z 1 lisa powstają 2 lisy). Natomiast kiedy spotkają się kura z kogutem, kogut odchodzi, a kura pozostaje na polu spotkania przez zadany czas, potem z niego schodzi i zostawia jajko, z którego po zadanym czasie wykluwa się kura lub kogut. Kura i kogut nie mogą wejść na pole, na którym znajduje się jajko. Ponadto lis nie może wejść na to samo pole co inny lis, oraz kura i kogut nie mogą wejść na pole, na którym znajduje się odpowiednio inna kura lub inny kogut. Jednak w przypadku kogutów mogą one wejść na to samo pole pod warunkiem, że na tym polu znajduje się lis, gdyż wtedy wcześniej zadana liczba kogutów może zabić lisa. Zabicie lisa powoduje, że część kogutów, wcześniej zadana, również traci życie w wyniku tej potyczki. Każde zwierzę posiada strzałkę, wskazującą pole, na które zamierza pójść w następnym kroku. \\
+			\indent
+Przed rozpoczęciem symulacji użytkownik ma możliwość zadania szczegółowych parametrów, takich jak: początkowa liczba lisów, kur i kogutów; prędkość przeprowadzania symulacji (co jaki czas następuje przejście do kolejnej pętli symulacji); liczba kogutów potrzebna do zabicia jednego lisa oraz liczba kogutów, które tracą życie podczas zabijania jednego lisa; czas wysiadywania jaja; czas wykluwania się kury lub koguta (czas, w którym jajko jest pozostawione samo na planszy); to czy zwierzęta będą mogły przenikać przez ściany planszy (tzn. kiedy dojdą do krawędzi planszy to czy będą mogły przekroczyć granicę planszy i pojawić się po drugiej stronie, czy z założenia nie będą miały możliwości przekroczenia granicy planszy); graniczny czas trwania symulacji (czas po którym symulacja zostanie automatycznie przerwana i zostanie wyświetlony wynik końcowy); nazwa pliku z informacjami końcowymi oraz miejsce zapisu owego pliku. \\
+			\indent
+Po zakończeniu symulacji zostanie wyświetlony panel końcowy z opisem przebiegu symulacji. Zostaną w nim ujęte takie elementy jak: czas trwania symulacji, nazwa gatunku, który zwyciężył, maksymalna liczność każdego ze zwierząt, końcowa liczność każdego ze zwierząt, liczba zjedzonych kur i kogutów, liczba zabitych lisów, liczba zniesionych jajek, liczba rozmnożonych lisów. Ponadto wszystkie te informacje zostaną wyeksportowane do pliku o zadanej nazwie w zadane wcześniej miejsce na dysku.
+		\subsection{Symulacja łąki}
+			\indent		
+		Symulacja polega na pokazaniu łąki (o ustawionym przez użytkownika rozmiarze) po której poruszają się zwierzęta. Będą nimi: krowy, owce, wilki, koty i myszy. Na początku działania symulacji zostaną one rozmieszczone na losowych polach w losowej liczebności (jednak maksymalna i minimalna początkowa liczba osobników każdego gatunku będzie ustalona przed rozpoczęciem symulacji). Każdy gatunek zwierząt będzie się poruszał po łące z charakterystyczną prędkością i z czasem będzie się starzeć i umierać ze starości. Aby zapobiec wymarciu gatunku przy spotkaniu dwóch zwierząt przeciwnej płci powstanie trzecie o zerowym wieku i posiadające jedną z dwóch płci (50\% prawdopodobieństwa). \\
+			\indent
+Zwierzęta różnych gatunków przy spotkaniu na jednym polu będą mogły wchodzić ze sobą w interakcje. Koty po spotkaniu z myszami zjadają je. Wilki, w celu zyskania pożywienia, mogą zaatakować wszystkie zwierzęta, ale prawdopodobieństwo przeprowadzenia skutecznego ataku nie jest stuprocentowe we wszystkich przypadkach: z myszą – 100\%, z kotem – 80\%, z owcą – 60\%, z krową – 40\%. Jeżeli atak skończy się niepowodzeniem to zwierzęta rozchodzą się osłabione. Poza tymi przypadkami na jednym polu nie może przebywać więcej niż jedno zwierzę. \\
+			\indent
+Na wolnych polach podczas działania symulacji będzie się pojawiało losowo rozmieszczane pożywienie potrzebne zwierzętom do przetrwania. Będzie to trawa (dla krów i owiec) oraz ser (dla myszy). Gdy jakieś zwierzę napotka na pożywienie którym nie może się pożywić to zostaje ono zniszczone. Przy krawędzi łąki będzie usytuowany wodopój (jeden lub więcej – ustala użytkownik przed rozpoczęciem symulacji), z którego będą mogły w każdej chwili korzystać aby zaspokoić pragnienie. \\
+			\indent
+Symulacja zakończy się gdy wszystkie zwierzęta zginą lub gdy któryś z gatunków osiągnie ustaloną przed rozpoczęciem symulacji liczebność. Po zakończeniu zostaną pokazane statystyki symulacji dla każdego gatunku: maksymalna liczba zwierząt, całkowita liczba zwierząt, liczba zabitych oraz czas trwania symulacji. Statystyki te zostaną również zapisane do pliku, którego nazwa zostanie podana na początku.
+
+\end{document}
