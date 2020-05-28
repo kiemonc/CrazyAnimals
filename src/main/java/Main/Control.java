@@ -8,25 +8,25 @@ package Main;
  * Klasa odpowiada za startowanie i konczenie symulacji. Przechowuje ścieżkę do pliku wyjściowego statystyk.  Klasa generuje i zapisuje statystyki po zakończeniu symualcji.
  */
 public final class Control {
-	private static Simulation simulation;
+	private Simulation simulation;
 
-	private static String statisticsPath;
-	private static Parameters parameters;
+	private String statisticsPath;
+	private Parameters parameters;
 	
 	
-	private static void startSimulation() {}
-	private static void showStatistics() {}
-	private static void saveStatistics() {}
-	private static void setParamiters() {}
+	private void startSimulation() {}
+	private void showStatistics() {}
+	private void saveStatistics() {}
+	private void setParamiters() {}
 
 
 	
 	
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
-		parameters = new Parameters();
-		simulation = new Simulation(parameters);
-		
-		simulation.runSimulation();
+		// TODO Auto-generated method stub
 
 	}
 

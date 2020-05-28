@@ -1,1 +1,0 @@
-memberSearchIndex = [{"p":"Area","c":"Feed","l":"beDestroyed()"},{"p":"Area","c":"Feed","l":"beEaten()"},{"p":"Area","c":"Feed","l":"Feed()","url":"%3Cinit%3E()"},{"p":"Area","c":"Feed","l":"getName()"}]

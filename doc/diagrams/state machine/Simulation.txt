@@ -1,10 +1,10 @@
 @startuml
 title Simulation
 [*] --> Initialized
-Initialized --> Checking : simulation started
+Initialized --> Checking
 Checking : Checking end conditions
-Checking --> [*] : end conditions \nare met
-Checking --> Iteration : end conditions \nare not met
-Iteration : Iterate through all animals
-Iteration --> Checking : end of iterations
+Checking --> [*]
+Checking --> Iteration
+Iteration : iterate through all animals
+Iteration --> Checking
 @enduml
