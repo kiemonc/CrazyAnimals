@@ -34,13 +34,12 @@ public final class Simulation {
  * Startuje i kończy sumylacje	
  */
 	public void runSimulation() {
-		showDescription();
 		showCurrentState();
 		while(!ifEnd()) {
 			numIteration++;
 			mainLoop();
 		}
-		showDescription();
+
 		System.out.println("Koniec symulacji");
 	}
 	
@@ -109,18 +108,6 @@ public final class Simulation {
 		}
 		}
 		return false;
-	}
-	
-	
-/**
- * Wypisuje w konsoli opis symboli obiektów znajduących się na planszy.
- */
-	private void showDescription() {
-		System.out.println("Feed: h - cheese, g - grass");
-		System.out.println("Animals: capital letter - male, lower letter - female");
-		System.out.println("K - cat, C - cow, M - mouse, S - sheep, W - wolf");
-		System.out.println("/    / - waterhole");
-		System.out.println(" /    \\    / - two neighbouring waterholes");
 	}
 
 	
