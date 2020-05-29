@@ -1,6 +1,7 @@
 # CrazyAnimals
 Programowanie obiektowe - projekt
 Autorzy: Mikołaj Chmielecki i Jakub Mroziński
+2020 r.
 
 Główna klasa: Main
 
