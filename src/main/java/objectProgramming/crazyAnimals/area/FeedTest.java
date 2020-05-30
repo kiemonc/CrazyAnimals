@@ -11,7 +11,7 @@ import java.util.Random;
 public class FeedTest {
 	@Test
 	public void test() {
-		Random random = new Random(0);
+		Random random = new Random();
 		List<Feed> feeds = new ArrayList<Feed>();
 		for(int i = 0; i < 10; i++) {
 			feeds.add(new Feed(random));
