@@ -19,7 +19,7 @@ public final class Main {
 	/**
 	 * Referencja do obiektu random, umożliwiająca ustwienie wartości seed, która determinuje całą symulacje.
 	 */
-	private static Random random = new Random(0);
+	private static Random random = new Random(1);
 	private static Simulation simulation;
 	private static Parameters parameters;
 	
