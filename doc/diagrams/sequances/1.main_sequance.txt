@@ -1,0 +1,42 @@
+@startuml
+
+participant simulation as "simulation:Simulation"
+participant animals as "animals:IAnimal"
+participant map as "meadow:Meadow"
+participant animalsCreator as "animalsCreator:IAnimalsCreator"
+
+[-> simulation : start simulation
+activate simulation
+
+simulation -> map : initialize map
+simulation -> animalsCreator : create animals
+loop Until final parameters isn't achieved
+
+loop  Until all animals pass
+
+simulation -> animals : go to another field 
+activate animals
+animals -> map : give me new field
+animals <- map : answer
+simulation <- animals : done
+deactivate animals
+end loop
+
+loop  Until all animals interact
+
+simulation -> animals : interact with the new field\nand eventually another animal
+activate animals
+
+simulation <- animals : answer, give reference to animal, which was eaten,\nor to new young animal
+deactivate animals
+
+end loop
+
+simulation -> simulation : is final parameters achieved?
+
+end main
+
+
+[<- simulation : end simulation
+deactivate simulation
+@enduml
