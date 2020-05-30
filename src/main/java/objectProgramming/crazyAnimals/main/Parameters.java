@@ -56,7 +56,10 @@ public final class Parameters {
 			endMinNumAnimals += endMinNum[i];
 			endMaxNumAnimals += endMaxNum[i];
 		}
-		if(maxIterationNum <= 0 || meadowHeight < 2 || meadowWidth < 2 || startMinNumAnimals <= 0 || endMinNumAnimals < -5 || startMaxNumAnimals >= meadowHeight*meadowWidth || endMaxNumAnimals >= 2* meadowHeight*meadowWidth || numWaterholes > 2*(meadowHeight+meadowWidth-1) || numWaterholes < 1) {
+		if(maxIterationNum <= 0 || meadowHeight < 2 || meadowWidth < 2 || startMinNumAnimals <= 0 || endMinNumAnimals < -5 || startMaxNumAnimals >= meadowHeight*meadowWidth || endMaxNumAnimals >= 2* meadowHeight*meadowWidth) {
+			throw new BadParametersException();
+		}
+		if(numWaterholes > 2*(meadowHeight+meadowWidth-2) || numWaterholes < 1) {
 			throw new BadParametersException();
 		}
 		

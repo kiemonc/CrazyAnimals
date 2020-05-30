@@ -84,24 +84,22 @@ public final class Meadow implements IMeadow {
 		
 		for(int i = 0; i < width; i++) {
 			//góra
-			int [] coordinates = {i,0};
-			usualFields.add(coordinates);
+			int [] coordinates1 = {i,0};
+			usualFields.add(coordinates1);
 			
 			//dół
-			coordinates[0] = i;
-			coordinates[1] = height-1;
-			usualFields.add(coordinates);
+			int [] coordinates2 = {i,height-1};
+			usualFields.add(coordinates2);
 		}
 		
-		for(int i = 0; i < height; i++) {
+		for(int i = 1; i < height-1; i++) {
 			//lewa
-			int [] coordinates = {0,i};
-			usualFields.add(coordinates);
+			int [] coordinates1 = {0,i};
+			usualFields.add(coordinates1);
 			
 			//prawa
-			coordinates[0] = width-1;
-			coordinates[1] = i;
-			usualFields.add(coordinates);
+			int [] coordinates2 = {width-1,i};
+			usualFields.add(coordinates2);
 		}
 		
 		for(int i = 0; i < numWaterholes; i++) {
@@ -201,6 +199,7 @@ public final class Meadow implements IMeadow {
  * Jedzenie: h - ser, g - trawa
  * Zwierzęta: duża litera - płeć męska, mała litera - płeć żeńska
  * K - kot, C - krowa, M - mysz, S - owca, W - wilk
+ * "/   /" - wodopój
  * @return Ciąg znaków przedstawiający łąkę
  */
 	@Override
@@ -208,10 +207,13 @@ public final class Meadow implements IMeadow {
 		String string = "";
 		string += printLine();
 		for(LinkedList<IField> row : fields) {
-			string += "|";
-			for(IField field : row) {
-				string += field;
-				string += "|";
+			if(row.get(0) instanceof Waterhole) string += "/";
+			else string += "|";
+			for(int i = 0; i < row.size(); i++) {
+				string += row.get(i);
+				if(row.get(i) instanceof Waterhole && (i+1 < row.size() && row.get(i+1) instanceof Waterhole)) string += "\\";
+				else if(row.get(i) instanceof Waterhole || (i+1 < row.size() && row.get(i+1) instanceof Waterhole)) string += "/";
+				else string += "|";
 			}
 			string += "\n";
 		}

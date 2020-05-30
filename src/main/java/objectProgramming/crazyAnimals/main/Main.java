@@ -41,17 +41,17 @@ public final class Main {
 			commander.parse(args);
 		} catch (ParameterException e) {
 			System.out.println("Wrong format of parameters");
-			return;
+			System.exit(-1);
 		}
 		if(parameters.help) {
 			commander.usage();
-			return;
+			System.exit(-1);
 		}
 		try {
 			parameters.setParametrs();
 		} catch (BadParametersException e) {
 			System.out.println("Parameters' conflict");
-			return;
+			System.exit(-1);
 		}
 	}
 	
