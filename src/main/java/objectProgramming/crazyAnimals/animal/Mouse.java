@@ -14,7 +14,7 @@ import objectProgramming.crazyAnimals.area.IField;
  * @author jakub
  */
 public class Mouse extends Animal {
-	private static final int movementSpeed = 1;
+	static final int movementSpeed = 2;
 	/**
 	 * Konstruktor tworzy mysz, nadaje jej początkowe parametry i umieszcza na podanym polu
 	 * @param hunger początkowy głód
@@ -28,17 +28,20 @@ public class Mouse extends Animal {
 		super(hunger, thirst, age, isMale, field, random);
 		AnimalStats.addAnimal(2);
 	}
+	@Override
 	public boolean canEat(IEatable target) {
 		if(target instanceof Feed)
 			if(((Feed)target).getName() == "cheese")
 				return true;
 		return false;
 		}
+	@Override
 	public boolean canMultiply(IAnimal animal) {
 		if(animal instanceof Mouse && animal.isMale() != isMale())
 			return true;
 		return false;
 	}
+	@Override
 	public void multiply() {
 		if(getMovedAfterMultiplying() && !isMale()) {
 			child = new Mouse(0, 0, 0, random.nextBoolean(), field, random);
@@ -46,6 +49,7 @@ public class Mouse extends Animal {
 		}
 		setMovedAfterMultiplying(false);
 	}
+	@Override
 	public int getMovementSpeed() {return movementSpeed;}
 	@Override
 	public String toString() {return (isMale()) ? "M" : "m";}

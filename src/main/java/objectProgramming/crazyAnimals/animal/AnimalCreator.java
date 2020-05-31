@@ -15,17 +15,21 @@ import objectProgramming.crazyAnimals.area.IMeadow;
  */
 public class AnimalCreator implements IAnimalCreator{
 	private Random random = new Random();
-	
+
+	@Override
 	public List<IAnimal> createAnimals(int nrOfCats, int nrOfCows, int nrOfMouses, int nrOfSheeps, int nrOfWolves, IMeadow meadow, Random random) {
 		this.random = random;
 		List<IField> fields = meadow.getRandomFields(nrOfCats + nrOfCows + nrOfMouses + nrOfSheeps + nrOfWolves);
 		int fieldsIndex = 0;
 		List<IAnimal> list = new ArrayList<IAnimal>();
-		for(int i = 0; i < nrOfCats; i++)   {list.add(createCat(fields.get(fieldsIndex++)));}
-		for(int i = 0; i < nrOfCows; i++)   {list.add(createCow(fields.get(fieldsIndex++)));}
-		for(int i = 0; i < nrOfMouses; i++) {list.add(createMouse(fields.get(fieldsIndex++)));}
-		for(int i = 0; i < nrOfSheeps; i++) {list.add(createSheep(fields.get(fieldsIndex++)));}
-		for(int i = 0; i < nrOfWolves; i++) {list.add(createWolf(fields.get(fieldsIndex++)));}
+		try {
+			for(int i = 0; i < nrOfCats; i++)   {list.add(createCat(fields.get(fieldsIndex++)));}
+			for(int i = 0; i < nrOfCows; i++)   {list.add(createCow(fields.get(fieldsIndex++)));}
+			for(int i = 0; i < nrOfMouses; i++) {list.add(createMouse(fields.get(fieldsIndex++)));}
+			for(int i = 0; i < nrOfSheeps; i++) {list.add(createSheep(fields.get(fieldsIndex++)));}
+			for(int i = 0; i < nrOfWolves; i++) {list.add(createWolf(fields.get(fieldsIndex++)));}
+		}
+		catch (IndexOutOfBoundsException e) {return list;}
 		return list;
 	}
 	/**

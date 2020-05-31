@@ -14,9 +14,9 @@ public abstract class Animal implements IAnimal{
 	private int hunger, thirst, age, iterationsToMove;
 	private boolean isMale, isDead = false, movedAfterMultiplying = true;
 	
-	protected IField field;
-	protected IAnimal child = null;
-	protected Random random = new Random();
+	IField field;
+	IAnimal child;
+	Random random;
 	
 	/**
 	 * Konstruktor tworzy zwierzę, nadaje mu początkowe parametry i umieszcza na podanym polu
@@ -28,15 +28,18 @@ public abstract class Animal implements IAnimal{
 	 * @param random referencja do zmiennnej typu Random
 	 */
 	public Animal(int hunger, int thirst, int age, boolean isMale, IField field, Random random) {
-		this.random = random;
 		this.hunger = hunger;
 		this.thirst = thirst;
 		this.age = age;
 		this.isMale = isMale;
 		this.field = field;
+		this.random = random;
 		field.seatAnimal(this);
+		child = null;
 	}
+	@Override
 	public boolean wantToMove() {return (iterationsToMove == 0 ? true : false);}
+	@Override
 	public void move(IMeadow meadow) {
 		List<IField> fields = meadow.getNeighbours(this.field);
 		boolean canMoveAnywhere = false;
@@ -55,6 +58,7 @@ public abstract class Animal implements IAnimal{
 		iterationsToMove = getMovementSpeed();
 		setMovedAfterMultiplying(true);
 	}
+	@Override
 	public void doIteration() {
 		if(field == null)
 			return;
@@ -82,22 +86,28 @@ public abstract class Animal implements IAnimal{
 			}
 		}
 		if(field instanceof objectProgramming.crazyAnimals.area.Waterhole)
-			this.drink();
+			drink();
 		hunger += 5;
 		thirst += 5;
 		if(!wantToMove())
 			iterationsToMove--;
 		age++;
 	}
+	@Override
 	public IAnimal hasChild() {
 		IAnimal tmp = child;
 		child = null;
 		return tmp;
 		}
+	@Override
 	public boolean isMale() {return isMale;}
+	@Override
 	public boolean isDead() {return isDead;}
+	@Override
 	public void setMovedAfterMultiplying(boolean value) {movedAfterMultiplying = value;}
+	@Override
 	public boolean getMovedAfterMultiplying() {return movedAfterMultiplying;}
+	@Override
 	public void beEaten() {die();}
 	
 	/**
@@ -105,7 +115,7 @@ public abstract class Animal implements IAnimal{
 	 * @param field sprawdzane pole
 	 * @return true - może się ruszyć, false - nie może się ruszyć
 	 */
-	private boolean canMoveThere(IField field) {
+	boolean canMoveThere(IField field) {
 		if(field.anyAnimal()){
 			List<IAnimal> animals = field.getAnimals();
 			if(animals.size() >= 2)
@@ -121,18 +131,18 @@ public abstract class Animal implements IAnimal{
 	 * Sprawia, że obiekt zostaje zjedzony przez zwierzę
 	 * @param target - jedzony obiekt
 	 */
-	private void eat(IEatable target) {
+	void eat(IEatable target) {
 		target.beEaten();
 		hunger = (hunger > 50) ? hunger - 50 : 0;
 	}
 	/**
 	 * Uzupełnia pragnienie zwierzęcia
 	 */
-	private void drink() {thirst = (thirst > 30) ? thirst - 30 : 0;}
+	void drink() {thirst = (thirst > 30) ? thirst - 30 : 0;}
 	/**
 	 * Usuwa zwierzę z pola i uwzględnia to w statystykach
 	 */
-	private void die() {
+	void die() {
 		if(this instanceof Cat)
 			AnimalStats.takeAnimal(0);
 		else if(this instanceof Cow)
@@ -144,7 +154,7 @@ public abstract class Animal implements IAnimal{
 		else if(this instanceof Wolf)
 			AnimalStats.takeAnimal(4);
 		field.destroyEatable(this);
-		field = null;
+		//field = null;
 		isDead = true;
 	}
 }

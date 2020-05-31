@@ -14,7 +14,7 @@ import objectProgramming.crazyAnimals.area.IField;
  * @author jakub
  */
 public class Sheep extends Animal {
-	private static final int movementSpeed = 1;
+	static final int movementSpeed = 4;
 	/**
 	 * Konstruktor tworzy owcę, nadaje jej początkowe parametry i umieszcza na podanym polu
 	 * @param hunger początkowy głód
@@ -28,17 +28,20 @@ public class Sheep extends Animal {
 		super(hunger, thirst, age, isMale, field, random);
 		AnimalStats.addAnimal(3);
 	}
+	@Override
 	public boolean canEat(IEatable target) {
 		if(target instanceof Feed)
 			if(((Feed)target).getName() == "grass")
 				return true;
 		return false;
 		}
+	@Override
 	public boolean canMultiply(IAnimal animal) {
 		if(animal instanceof Sheep && animal.isMale() != isMale())
 			return true;
 		return false;
 	}
+	@Override
 	public void multiply() {
 		if(getMovedAfterMultiplying() && !isMale()) {
 			child = new Sheep(0, 0, 0, random.nextBoolean(), field, random);
@@ -46,6 +49,7 @@ public class Sheep extends Animal {
 		}
 		setMovedAfterMultiplying(false);
 	}
+	@Override
 	public int getMovementSpeed() {return movementSpeed;}
 	@Override
 	public String toString() {return (isMale()) ? "S" : "s";}

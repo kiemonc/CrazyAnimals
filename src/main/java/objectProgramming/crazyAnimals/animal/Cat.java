@@ -10,7 +10,7 @@ import objectProgramming.crazyAnimals.area.IField;
  * @author jakub
  */
 public class Cat extends Animal {
-	private static final int movementSpeed = 1;
+	static final int movementSpeed = 3;
 	/**
 	 * Konstruktor tworzy kota, nadaje mu początkowe parametry i umieszcza na podanym polu
 	 * @param hunger początkowy głód
@@ -24,16 +24,19 @@ public class Cat extends Animal {
 		super(hunger, thirst, age, isMale, field, random);
 		AnimalStats.addAnimal(0);
 	}
+	@Override
 	public boolean canEat(IEatable target) {
 		if(target instanceof Mouse)
 			return true;
 		return false;
 	}
+	@Override
 	public boolean canMultiply(IAnimal animal) {
 		if(animal instanceof Cat && animal.isMale() != isMale())
 			return true;
 		return false;
 	}
+	@Override
 	public void multiply() {
 		if(getMovedAfterMultiplying() && !isMale()) {
 			child = new Cat(0, 0, 0, random.nextBoolean(), field, random);
@@ -41,6 +44,7 @@ public class Cat extends Animal {
 		}
 		setMovedAfterMultiplying(false);
 	}
+	@Override
 	public int getMovementSpeed() {return movementSpeed;}
 	@Override
 	public String toString() {return (isMale()) ? "K" : "k";}
