@@ -11,6 +11,7 @@ public class WaterholeTest {
 	@Test
 	public void test() {
 		List<Waterhole> waterholes = new ArrayList<Waterhole>();
+		Waterhole.number = 0;
 		for(int i = 0; i < 100; i++) {
 			waterholes.add(new Waterhole(0,i,new Random(0)));
 		}
