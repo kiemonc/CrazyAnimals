@@ -56,7 +56,7 @@ public final class Feed implements IEatable {
  * @param name Rodzaj pożywienia
  * @return Aktualna liczba obietków
  */
-	static int getNumAll(String name) {
+	public static int getNumAll(String name) {
 		if(name=="grass") {return numAll[0];}
 		else if(name=="cheese") {return numAll[1];}
 		else {return 0;}
@@ -67,7 +67,7 @@ public final class Feed implements IEatable {
  * @param name Rodzaj pożywienia
  * @return Maksymalna liczba obiektów
  */
-	static int getNumMax(String name) {
+	public static int getNumMax(String name) {
 		if(name=="grass") {return numMax[0];}
 		else if(name=="cheese") {return numMax[1];}
 		else {return 0;}
@@ -78,7 +78,7 @@ public final class Feed implements IEatable {
  * @param name Rodzaj pożywienia
  * @return Liczba zjedzonych obietków
  */
-	static int getNumEaten(String name) {
+	public static int getNumEaten(String name) {
 		if(name=="grass") {return numEaten[0];}
 		else if(name=="cheese") {return numEaten[1];}
 		else {return 0;}
@@ -89,7 +89,7 @@ public final class Feed implements IEatable {
  * @param name Rodzaj pożywienia
  * @return  Liczba zniszczonych obiektów
  */
-	static int getNumDestroyed(String name) {
+	public static int getNumDestroyed(String name) {
 		if(name=="grass") {return numDestroyed[0];}
 		else if(name=="cheese") {return numDestroyed[1];}
 		else {return 0;}
