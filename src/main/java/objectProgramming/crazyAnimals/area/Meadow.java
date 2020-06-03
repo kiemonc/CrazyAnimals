@@ -16,7 +16,7 @@ public final class Meadow implements IMeadow {
 	
 	private int width;
 	private int height;
-	private LinkedList<LinkedList<IField>> fields;
+	protected LinkedList<LinkedList<IField>> fields;
 	private LinkedList<IField> fieldsWithoutFeed;
 	private Random random;
 	
@@ -69,6 +69,7 @@ public final class Meadow implements IMeadow {
 			int randomIndex = random.nextInt(coordinates.size());
 			int [] newCoordinates = coordinates.get(randomIndex);
 			fields.get(newCoordinates[1]).get(newCoordinates[0]).putNewFeed();
+			coordinates.remove(randomIndex);
 		}
 	}
 	
