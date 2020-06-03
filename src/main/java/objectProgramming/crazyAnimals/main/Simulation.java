@@ -41,6 +41,7 @@ public final class Simulation {
 			mainLoop();
 		}
 		showDescription();
+		SaveAsCSV.saveToFile(parameters);
 		System.out.println("Koniec symulacji");
 	}
 	

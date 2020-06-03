@@ -13,7 +13,7 @@ import objectProgramming.crazyAnimals.area.IField;
  * @author jakub
  */
 public class Wolf extends Animal {
-	private static final int movementSpeed = 1;
+	static final int movementSpeed = 3;
 	/**
 	 * Konstruktor tworzy wilka, nadaje mu początkowe parametry i umieszcza na podanym polu
 	 * @param hunger początkowy głód
@@ -27,6 +27,7 @@ public class Wolf extends Animal {
 		super(hunger, thirst, age, isMale, field, random);
 		AnimalStats.addAnimal(4);
 	}
+	@Override
 	public boolean canEat(IEatable target) {
 		if(target instanceof Mouse)     return true;
 		else if(target instanceof Cat)  return (random.nextInt() % 10 < 8 ? true : false);//80%
@@ -34,11 +35,13 @@ public class Wolf extends Animal {
 		else if(target instanceof Cow)  return (random.nextInt() % 10 < 4 ? true : false);//40%
 		return false;
 		}
+	@Override
 	public boolean canMultiply(IAnimal animal) {
 		if(animal instanceof Wolf && animal.isMale() != isMale())
 			return true;
 		return false;
 	}
+	@Override
 	public void multiply() {
 		if(getMovedAfterMultiplying() && !isMale()) {
 			child = new Wolf(0, 0, 0, random.nextBoolean(), field, random);
@@ -46,6 +49,7 @@ public class Wolf extends Animal {
 		}
 		setMovedAfterMultiplying(false);
 	}
+	@Override
 	public int getMovementSpeed() {return movementSpeed;}
 	@Override
 	public String toString() {return (isMale()) ? "W" : "w";}

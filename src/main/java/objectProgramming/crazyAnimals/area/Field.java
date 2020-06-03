@@ -26,7 +26,7 @@ public class Field implements IField{
 	 * @param positionX 
 	 * @param positionY
 	 */
-	Field(int positionX, int positionY, Random random) {
+	public Field(int positionX, int positionY, Random random) {
 		this.random = random;
 		this.positionX = positionX;
 		this.positionY = positionY;

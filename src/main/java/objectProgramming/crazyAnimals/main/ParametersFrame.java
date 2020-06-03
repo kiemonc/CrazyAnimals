@@ -16,7 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 /**
- * Klasa pozwalająca wyświetlić okno do zadawania parametrów początkowych symulacji
+ * Klasa pozwalająca wyświetlić okno do zadawania parametrów początkowych symulacji                 //do edycji (actionPerformed() drugi "if")
  * @author jakub
  */
 public class ParametersFrame extends JFrame implements ActionListener{
@@ -32,7 +32,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 	 */
 	ParametersFrame(){
 		super("Parameters");
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setSize(390, 430);
 		setResizable(false);
 		setLocation(200, 200);
@@ -54,8 +54,6 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		add(confirmed);
 		
 		setParameters();
-		
-		setVisible(true);	
 		}
 	/**
 	 * Metoda "chwilowa" - do testów
@@ -63,7 +61,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 	 */
 	public static void main(String [] args) {
 		ParametersFrame frame = new ParametersFrame();
-		
+		frame.showFrame();
 	}
 	
 	@Override
@@ -82,6 +80,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		}
 		if(source == close) {
 			dispose();
+			//setVisible(false);  <----- po dołączeniu do głównego okienka zastąpić tym linijkę powyżej
 		}
 	}
 	/**
@@ -192,43 +191,39 @@ public class ParametersFrame extends JFrame implements ActionListener{
 	 */
 	private void setParameters() throws NumberFormatException{
 		int index = 0;
+		boolean ifThrow = false;
+		for(int i = 0; i < textFieldList.size(); i++) {
+			setWhiteBackground(i);
+		}
 		try {
 			Parameters param = new Parameters(new Random(1));
 			param.meadowWidth = getTextFieldValue(index++);
 			if(param.meadowWidth < 2 || param.meadowWidth > 100 ) {
 				setRedBackground(index - 1);
-				throw(new NumberFormatException());
+				ifThrow = true;
 			}
-			else setWhiteBackground(index - 1);
 			param.meadowHeight = getTextFieldValue(index++);
 			if(param.meadowHeight < 2 || param.meadowHeight > 100) {
 				setRedBackground(index - 1);
-				throw(new NumberFormatException());
+				ifThrow = true;
 			}
-			else setWhiteBackground(index - 1);
 			param.numWaterholes = getTextFieldValue(index++);
 			if(param.numWaterholes < 0 || param.numWaterholes > param.meadowHeight * param.meadowWidth) {
 				setRedBackground(index - 1);
-				throw(new NumberFormatException());
+				ifThrow = true;
 			}
-			else setWhiteBackground(index - 1);
 			param.maxIterationNum = getTextFieldValue(index++);
 			if(param.maxIterationNum < 2 || param.maxIterationNum > 1000000) {
 				setRedBackground(index - 1);
-				throw(new NumberFormatException());
+				ifThrow = true;
 			}
-			else setWhiteBackground(index - 1);
 			for(int i = 0; i < 5; i++) {
 				param.startMinNum[i] = getTextFieldValue(index++);
 				param.startMaxNum[i] = getTextFieldValue(index++);
 				if(param.startMaxNum[i] < param.startMinNum[i]) {
 					setRedBackground(index - 1);
 					setRedBackground(index - 2);
-					throw (new NumberFormatException());
-				}
-				else {
-					setWhiteBackground(index - 1);
-					setWhiteBackground(index - 2);
+					ifThrow = true;
 				}
 			}
 			for(int i = 0; i < 5; i++) {
@@ -237,13 +232,33 @@ public class ParametersFrame extends JFrame implements ActionListener{
 				if((param.endMaxNum[i] != -1 && param.endMinNum[i] != -1) && (param.endMaxNum[i] < param.endMinNum[i])) {
 					setRedBackground(index - 1);
 					setRedBackground(index - 2);
-					throw (new NumberFormatException());
-				}
-				else {
-					setWhiteBackground(index - 1);
-					setWhiteBackground(index - 2);
+					ifThrow = true;
 				}
 			}
+			for(int i = 0; i < 5; i++) {
+				if(param.startMinNum[i] < param.endMinNum[i]) {
+					setRedBackground(4 + 2 * i);
+					setRedBackground(14 + 2 * i);
+					ifThrow = true;
+				}
+				if(param.startMaxNum[i] > param.endMaxNum[i]) {
+					setRedBackground(5 + 2 * i);
+					setRedBackground(15 + 2 * i);
+					ifThrow = true;
+				}
+			}
+			int sum = 0;
+			for(int i = 0; i < 5; i++)
+				sum += param.startMaxNum[i];
+			if(sum > param.meadowHeight * param.meadowWidth) {
+				setRedBackground(0);
+				setRedBackground(1);
+				for(int i = 0; i< 5; i++)
+					setRedBackground(5 + 2 * i);
+				ifThrow = true;
+			}
+			if(ifThrow)
+				throw(new NumberFormatException());
 			parameters = param;
 		}
 		catch (NumberFormatException e) {
@@ -263,6 +278,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 			return tmp;
 		}
 		catch (NumberFormatException e){
+			setRedBackground(index);
 			throw e;
 		}
 	}
@@ -286,5 +302,8 @@ public class ParametersFrame extends JFrame implements ActionListener{
 	 */
 	public Parameters getParameters() {
 		return parameters;
+	}
+	public void showFrame() {
+		setVisible(true);
 	}
 }
