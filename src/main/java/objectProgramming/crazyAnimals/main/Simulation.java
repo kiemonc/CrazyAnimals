@@ -42,7 +42,12 @@ public final class Simulation {
 			mainLoop();
 		}
 		showDescription();
-	//SaveAsCSV.saveToFile(parameters);
+		try{
+			SaveAsCSV.saveToFile(parameters);
+		}
+		catch(IOException e) {
+			
+		}
 		System.out.println("Koniec symulacji");
 	}
 	

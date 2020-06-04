@@ -3,6 +3,7 @@
  */
 package objectProgramming.crazyAnimals.main;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,6 +13,7 @@ import java.util.Scanner;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import objectProgramming.crazyAnimals.animal.AnimalStats;
 import objectProgramming.crazyAnimals.area.Feed;
@@ -25,6 +27,15 @@ public class SaveAsCSV {
 	 * Zawiera ścieżkę do pliku w którym są zapisywane dane
 	 */
 	private static String filePath = "data.csv";
+	private static String firstRow = "date, meadow height, meadow width, number of waterholes, max iterations number, "
+			+ "min cats on start, min cows on start, min mouses on start, min sheeps on start, min wolves on start, "
+			+ "max cats on start, max cows on start, max mouses on start, max sheeps on start, max wolves on start, "
+			+ "min cats at the end, min cows at the end, min mouses at the end, min sheeps at the end, min wolves at the end, "
+			+ "max cats at the end, max cows at the end, max mouses at the end, max sheeps at the end, max wolves at the end, "
+			+ "created cheese, max number of cheese, eaten cheese, destroyed cheese, "
+			+ "created grass, max number of grass, eaten grass, destroyed grass, "
+			+ "current population of cats, current population of cows, current population of mouses, current population of sheeps, current population of wolves, "
+			+ "max population of cats, max population of cows, max population of mouses, max population of sheeps, max population of wolves";
 	/**
 	 * Zapisuje parametry i statystyki symulacji do pliku (wersja konsolowa)
 	 * @param parameters obiekt z parametrami początkowymi symulacji
@@ -33,6 +44,7 @@ public class SaveAsCSV {
 		System.out.print("Enter file path (\"-\" - use default): ");
 		Scanner scanner = new Scanner(System.in);
 		String tmp = scanner.nextLine();
+		File file;
 		scanner.close();
 		if(tmp != "-")
 			filePath = tmp;
@@ -40,7 +52,15 @@ public class SaveAsCSV {
 			filePath += ".csv";
 		}
 		try {
-			PrintWriter writer = new PrintWriter(new FileWriter(filePath, true));
+			file = new File(filePath);
+			PrintWriter writer;
+			if(file.exists()) 
+				writer = new PrintWriter(new FileWriter(file, true));
+			else {
+				writer = new PrintWriter(new FileWriter(file));
+				writer.println(firstRow);
+			}
+			
 			writer.println(getParamsAndStats(parameters));
 			writer.close();
 		} catch (IOException e) {
@@ -53,11 +73,20 @@ public class SaveAsCSV {
 	 * @param parameters obiekt z parametrami początkowymi symulacji
 	 */
 	public static void saveToFileInFrame(Parameters parameters) throws IOException{
-		JFileChooser fileChooser = new JFileChooser(filePath);
+		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
+		fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(null, ".csv"));
 		fileChooser.showOpenDialog(fileChooser);
 		try {
-			PrintWriter writer = new PrintWriter(new FileWriter(fileChooser.getSelectedFile(), true));
+			File file = new File(filePath);
+			PrintWriter writer;
+			if(file.exists()) 
+				writer = new PrintWriter(new FileWriter(file, true));
+			else {
+				writer = new PrintWriter(new FileWriter(file));
+				writer.println(firstRow);
+			}
+			
 			writer.println(getParamsAndStats(parameters));
 			writer.close();
 		} catch (IOException e) {

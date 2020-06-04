@@ -40,4 +40,13 @@ public class AnimalStats {
 	public static int [] getMaxPopulation() {
 		return maxPopulation;
 	}
+	
+	/*public static String toString() {
+		String stats = "";
+		for(int i = 0; i < 5; i++)
+			stats += (i == 0 ? "" : ", ") + getCurrentPopulation()[i];
+		for(int i = 0; i < 5; i++)
+			stats += ", " + getMaxPopulation()[i];
+		return stats;
+	}*/
 }
