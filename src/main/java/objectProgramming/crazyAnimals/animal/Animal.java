@@ -109,6 +109,10 @@ public abstract class Animal implements IAnimal{
 	public boolean getMovedAfterMultiplying() {return movedAfterMultiplying;}
 	@Override
 	public void beEaten() {die();}
+	@Override
+	public int [] getStats() {
+		return new int[] {hunger, thirst, age, (isMale ? 1 : 0), iterationsToMove};
+	}
 	
 	/**
 	 * Pozwala stwierdzić czy zwierzę może ruszyć się na zadane pole
