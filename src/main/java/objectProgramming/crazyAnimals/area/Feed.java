@@ -14,10 +14,10 @@ import objectProgramming.crazyAnimals.animal.IEatable;
  */
 public final class Feed implements IEatable {
 	//[0] - grass; [1] - cheese
-	private static int[] numAll;
-	private static int[] numMax;
-	private static int[] numEaten;
-	private static int[] numDestroyed;
+	private static int[] numAll = new int[2];
+	private static int[] numMax = new int[2];
+	private static int[] numEaten = new int[2];
+	private static int[] numDestroyed = new int[2];
 	
 	private String name;
 /**
@@ -25,10 +25,7 @@ public final class Feed implements IEatable {
  * @param random - referencja do wspólnego dla całej symulacji obiektu random
  */
 	public Feed(Random random) {
-		numAll = new int[2];
-		numMax = new int[2];
-		numEaten = new int[2];
-		numDestroyed = new int[2];
+
 		if(random.nextBoolean()) {
 			this.name = "grass";
 			numAll[0]++;
@@ -101,9 +98,11 @@ public final class Feed implements IEatable {
 	public void beEaten() {
 		if(name=="grass") {
 			numEaten[0]++;
+			numAll[0]--;
 		}
 		if(name=="cheese") {
 			numEaten[1]++;
+			numAll[1]--;
 		}
 	}
 	
@@ -113,9 +112,11 @@ public final class Feed implements IEatable {
 	public void beDestroyed() {
 		if(name=="grass") {
 			numDestroyed[0]++;
+			numAll[0]--;
 		}
 		if(name=="cheese") {
 			numDestroyed[1]++;
+			numAll[1]--;
 		}
 	}
 	

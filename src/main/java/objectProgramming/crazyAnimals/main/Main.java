@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package objectProgramming.crazyAnimals.main;
 
 import java.util.Random;
@@ -19,11 +17,11 @@ public final class Main {
 	/**
 	 * Referencja do obiektu random, umożliwiająca ustwienie wartości seed, która determinuje całą symulacje.
 	 */
-	private static Random random = new Random(0);
+	private static Random random = new Random(1);
 	private static Simulation simulation;
-	private static Parameters parameters;
+	static Parameters parameters;
 	
-	//TO-DO
+	//TODO
 	//private static String statisticsPath;
 	//private static void showStatistics() {}
 	//private static void saveStatistics() {}
@@ -34,7 +32,7 @@ public final class Main {
  * Przechwytuje wyjątki błędnych parametrów.
  * @param args - argumenty tekstowe przekazane przez funkcję main, które je otrzymałą podczas uruchomienia aplikacji
  */
-	private static void setParameters(String [] args) {
+	static void setParameters(String [] args) {
 		parameters = new Parameters(random);
 		JCommander commander = new Builder().addObject(parameters).build();
 		try {

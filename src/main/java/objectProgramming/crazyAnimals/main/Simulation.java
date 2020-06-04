@@ -17,8 +17,8 @@ import java.util.Random;
 public final class Simulation {
 	//private double startTime;
 	private Parameters parameters;
-	private int numIteration;
-	private objectProgramming.crazyAnimals.area.Meadow meadow;
+	int numIteration;
+	objectProgramming.crazyAnimals.area.Meadow meadow;
 	private objectProgramming.crazyAnimals.animal.IAnimalCreator animalCreator;
 	private List<objectProgramming.crazyAnimals.animal.IAnimal> animals;
 	
@@ -49,7 +49,7 @@ public final class Simulation {
  * Zawiera wszystkie czynności wykonywane podczas jednej iteracji symualcji
  * Czyli pokazywanie łąki, iterację łąki, przemiszczanie się i usuwanie zwierząt oraz interakcję pomiędzy zwierzętami
  */
-	private void mainLoop() {
+	void mainLoop() {
 		meadow.doIteration();
 		removeOrMoveAnimals();
 		interactionsBetweenAnimals();
@@ -60,7 +60,7 @@ public final class Simulation {
 /**
  * Usuwa z listy zwierzęta, które już nie żyją
  */
-	private void removeOrMoveAnimals() {
+	void removeOrMoveAnimals() {
 		for(int i = 0; i < animals.size(); i++) {
 			objectProgramming.crazyAnimals.animal.IAnimal animal = animals.get(i);
 			if(animal.isDead()) {
@@ -78,7 +78,7 @@ public final class Simulation {
  * Iteruje po liście zwierząt i każe im wykonywać między sobą interakcje
  * Dodaje do listy zwierząt nowo powstałe zwierzęta
  */
-	private void interactionsBetweenAnimals() {
+	void interactionsBetweenAnimals() {
 		LinkedList<objectProgramming.crazyAnimals.animal.IAnimal> children = new LinkedList<objectProgramming.crazyAnimals.animal.IAnimal>();
 		for(objectProgramming.crazyAnimals.animal.IAnimal animal: animals) {
 			animal.doIteration();
@@ -100,7 +100,7 @@ public final class Simulation {
  * Wartości końcowe symulacji są akceptowalne. Przekroczenie tego zakresu zatrzymuje symulacje
  * @return Wartość logiczna odpowiadająca na pytanie czy nastąpił koniec symulacji
  */
-	private boolean ifEnd() {
+	boolean ifEnd() {
 		for(int i = 0; i < 5; i++) {
 			if(objectProgramming.crazyAnimals.animal.AnimalStats.getCurrentPopulation()[i] < parameters.endMinNum[i] || (parameters.endMaxNum[i]!= -1 && objectProgramming.crazyAnimals.animal.AnimalStats.getCurrentPopulation()[i] > parameters.endMaxNum[i])) {
 				return true;

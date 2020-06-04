@@ -11,7 +11,7 @@ import java.util.Random;
  * @author Mikołaj
  */
 public final class Waterhole extends Field{
-	private static int number = 0;
+	protected static int number = 0;
 	
 	
 /**
