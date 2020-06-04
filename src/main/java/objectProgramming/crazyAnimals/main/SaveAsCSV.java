@@ -41,7 +41,7 @@ public class SaveAsCSV {
 	 * @param parameters obiekt z parametrami początkowymi symulacji
 	 */
 	public static void saveToFile(Parameters parameters) throws IOException{
-		System.out.print("Enter file path (\"-\" - use default): ");
+		System.out.print("Enter file path (.csv): ");
 		Scanner scanner = new Scanner(System.in);
 		String tmp = scanner.nextLine();
 		File file;
@@ -118,10 +118,7 @@ public class SaveAsCSV {
 			params += ", " + Feed.getNumEaten(i == 0 ? "cheese" : "grass");
 			params += ", " + Feed.getNumDestroyed(i == 0 ? "cheese" : "grass");
 		}
-		for(int i = 0; i < 5; i++)
-			params += ", " + AnimalStats.getCurrentPopulation()[i];
-		for(int i = 0; i < 5; i++)
-			params += ", " + AnimalStats.getMaxPopulation()[i];
+		params += AnimalStats.getString();
 		return params;
 	}
 }

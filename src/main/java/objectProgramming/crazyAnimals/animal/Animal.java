@@ -158,7 +158,6 @@ public abstract class Animal implements IAnimal{
 		else if(this instanceof Wolf)
 			AnimalStats.takeAnimal(4);
 		field.destroyEatable(this);
-		//field = null;
 		isDead = true;
 	}
 }

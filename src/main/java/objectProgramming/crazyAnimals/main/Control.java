@@ -5,7 +5,9 @@ package objectProgramming.crazyAnimals.main;
 
 import java.util.Random;
 import com.beust.jcommander.JCommander;
-import com.beust.jcommander.JCommander.Builder;;
+import com.beust.jcommander.JCommander.Builder;
+
+import objectProgramming.crazyAnimals.animal.AnimalStats;;
 
 /**
  * @author Mikołaj
@@ -56,7 +58,7 @@ public final class Control {
 			return;
 		}
 		simulation = new Simulation(parameters, random);
-		
+		new AnimalStats();
 		simulation.runSimulation();
 
 	}

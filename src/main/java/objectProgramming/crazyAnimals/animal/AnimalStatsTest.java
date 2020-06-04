@@ -14,6 +14,7 @@ import org.junit.Test;
 public class AnimalStatsTest {
 	@Test
 	public void test() {
+		new AnimalStats();
 		assertTrue("No animals at the begining", arraysEqual(AnimalStats.getCurrentPopulation(), new int[]{0, 0, 0, 0, 0}));
 		assertTrue("Max population at the begining", arraysEqual(AnimalStats.getMaxPopulation(), new int[]{0, 0, 0, 0, 0}));
 		AnimalStats.addAnimal(0);
@@ -33,6 +34,8 @@ public class AnimalStatsTest {
 		AnimalStats.takeAnimal(4);
 		assertTrue("No animals at the end", arraysEqual(AnimalStats.getCurrentPopulation(), new int[]{0, 0, 0, 0, 0}));
 		assertTrue("Max population at the end", arraysEqual(AnimalStats.getMaxPopulation(), new int[]{1, 1, 1, 1, 1}));
+		new AnimalStats();
+		assertTrue("Max population = 0 after constructor", arraysEqual(AnimalStats.getMaxPopulation(), new int[]{0, 0, 0, 0, 0}));
 	} 
 	/**
 	 * Metoda porównuje dwie tablice liczb całkowitych
