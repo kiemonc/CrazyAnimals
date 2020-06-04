@@ -1,4 +1,4 @@
-package objectProgramming.crazyAnimals.main;
+package objectProgramming.crazyAnimals.swing;
 /**
  * 
  */
@@ -14,6 +14,8 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import objectProgramming.crazyAnimals.main.Parameters;
 
 /**
  * Klasa pozwalająca wyświetlić okno do zadawania parametrów początkowych symulacji                 //do edycji (actionPerformed() drugi "if")
@@ -80,7 +82,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		}
 		if(source == close) {
 			dispose();
-			//setVisible(false);  <----- po dołączeniu do głównego okienka zastąpić tym linijkę powyżej
+			setVisible(false);//  <----- po dołączeniu do głównego okienka zastąpić tym linijkę powyżej
 		}
 	}
 	/**
