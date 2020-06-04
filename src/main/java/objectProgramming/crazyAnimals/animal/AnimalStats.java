@@ -9,7 +9,7 @@ package objectProgramming.crazyAnimals.animal;
  */
 public class AnimalStats {
 	//0 - Cat, 1 - Cow, 2 - Mouse, 3 - Sheep, 4 - Wolf
-	private static int [] currentPopulation, maxPopulation;
+	private static int [] currentPopulation = {0, 0, 0, 0, 0}, maxPopulation = {0, 0, 0, 0, 0};
 	/**
 	 * Konstruktor klasy zeruje wszystkie statystyki
 	 */
