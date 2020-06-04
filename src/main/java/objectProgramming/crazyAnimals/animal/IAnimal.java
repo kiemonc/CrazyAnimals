@@ -70,6 +70,11 @@ public interface IAnimal extends IEatable{
 	 */
 	public int getMovementSpeed();
 	/**
+	 * Pozwala pobrać statystyki zwierzęcia (głód, pragnienie, wiek, płeć, ilość iteracji do ruchu)
+	 * @return
+	 */
+	public int[] getStats();
+	/**
 	 * Pozwala wyświetlić zwierzę jako znak
 	 * @return ciąg znaków, który zawiera jeden znak - reprezentację zwierzęcia
 	 */

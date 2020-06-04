@@ -109,6 +109,10 @@ public abstract class Animal implements IAnimal{
 	public boolean getMovedAfterMultiplying() {return movedAfterMultiplying;}
 	@Override
 	public void beEaten() {die();}
+	@Override
+	public int [] getStats() {
+		return new int[] {hunger, thirst, age, (isMale ? 1 : 0), iterationsToMove};
+	}
 	
 	/**
 	 * Pozwala stwierdzić czy zwierzę może ruszyć się na zadane pole
@@ -154,7 +158,6 @@ public abstract class Animal implements IAnimal{
 		else if(this instanceof Wolf)
 			AnimalStats.takeAnimal(4);
 		field.destroyEatable(this);
-		//field = null;
 		isDead = true;
 	}
 }

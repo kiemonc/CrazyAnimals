@@ -5,6 +5,9 @@ import java.util.Random;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.JCommander.Builder;
 
+import objectProgramming.crazyAnimals.animal.AnimalStats;
+
+
 import objectProgramming.crazyAnimals.swing.StartFrame;
 
 import com.beust.jcommander.ParameterException;
@@ -70,6 +73,7 @@ public final class Main {
  */
 	public static void main(String[] args) {
 		setParameters(args);
+		new AnimalStats();
 		if(parameters.console) {
 			simulation = new Simulation(parameters, random);
 			simulation.runSimulation();

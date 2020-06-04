@@ -1,8 +1,11 @@
 package objectProgramming.crazyAnimals.main;
 
 import java.util.List;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Random;
+
+import objectProgramming.crazyAnimals.animal.AnimalStats;
 
 
 /**
@@ -41,7 +44,13 @@ public final class Simulation {
 			mainLoop();
 		}
 		showDescription();
-		SaveAsCSV.saveToFile(parameters);
+		System.out.println(AnimalStats.getString());
+		try{
+			SaveAsCSV.saveToFile(parameters);
+		}
+		catch(IOException e) {
+			
+		}
 		System.out.println("Koniec symulacji");
 	}
 	
