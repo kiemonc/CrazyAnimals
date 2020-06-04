@@ -8,8 +8,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 import objectProgramming.crazyAnimals.animal.AnimalStats;
 import objectProgramming.crazyAnimals.area.Feed;
@@ -27,21 +29,30 @@ public class SaveAsCSV {
 	 * Zapisuje parametry i statystyki symulacji do pliku (wersja konsolowa)
 	 * @param parameters obiekt z parametrami początkowymi symulacji
 	 */
-	public static void saveToFile(Parameters parameters) {
-		System.out.println("");
+	public static void saveToFile(Parameters parameters) throws IOException{
+		System.out.print("Enter file path (\"-\" - use default): ");
+		Scanner scanner = new Scanner(System.in);
+		String tmp = scanner.nextLine();
+		scanner.close();
+		if(tmp != "-")
+			filePath = tmp;
+		if(!filePath.contains(".csv")) {
+			filePath += ".csv";
+		}
 		try {
 			PrintWriter writer = new PrintWriter(new FileWriter(filePath, true));
 			writer.println(getParamsAndStats(parameters));
 			writer.close();
 		} catch (IOException e) {
-			System.out.print("File error");
+			System.out.println("File error");
+			throw e;
 		}
 	}
 	/**
 	 * Zapisuje parametry i statystyki symulacji do pliku (wersja okienkowa)
 	 * @param parameters obiekt z parametrami początkowymi symulacji
 	 */
-	public static void saveToFileInFrame(Parameters parameters) {
+	public static void saveToFileInFrame(Parameters parameters) throws IOException{
 		JFileChooser fileChooser = new JFileChooser(filePath);
 		fileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
 		fileChooser.showOpenDialog(fileChooser);
@@ -50,7 +61,8 @@ public class SaveAsCSV {
 			writer.println(getParamsAndStats(parameters));
 			writer.close();
 		} catch (IOException e) {
-			System.out.print("File error");
+			JOptionPane.showMessageDialog(null, "Please try again", "File error", JOptionPane.INFORMATION_MESSAGE);
+			throw e;
 		}
 	}
 	/**
