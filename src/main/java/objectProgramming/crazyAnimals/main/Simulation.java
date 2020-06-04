@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Random;
 
+import objectProgramming.crazyAnimals.animal.AnimalStats;
+
 
 /**
  * 
@@ -42,6 +44,7 @@ public final class Simulation {
 			mainLoop();
 		}
 		showDescription();
+		System.out.println(AnimalStats.getString());
 		try{
 			SaveAsCSV.saveToFile(parameters);
 		}

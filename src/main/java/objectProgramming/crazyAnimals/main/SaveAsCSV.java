@@ -118,7 +118,10 @@ public class SaveAsCSV {
 			params += ", " + Feed.getNumEaten(i == 0 ? "cheese" : "grass");
 			params += ", " + Feed.getNumDestroyed(i == 0 ? "cheese" : "grass");
 		}
-		params += AnimalStats.getString();
+		for(int i = 0; i < 5; i++)
+			params += AnimalStats.getCurrentPopulation()[i];
+		for(int i = 0; i < 5; i++)
+			params += AnimalStats.getMaxPopulation()[i];
 		return params;
 	}
 }

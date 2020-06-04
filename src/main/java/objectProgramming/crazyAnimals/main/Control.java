@@ -57,8 +57,8 @@ public final class Control {
 		} catch (BadParametersException e) {
 			return;
 		}
-		simulation = new Simulation(parameters, random);
 		new AnimalStats();
+		simulation = new Simulation(parameters, random);
 		simulation.runSimulation();
 
 	}

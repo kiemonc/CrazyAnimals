@@ -48,15 +48,24 @@ public class AnimalStats {
 		return maxPopulation;
 	}
 	/**
-	 * Pozwala pobrać wartości statystyk w postaci liczb oddzielonych przecinkami
+	 * Pozwala pobrać statystyki w postaci wartości z opisami
 	 * @return
 	 */
 	public static String getString() {
-		String stats = "";
-		for(int i = 0; i < 5; i++)
-			stats += (i == 0 ? "" : ", ") + getCurrentPopulation()[i];
-		for(int i = 0; i < 5; i++)
-			stats += ", " + getMaxPopulation()[i];
+		String stats = "Current population: ";
+		stats += "\nCats: " + getCurrentPopulation()[0];
+		stats += "\nCows: " + getCurrentPopulation()[1];
+		stats += "\nMouses: " + getCurrentPopulation()[2];
+		stats += "\nSheeps: " + getCurrentPopulation()[3];
+		stats += "\nWolves: " + getCurrentPopulation()[4];
+		
+		stats += "\n\nMax population: ";
+		stats += "\nCats: " + getMaxPopulation()[0];
+		stats += "\nCows: " + getMaxPopulation()[1];
+		stats += "\nMouses: " + getMaxPopulation()[2];
+		stats += "\nSheeps: " + getMaxPopulation()[3];
+		stats += "\nWolves: " + getMaxPopulation()[4];
+		stats += "\n";
 		return stats;
 	}
 }
