@@ -234,5 +234,12 @@ public final class Meadow implements IMeadow {
 		string += "\n";
 		return string;
 	}
-	
+
+	/**
+	 * Zwraca referencję do wszystkich pól
+	 * @return Lista list wszystkich pól
+	 */
+	public LinkedList<LinkedList<IField>> getAllFields() {
+		return fields;
+	}
 }

@@ -135,6 +135,9 @@ public final class Parameters {
 	List<String> endMaxNumList;
 	public int [] endMaxNum = {-1,-1,-1,-1,-1};
 	
+	@Parameter(names = {"--console","-c"}, description = "True if user would like to run simulation in console")
+	boolean console=false;
+	
 	/**
 	 * Tablica minimalnej liczebności zwierząt. Przekroczenie, którejkowiek wartości kończy symulację.
 	 * -1 oznacza, że liczebność danego gatunku nie jest brana pod uwagę

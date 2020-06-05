@@ -7,7 +7,11 @@ import com.beust.jcommander.JCommander.Builder;
 
 import objectProgramming.crazyAnimals.animal.AnimalStats;
 
-import com.beust.jcommander.ParameterException;;
+
+import objectProgramming.crazyAnimals.swing.StartFrame;
+
+import com.beust.jcommander.ParameterException;
+import java.awt.EventQueue;
 
 /**
  * 
@@ -20,15 +24,9 @@ public final class Main {
 	/**
 	 * Referencja do obiektu random, umożliwiająca ustwienie wartości seed, która determinuje całą symulacje.
 	 */
-	private static Random random = new Random(1);
+	private static Random random = new Random(100);
 	private static Simulation simulation;
 	static Parameters parameters;
-	
-	//TODO
-	//private static String statisticsPath;
-	//private static void showStatistics() {}
-	//private static void saveStatistics() {}
-	
 	
 /** 
  * Ustawia parametry symulacji z wykorzystaniem parasera.
@@ -70,6 +68,19 @@ public final class Main {
 	public static void main(String[] args) {
 		setParameters(args);
 		new AnimalStats();
+		if(parameters.console) {
+			runSimulation();
+		} else {
+ 		EventQueue.invokeLater(new Runnable() {
+ 			@Override
+ 			public void run() {
+ 				new StartFrame();
+ 			}
+ 		});
+		}
+	}
+	
+	public static void runSimulation() {
 		simulation = new Simulation(parameters, random);
 		simulation.runSimulation();
 	}
