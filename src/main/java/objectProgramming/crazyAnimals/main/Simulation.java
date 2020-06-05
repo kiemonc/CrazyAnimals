@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Random;
 
-import javax.swing.JOptionPane;
 
 import objectProgramming.crazyAnimals.animal.AnimalCreator;
 import objectProgramming.crazyAnimals.animal.AnimalStats;
@@ -134,7 +133,7 @@ public final class Simulation {
  * Wartości końcowe symulacji są akceptowalne. Przekroczenie tego zakresu zatrzymuje symulacje
  * @return Wartość logiczna odpowiadająca na pytanie czy nastąpił koniec symulacji
  */
-	boolean ifEnd() {
+	public boolean ifEnd() {
 		for(int i = 0; i < 5; i++) {
 			if(objectProgramming.crazyAnimals.animal.AnimalStats.getCurrentPopulation()[i] < parameters.endMinNum[i] || (parameters.endMaxNum[i]!= -1 && objectProgramming.crazyAnimals.animal.AnimalStats.getCurrentPopulation()[i] > parameters.endMaxNum[i])) {
 				return true;

@@ -13,8 +13,8 @@ import objectProgramming.crazyAnimals.area.Feed;
  * @author jakub
  *
  */
+@SuppressWarnings("serial")
 public class StatsPanel extends JPanel {
-	private static final long serialVersionUID = 1L;
 	
 	private static final String [] animalsNames = {"Cats", "Cows", "Mouses", "Sheeps", "Wolves"}, feedNames = {"Grass", "Cheese"};
 	private JLabel [] animals = new JLabel[5], feed = new JLabel[2];
@@ -24,6 +24,7 @@ public class StatsPanel extends JPanel {
 			add(animals[i]);
 		}
 		for(int i = 0; i < 2; i++) {
+			//TODO nie wyswietlają się dobre statystyki pożywienia
 			feed[i] = new JLabel(feedNames[i] + ": " + Feed.getNumAll(feedNames[i].toLowerCase()));
 			add(feed[i]);
 		}

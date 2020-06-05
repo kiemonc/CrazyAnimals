@@ -22,9 +22,9 @@ import objectProgramming.crazyAnimals.main.Parameters;
  * Klasa pozwalająca wyświetlić okno do zadawania parametrów początkowych symulacji
  * @author jakub
  */
+@SuppressWarnings("serial")
 public class ParametersFrame extends JFrame implements ActionListener{
-	private static final long serialVersionUID = 1L;
-	
+
 	private List<JFormattedTextField> textFieldList = new LinkedList<>();
 	private JButton confirm = new JButton("Confirm"), close = new JButton("Close");
 	private JLabel error = new JLabel("Invalid format of parameters"), confirmed = new JLabel("Parameters saved");
@@ -77,6 +77,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 			try {
 				parameters.setParametrs();
 			} catch (BadParametersException e) {
+				//TODO przechwycenie wyjątków z Parameters (bardzo dokładnie tam sprawdz wszystkie warunki). Wystarczy że wywsietlisz komunikat ze błędne parametry bez doszczegółowiania.
 				e.printStackTrace();
 			}
 			startPanel.setParameters(parameters);

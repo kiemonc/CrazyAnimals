@@ -13,10 +13,10 @@ import java.util.List;
 import java.util.LinkedList;
 import java.awt.Color;
 
- public class FieldPanel extends JPanel{
- 
 
-	private static final long serialVersionUID = -3130896061420606792L;
+@SuppressWarnings("serial")
+public class FieldPanel extends JPanel{
+ 
 	private int buttonSize;
 	private int [] position = new int[2];
  	List<EatableButton> eatableButtons;
@@ -49,16 +49,19 @@ import java.awt.Color;
  	 */
  	class EatableButton extends JButton implements ActionListener {
 
-		private static final long serialVersionUID = -8313704398963260970L;
 		private IEatable eatable;
 		
+		EatableButton() {
+			super();
+			addActionListener(this);
+		}
 		/**
 		 * Uaktualnia stan przycisku, zmienia kolor.
 		 * @param eatable - obiekt który przycisk ma symbolizować
 		 */
 		void update(IEatable eatable) {
  			this.eatable = eatable;
- 			addActionListener(this);
+
  			if(eatable instanceof Cat) {
  				setBackground(Color.black);
  			} else if(eatable instanceof Cow) {
@@ -71,7 +74,7 @@ import java.awt.Color;
  				setBackground(Color.orange);
  			} else if(eatable instanceof Feed) {
  				if(((Feed) eatable).getName()=="grass") {
- 					setBackground(Color.getHSBColor(116, 2, 42));
+ 					setBackground(Color.pink);
  				} else if(((Feed) eatable).getName()=="cheese") {
  					setBackground(Color.yellow);
  				}

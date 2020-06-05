@@ -6,8 +6,7 @@ import com.beust.jcommander.JCommander;
 import com.beust.jcommander.JCommander.Builder;
 
 import objectProgramming.crazyAnimals.animal.AnimalStats;
-
-
+import objectProgramming.crazyAnimals.swing.SimulationFrame;
 import objectProgramming.crazyAnimals.swing.StartFrame;
 
 import com.beust.jcommander.ParameterException;
@@ -27,6 +26,7 @@ public final class Main {
 	private static Random random = new Random(100);
 	private static Simulation simulation;
 	static Parameters parameters;
+	static private StartFrame startFrame;
 	
 /** 
  * Ustawia parametry symulacji z wykorzystaniem parasera.
@@ -75,7 +75,7 @@ public final class Main {
  		EventQueue.invokeLater(new Runnable() {
  			@Override
  			public void run() {
- 				new StartFrame();
+ 				startFrame = new StartFrame();
  			}
  		});
 		}
@@ -83,7 +83,12 @@ public final class Main {
 	
 	public static void runSimulation(Parameters parameters) {
 		simulation = new Simulation(parameters, random);
-		simulation.runSimulation();
+ 		EventQueue.invokeLater(new Runnable() {
+ 			@Override
+ 			public void run() {
+ 				new SimulationFrame(simulation, startFrame);
+ 			}
+ 		});
 	}
 	
 	public static void runSimulation() {

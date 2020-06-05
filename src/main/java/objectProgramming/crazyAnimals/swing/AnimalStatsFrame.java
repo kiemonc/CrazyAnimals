@@ -17,8 +17,9 @@ import objectProgramming.crazyAnimals.animal.*;
  * Klasa odpowiada za wyświetlanie okienka ze statystykami dla danego zwierzęcia
  * @author jakub
  */
+@SuppressWarnings("serial")
 public class AnimalStatsFrame extends JFrame implements ActionListener{
-	private static final long serialVersionUID = 1L;
+
 	
 	private int [] values;
 	private JLabel species, hunger, thirst, age, isMale, iterationsToMove;

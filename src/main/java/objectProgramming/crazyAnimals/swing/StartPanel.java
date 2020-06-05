@@ -10,9 +10,9 @@ import java.awt.*;
  import javax.swing.JPanel;
 import javax.swing.JFrame;
  
- public class StartPanel extends JPanel{
+ @SuppressWarnings("serial")
+public class StartPanel extends JPanel{
  
-	private static final long serialVersionUID = -4289978282478056009L;
 	public static final int HEIGHT = 160;
  	public static final int WIDTH = 280;
  	private JButton startButton;
