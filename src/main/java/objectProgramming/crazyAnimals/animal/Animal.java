@@ -3,6 +3,7 @@ package objectProgramming.crazyAnimals.animal;
 import java.util.List;
 import java.util.Random;
 
+import objectProgramming.crazyAnimals.area.Feed;
 import objectProgramming.crazyAnimals.area.IField;
 import objectProgramming.crazyAnimals.area.IMeadow;
 
@@ -71,8 +72,10 @@ public abstract class Animal implements IAnimal{
 			for(int i = 0; i < eatable.size(); i++) {
 				if(canEat(eatable.get(i)))
 					eat(eatable.get(i));
-				if(eatable.get(i) instanceof objectProgramming.crazyAnimals.area.Feed)
+				if(eatable.get(i) instanceof Feed) {
+					((Feed)eatable.get(i)).beDestroyed();
 					field.destroyEatable(eatable.get(i));
+				}
 			}
 		}
 		if(field.getAnimals().size() > 1) {
