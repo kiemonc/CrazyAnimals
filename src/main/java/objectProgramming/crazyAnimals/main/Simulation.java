@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 import objectProgramming.crazyAnimals.animal.AnimalStats;
 import objectProgramming.crazyAnimals.swing.SimulationFrame;
 
