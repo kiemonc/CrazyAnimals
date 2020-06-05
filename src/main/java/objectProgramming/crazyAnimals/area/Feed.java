@@ -14,10 +14,10 @@ import objectProgramming.crazyAnimals.animal.IEatable;
  */
 public final class Feed implements IEatable {
 	//[0] - grass; [1] - cheese
-	private static int[] numAll = new int[2];
-	private static int[] numMax = new int[2];
-	private static int[] numEaten = new int[2];
-	private static int[] numDestroyed = new int[2];
+	private static int[] numAll = {0,0};
+	private static int[] numMax = {0,0};
+	private static int[] numEaten = {0,0};
+	private static int[] numDestroyed = {0,0};
 	
 	private String name;
 /**
@@ -129,5 +129,20 @@ public final class Feed implements IEatable {
 		if(name=="grass") return "g";
 		if(name=="cheese") return "h";
 		return " ";
+	}
+	
+	/**
+	 * Zeruje statystyki ogólne pożywienia
+	 * @return 
+	 */
+	public static void clearStatistics() {
+		numAll[0] = 0;
+		numAll[1] = 0;
+		numMax[0] = 0;
+		numMax[1] = 0;
+		numEaten[0] = 0;
+		numEaten[1] = 0;
+		numDestroyed[0] = 0;
+		numDestroyed[1] = 0;
 	}
 }

@@ -41,8 +41,6 @@ public final class Parameters {
 	public void setParametrs() throws BadParametersException {
 
 		
-		initializeNumAnimals();
-		
 		startNum = new int[5];
 		
 		
@@ -155,13 +153,19 @@ public final class Parameters {
 		return numbers;
 	}
 	
+	/**
+	 * Ścieżka do pliku, który zostanie zapisany na końcu symulacji. Jeżeli już istniej plik o takiej nazwie to statystyki zostaną dopisane na końcu pliku.
+	 */
+	@Parameter(names = {"--path","-p"}, description = "Path to the file with statistics")
+	public String path = "data";
+	
 	
 	/**
 	 * Inicjalizuje początkowe oraz końcowe graniczne liczebności zwierząt.
 	 * Zaminia listy uzyskany podczas parsowania na tablice.
 	 * W przypadku brak list z parsowania wstawia domyślne wartości
 	 */
-	private void initializeNumAnimals() {
+	public void initializeNumAnimals() {
 		if(startMinNumList != null && startMinNumList.size() == 5) {
 			startMinNum = listToTable(startMinNumList);
 		}

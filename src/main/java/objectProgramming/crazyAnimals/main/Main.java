@@ -47,6 +47,7 @@ public final class Main {
 			System.exit(-1);
 		}
 		try {
+			parameters.initializeNumAnimals();
 			parameters.setParametrs();
 		} catch (BadParametersException e) {
 			System.out.println("Parameters' conflict");
@@ -80,8 +81,12 @@ public final class Main {
 		}
 	}
 	
-	public static void runSimulation() {
+	public static void runSimulation(Parameters parameters) {
 		simulation = new Simulation(parameters, random);
 		simulation.runSimulation();
+	}
+	
+	public static void runSimulation() {
+		runSimulation(parameters);
 	}
 }

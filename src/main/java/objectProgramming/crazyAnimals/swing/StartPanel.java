@@ -1,5 +1,7 @@
 package objectProgramming.crazyAnimals.swing;
 import objectProgramming.crazyAnimals.main.Main;
+import objectProgramming.crazyAnimals.main.Parameters;
+
 import java.awt.*;
  import java.awt.event.ActionEvent;
  import java.awt.event.ActionListener;
@@ -15,8 +17,9 @@ import javax.swing.JFrame;
  	public static final int WIDTH = 280;
  	private JButton startButton;
  	private JButton parametersButton;
- 	private JPanel panel;
+ 	private StartPanel panel;
  	private JFrame parent;
+ 	private Parameters parameters;
  
  	public StartPanel(JFrame frame) {
  		parent = frame;
@@ -29,6 +32,13 @@ import javax.swing.JFrame;
  		panel = this;
  		startButton.setBounds(50, 20, 180, 50);
  		parametersButton.setBounds(50, 90, 180, 50);
+ 	}
+ 	/**
+ 	 * Ustawia referencje do parametrów
+ 	 * @param parameters - referencja do parametrów
+ 	 */
+ 	public void setParameters(Parameters parameters) {
+ 		this.parameters = parameters;
  	}
  
  	class StartButton extends JButton implements ActionListener {
@@ -43,7 +53,8 @@ import javax.swing.JFrame;
  		@Override
  		public void actionPerformed(ActionEvent e) {
  			parent.setVisible(false);
- 			Main.runSimulation();
+ 			if(parameters!=null) Main.runSimulation(parameters);
+ 			else Main.runSimulation();
  		}
  	}
  
@@ -58,7 +69,7 @@ import javax.swing.JFrame;
  
  		@Override
  		public void actionPerformed(ActionEvent e) {
- 			ParametersFrame frame = new ParametersFrame();
+ 			ParametersFrame frame = new ParametersFrame(panel);
  			frame.showFrame();
  		}
  	}

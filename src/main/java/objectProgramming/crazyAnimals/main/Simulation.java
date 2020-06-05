@@ -53,18 +53,22 @@ public final class Simulation {
 		}
 		if(parameters.console) {
 			showDescription();
-			System.out.println("Koniec symulacji");
 			System.out.println(AnimalStats.getString());
-			try {
-				SaveAsCSV.saveToFile(parameters);
-			} catch (IOException e) {}
 		}
-		else {
-			JOptionPane.showMessageDialog(null, "The simulation is over", "The end", JOptionPane.INFORMATION_MESSAGE);
-			try {
-				SaveAsCSV.saveToFileInFrame(parameters);
-			} catch (IOException e) {}
+
+		
+		try{
+			SaveAsCSV.saveToFile(parameters);
 		}
+		catch(IOException e) {
+			
+		}
+		
+		if(parameters.console) {
+
+			System.out.println("Koniec symulacji");
+		}
+
 	}
 	
 /**
@@ -113,7 +117,7 @@ public final class Simulation {
 /**
  * Wyświetla aktualny stan sumlacji w przyjaznej dla użytkownika formie
  */
-	private void showCurrentState() {
+	void showCurrentState() {
 		if(parameters.console) {
 			System.out.println(numIteration);
 			System.out.println(meadow);
