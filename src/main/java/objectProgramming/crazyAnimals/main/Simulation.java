@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 import objectProgramming.crazyAnimals.animal.AnimalStats;
-
+import objectProgramming.crazyAnimals.swing.SimulationFrame;
 
 /**
  * 
@@ -24,6 +24,7 @@ public final class Simulation {
 	objectProgramming.crazyAnimals.area.Meadow meadow;
 	private objectProgramming.crazyAnimals.animal.IAnimalCreator animalCreator;
 	private List<objectProgramming.crazyAnimals.animal.IAnimal> animals;
+	private SimulationFrame frame;
 	
 	public Simulation(Parameters parameters, Random random) {
 		this.parameters = parameters;
@@ -37,21 +38,35 @@ public final class Simulation {
  * Startuje i kończy sumylacje	
  */
 	public void runSimulation() {
-		showDescription();
-		showCurrentState();
+		
+		if(parameters.console) {
+			showDescription();
+			showCurrentState();
+		} else {
+			frame = new SimulationFrame(meadow);
+		}
 		while(!ifEnd()) {
 			numIteration++;
 			mainLoop();
 		}
-		showDescription();
-		System.out.println(AnimalStats.getString());
+		if(parameters.console) {
+			showDescription();
+			System.out.println(AnimalStats.getString());
+		}
+
+		
 		try{
 			SaveAsCSV.saveToFile(parameters);
 		}
 		catch(IOException e) {
 			
 		}
-		System.out.println("Koniec symulacji");
+		
+		if(parameters.console) {
+
+			System.out.println("Koniec symulacji");
+		}
+
 	}
 	
 /**
@@ -62,8 +77,8 @@ public final class Simulation {
 		meadow.doIteration();
 		removeOrMoveAnimals();
 		interactionsBetweenAnimals();
-		System.out.println(numIteration);
 		showCurrentState();
+		
 	}
 	
 /**
@@ -101,7 +116,12 @@ public final class Simulation {
  * Wyświetla aktualny stan sumlacji w przyjaznej dla użytkownika formie
  */
 	private void showCurrentState() {
-		System.out.println(meadow);
+		if(parameters.console) {
+			System.out.println(numIteration);
+			System.out.println(meadow);
+		} else {
+			frame.update();
+		}
 	}
 	
 /**

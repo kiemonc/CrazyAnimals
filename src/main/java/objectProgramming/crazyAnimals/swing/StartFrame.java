@@ -1,5 +1,4 @@
 package objectProgramming.crazyAnimals.swing;
-
 import javax.swing.*;
 
 public class StartFrame extends JFrame {
@@ -18,6 +17,6 @@ public class StartFrame extends JFrame {
 		pack();
 		setVisible(true);
 	}
-	
+
 	
 }

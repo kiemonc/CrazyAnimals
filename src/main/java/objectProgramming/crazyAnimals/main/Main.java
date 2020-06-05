@@ -24,15 +24,9 @@ public final class Main {
 	/**
 	 * Referencja do obiektu random, umożliwiająca ustwienie wartości seed, która determinuje całą symulacje.
 	 */
-	private static Random random = new Random(1);
+	private static Random random = new Random(100);
 	private static Simulation simulation;
 	static Parameters parameters;
-	
-	//TODO
-	//private static String statisticsPath;
-	//private static void showStatistics() {}
-	//private static void saveStatistics() {}
-	
 	
 /** 
  * Ustawia parametry symulacji z wykorzystaniem parasera.
@@ -75,8 +69,7 @@ public final class Main {
 		setParameters(args);
 		new AnimalStats();
 		if(parameters.console) {
-			simulation = new Simulation(parameters, random);
-			simulation.runSimulation();
+			runSimulation();
 		} else {
  		EventQueue.invokeLater(new Runnable() {
  			@Override
@@ -85,5 +78,10 @@ public final class Main {
  			}
  		});
 		}
+	}
+	
+	public static void runSimulation() {
+		simulation = new Simulation(parameters, random);
+		simulation.runSimulation();
 	}
 }

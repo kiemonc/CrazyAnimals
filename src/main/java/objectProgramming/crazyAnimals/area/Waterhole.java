@@ -19,7 +19,7 @@ public final class Waterhole extends Field{
  * @param positionX
  * @param positionY
  */
-	Waterhole(int positionX, int positionY, Random random) {
+	public Waterhole(int positionX, int positionY, Random random) {
 		super(positionX, positionY, random);
 		number++;
 	}
