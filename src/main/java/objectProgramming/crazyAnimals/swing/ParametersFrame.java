@@ -18,7 +18,7 @@ import javax.swing.JLabel;
 import objectProgramming.crazyAnimals.main.Parameters;
 
 /**
- * Klasa pozwalająca wyświetlić okno do zadawania parametrów początkowych symulacji                 //do edycji (actionPerformed() drugi "if")
+ * Klasa pozwalająca wyświetlić okno do zadawania parametrów początkowych symulacji
  * @author jakub
  */
 public class ParametersFrame extends JFrame implements ActionListener{
@@ -34,7 +34,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 	 */
 	ParametersFrame(){
 		super("Parameters");
-		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(390, 430);
 		setResizable(false);
 		setLocation(200, 200);
@@ -57,14 +57,6 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		
 		setParameters();
 		}
-	/**
-	 * Metoda "chwilowa" - do testów
-	 * @param args nieużywane
-	 */
-	public static void main(String [] args) {
-		ParametersFrame frame = new ParametersFrame();
-		frame.showFrame();
-	}
 	
 	@Override
 	public void actionPerformed(ActionEvent event) {
@@ -82,7 +74,6 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		}
 		if(source == close) {
 			dispose();
-			setVisible(false);//  <----- po dołączeniu do głównego okienka zastąpić tym linijkę powyżej
 		}
 	}
 	/**

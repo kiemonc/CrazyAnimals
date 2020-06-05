@@ -32,7 +32,7 @@ public class AnimalStatsFrame extends JFrame implements ActionListener{
 		super("Animal stats");
 		setLocation(200, 200);
 		setSize(250, 280);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setVisible(true);
 		setLayout(null);
 		setResizable(false);

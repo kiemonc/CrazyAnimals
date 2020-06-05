@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 import objectProgramming.crazyAnimals.animal.AnimalStats;
 import objectProgramming.crazyAnimals.swing.SimulationFrame;
 
@@ -51,22 +53,18 @@ public final class Simulation {
 		}
 		if(parameters.console) {
 			showDescription();
-			System.out.println(AnimalStats.getString());
-		}
-
-		
-		try{
-			SaveAsCSV.saveToFile(parameters);
-		}
-		catch(IOException e) {
-			
-		}
-		
-		if(parameters.console) {
-
 			System.out.println("Koniec symulacji");
+			System.out.println(AnimalStats.getString());
+			try {
+				SaveAsCSV.saveToFile(parameters);
+			} catch (IOException e) {}
 		}
-
+		else {
+			JOptionPane.showMessageDialog(null, "The simulation is over", "The end", JOptionPane.INFORMATION_MESSAGE);
+			try {
+				SaveAsCSV.saveToFileInFrame(parameters);
+			} catch (IOException e) {}
+		}
 	}
 	
 /**

@@ -75,10 +75,13 @@ public class SaveAsCSV {
 	public static void saveToFileInFrame(Parameters parameters) throws IOException{
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
-		fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(null, ".csv"));
+		fileChooser.setFileFilter(new FileNameExtensionFilter("CSV file", ".csv"));
 		fileChooser.showOpenDialog(fileChooser);
 		try {
-			File file = new File(filePath);
+			File file;
+			if(!fileChooser.getSelectedFile().getPath().contains(".csv"))
+				file = new File(fileChooser.getSelectedFile().getPath() + ".csv");
+			else file = fileChooser.getSelectedFile();
 			PrintWriter writer;
 			if(file.exists()) 
 				writer = new PrintWriter(new FileWriter(file, true));
