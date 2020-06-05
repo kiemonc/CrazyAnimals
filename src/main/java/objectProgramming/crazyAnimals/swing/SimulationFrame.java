@@ -15,6 +15,8 @@ import java.util.LinkedList;
 public class SimulationFrame extends JFrame {
 	
 	List<FieldPanel> panels;
+	StatsPanel stats;
+	LegendPanel legend;
 	private static final long serialVersionUID = -6866565494360362395L;
 	private JFrame frame;
 	/**
@@ -33,6 +35,12 @@ public class SimulationFrame extends JFrame {
 		pack();
 		setVisible(true);
 		initalizePanels(meadow, dimension.height);
+		stats = new StatsPanel();
+		legend = new LegendPanel();
+		add(stats);
+		add(legend);
+		stats.setBounds(dimension.height - dimension.height/10, 50, dimension.width - dimension.height, 50);
+		legend.setBounds(dimension.height - dimension.height/10, 100, dimension.width - dimension.height, 200);
 	}
 	
 	/**
@@ -79,6 +87,7 @@ public class SimulationFrame extends JFrame {
 		for(FieldPanel field : panels) {
 			field.updateButtons();
 		}
+		stats.update();
 	}
 	
 	
