@@ -117,7 +117,7 @@ public final class Simulation {
 /**
  * Wyświetla aktualny stan sumlacji w przyjaznej dla użytkownika formie
  */
-	private void showCurrentState() {
+	void showCurrentState() {
 		if(parameters.console) {
 			System.out.println(numIteration);
 			System.out.println(meadow);

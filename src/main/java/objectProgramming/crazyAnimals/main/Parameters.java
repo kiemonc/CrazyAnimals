@@ -41,8 +41,6 @@ public final class Parameters {
 	public void setParametrs() throws BadParametersException {
 
 		
-		initializeNumAnimals();
-		
 		startNum = new int[5];
 		
 		
@@ -167,7 +165,7 @@ public final class Parameters {
 	 * Zaminia listy uzyskany podczas parsowania na tablice.
 	 * W przypadku brak list z parsowania wstawia domyślne wartości
 	 */
-	private void initializeNumAnimals() {
+	public void initializeNumAnimals() {
 		if(startMinNumList != null && startMinNumList.size() == 5) {
 			startMinNum = listToTable(startMinNumList);
 		}

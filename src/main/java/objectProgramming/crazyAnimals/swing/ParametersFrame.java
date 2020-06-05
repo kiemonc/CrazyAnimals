@@ -15,6 +15,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import objectProgramming.crazyAnimals.main.BadParametersException;
 import objectProgramming.crazyAnimals.main.Parameters;
 
 /**
@@ -28,12 +29,14 @@ public class ParametersFrame extends JFrame implements ActionListener{
 	private JButton confirm = new JButton("Confirm"), close = new JButton("Close");
 	private JLabel error = new JLabel("Invalid format of parameters"), confirmed = new JLabel("Parameters saved");
 	private Parameters parameters;
+	private StartPanel startPanel;
 	
 	/**
 	 * Konstruktor klasy tworzy nowe okienko o odpowiednich parametrach oraz wywyłuje metody rozmieszczające na nim poszczególne elementy
 	 */
-	ParametersFrame(){
+	ParametersFrame(StartPanel panel){
 		super("Parameters");
+		startPanel=panel;
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(390, 430);
 		setResizable(false);
@@ -71,6 +74,12 @@ public class ParametersFrame extends JFrame implements ActionListener{
 				error.setBounds(110, 335, 180, 20);
 				confirmed.setBounds(130, 450, 180, 20);
 			}
+			try {
+				parameters.setParametrs();
+			} catch (BadParametersException e) {
+				e.printStackTrace();
+			}
+			startPanel.setParameters(parameters);
 		}
 		if(source == close) {
 			dispose();

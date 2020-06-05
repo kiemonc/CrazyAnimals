@@ -47,24 +47,28 @@ public class SimulationFrame extends JFrame {
 		int height = fields.size();
 		int fieldSize;
 		if(width > height) {
-			fieldSize = maxSize*9/10/width;
+			fieldSize = maxSize*4/5/width;
 		} else {
-			fieldSize = maxSize*9/10/height;
+			fieldSize = maxSize*4/5/height;
 		}
-		int offset = 1/10*maxSize;
+		int offset = maxSize/20;
 		for(int i = 0; i < height; i++) {
 			for(int j = 0; j < width; j++) {
-				Border blackline;
-				if(i==0) {
+				Border blackline = BorderFactory.createLineBorder(Color.BLACK,1);
+				/**
+				if(i==0 && j!= width-1) {
 					blackline = BorderFactory.createMatteBorder(1, 1, 1, 0, Color.BLACK);
+				} else if(i==0 && j== width-1) {
+					blackline = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK);
 				} else if(j < width - 1){
 					blackline = BorderFactory.createMatteBorder(0, 1, 1, 0, Color.BLACK);
 				} else {
 					blackline = BorderFactory.createMatteBorder(0, 1, 1, 1, Color.BLACK);
 				}
+				**/
 				FieldPanel field = new FieldPanel(fieldSize, fields.get(i).get(j));
 				panels.add(field);
-				field.setBounds(offset+fieldSize*j, offset+fieldSize*i, fieldSize, fieldSize);
+				field.setBounds(offset+(fieldSize)*j, offset+(fieldSize)*i, fieldSize, fieldSize);
 				field.setBorder(blackline);
 				frame.add(field);
 			}
