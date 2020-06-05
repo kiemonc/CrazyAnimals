@@ -73,7 +73,7 @@ import java.awt.Color;
  				if(((Feed) eatable).getName()=="grass") {
  					setBackground(Color.getHSBColor(116, 2, 42));
  				} else if(((Feed) eatable).getName()=="cheese") {
- 					setBackground(Color.getHSBColor(116, 97, 42));
+ 					setBackground(Color.yellow);
  				}
  			}
  		}
