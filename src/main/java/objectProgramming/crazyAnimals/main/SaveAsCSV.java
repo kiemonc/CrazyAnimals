@@ -41,11 +41,15 @@ public class SaveAsCSV {
 	 * @param parameters obiekt z parametrami początkowymi symulacji
 	 */
 	public static void saveToFile(Parameters parameters) throws IOException{
+		/**
 		System.out.print("Enter file path (.csv): ");
 		Scanner scanner = new Scanner(System.in);
 		String tmp = scanner.nextLine();
-		File file;
 		scanner.close();
+		**/
+		
+		String tmp = parameters.path;
+		File file;
 		if(tmp != "-")
 			filePath = tmp;
 		if(!filePath.contains(".csv")) {

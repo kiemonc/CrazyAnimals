@@ -4,7 +4,10 @@ package objectProgramming.crazyAnimals.swing;
 import objectProgramming.crazyAnimals.area.Meadow;
 import objectProgramming.crazyAnimals.area.IField;
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.util.List;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.LinkedList;
@@ -51,9 +54,18 @@ public class SimulationFrame extends JFrame {
 		int offset = 1/10*maxSize;
 		for(int i = 0; i < height; i++) {
 			for(int j = 0; j < width; j++) {
+				Border blackline;
+				if(i==0) {
+					blackline = BorderFactory.createMatteBorder(1, 1, 1, 0, Color.BLACK);
+				} else if(j < width - 1){
+					blackline = BorderFactory.createMatteBorder(0, 1, 1, 0, Color.BLACK);
+				} else {
+					blackline = BorderFactory.createMatteBorder(0, 1, 1, 1, Color.BLACK);
+				}
 				FieldPanel field = new FieldPanel(fieldSize, fields.get(i).get(j));
 				panels.add(field);
 				field.setBounds(offset+fieldSize*j, offset+fieldSize*i, fieldSize, fieldSize);
+				field.setBorder(blackline);
 				frame.add(field);
 			}
 		}
