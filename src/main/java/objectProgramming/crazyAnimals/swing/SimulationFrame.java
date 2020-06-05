@@ -2,14 +2,21 @@ package objectProgramming.crazyAnimals.swing;
 
 
 import objectProgramming.crazyAnimals.area.Meadow;
+import objectProgramming.crazyAnimals.main.BadParametersException;
+import objectProgramming.crazyAnimals.main.Parameters;
+import objectProgramming.crazyAnimals.main.Simulation;
 import objectProgramming.crazyAnimals.area.IField;
 import javax.swing.*;
 import javax.swing.border.Border;
 
 import java.util.List;
+import java.util.Random;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.LinkedList;
 
 public class SimulationFrame extends JFrame {
@@ -19,14 +26,18 @@ public class SimulationFrame extends JFrame {
 	LegendPanel legend;
 	private static final long serialVersionUID = -6866565494360362395L;
 	private JFrame frame;
+	private Simulation simulation;
+	private Timer timer;
 	/**
 	 * Konstruktor okienka głównego symulacji. Ustawia podstawowe właściwości okienka.
 	 * 
 	 */
-	public SimulationFrame(Meadow meadow) {
+	public SimulationFrame(Simulation simulation) {
 		super("Crazy Animals");
 		frame = this;
+		
 		setLayout(null);
+		this.simulation = simulation;
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		setResizable(true);
 		setExtendedState(JFrame.MAXIMIZED_BOTH); 
@@ -34,13 +45,26 @@ public class SimulationFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
 		setVisible(true);
-		initalizePanels(meadow, dimension.height);
+		initalizePanels(simulation.getMeadow(), dimension.height);
 		stats = new StatsPanel();
 		legend = new LegendPanel();
 		add(stats);
 		add(legend);
 		stats.setBounds(dimension.height - dimension.height/10, 50, dimension.width - dimension.height, 50);
 		legend.setBounds(dimension.height - dimension.height/10, 100, dimension.width - dimension.height, 200);
+		timer = new Timer(1000, new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				simulation.doIteration();
+				for(FieldPanel field : panels) {
+					field.updateButtons();
+				}
+				stats.update();
+			}
+			
+		});
+		timer.start();
 	}
 	
 	/**
@@ -91,5 +115,21 @@ public class SimulationFrame extends JFrame {
 	}
 	
 	
-	
+	public static void main(String[] args) {
+		Parameters parameters = new Parameters(new Random(0));
+		parameters.initializeNumAnimals();
+		try {
+			parameters.setParametrs();
+		} catch (BadParametersException e) {
+			e.printStackTrace();
+		}
+		Simulation simulation = new Simulation(parameters, new Random(0));
+
+ 		EventQueue.invokeLater(new Runnable() {
+ 			@Override
+ 			public void run() {
+ 				new SimulationFrame(simulation);
+ 			}
+ 		});
+	}
 }

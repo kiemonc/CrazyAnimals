@@ -19,6 +19,7 @@ public class ParametersTest {
 		JCommander commander = new Builder().addObject(parameters).build();
 		commander.parse("-i", "-1");
 		try {
+			parameters.initializeNumAnimals();
 			parameters.setParametrs();
 			fail("Number of iterations");
 		} catch (BadParametersException e) {
@@ -39,6 +40,7 @@ public class ParametersTest {
 		commander = new Builder().addObject(parameters).build();
 		commander.parse("-w", "9", "-h", "11", "-sMin", "8,60,10,10,10", "-sMax", "9,60,10,10,10");
 		try {
+			parameters.initializeNumAnimals();
 			parameters.setParametrs();
 			fail("Start namber of animals");
 		} catch (BadParametersException e) {
@@ -49,6 +51,7 @@ public class ParametersTest {
 		commander = new Builder().addObject(parameters).build();
 		commander.parse("-w", "9", "-h", "11", "-sMin", "8,10,10,10,10", "-sMax", "9,10,10,10,10","-eMin", "9,10,10,10,10", "-eMax", "9,10,10,10,10");
 		try {
+			parameters.initializeNumAnimals();
 			parameters.setParametrs();
 			fail("End range of animals");
 		} catch (BadParametersException e) {
@@ -59,6 +62,7 @@ public class ParametersTest {
 		commander = new Builder().addObject(parameters).build();
 		commander.parse("-w", "9", "-h", "11", "-sMin", "8,10,10,10,10", "-sMax", "9,10,10,10,10");
 		try {
+			parameters.initializeNumAnimals();
 			parameters.setParametrs();
 		} catch (BadParametersException e) {
 			
