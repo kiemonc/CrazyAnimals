@@ -136,7 +136,7 @@ public final class Feed implements IEatable {
 	
 	/**
 	 * Zeruje statystyki ogólne pożywienia
-	 * @return 
+	 * 
 	 */
 	public static void clearStatistics() {
 		numAll[0] = 0;

@@ -43,47 +43,43 @@ public final class Simulation {
 	}
 	
 /**
- * Startuje i kończy sumylacje	
+ * Startuje i kończy sumylacje. Używane tylko w przypadku wyświetlania w konsoli	
  */
 	public void runSimulation() {
 		
-		if(parameters.console) {
-			showDescription();
-			showCurrentState();
-		}
+		showDescription();
+		showCurrentState();
 		while(!ifEnd()) {
 			mainLoop();
 		}
-		if(parameters.console) {
-			showDescription();
-			System.out.println(AnimalStats.getString());
-		}
+		showDescription();
+		System.out.println(AnimalStats.getString());
+
 
 		
 		try{
 			SaveAsCSV.saveToFile(parameters);
 		}
 		catch(IOException e) {
-			
+			System.out.println("Saving failed");
 		}
-		
-		if(parameters.console) {
-
-			System.out.println("Koniec symulacji");
-		}
-
+		System.out.println("Koniec symulacji");
 	}
 	
 /**
  * Zawiera wszystkie czynności wykonywane podczas jednej iteracji symualcji
- * Czyli pokazywanie łąki, iterację łąki, przemiszczanie się i usuwanie zwierząt oraz interakcję pomiędzy zwierzętami
+ * Czyli pokazywanie łąki, iterację łąki, 
  */
 	void mainLoop() {
 		doIteration();
 		showCurrentState();
 		
 	}
-	
+/**
+ * Zawiera rutynowe metody neizbędne do przeprowadzanai symulacji.
+ * Aktualizuje nr iteracji.
+ * Przemiszczanie się i usuwanie zwierząt oraz interakcję pomiędzy zwierzętami
+ */
 	public void doIteration() {
 		numIteration++;
 		meadow.doIteration();

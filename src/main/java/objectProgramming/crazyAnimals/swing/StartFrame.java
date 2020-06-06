@@ -3,10 +3,18 @@ import javax.swing.*;
 
 import objectProgramming.crazyAnimals.main.Parameters;
 
+/**
+ * Startowe okno symulacji. Wyświetla panel startowy.
+ * @author Mikołaj
+ *
+ */
 @SuppressWarnings("serial")
 public class StartFrame extends JFrame {
 
-
+/**
+ * Tworzy okno z tytułem "Crazy Animals". Dodaje do okna panel startowy.
+ * @param parameters - parametry domyślne
+ */
 	public StartFrame(Parameters parameters) {
 		super("Crazy Animals");
 		JPanel startPanel = new StartPanel(this, parameters);
