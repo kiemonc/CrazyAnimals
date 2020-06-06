@@ -21,8 +21,9 @@ public class StartPanel extends JPanel{
  	private JFrame parent;
  	private Parameters parameters;
  
- 	public StartPanel(JFrame frame) {
+ 	public StartPanel(JFrame frame, Parameters parameters) {
  		parent = frame;
+ 		this.parameters = parameters;
  		startButton = new StartButton();
  		parametersButton = new ParametersButton();
  		setLayout(null);
