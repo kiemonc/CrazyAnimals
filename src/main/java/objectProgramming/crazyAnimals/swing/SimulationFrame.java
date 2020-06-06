@@ -83,7 +83,6 @@ public class SimulationFrame extends JFrame {
 		stats.setBounds(dimension.height - dimension.height/10, 50, dimension.width - dimension.height, 50);
 		legend.setBounds(dimension.height - dimension.height/10, 100, dimension.width - dimension.height, 200);
 
-		timer.start();
 		ControlPanel controlPanel = new ControlPanel(timer,this);
 		controlPanel.setBounds(dimension.height - dimension.height/10, 200, dimension.width - dimension.height, 50);
 		add(controlPanel);
