@@ -19,7 +19,9 @@ public class LegendPanel extends JPanel {
 	private String [] names = {"Cat", "Cow", "Mouse", "Sheep", "Wolf", "Grass", "Cheese", "Meadow", "Waterhole"};
 	private Color [] colors = {Color.black, Color.magenta, Color.gray, Color.white, Color.orange, Color.pink, Color.yellow, Color.green, Color.cyan};
 	private JPanel buttonAndName;
-	
+	/**
+	 * Konstruktor tworzy panel pokazujący legendę oznaczeń na łące
+	 */
 	public LegendPanel() {
 		for(int i = 0; i < 9; i++) {
 			JButton tmp = new JButton("");

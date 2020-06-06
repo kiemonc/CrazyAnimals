@@ -61,15 +61,16 @@ public class StartPanel extends JPanel{
  	class ParametersButton extends JButton implements ActionListener {
  
 		private static final long serialVersionUID = 1L;
+		private ParametersFrame frame;
 
 		ParametersButton() {
  			super("Configure parameters");
+ 			frame = new ParametersFrame(panel, parameters);
  			addActionListener(this);
  		}
  
  		@Override
  		public void actionPerformed(ActionEvent e) {
- 			ParametersFrame frame = new ParametersFrame(panel);
  			frame.showFrame();
  		}
  	}
