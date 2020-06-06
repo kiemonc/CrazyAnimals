@@ -5,10 +5,13 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Random;
 
-import javax.swing.JOptionPane;
 
+import objectProgramming.crazyAnimals.animal.AnimalCreator;
 import objectProgramming.crazyAnimals.animal.AnimalStats;
-import objectProgramming.crazyAnimals.swing.SimulationFrame;
+import objectProgramming.crazyAnimals.animal.IAnimal;
+import objectProgramming.crazyAnimals.animal.IAnimalCreator;
+import objectProgramming.crazyAnimals.area.Meadow;
+
 
 /**
  * 
@@ -23,15 +26,14 @@ public final class Simulation {
 	//private double startTime;
 	private Parameters parameters;
 	int numIteration;
-	objectProgramming.crazyAnimals.area.Meadow meadow;
-	private objectProgramming.crazyAnimals.animal.IAnimalCreator animalCreator;
-	private List<objectProgramming.crazyAnimals.animal.IAnimal> animals;
-	private SimulationFrame frame;
+	Meadow meadow;
+	private IAnimalCreator animalCreator;
+	private List<IAnimal> animals;
 	
 	public Simulation(Parameters parameters, Random random) {
 		this.parameters = parameters;
-		meadow = new objectProgramming.crazyAnimals.area.Meadow(parameters.meadowWidth, parameters.meadowHeight, parameters.numWaterholes, parameters.meadowHeight*parameters.meadowWidth/10, random);
-		animalCreator = new objectProgramming.crazyAnimals.animal.AnimalCreator();
+		meadow = new Meadow(parameters.meadowWidth, parameters.meadowHeight, parameters.numWaterholes, parameters.meadowHeight*parameters.meadowWidth/10, random);
+		animalCreator = new AnimalCreator();
 		animals = animalCreator.createAnimals(parameters.startNum[0], parameters.startNum[1], parameters.startNum[2], parameters.startNum[3], parameters.startNum[4], meadow, random);
 		numIteration = 0;
 	}
@@ -44,11 +46,8 @@ public final class Simulation {
 		if(parameters.console) {
 			showDescription();
 			showCurrentState();
-		} else {
-			frame = new SimulationFrame(meadow);
 		}
 		while(!ifEnd()) {
-			numIteration++;
 			mainLoop();
 		}
 		if(parameters.console) {
@@ -76,11 +75,16 @@ public final class Simulation {
  * Czyli pokazywanie łąki, iterację łąki, przemiszczanie się i usuwanie zwierząt oraz interakcję pomiędzy zwierzętami
  */
 	void mainLoop() {
+		doIteration();
+		showCurrentState();
+		
+	}
+	
+	public void doIteration() {
+		numIteration++;
 		meadow.doIteration();
 		removeOrMoveAnimals();
 		interactionsBetweenAnimals();
-		showCurrentState();
-		
 	}
 	
 /**
@@ -121,9 +125,7 @@ public final class Simulation {
 		if(parameters.console) {
 			System.out.println(numIteration);
 			System.out.println(meadow);
-		} else {
-			frame.update();
-		}
+		} 
 	}
 	
 /**
@@ -131,7 +133,7 @@ public final class Simulation {
  * Wartości końcowe symulacji są akceptowalne. Przekroczenie tego zakresu zatrzymuje symulacje
  * @return Wartość logiczna odpowiadająca na pytanie czy nastąpił koniec symulacji
  */
-	boolean ifEnd() {
+	public boolean ifEnd() {
 		for(int i = 0; i < 5; i++) {
 			if(objectProgramming.crazyAnimals.animal.AnimalStats.getCurrentPopulation()[i] < parameters.endMinNum[i] || (parameters.endMaxNum[i]!= -1 && objectProgramming.crazyAnimals.animal.AnimalStats.getCurrentPopulation()[i] > parameters.endMaxNum[i])) {
 				return true;
@@ -154,6 +156,9 @@ public final class Simulation {
 		System.out.println("/    / - waterhole");
 		System.out.println(" /    \\    / - two neighbouring waterholes");
 	}
-
+	
+	public Meadow getMeadow() {
+		return meadow;
+	}
 	
 }

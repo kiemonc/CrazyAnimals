@@ -9,24 +9,17 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Scanner;
-
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
 import objectProgramming.crazyAnimals.animal.AnimalStats;
 import objectProgramming.crazyAnimals.area.Feed;
 
 /**
+ * Klasa odpowiada za zapisywanie parametrów i statystyk do pliku 
  * @author jakub
- *
  */
 public class SaveAsCSV {
 	/**
-	 * Zawiera ścieżkę do pliku w którym są zapisywane dane
+	 * Zawiera pierwszą linię pliku, jest ona dodawana tylko gdy plik był pusty
 	 */
-	private static String filePath = "data.csv";
 	private static String firstRow = "date, meadow height, meadow width, number of waterholes, max iterations number, "
 			+ "min cats on start, min cows on start, min mouses on start, min sheeps on start, min wolves on start, "
 			+ "max cats on start, max cows on start, max mouses on start, max sheeps on start, max wolves on start, "
@@ -38,25 +31,14 @@ public class SaveAsCSV {
 			+ "max population of cats, max population of cows, max population of mouses, max population of sheeps, max population of wolves";
 	/**
 	 * Zapisuje parametry i statystyki symulacji do pliku
-	 * @param parameters obiekt z parametrami początkowymi symulacji
+	 * @param parameters obiekt z parametrami poczÄ…tkowymi symulacji
 	 */
 	public static void saveToFile(Parameters parameters) throws IOException{
-		/**
-		System.out.print("Enter file path (.csv): ");
-		Scanner scanner = new Scanner(System.in);
-		String tmp = scanner.nextLine();
-		scanner.close();
-		**/
-		
 		String tmp = parameters.path;
-		File file;
-		if(tmp != "-")
-			filePath = tmp;
-		if(!filePath.contains(".csv")) {
-			filePath += ".csv";
-		}
+		if(!tmp.contains(".csv"))
+			tmp += ".csv";
 		try {
-			file = new File(filePath);
+			File file = new File(tmp);
 			PrintWriter writer;
 			if(file.exists()) 
 				writer = new PrintWriter(new FileWriter(file, true));
@@ -68,14 +50,13 @@ public class SaveAsCSV {
 			writer.println(getParamsAndStats(parameters));
 			writer.close();
 		} catch (IOException e) {
-			System.out.println("File error");
 			throw e;
 		}
 	}
 	/**
-	 * Pobiera parametry początkowe i statystyki symulacji
-	 * @param parameters obiekt z parametrami początkowymi symulacji
-	 * @return wartości oddzielone przecinkami
+	 * Pobiera parametry poczÄ…tkowe i statystyki symulacji
+	 * @param parameters obiekt z parametrami poczÄ…tkowymi symulacji
+	 * @return wartoĹ›ci oddzielone przecinkami
 	 */
 	private static String getParamsAndStats(Parameters parameters) {
 		String params = new String("");

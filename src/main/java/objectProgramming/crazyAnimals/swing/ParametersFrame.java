@@ -29,7 +29,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	
 	private List<JFormattedTextField> textFieldList = new LinkedList<>();
-	private JButton confirm = new JButton("Confirm"), close = new JButton("Close"), setFilePath = new JButton("Set file path");
+	private JButton confirm = new JButton("Confirm"), close = new JButton("Close"), setFilePath = new JButton("Set file path"), setDefaults = new JButton("Set defaults");
 	private JLabel error = new JLabel("Invalid format of parameters"), confirmed = new JLabel("Parameters saved"), filePath;
 	private Parameters parameters;
 	private StartPanel startPanel;
@@ -37,7 +37,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 	/**
 	 * Konstruktor klasy tworzy nowe okienko o odpowiednich parametrach oraz wywyłuje metody rozmieszczające na nim poszczególne elementy
 	 */
-	ParametersFrame(StartPanel panel){
+	ParametersFrame(StartPanel panel, Parameters parameters){
 		super("Parameters");
 		startPanel=panel;
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -50,12 +50,15 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		textFieldList = initiateTextFields();
 		showTextFields(textFieldList);
 		
-		filePath = new JLabel("File path: data.csv");
+		filePath = new JLabel();
 		add(setFilePath);
 		add(filePath);
 		setFilePath.setBounds(20, 350, 130, 20);
 		filePath.setBounds(20, 330, 300, 20);
 		setFilePath.addActionListener(this);
+		add(setDefaults);
+		setDefaults.setBounds(210, 350, 130, 20);
+		setDefaults.addActionListener(this);
 		
 		confirm.setBounds(100, 400, 80, 20);
 		confirm.addActionListener(this);
@@ -64,10 +67,14 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		close.addActionListener(this);
 		add(close);
 		error.setBounds(110, 500, 180, 20);
+		error.setForeground(Color.red);
 		add(error);
 		confirmed.setBounds(130, 500, 180, 20);
 		add(confirmed);
 		
+		if(parameters == null) {
+			setDefaults();
+		}
 		setParameters();
 		}
 	
@@ -77,19 +84,16 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		if(source == confirm) {
 			try {
 				setParameters();
+				parameters.setParametrs();
 				error.setBounds(110, 500, 180, 20);
 				confirmed.setBounds(130, 380, 180, 20);
+				//TODO wyrzuca się wyjątek NullPointerException mimo że parametery są poprawne
+				startPanel.setParameters(parameters);
 			}
-			catch (NumberFormatException e) {
+			catch (NumberFormatException | BadParametersException e) {
 				error.setBounds(110, 380, 180, 20);
 				confirmed.setBounds(130, 500, 180, 20);
 			}
-			try {
-				parameters.setParametrs();
-			} catch (BadParametersException e) {
-				e.printStackTrace();
-			}
-			startPanel.setParameters(parameters);
 		}
 		if(source == close) {
 			dispose();
@@ -103,6 +107,35 @@ public class ParametersFrame extends JFrame implements ActionListener{
 			if(!parameters.path.contains(".csv"))
 				parameters.path += ".csv";
 			filePath.setText("File path: " + parameters.path);
+		}
+		if(source == setDefaults) {
+			setDefaults();
+		}
+	}
+	/**
+	 * Metoda ustawia wszystkie pola na wartości domyślne
+	 */
+	private void setDefaults() {
+		parameters = new Parameters(new Random());
+		parameters.path = "data.csv";
+		try {
+			parameters.setParametrs();
+			textFieldList.get(0).setText(parameters == null ? "10" : parameters.meadowWidth + "");
+			textFieldList.get(1).setText(parameters == null ? "10" : parameters.meadowHeight + "");
+			textFieldList.get(2).setText(parameters == null ? "10" : parameters.numWaterholes + "");
+			textFieldList.get(3).setText(parameters == null ? "20" : parameters.maxIterationNum + "");
+			for(int i = 0; i < 5; i++) {
+				textFieldList.get(4 + 2 * i).setText(parameters == null ? "5" : parameters.startMinNum[i] + "");
+				textFieldList.get(5 + 2 * i).setText(parameters == null ? "5" : parameters.startMaxNum[i] + "");
+			}
+			for(int i = 0; i < 5; i++) {
+				textFieldList.get(14 + 2 * i).setText(parameters == null ? "0" : parameters.endMinNum[i] + "");
+				textFieldList.get(15 + 2 * i).setText(parameters == null ? "10" : parameters.endMaxNum[i] + "");
+			}
+			parameters.path = "data.csv";
+			filePath.setText("File path: " + parameters.path);
+		} catch (BadParametersException e) {
+			
 		}
 	}
 	/**
@@ -163,33 +196,13 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		}
 	}
 	/**
-	 * Metoda tworzy pola tekstowe, ustawia na nich odpowiedznie napisy i dodaje je do listy
+	 * Metoda tworzy pola tekstowe i dodaje je do listy
 	 * @return lista stworzonych pól tekstowych
 	 */
 	private List<JFormattedTextField> initiateTextFields() {
-		JFormattedTextField width, height, numWaterholes, maxIterationNum;
-		JFormattedTextField [] initialMinAnimals = new JFormattedTextField[5], initialMaxAnimals = new JFormattedTextField[5], endMinAnimals = new JFormattedTextField[5], endMaxAnimals = new JFormattedTextField[5];
 		List<JFormattedTextField> textList = new LinkedList<>();
-		width = new JFormattedTextField("10");
-		textList.add(width);
-		height = new JFormattedTextField("10");
-		textList.add(height);
-		numWaterholes = new JFormattedTextField("10");
-		textList.add(numWaterholes);
-		maxIterationNum = new JFormattedTextField("20");
-		textList.add(maxIterationNum);
-		for(int i = 0; i < 5; i++) {
-			initialMinAnimals[i] = new JFormattedTextField("5");
-			initialMaxAnimals[i] = new JFormattedTextField("5");
-			textList.add(initialMinAnimals[i]);
-			textList.add(initialMaxAnimals[i]);
-		}
-		for(int i = 0; i < 5; i++) {
-			endMinAnimals[i] = new JFormattedTextField("5");
-			endMaxAnimals[i] = new JFormattedTextField("5");
-			textList.add(endMinAnimals[i]);
-			textList.add(endMaxAnimals[i]);
-		}
+		for(int i = 0; i < 24; i++)
+			textList.add(new JFormattedTextField());
 		return textList;
 	}
 	/**
@@ -258,12 +271,12 @@ public class ParametersFrame extends JFrame implements ActionListener{
 				}
 			}
 			for(int i = 0; i < 5; i++) {
-				if(param.startMinNum[i] < param.endMinNum[i]) {
+				if(param.endMinNum[i] != -1 && param.startMinNum[i] < param.endMinNum[i]) {
 					setRedBackground(4 + 2 * i);
 					setRedBackground(14 + 2 * i);
 					ifThrow = true;
 				}
-				if(param.startMaxNum[i] > param.endMaxNum[i]) {
+				if(param.endMaxNum[i] != -1 && param.startMaxNum[i] > param.endMaxNum[i]) {
 					setRedBackground(5 + 2 * i);
 					setRedBackground(15 + 2 * i);
 					ifThrow = true;
@@ -325,6 +338,9 @@ public class ParametersFrame extends JFrame implements ActionListener{
 	public Parameters getParameters() {
 		return parameters;
 	}
+	/**
+	 * Wyświetla okienko z parameterami
+	 */
 	public void showFrame() {
 		setVisible(true);
 	}

@@ -1,9 +1,9 @@
 package objectProgramming.crazyAnimals.swing;
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class StartFrame extends JFrame {
 
-	private static final long serialVersionUID = 4030969856704141014L;
 
 	public StartFrame() {
 		super("Crazy Animals");
@@ -17,6 +17,4 @@ public class StartFrame extends JFrame {
 		pack();
 		setVisible(true);
 	}
-
-	
 }
