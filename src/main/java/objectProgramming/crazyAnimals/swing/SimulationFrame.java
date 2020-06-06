@@ -25,23 +25,27 @@ public class SimulationFrame extends JFrame {
 	private JFrame frame;
 	private Simulation simulation;
 	private StartFrame startFrame;
-	
+	boolean gameOver;
 	/**
 	 * Steruje wykonywaniem kolejnych iteracji symulacji
 	 */
 	private Timer timer = new Timer(100, new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(!simulation.ifEnd()) {
-				updateState();
-			} else {
-				gameOver();
-			}
+			doIteration();
 		}
 		
 	});
 	
-	void updateState() {
+	void doIteration() {
+		if(!simulation.ifEnd()) {
+			updateState();
+		} else {
+			gameOver();
+		}
+	}
+	
+	private void updateState() {
 		simulation.doIteration();
 		for(FieldPanel field : panels) {
 			field.updateButtons();
@@ -111,7 +115,7 @@ public class SimulationFrame extends JFrame {
 					blackline = BorderFactory.createMatteBorder(0, 1, 1, 1, Color.BLACK);
 				}
 				**/
-				FieldPanel field = new FieldPanel(fieldSize, fields.get(i).get(j));
+				FieldPanel field = new FieldPanel(fieldSize, fields.get(i).get(j), timer);
 				panels.add(field);
 				field.setBounds(offset+(fieldSize)*j, offset+(fieldSize)*i, fieldSize, fieldSize);
 				field.setBorder(blackline);
@@ -128,7 +132,7 @@ public class SimulationFrame extends JFrame {
 		stats.update();
 	}
 	
-	private void gameOver() {
+	void gameOver() {
 		updateState();
 		timer.stop();
 		JOptionPane.showMessageDialog(frame,"End of simulation");

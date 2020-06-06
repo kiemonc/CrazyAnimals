@@ -31,6 +31,7 @@ public final class Simulation {
 	private List<IAnimal> animals;
 	
 	public Simulation(Parameters parameters, Random random) {
+		new AnimalStats();
 		this.parameters = parameters;
 		meadow = new Meadow(parameters.meadowWidth, parameters.meadowHeight, parameters.numWaterholes, parameters.meadowHeight*parameters.meadowWidth/10, random);
 		animalCreator = new AnimalCreator();

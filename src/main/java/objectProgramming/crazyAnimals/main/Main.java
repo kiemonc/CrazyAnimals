@@ -2,6 +2,9 @@
 package objectProgramming.crazyAnimals.main;
 
 import java.util.Random;
+
+import javax.swing.JOptionPane;
+
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.JCommander.Builder;
 
@@ -69,8 +72,16 @@ public final class Main {
 	public static void main(String[] args) {
 		setParameters(args);
 		new AnimalStats();
+		
 		if(parameters.console) {
-			runSimulation();
+			try {
+				parameters.setParametrs();
+			} catch (BadParametersException e) {
+				System.out.println("Bad parameters");
+				e.printStackTrace();
+			}
+			simulation = new Simulation(parameters, random);
+			simulation.runSimulation();
 		} else {
  		EventQueue.invokeLater(new Runnable() {
  			@Override
@@ -82,6 +93,12 @@ public final class Main {
 	}
 	
 	public static void runSimulation(Parameters parameters) {
+		try {
+			parameters.setParametrs();
+		} catch (BadParametersException e) {
+			JOptionPane.showMessageDialog(startFrame, "Invalid parameters","Error", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
 		simulation = new Simulation(parameters, random);
  		EventQueue.invokeLater(new Runnable() {
  			@Override

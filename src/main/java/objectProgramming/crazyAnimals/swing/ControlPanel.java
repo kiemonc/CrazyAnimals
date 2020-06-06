@@ -14,6 +14,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 	
 	private JButton startStop = new JButton("STOP");
 	private JButton nextStep = new JButton("NEXT");
+	private JButton end = new JButton("END");
 	private SimulationFrame parent;
 	
 	private Timer timer;
@@ -23,8 +24,10 @@ public class ControlPanel extends JPanel implements ActionListener {
 		setLayout(new FlowLayout());
 		startStop.addActionListener(this);
 		nextStep.addActionListener(this);
+		end.addActionListener(this);
 		add(startStop);
 		add(nextStep);
+		add(end);
 		nextStep.setVisible(false);
 		setVisible(true);
 
@@ -45,7 +48,9 @@ public class ControlPanel extends JPanel implements ActionListener {
 				nextStep.setVisible(false);
 			}
 		} else if (source == nextStep) {
-			parent.updateState();
+			parent.doIteration();
+		} else if (source == end) {
+			parent.gameOver();
 		}
 	}
 }
