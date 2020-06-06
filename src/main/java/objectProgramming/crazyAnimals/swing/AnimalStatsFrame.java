@@ -26,13 +26,14 @@ public class AnimalStatsFrame extends JFrame implements ActionListener{
 	private JLabel species, hunger, thirst, age, isMale, iterationsToMove;
 	private List<JLabel> labelsList = new LinkedList<>();
 	private JButton close = new JButton("Close");
-	private Timer timer;
 	private IAnimal animal;
+	private List<AnimalStatsFrame> animalStatsFrames;
 	/**
 	 * Konstruktor tworzy okienko oraz umieszcza na nim etykiety z wartościami parametrów zwierzęcia podanego jako argument
 	 * @param animal referencja do zwierzęcia, dla którego wyświetlane są statystyki
+	 * @param animalStatsFrames 
 	 */
-	public AnimalStatsFrame(IAnimal animal, Timer timer) {
+	public AnimalStatsFrame(IAnimal animal, List<AnimalStatsFrame> animalStatsFrames) {
 		super("Animal stats");
 		setLocation(200, 200);
 		setSize(250, 280);
@@ -42,7 +43,7 @@ public class AnimalStatsFrame extends JFrame implements ActionListener{
 		setResizable(false);
 		setAlwaysOnTop(true);
 		this.animal = animal;
-		this.timer = timer;
+		this.animalStatsFrames = animalStatsFrames;
 		values = animal.getStats();
 		
 		species = new JLabel("Species: " + (animal instanceof Cat ? "cat" : (animal instanceof Cow ? "cow" : (animal instanceof Mouse ? "mouse" : (animal instanceof Sheep ? "sheep" : (animal instanceof Wolf ? "wolf" : ""))))));
@@ -65,7 +66,6 @@ public class AnimalStatsFrame extends JFrame implements ActionListener{
 		
 		close.setBounds(60, 210, 100, 20);
 		close.addActionListener(this);
-		this.timer.addActionListener(this);
 		add(close);
 		}
 
@@ -75,12 +75,9 @@ public class AnimalStatsFrame extends JFrame implements ActionListener{
 		if(source == close) {
 			dispose();
 		}
-		if(source == timer) {
-			update();
-		}
 	}
 	
-	private void update() {
+	public void update() {
 		values = animal.getStats();
 		species.setText("Species: " + (animal instanceof Cat ? "cat" : (animal instanceof Cow ? "cow" : (animal instanceof Mouse ? "mouse" : (animal instanceof Sheep ? "sheep" : (animal instanceof Wolf ? "wolf" : ""))))));
 		hunger.setText("Hunger: " + values[0]);

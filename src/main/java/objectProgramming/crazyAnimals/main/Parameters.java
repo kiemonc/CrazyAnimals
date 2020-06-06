@@ -157,7 +157,7 @@ public final class Parameters {
 	 * Ścieżka do pliku, który zostanie zapisany na końcu symulacji. Jeżeli już istniej plik o takiej nazwie to statystyki zostaną dopisane na końcu pliku.
 	 */
 	@Parameter(names = {"--path","-p"}, description = "Path to the file with statistics")
-	public String path = "data";
+	public String path = "data.csv";
 	
 	
 	/**

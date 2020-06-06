@@ -46,7 +46,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		setResizable(false);
 		setLocation(200, 200);
 		setLayout(null);
-		
+		this.startPanel = panel;
 		showLabels(initiateLabels());
 		textFieldList = initiateTextFields();
 		showTextFields(textFieldList);
@@ -86,7 +86,6 @@ public class ParametersFrame extends JFrame implements ActionListener{
 				parameters.setParametrs();
 				error.setBounds(110, 500, 180, 20);
 				confirmed.setBounds(130, 380, 180, 20);
-				//TODO wyrzuca się wyjątek NullPointerException mimo że parametery są poprawne
 				startPanel.setParameters(parameters);
 			}
 			catch (NumberFormatException | BadParametersException e) {
@@ -301,6 +300,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 				throw(new NumberFormatException());
 			parameters = param;
 		}
+		//TODO dodać ustawienie wartości parameters.path
 		catch (NumberFormatException e) {
 			throw e;
 		}

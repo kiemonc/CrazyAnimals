@@ -21,8 +21,9 @@ public class StartPanel extends JPanel{
  	private JFrame parent;
  	private Parameters parameters;
  
- 	public StartPanel(JFrame frame) {
+ 	public StartPanel(JFrame frame, Parameters parameters) {
  		parent = frame;
+ 		this.parameters = parameters;
  		startButton = new StartButton();
  		parametersButton = new ParametersButton();
  		setLayout(null);
@@ -65,12 +66,13 @@ public class StartPanel extends JPanel{
 
 		ParametersButton() {
  			super("Configure parameters");
- 			frame = new ParametersFrame(panel, parameters);
+ 			
  			addActionListener(this);
  		}
  
  		@Override
  		public void actionPerformed(ActionEvent e) {
+ 			frame = new ParametersFrame(panel, parameters);
  			frame.showFrame();
  		}
  	}
