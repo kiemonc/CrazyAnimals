@@ -51,14 +51,15 @@ import java.awt.Color;
 
 		private static final long serialVersionUID = -8313704398963260970L;
 		private IEatable eatable;
-		
+		public EatableButton() {
+ 			addActionListener(this);
+		}
 		/**
 		 * Uaktualnia stan przycisku, zmienia kolor.
 		 * @param eatable - obiekt który przycisk ma symbolizować
 		 */
 		void update(IEatable eatable) {
  			this.eatable = eatable;
- 			addActionListener(this);
  			if(eatable instanceof Cat) {
  				setBackground(Color.black);
  			} else if(eatable instanceof Cow) {

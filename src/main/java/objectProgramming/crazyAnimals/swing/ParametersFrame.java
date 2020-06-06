@@ -6,14 +6,17 @@ package objectProgramming.crazyAnimals.swing;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import objectProgramming.crazyAnimals.main.BadParametersException;
 import objectProgramming.crazyAnimals.main.Parameters;
@@ -26,8 +29,8 @@ public class ParametersFrame extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	
 	private List<JFormattedTextField> textFieldList = new LinkedList<>();
-	private JButton confirm = new JButton("Confirm"), close = new JButton("Close");
-	private JLabel error = new JLabel("Invalid format of parameters"), confirmed = new JLabel("Parameters saved");
+	private JButton confirm = new JButton("Confirm"), close = new JButton("Close"), setFilePath = new JButton("Set file path");
+	private JLabel error = new JLabel("Invalid format of parameters"), confirmed = new JLabel("Parameters saved"), filePath;
 	private Parameters parameters;
 	private StartPanel startPanel;
 	
@@ -38,7 +41,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		super("Parameters");
 		startPanel=panel;
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setSize(390, 430);
+		setSize(390, 470);
 		setResizable(false);
 		setLocation(200, 200);
 		setLayout(null);
@@ -47,15 +50,22 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		textFieldList = initiateTextFields();
 		showTextFields(textFieldList);
 		
-		confirm.setBounds(100, 360, 80, 20);
+		filePath = new JLabel("File path: data.csv");
+		add(setFilePath);
+		add(filePath);
+		setFilePath.setBounds(20, 350, 130, 20);
+		filePath.setBounds(20, 330, 300, 20);
+		setFilePath.addActionListener(this);
+		
+		confirm.setBounds(100, 400, 80, 20);
 		confirm.addActionListener(this);
 		add(confirm);
-		close.setBounds(200, 360, 80, 20);
+		close.setBounds(200, 400, 80, 20);
 		close.addActionListener(this);
 		add(close);
-		error.setBounds(110, 450, 180, 20);
+		error.setBounds(110, 500, 180, 20);
 		add(error);
-		confirmed.setBounds(130, 450, 180, 20);
+		confirmed.setBounds(130, 500, 180, 20);
 		add(confirmed);
 		
 		setParameters();
@@ -67,12 +77,12 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		if(source == confirm) {
 			try {
 				setParameters();
-				error.setBounds(110, 450, 180, 20);
-				confirmed.setBounds(130, 335, 180, 20);
+				error.setBounds(110, 500, 180, 20);
+				confirmed.setBounds(130, 380, 180, 20);
 			}
 			catch (NumberFormatException e) {
-				error.setBounds(110, 335, 180, 20);
-				confirmed.setBounds(130, 450, 180, 20);
+				error.setBounds(110, 380, 180, 20);
+				confirmed.setBounds(130, 500, 180, 20);
 			}
 			try {
 				parameters.setParametrs();
@@ -83,6 +93,16 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		}
 		if(source == close) {
 			dispose();
+		}
+		if(source == setFilePath) {
+			JFileChooser fileChooser = new JFileChooser(new File("data.csv"));
+			fileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
+			fileChooser.setFileFilter(new FileNameExtensionFilter("CSV file", ".csv"));
+			fileChooser.showOpenDialog(fileChooser);
+			parameters.path = fileChooser.getSelectedFile().getPath();
+			if(!parameters.path.contains(".csv"))
+				parameters.path += ".csv";
+			filePath.setText("File path: " + parameters.path);
 		}
 	}
 	/**

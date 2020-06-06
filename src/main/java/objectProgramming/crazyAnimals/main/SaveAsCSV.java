@@ -37,7 +37,7 @@ public class SaveAsCSV {
 			+ "current population of cats, current population of cows, current population of mouses, current population of sheeps, current population of wolves, "
 			+ "max population of cats, max population of cows, max population of mouses, max population of sheeps, max population of wolves";
 	/**
-	 * Zapisuje parametry i statystyki symulacji do pliku (wersja konsolowa)
+	 * Zapisuje parametry i statystyki symulacji do pliku
 	 * @param parameters obiekt z parametrami początkowymi symulacji
 	 */
 	public static void saveToFile(Parameters parameters) throws IOException{
@@ -69,35 +69,6 @@ public class SaveAsCSV {
 			writer.close();
 		} catch (IOException e) {
 			System.out.println("File error");
-			throw e;
-		}
-	}
-	/**
-	 * Zapisuje parametry i statystyki symulacji do pliku (wersja okienkowa)
-	 * @param parameters obiekt z parametrami początkowymi symulacji
-	 */
-	public static void saveToFileInFrame(Parameters parameters) throws IOException{
-		JFileChooser fileChooser = new JFileChooser();
-		fileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
-		fileChooser.setFileFilter(new FileNameExtensionFilter("CSV file", ".csv"));
-		fileChooser.showOpenDialog(fileChooser);
-		try {
-			File file;
-			if(!fileChooser.getSelectedFile().getPath().contains(".csv"))
-				file = new File(fileChooser.getSelectedFile().getPath() + ".csv");
-			else file = fileChooser.getSelectedFile();
-			PrintWriter writer;
-			if(file.exists()) 
-				writer = new PrintWriter(new FileWriter(file, true));
-			else {
-				writer = new PrintWriter(new FileWriter(file));
-				writer.println(firstRow);
-			}
-			
-			writer.println(getParamsAndStats(parameters));
-			writer.close();
-		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Please try again", "File error", JOptionPane.INFORMATION_MESSAGE);
 			throw e;
 		}
 	}
