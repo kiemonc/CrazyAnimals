@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -72,9 +73,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		confirmed.setBounds(130, 500, 180, 20);
 		add(confirmed);
 		
-		if(parameters == null) {
-			setDefaults();
-		}
+		setValues(parameters);
 		setParameters();
 		}
 	
@@ -99,41 +98,47 @@ public class ParametersFrame extends JFrame implements ActionListener{
 			dispose();
 		}
 		if(source == setFilePath) {
-			JFileChooser fileChooser = new JFileChooser(new File("data.csv"));
-			fileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
-			fileChooser.setFileFilter(new FileNameExtensionFilter("CSV file", ".csv"));
-			fileChooser.showOpenDialog(fileChooser);
-			parameters.path = fileChooser.getSelectedFile().getPath();
-			if(!parameters.path.contains(".csv"))
-				parameters.path += ".csv";
+			try{
+				JFileChooser fileChooser = new JFileChooser(new File(parameters.path));
+				fileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
+				fileChooser.setFileFilter(new FileNameExtensionFilter("CSV file", ".csv"));
+				fileChooser.showOpenDialog(fileChooser);
+				if(!fileChooser.getSelectedFile().getPath().contains(".csv"))
+					parameters.path = fileChooser.getSelectedFile().getPath() + ".csv";
+				else parameters.path = fileChooser.getSelectedFile().getPath();
 			filePath.setText("File path: " + parameters.path);
+			}
+			catch(NullPointerException e) {
+				
+			}
 		}
 		if(source == setDefaults) {
-			setDefaults();
+			setValues(null);
 		}
 	}
 	/**
-	 * Metoda ustawia wszystkie pola na wartości domyślne
+	 * Metoda ustawia wszystkie pola na wartości domyślne lub zapisane w argumencie
+	 * @param parameters obiekt zawierający parametry symulacji (gdy null pobierane są wartości domyślne)
 	 */
-	private void setDefaults() {
-		parameters = new Parameters(new Random());
-		parameters.path = "data.csv";
+	private void setValues(Parameters parameters) {
+		if(parameters == null)
+			parameters = new Parameters(new Random());
 		try {
 			parameters.setParametrs();
-			textFieldList.get(0).setText(parameters == null ? "10" : parameters.meadowWidth + "");
-			textFieldList.get(1).setText(parameters == null ? "10" : parameters.meadowHeight + "");
-			textFieldList.get(2).setText(parameters == null ? "10" : parameters.numWaterholes + "");
-			textFieldList.get(3).setText(parameters == null ? "20" : parameters.maxIterationNum + "");
+			textFieldList.get(0).setText(parameters.meadowWidth + "");
+			textFieldList.get(1).setText(parameters.meadowHeight + "");
+			textFieldList.get(2).setText(parameters.numWaterholes + "");
+			textFieldList.get(3).setText(parameters.maxIterationNum + "");
 			for(int i = 0; i < 5; i++) {
-				textFieldList.get(4 + 2 * i).setText(parameters == null ? "5" : parameters.startMinNum[i] + "");
-				textFieldList.get(5 + 2 * i).setText(parameters == null ? "5" : parameters.startMaxNum[i] + "");
+				textFieldList.get(4 + 2 * i).setText(parameters.startMinNum[i] + "");
+				textFieldList.get(5 + 2 * i).setText(parameters.startMaxNum[i] + "");
 			}
 			for(int i = 0; i < 5; i++) {
-				textFieldList.get(14 + 2 * i).setText(parameters == null ? "0" : parameters.endMinNum[i] + "");
-				textFieldList.get(15 + 2 * i).setText(parameters == null ? "10" : parameters.endMaxNum[i] + "");
+				textFieldList.get(14 + 2 * i).setText(parameters.endMinNum[i] + "");
+				textFieldList.get(15 + 2 * i).setText(parameters.endMaxNum[i] + "");
 			}
-			parameters.path = "data.csv";
 			filePath.setText("File path: " + parameters.path);
+			this.parameters = parameters;
 		} catch (BadParametersException e) {
 			
 		}
