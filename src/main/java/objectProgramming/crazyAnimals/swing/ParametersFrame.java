@@ -6,6 +6,8 @@ package objectProgramming.crazyAnimals.swing;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
@@ -29,7 +31,7 @@ import objectProgramming.crazyAnimals.main.Parameters;
 @SuppressWarnings("serial")
 public class ParametersFrame extends JFrame implements ActionListener{
 	
-	private List<JFormattedTextField> textFieldList = new LinkedList<>();
+	private List<TextField> textFieldList = new LinkedList<>();
 	private JButton confirm = new JButton("Confirm"), close = new JButton("Close"), setFilePath = new JButton("Set file path"), setDefaults = new JButton("Set defaults");
 	private JLabel error = new JLabel("Invalid format of parameters"), confirmed = new JLabel("Parameters saved"), filePath;
 	private Parameters parameters;
@@ -203,17 +205,17 @@ public class ParametersFrame extends JFrame implements ActionListener{
 	 * Metoda tworzy pola tekstowe i dodaje je do listy
 	 * @return lista stworzonych pól tekstowych
 	 */
-	private List<JFormattedTextField> initiateTextFields() {
-		List<JFormattedTextField> textList = new LinkedList<>();
+	private List<TextField> initiateTextFields() {
+		List<TextField> textList = new LinkedList<>();
 		for(int i = 0; i < 24; i++)
-			textList.add(new JFormattedTextField());
+			textList.add(new TextField());
 		return textList;
 	}
 	/**
 	 * Metoda umieszcza pola tekstowe przyjęte jako argument w odpowiednim miejscu okienka
 	 * @param textList lista pól tekstowych która ma zostać wyświetlona
 	 */
-	private void showTextFields(List<JFormattedTextField> textList) {
+	private void showTextFields(List<TextField> textList) {
 		for(int i = 0; i < textList.size(); i++) {
 			if(i < 4)
 				textList.get(i).setBounds(180, 10 + 20 * i, 140, 20);
@@ -351,13 +353,27 @@ public class ParametersFrame extends JFrame implements ActionListener{
 	}
 	
 	/**
+	 * Pole tekstowe zaznaczające cały tekst podczas kliknięcia
+	 * @author Mikołaj
+	 *
+	 */
 	class TextField extends JFormattedTextField implements FocusListener {
-	   textField.addFocusListener(new FocusListener(){
-	       @Override
-	       public void focusGained(FocusEvent e){
-	           textField.setText("");
-	       }
-	    });
+	   
+		TextField() {
+			super();
+			addFocusListener(this);
+		}
+
+		@Override
+		public void focusGained(FocusEvent e) {
+			this.selectAll();
+			
+		}
+
+		@Override
+		public void focusLost(FocusEvent e) {
+
+		}
 	}
-	**/
+	
 }
