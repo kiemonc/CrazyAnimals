@@ -31,7 +31,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 	
 	private List<JFormattedTextField> textFieldList = new LinkedList<>();
 	private JButton confirm = new JButton("Confirm"), close = new JButton("Close"), setFilePath = new JButton("Set file path"), setDefaults = new JButton("Set defaults");
-	private JLabel error = new JLabel("Invalid format of parameters"), confirmed = new JLabel("Parameters saved"), filePath;
+	private JLabel error = new JLabel("Invalid format of parameters"), confirmed = new JLabel("Parameters saved"), filePath, info = new JLabel("* \"-1\" - does not matter");
 	private Parameters parameters;
 	private StartPanel startPanel;
 	
@@ -42,7 +42,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		super("Parameters");
 		startPanel=panel;
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setSize(390, 470);
+		setSize(390, 480);
 		setResizable(false);
 		setLocation(200, 200);
 		setLayout(null);
@@ -60,6 +60,8 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		add(setDefaults);
 		setDefaults.setBounds(210, 350, 130, 20);
 		setDefaults.addActionListener(this);
+		info.setBounds(20, 420, 200, 20);
+		add(info);
 		
 		confirm.setBounds(100, 400, 80, 20);
 		confirm.addActionListener(this);
@@ -167,7 +169,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		initialAnimals[4] = new JLabel("Wolevs: ");
 		for(int i = 0; i < 5; i++) 
 			labelList.add(initialAnimals[i]);
-		endNumberOfAnimals = new JLabel("End number of animals:");
+		endNumberOfAnimals = new JLabel("End number of animals: *");
 		labelList.add(endNumberOfAnimals);
 		endAnimals[0] = new JLabel("Cats: ");
 		endAnimals[1] = new JLabel("Cows: ");

@@ -93,13 +93,13 @@ public final class Parameters {
 	 * Liczba wodopoi
 	 */
 	@Parameter(names = {"--waterholes","-wh"}, description = "Number of waterholes")
-	public int numWaterholes = 10;
+	public int numWaterholes = 20;
 	
 	/**
 	 * Maksymalna liczba iteracji. Iteracja o zadanym numerze jest ostatnią wykonywaną.
 	 */
 	@Parameter(names = {"--iterations","-i"}, description = "Max number of iterations. After this number of iterations the simulation will stop.")
-	public int maxIterationNum = 20;
+	public int maxIterationNum = 100;
 	
 	
 	/**
@@ -114,7 +114,7 @@ public final class Parameters {
 	 */
 	@Parameter(names = {"--startMaxNum","-sMax"}, description = "Start max number of animals of each species, separated by ',' [0] - cat; [1] - cow; [2] - mouse; [3] - sheep; [4] - wolf")
 	List<String> startMaxNumList;
-	public int [] startMaxNum = {5,5,5,5,5};
+	public int [] startMaxNum = {10,10,10,10,10};
 	
 	/**
 	 * Tablica minimalnych liczebności zwierząt podczas startu symulacji
@@ -122,7 +122,7 @@ public final class Parameters {
 	 */
 	@Parameter(names = {"--startMinNum","-sMin"}, description = "Start min number of animals of each species, separated by ',' [0] - cat; [1] - cow; [2] - mouse; [3] - sheep; [4] - wolf")
 	List<String> startMinNumList;
-	public int [] startMinNum = {5,5,5,5,5};
+	public int [] startMinNum = {8,8,8,8,8};
 	
 	/**
 	 * Tablica maksymalnych liczebności zwierząt. Przekroczenie, którejkowiek wartości kończy symulację.

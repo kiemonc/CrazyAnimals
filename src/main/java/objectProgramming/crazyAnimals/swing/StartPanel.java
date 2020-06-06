@@ -5,34 +5,38 @@ import objectProgramming.crazyAnimals.main.Parameters;
 import java.awt.*;
  import java.awt.event.ActionEvent;
  import java.awt.event.ActionListener;
- 
- import javax.swing.JButton;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
  import javax.swing.JPanel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
  
  @SuppressWarnings("serial")
 public class StartPanel extends JPanel{
  
-	public static final int HEIGHT = 160;
- 	public static final int WIDTH = 280;
+	public static final int HEIGHT = 100;
+ 	public static final int WIDTH = 200;
  	private JButton startButton;
  	private JButton parametersButton;
+ 	private JButton infoButton;
  	private StartPanel panel;
  	private JFrame parent;
  	private Parameters parameters;
+
  
- 	public StartPanel(JFrame frame, Parameters parameters) {
+ 	public StartPanel (JFrame frame, Parameters parameters) {
  		parent = frame;
  		this.parameters = parameters;
  		startButton = new StartButton();
  		parametersButton = new ParametersButton();
- 		setLayout(null);
+ 		infoButton = new InfoButton();
+ 		setLayout(new GridLayout(3,1,10,10));
  		setPreferredSize(new Dimension(WIDTH, HEIGHT));
  		add(startButton);
  		add(parametersButton);
+ 		add(infoButton);
  		panel = this;
- 		startButton.setBounds(50, 20, 180, 50);
- 		parametersButton.setBounds(50, 90, 180, 50);
  	}
  	/**
  	 * Ustawia referencje do parametrów
@@ -43,8 +47,7 @@ public class StartPanel extends JPanel{
  	}
  
  	class StartButton extends JButton implements ActionListener {
- 
-		private static final long serialVersionUID = 1L;
+
 
 		StartButton() {
  			super("Start simulation");
@@ -58,10 +61,25 @@ public class StartPanel extends JPanel{
  			else Main.runSimulation();
  		}
  	}
+ 	
+ 	class InfoButton extends JButton implements ActionListener {
+
+
+		InfoButton() {
+ 			super("Info");
+ 			addActionListener(this);
+ 		}
+ 
+ 		@Override
+ 		public void actionPerformed(ActionEvent e) {
+ 			JOptionPane.showMessageDialog(parent,"CrazyAnimals V1.0.0\nAuthors: Mikołaj Chmielecki & Jakub Mroziński");
+ 			
+ 		}
+ 	}
+ 	
  
  	class ParametersButton extends JButton implements ActionListener {
  
-		private static final long serialVersionUID = 1L;
 		private ParametersFrame frame;
 
 		ParametersButton() {

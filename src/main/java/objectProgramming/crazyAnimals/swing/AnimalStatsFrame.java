@@ -78,6 +78,11 @@ public class AnimalStatsFrame extends JFrame implements ActionListener{
 	}
 	
 	public void update() {
+		if(animal.isDead()) {
+			this.dispose();
+			animalStatsFrames.remove(this);
+			return;
+		}
 		values = animal.getStats();
 		species.setText("Species: " + (animal instanceof Cat ? "cat" : (animal instanceof Cow ? "cow" : (animal instanceof Mouse ? "mouse" : (animal instanceof Sheep ? "sheep" : (animal instanceof Wolf ? "wolf" : ""))))));
 		hunger.setText("Hunger: " + values[0]);

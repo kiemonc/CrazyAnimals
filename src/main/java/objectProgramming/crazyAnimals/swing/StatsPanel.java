@@ -30,7 +30,7 @@ public class StatsPanel extends JPanel {
 			add(animals[i]);
 		}
 		for(int i = 0; i < 2; i++) {
-			feed[i] = new JLabel(feedNames[i] + ": " + Feed.getNumAll(i == 0 ? "cheese" : "grass"));
+			feed[i] = new JLabel(feedNames[i] + ": " + Feed.getNumAll(i == 0 ? "grass" : "cheese"));
 			add(feed[i]);
 		}
 	}
@@ -42,6 +42,6 @@ public class StatsPanel extends JPanel {
 		for(int i = 0; i < 5; i++)
 			animals[i].setText(animalsNames[i] + ": " + AnimalStats.getCurrentPopulation()[i]);
 		for(int i = 0; i < 2; i++) 
-			feed[i].setText(feedNames[i] + ": " + Feed.getNumAll(i == 0 ? "cheese" : "grass"));
+			feed[i].setText(feedNames[i] + ": " + Feed.getNumAll(i == 0 ? "grass" : "cheese"));
 	}
 }

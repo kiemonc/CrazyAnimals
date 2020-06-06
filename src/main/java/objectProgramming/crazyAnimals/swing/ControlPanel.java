@@ -12,7 +12,7 @@ import javax.swing.Timer;
 @SuppressWarnings("serial")
 public class ControlPanel extends JPanel implements ActionListener {
 	
-	private JButton startStop = new JButton("STOP");
+	private JButton startStop = new JButton("START");
 	private JButton nextStep = new JButton("NEXT");
 	private JButton end = new JButton("END");
 	private SimulationFrame parent;
@@ -28,7 +28,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 		add(startStop);
 		add(nextStep);
 		add(end);
-		nextStep.setVisible(false);
+		nextStep.setVisible(true);
 		setVisible(true);
 
 	}

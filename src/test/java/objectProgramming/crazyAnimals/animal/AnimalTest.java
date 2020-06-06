@@ -32,6 +32,7 @@ public class AnimalTest {
 		cat.doIteration();
 		assertTrue(Cat.movementSpeed + " iteration", cat.wantToMove());
 	}
+	@SuppressWarnings("unused")
 	@Test
 	public void moveMethod() {
 		Random random = new Random();
@@ -47,6 +48,7 @@ public class AnimalTest {
 		cat.move(meadow);
 		assertTrue("Cant move", cat.field == field);
 	}
+	@SuppressWarnings("unused")
 	@Test
 	public void doIterationMethod() {
 		Random random = new Random();
