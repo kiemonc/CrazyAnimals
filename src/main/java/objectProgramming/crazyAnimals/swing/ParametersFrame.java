@@ -300,6 +300,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 				throw(new NumberFormatException());
 			parameters = param;
 		}
+		//TODO dodać ustawienie wartości parameters.path
 		catch (NumberFormatException e) {
 			throw e;
 		}
