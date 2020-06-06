@@ -90,8 +90,8 @@ public abstract class Animal implements IAnimal{
 		}
 		if(field instanceof objectProgramming.crazyAnimals.area.Waterhole)
 			drink();
-		hunger += 5;
-		thirst += 5;
+		addHunger();
+		thirst += 2;
 		if(!wantToMove())
 			iterationsToMove--;
 		age++;
@@ -140,12 +140,12 @@ public abstract class Animal implements IAnimal{
 	 */
 	void eat(IEatable target) {
 		target.beEaten();
-		hunger = (hunger > 50) ? hunger - 50 : 0;
+		hunger = (hunger > 70) ? hunger - 70 : 0;
 	}
 	/**
 	 * Uzupełnia pragnienie zwierzęcia
 	 */
-	void drink() {thirst = (thirst > 30) ? thirst - 30 : 0;}
+	void drink() {thirst = (thirst > 50) ? thirst - 50 : 0;}
 	/**
 	 * Usuwa zwierzę z pola i uwzględnia to w statystykach
 	 */
@@ -162,5 +162,14 @@ public abstract class Animal implements IAnimal{
 			AnimalStats.takeAnimal(4);
 		field.destroyEatable(this);
 		isDead = true;
+	}
+	/**
+	 * Dodaje głód w zależności od gatunku
+	 */
+	void addHunger() {
+		if(this instanceof Cat || this instanceof Wolf)
+			hunger += 3;
+		else if(this instanceof Cow || this instanceof Mouse || this instanceof Sheep)
+			hunger += 5;
 	}
 }

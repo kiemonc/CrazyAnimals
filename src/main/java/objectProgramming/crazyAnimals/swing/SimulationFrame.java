@@ -129,6 +129,9 @@ public class SimulationFrame extends JFrame {
 	
 	void gameOver() {
 		updateState();
+		for(FieldPanel panel : panels) {
+			panel.finilize();
+		}
 		timer.stop();
 		JOptionPane.showMessageDialog(frame,"End of simulation");
 		try {

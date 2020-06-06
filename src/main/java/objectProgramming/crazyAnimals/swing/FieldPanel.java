@@ -153,5 +153,11 @@ public class FieldPanel extends JPanel{
  			}
  		}
  	}
+ 	
+ 	public void finilize() {
+ 		for(AnimalStatsFrame frame : animalStatsFrames) {
+ 			frame.dispose();
+ 		}
+ 	}
 
  }

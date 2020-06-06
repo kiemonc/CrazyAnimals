@@ -28,7 +28,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 		add(startStop);
 		add(nextStep);
 		add(end);
-		nextStep.setVisible(false);
+		nextStep.setVisible(true);
 		setVisible(true);
 
 	}
