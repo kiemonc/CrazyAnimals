@@ -5,6 +5,7 @@ import java.awt.*;
  
  import javax.swing.JButton;
  import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import objectProgramming.crazyAnimals.animal.*;
 import objectProgramming.crazyAnimals.area.IField;
@@ -22,13 +23,14 @@ public class FieldPanel extends JPanel{
  	List<EatableButton> eatableButtons;
  	private JPanel panel;
  	private IField field;
+ 	private Timer timer;
  	
  	/**
  	 * Ustawia kolor panelu w zależności od typu pola, który symbolizuje 
  	 * @param size - rozmiar pola
  	 * @param field - referencja do pola, które ten panel ma symbolizować
  	 */
- 	public FieldPanel(int size, IField field) {
+ 	public FieldPanel(int size, IField field, Timer timer) {
  		panel = this;
  		this.field = field;
  		setLayout(null);
@@ -53,7 +55,7 @@ public class FieldPanel extends JPanel{
 		
 		EatableButton() {
 			super();
-			addActionListener(this);
+			
 		}
 		/**
 		 * Uaktualnia stan przycisku, zmienia kolor.
@@ -61,23 +63,28 @@ public class FieldPanel extends JPanel{
 		 */
 		void update(IEatable eatable) {
  			this.eatable = eatable;
-
- 			if(eatable instanceof Cat) {
- 				setBackground(Color.black);
- 			} else if(eatable instanceof Cow) {
- 				setBackground(Color.magenta);
- 			} else if(eatable instanceof Mouse) {
- 				setBackground(Color.gray);
- 			} else if(eatable instanceof Sheep) {
- 				setBackground(Color.white);
- 			} else if(eatable instanceof Wolf) {
- 				setBackground(Color.orange);
- 			} else if(eatable instanceof Feed) {
- 				if(((Feed) eatable).getName()=="grass") {
- 					setBackground(Color.pink);
- 				} else if(((Feed) eatable).getName()=="cheese") {
- 					setBackground(Color.yellow);
- 				}
+ 			if(this.getActionListeners().length > 0) {
+ 				this.removeActionListener(this);
+ 			}
+ 			if(eatable != null) {
+ 				if(!(eatable instanceof Feed)) addActionListener(this);
+	 			if(eatable instanceof Cat) {
+	 				setBackground(Color.black);
+	 			} else if(eatable instanceof Cow) {
+	 				setBackground(Color.magenta);
+	 			} else if(eatable instanceof Mouse) {
+	 				setBackground(Color.gray);
+	 			} else if(eatable instanceof Sheep) {
+	 				setBackground(Color.white);
+	 			} else if(eatable instanceof Wolf) {
+	 				setBackground(Color.orange);
+	 			} else if(eatable instanceof Feed) {
+	 				if(((Feed) eatable).getName()=="grass") {
+	 					setBackground(Color.pink);
+	 				} else if(((Feed) eatable).getName()=="cheese") {
+	 					setBackground(Color.yellow);
+	 				}
+	 			}
  			}
  		}
 		
@@ -87,7 +94,7 @@ public class FieldPanel extends JPanel{
  		@Override
  		public void actionPerformed(ActionEvent e) {
  			if(eatable instanceof Animal) {
- 				new AnimalStatsFrame((IAnimal) eatable);
+ 				new AnimalStatsFrame((IAnimal) eatable, timer);
  			}
  		}
  	}

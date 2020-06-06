@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.Timer;
 
 import objectProgramming.crazyAnimals.animal.*;
 
@@ -25,11 +26,13 @@ public class AnimalStatsFrame extends JFrame implements ActionListener{
 	private JLabel species, hunger, thirst, age, isMale, iterationsToMove;
 	private List<JLabel> labelsList = new LinkedList<>();
 	private JButton close = new JButton("Close");
+	private Timer timer;
+	private IAnimal animal;
 	/**
 	 * Konstruktor tworzy okienko oraz umieszcza na nim etykiety z wartościami parametrów zwierzęcia podanego jako argument
 	 * @param animal referencja do zwierzęcia, dla którego wyświetlane są statystyki
 	 */
-	public AnimalStatsFrame(IAnimal animal) {
+	public AnimalStatsFrame(IAnimal animal, Timer timer) {
 		super("Animal stats");
 		setLocation(200, 200);
 		setSize(250, 280);
@@ -37,7 +40,9 @@ public class AnimalStatsFrame extends JFrame implements ActionListener{
 		setVisible(true);
 		setLayout(null);
 		setResizable(false);
-		
+		setAlwaysOnTop(true);
+		this.animal = animal;
+		this.timer = timer;
 		values = animal.getStats();
 		
 		species = new JLabel("Species: " + (animal instanceof Cat ? "cat" : (animal instanceof Cow ? "cow" : (animal instanceof Mouse ? "mouse" : (animal instanceof Sheep ? "sheep" : (animal instanceof Wolf ? "wolf" : ""))))));
@@ -60,6 +65,7 @@ public class AnimalStatsFrame extends JFrame implements ActionListener{
 		
 		close.setBounds(60, 210, 100, 20);
 		close.addActionListener(this);
+		this.timer.addActionListener(this);
 		add(close);
 		}
 
@@ -69,5 +75,18 @@ public class AnimalStatsFrame extends JFrame implements ActionListener{
 		if(source == close) {
 			dispose();
 		}
+		if(source == timer) {
+			update();
+		}
+	}
+	
+	private void update() {
+		values = animal.getStats();
+		species.setText("Species: " + (animal instanceof Cat ? "cat" : (animal instanceof Cow ? "cow" : (animal instanceof Mouse ? "mouse" : (animal instanceof Sheep ? "sheep" : (animal instanceof Wolf ? "wolf" : ""))))));
+		hunger.setText("Hunger: " + values[0]);
+		thirst.setText("Thirst: " + values[1]);
+		age.setText("Age: " + values[2]);
+		isMale.setText("Gender: " + (values[3] == 0 ? "female" : "male"));
+		iterationsToMove.setText("Iterations to move: " + values[4]);
 	}
 }
