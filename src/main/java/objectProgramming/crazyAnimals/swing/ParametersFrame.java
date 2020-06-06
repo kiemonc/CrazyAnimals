@@ -239,12 +239,12 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		try {
 			Parameters param = new Parameters(new Random(1));
 			param.meadowWidth = getTextFieldValue(index++);
-			if(param.meadowWidth < 2 || param.meadowWidth > 100 ) {
+			if(param.meadowWidth < 2 || param.meadowWidth > 30 ) {
 				setRedBackground(index - 1);
 				ifThrow = true;
 			}
 			param.meadowHeight = getTextFieldValue(index++);
-			if(param.meadowHeight < 2 || param.meadowHeight > 100) {
+			if(param.meadowHeight < 2 || param.meadowHeight > 30) {
 				setRedBackground(index - 1);
 				ifThrow = true;
 			}
