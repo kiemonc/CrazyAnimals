@@ -82,7 +82,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		}
 	/**
 	 * Przechwytuje zdarzenia i wykonuje odpowiednie operacje w zależności od ich źródła
-	 * @param przechwycone zdarzenie
+	 * @param event przechwycone zdarzenie
 	 */
 	@Override
 	public void actionPerformed(ActionEvent event) {
