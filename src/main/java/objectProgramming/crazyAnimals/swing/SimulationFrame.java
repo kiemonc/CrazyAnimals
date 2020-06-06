@@ -50,7 +50,7 @@ public class SimulationFrame extends JFrame {
 		for(FieldPanel field : panels) {
 			field.updateButtons();
 		}
-		stats.update();
+		//stats.update(); //TODO dodać argument
 	}
 	
 	/**
@@ -70,7 +70,8 @@ public class SimulationFrame extends JFrame {
 		pack();
 		setVisible(true);
 		initalizePanels(simulation.getMeadow(), dimension.height);
-		stats = new StatsPanel();
+	
+		//stats = new StatsPanel(); //TODO dodać argument
 		legend = new LegendPanel();
 		add(stats);
 		add(legend);
@@ -129,7 +130,7 @@ public class SimulationFrame extends JFrame {
 		for(FieldPanel field : panels) {
 			field.updateButtons();
 		}
-		stats.update();
+		//stats.update();//TODO dodać argument
 	}
 	
 	void gameOver() {
