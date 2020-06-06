@@ -16,8 +16,9 @@ public final class Waterhole extends Field{
 	
 /**
  * Konstruktor klasy Waterhole korzysta z konostruktora klasy Field, po której Waterhole dziedziczy. Dodatkowo zlicza powstałe obiekty
- * @param positionX
- * @param positionY
+ * @param positionX - pozycja x 
+ * @param positionY - pozycja y
+ * @param random - referencja do Random, obpowiedzalnego za losowość
  */
 	public Waterhole(int positionX, int positionY, Random random) {
 		super(positionX, positionY, random);

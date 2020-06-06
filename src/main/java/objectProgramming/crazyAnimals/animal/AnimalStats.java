@@ -49,7 +49,7 @@ public class AnimalStats {
 	}
 	/**
 	 * Pozwala pobrać statystyki w postaci wartości z opisami
-	 * @return
+	 * @return ciąg znaków zawierający statystyki dla wszystkich zwierząt
 	 */
 	public static String getString() {
 		String stats = "Current population: ";

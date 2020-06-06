@@ -92,6 +92,11 @@ public final class Main {
 		}
 	}
 	
+	
+/**
+ * Używane podczas używanie GUI. Startuje sumalacje. Uruchamia główne okno symulacji.
+ * @param parameters - parametry startu symulacji
+ */
 	public static void runSimulation(Parameters parameters) {
 		try {
 			parameters.setParametrs();
@@ -108,6 +113,9 @@ public final class Main {
  		});
 	}
 	
+/**
+ * Uruchamia symulacje z domyślnemi argumentami lub sprarsowanymi.
+ */
 	public static void runSimulation() {
 		runSimulation(parameters);
 	}

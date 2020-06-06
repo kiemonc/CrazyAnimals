@@ -10,8 +10,6 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.Timer;
-
 import objectProgramming.crazyAnimals.animal.*;
 
 /**
@@ -21,7 +19,6 @@ import objectProgramming.crazyAnimals.animal.*;
 @SuppressWarnings("serial")
 public class AnimalStatsFrame extends JFrame implements ActionListener{
 
-	
 	private int [] values;
 	private JLabel species, hunger, thirst, age, isMale, iterationsToMove;
 	private List<JLabel> labelsList = new LinkedList<>();
@@ -31,7 +28,7 @@ public class AnimalStatsFrame extends JFrame implements ActionListener{
 	/**
 	 * Konstruktor tworzy okienko oraz umieszcza na nim etykiety z wartościami parametrów zwierzęcia podanego jako argument
 	 * @param animal referencja do zwierzęcia, dla którego wyświetlane są statystyki
-	 * @param animalStatsFrames 
+	 * @param animalStatsFrames referencja do listy okienek z której to okienko jest usuwane gdy zwierzę umarło
 	 */
 	public AnimalStatsFrame(IAnimal animal, List<AnimalStatsFrame> animalStatsFrames) {
 		super("Animal stats");
@@ -68,7 +65,10 @@ public class AnimalStatsFrame extends JFrame implements ActionListener{
 		close.addActionListener(this);
 		add(close);
 		}
-
+	/**
+	 * Metoda przechwytuje zdarzenie i zamyka okienko jeżeli jego źródłem jest przycisk close
+	 * @param e przechwycone zdarzenie
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
@@ -76,7 +76,9 @@ public class AnimalStatsFrame extends JFrame implements ActionListener{
 			dispose();
 		}
 	}
-	
+	/**
+	 * Metoda aktualizuje wyświetlane statystyki według aktualnego stanu symulacji
+	 */
 	public void update() {
 		if(animal.isDead()) {
 			this.dispose();

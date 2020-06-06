@@ -18,6 +18,11 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.LinkedList;
 
+/**
+ * Główne okno symulacji. Grupuje panele niezbędne do przeprowadzenia sumulacji: panel opisu oznaczeń, panele poszczególnych pól, panel kontroli oraz panel statystyk.
+ * @author Mikołaj
+ *
+ */
 @SuppressWarnings("serial")
 public class SimulationFrame extends JFrame {
 	
@@ -29,10 +34,11 @@ public class SimulationFrame extends JFrame {
 	private StartFrame startFrame;
 	private Parameters parameters;
 	boolean gameOver;
+	
 	/**
 	 * Steruje wykonywaniem kolejnych iteracji symulacji
 	 */
-	private Timer timer = new Timer(100, new ActionListener() {
+	private Timer timer = new Timer(500, new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			doIteration();
@@ -40,25 +46,12 @@ public class SimulationFrame extends JFrame {
 		
 	});
 	
-	void doIteration() {
-		if(!simulation.ifEnd()) {
-			updateState();
-		} else {
-			gameOver();
-		}
-	}
-	
-	private void updateState() {
-		simulation.doIteration();
-		for(FieldPanel field : panels) {
-			field.update();
-		}
-		stats.update(simulation.getItertionNum());
-	}
-	
 	/**
-	 * Konstruktor okienka głównego symulacji. Ustawia podstawowe właściwości okienka.
-	 * 
+	 * Konstruktor okienka głównego symulacji. Ustawia podstawowe właściwości okienka. Dodaje wymienione w opisie panele.
+	 * Ustawia rozmiar okna na całą wielkość ekranu.
+	 * @param simulation - referencja do aktualnie przeprowadzanej symulacji
+	 * @param startFrame - referencja do startowego okienka aplikacji
+	 * @param parameters - referencja do przyjętych parametrów
 	 */
 	public SimulationFrame(Simulation simulation, StartFrame startFrame, Parameters parameters) {
 		super("Crazy Animals");
@@ -91,6 +84,28 @@ public class SimulationFrame extends JFrame {
 	}
 	
 	/**
+	 * Czynności wykonywane podczas symulacji. Sprawdza czy nastąpił koniec symulacji.
+	 */
+	void doIteration() {
+		if(!simulation.ifEnd()) {
+			updateState();
+		} else {
+			gameOver();
+		}
+	}
+	
+	/**
+	 * Aktualizuje stan wszystkich paneli.
+	 */
+	private void updateState() {
+		simulation.doIteration();
+		for(FieldPanel field : panels) {
+			field.update();
+		}
+		stats.update(simulation.getItertionNum());
+	}
+	
+	/**
 	 * Inicjalizuje pola w okienku. Oblicza wymiary i odpowienio je rozmieszcza
 	 * @param meadow - referencja do łąki
 	 * @param maxSize - wysokość ekranu w px
@@ -110,7 +125,7 @@ public class SimulationFrame extends JFrame {
 		for(int i = 0; i < height; i++) {
 			for(int j = 0; j < width; j++) {
 				Border blackline = BorderFactory.createLineBorder(Color.BLACK,1);
-				FieldPanel field = new FieldPanel(fieldSize, fields.get(i).get(j), timer);
+				FieldPanel field = new FieldPanel(fieldSize, fields.get(i).get(j));
 				panels.add(field);
 				field.setBounds(offset+(fieldSize)*j, offset+(fieldSize)*i, fieldSize, fieldSize);
 				field.setBorder(blackline);
@@ -119,14 +134,9 @@ public class SimulationFrame extends JFrame {
 		}
 	}
 	
-	
-	public void update() {
-		for(FieldPanel field : panels) {
-			field.update();
-		}
-		stats.update(simulation.getItertionNum());
-	}
-	
+	/**
+	 * Kończenie symulacji. Zapisuje plik statystyk. Wyświetla komunikat o końcu symulacji. Zamyka otwarte okna pomocnicze.
+	 */
 	void gameOver() {
 		//updateState();
 		for(FieldPanel panel : panels) {

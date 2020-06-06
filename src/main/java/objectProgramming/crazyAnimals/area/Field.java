@@ -23,8 +23,9 @@ public class Field implements IField{
 	
 	/**
 	 * Konstruktor klasy Field tworzy pola, odpowiada za przypisanie współrzędnych oraz generacje listy zwierząt. Nie ma potrzeby tworzenia konstruktora domyślnego
-	 * @param positionX 
-	 * @param positionY
+	 * @param positionX - pozycja x 
+	 * @param positionY - pozycja y
+	 * @param random - referencja do Random, obpowiedzalnego za losowość
 	 */
 	public Field(int positionX, int positionY, Random random) {
 		this.random = random;

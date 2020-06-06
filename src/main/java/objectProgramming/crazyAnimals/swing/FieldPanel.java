@@ -5,8 +5,6 @@ import java.awt.*;
  
  import javax.swing.JButton;
  import javax.swing.JPanel;
-import javax.swing.Timer;
-
 import objectProgramming.crazyAnimals.animal.*;
 import objectProgramming.crazyAnimals.area.IField;
 import objectProgramming.crazyAnimals.area.Feed;
@@ -15,6 +13,11 @@ import java.util.LinkedList;
 import java.awt.Color;
 
 
+/**
+ * Panel pojedyńczego pola. Grupuje informacje o polu i obrazuje pole. 
+ * @author Mikołaj
+ *
+ */
 @SuppressWarnings("serial")
 public class FieldPanel extends JPanel{
  
@@ -23,7 +26,6 @@ public class FieldPanel extends JPanel{
  	List<EatableButton> eatableButtons;
  	private JPanel panel;
  	private IField field;
- 	private Timer timer;
  	public List<AnimalStatsFrame> animalStatsFrames;
  	
  	/**
@@ -31,10 +33,9 @@ public class FieldPanel extends JPanel{
  	 * @param size - rozmiar pola
  	 * @param field - referencja do pola, które ten panel ma symbolizować
  	 */
- 	public FieldPanel(int size, IField field, Timer timer) {
+ 	public FieldPanel(int size, IField field) {
  		panel = this;
  		this.field = field;
- 		this.timer = timer;
  		setLayout(null);
  		setSize(new Dimension(size, size));
  		if(field instanceof objectProgramming.crazyAnimals.area.Waterhole) {
@@ -83,7 +84,7 @@ public class FieldPanel extends JPanel{
 	 				setBackground(Color.orange);
 	 			} else if(eatable instanceof Feed) {
 	 				if(((Feed) eatable).getName()=="grass") {
-	 					setBackground(Color.pink);
+	 					setBackground(new Color(0, 100, 0));
 	 				} else if(((Feed) eatable).getName()=="cheese") {
 	 					setBackground(Color.yellow);
 	 				}
@@ -154,6 +155,9 @@ public class FieldPanel extends JPanel{
  		}
  	}
  	
+ 	/**
+ 	 * Zamyka wszystkie okna pomocnicze sulacji otwarte z poziomy danego pola
+ 	 */
  	public void finilize() {
  		for(AnimalStatsFrame frame : animalStatsFrames) {
  			frame.dispose();

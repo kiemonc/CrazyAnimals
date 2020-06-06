@@ -8,7 +8,11 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-
+/**
+ * Grupuje przyciski potrzebne do sterowania symulacją. 
+ * @author Mikołaj
+ *
+ */
 @SuppressWarnings("serial")
 public class ControlPanel extends JPanel implements ActionListener {
 	
@@ -16,8 +20,13 @@ public class ControlPanel extends JPanel implements ActionListener {
 	private JButton nextStep = new JButton("NEXT");
 	private JButton end = new JButton("END");
 	private SimulationFrame parent;
-	
 	private Timer timer;
+	
+	/**
+	 * Tworzy i wyrównuje przyciski
+	 * @param timer - referencja do timera odpowiedzalnego za iterowanie symulacji.
+	 * @param parent - referencja do głównego okna symulacji
+	 */
 	ControlPanel(Timer timer, SimulationFrame parent) {
 		this.timer = timer;
 		this.parent = parent;
@@ -33,7 +42,10 @@ public class ControlPanel extends JPanel implements ActionListener {
 
 	}
 	
-	
+	/**
+	 * Przechwytuje zdarzenia powstałe w wyniku kliknięcia w jeden przycisków w panelu kontroli.
+	 * Wykonuje odpowiednie akcje
+	 */
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		Object source = event.getSource();

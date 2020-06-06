@@ -6,8 +6,9 @@ package objectProgramming.crazyAnimals.swing;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -26,10 +27,10 @@ import objectProgramming.crazyAnimals.main.Parameters;
  * Klasa pozwalająca wyświetlić okno do zadawania parametrów początkowych symulacji
  * @author jakub
  */
+@SuppressWarnings("serial")
 public class ParametersFrame extends JFrame implements ActionListener{
-	private static final long serialVersionUID = 1L;
 	
-	private List<JFormattedTextField> textFieldList = new LinkedList<>();
+	private List<TextField> textFieldList = new LinkedList<>();
 	private JButton confirm = new JButton("Confirm"), close = new JButton("Close"), setFilePath = new JButton("Set file path"), setDefaults = new JButton("Set defaults");
 	private JLabel error = new JLabel("Invalid format of parameters"), confirmed = new JLabel("Parameters saved"), filePath, info = new JLabel("* \"-1\" - does not matter");
 	private Parameters parameters;
@@ -37,16 +38,17 @@ public class ParametersFrame extends JFrame implements ActionListener{
 	
 	/**
 	 * Konstruktor klasy tworzy nowe okienko o odpowiednich parametrach oraz wywyłuje metody rozmieszczające na nim poszczególne elementy
+	 * @param panel referencja do panelu startowego
+	 * @param parameters referencja do parametrów które zostaną wyświetlone przy pokazaniu się okna
 	 */
 	ParametersFrame(StartPanel panel, Parameters parameters){
 		super("Parameters");
-		startPanel=panel;
+		startPanel = panel;
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(390, 480);
 		setResizable(false);
 		setLocation(200, 200);
 		setLayout(null);
-		this.startPanel = panel;
 		showLabels(initiateLabels());
 		textFieldList = initiateTextFields();
 		showTextFields(textFieldList);
@@ -78,7 +80,10 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		setValues(parameters);
 		setParameters();
 		}
-	
+	/**
+	 * Przechwytuje zdarzenia i wykonuje odpowiednie operacje w zależności od ich źródła
+	 * @param przechwycone zdarzenie
+	 */
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		Object source = event.getSource();
@@ -119,7 +124,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 	}
 	/**
 	 * Metoda ustawia wszystkie pola na wartości domyślne lub zapisane w argumencie
-	 * @param parameters obiekt zawierający parametry symulacji (gdy null pobierane są wartości domyślne)
+	 * @param parameters obiekt zawierający parametry symulacji (gdy parameters == null wartości ustawiane są na domyślne)
 	 */
 	private void setValues(Parameters parameters) {
 		if(parameters == null)
@@ -205,17 +210,17 @@ public class ParametersFrame extends JFrame implements ActionListener{
 	 * Metoda tworzy pola tekstowe i dodaje je do listy
 	 * @return lista stworzonych pól tekstowych
 	 */
-	private List<JFormattedTextField> initiateTextFields() {
-		List<JFormattedTextField> textList = new LinkedList<>();
+	private List<TextField> initiateTextFields() {
+		List<TextField> textList = new LinkedList<>();
 		for(int i = 0; i < 24; i++)
-			textList.add(new JFormattedTextField());
+			textList.add(new TextField());
 		return textList;
 	}
 	/**
 	 * Metoda umieszcza pola tekstowe przyjęte jako argument w odpowiednim miejscu okienka
 	 * @param textList lista pól tekstowych która ma zostać wyświetlona
 	 */
-	private void showTextFields(List<JFormattedTextField> textList) {
+	private void showTextFields(List<TextField> textList) {
 		for(int i = 0; i < textList.size(); i++) {
 			if(i < 4)
 				textList.get(i).setBounds(180, 10 + 20 * i, 140, 20);
@@ -227,7 +232,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		}
 	}
 	/**
-	 * Zapisuje wartości pól do zmiennej parameters
+	 * Sprawedza poprawność parametrów i zapisuje wartości pól do zmiennej parameters
 	 * @throws NumberFormatException gdy w którymś polu są niepoprawne dane
 	 */
 	private void setParameters() throws NumberFormatException{
@@ -298,11 +303,11 @@ public class ParametersFrame extends JFrame implements ActionListener{
 					setRedBackground(5 + 2 * i);
 				ifThrow = true;
 			}
+			param.path = parameters.path;
 			if(ifThrow)
 				throw(new NumberFormatException());
 			parameters = param;
 		}
-		//TODO dodać ustawienie wartości parameters.path
 		catch (NumberFormatException e) {
 			throw e;
 		}
@@ -311,7 +316,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 	 * Pozwala pobrać wartość z danego pola tekstowego
 	 * @param index odpowiedni indeks pola w liście pól tekstowych
 	 * @return wartość pola
-	 * @throws NumberFormatException gdy w polu znajdzie się liczba
+	 * @throws NumberFormatException gdy w polu nie znajdzie się liczba
 	 */
 	private int getTextFieldValue(int index) throws NumberFormatException{
 		int tmp;
@@ -339,7 +344,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		textFieldList.get(index).setBackground(Color.white);
 	}
 	/**
-	 * Pozwala pobrać parametry zapisane podczas wyświetlania tego okna
+	 * Pozwala pobrać parametry zapisane w zmiennej parameters
 	 * @return parametry symulacji
 	 */
 	public Parameters getParameters() {
@@ -351,4 +356,29 @@ public class ParametersFrame extends JFrame implements ActionListener{
 	public void showFrame() {
 		setVisible(true);
 	}
+	
+	/**
+	 * Pole tekstowe zaznaczające cały tekst podczas kliknięcia
+	 * @author Mikołaj
+	 *
+	 */
+	class TextField extends JFormattedTextField implements FocusListener {
+	   
+		TextField() {
+			super();
+			addFocusListener(this);
+		}
+
+		@Override
+		public void focusGained(FocusEvent e) {
+			this.selectAll();
+			
+		}
+
+		@Override
+		public void focusLost(FocusEvent e) {
+
+		}
+	}
+	
 }

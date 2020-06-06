@@ -10,8 +10,8 @@ import objectProgramming.crazyAnimals.animal.AnimalStats;
 import objectProgramming.crazyAnimals.area.Feed;
 
 /**
+ * Panel wyświetlający statystyki w postaci numeru iteracji, ilości zwierząt i pożywienia każdego gatunku
  * @author jakub
- *
  */
 @SuppressWarnings("serial")
 public class StatsPanel extends JPanel {
@@ -21,6 +21,7 @@ public class StatsPanel extends JPanel {
 	private JLabel iterationNr;
 	/**
 	 * Konstruktor tworzy etykiety pokazujące aktualne statystyki zwierząt i jedzenia
+	 * @param iterNr numer aktualnej iteracji
 	 */
 	public StatsPanel(int iterNr) {
 		iterationNr = new JLabel("Iteration number: " + iterNr);
@@ -36,6 +37,7 @@ public class StatsPanel extends JPanel {
 	}
 	/**
 	 * Metoda aktualizuje etykiety aby były one zgodne z aktualnymi statystykami
+	 * @param iterNr numer aktualnej iteracji
 	 */
 	public void update(int iterNr) {
 		iterationNr.setText("Iteration number: " + iterNr);
