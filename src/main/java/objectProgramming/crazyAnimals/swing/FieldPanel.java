@@ -97,7 +97,7 @@ public class FieldPanel extends JPanel{
  		@Override
  		public void actionPerformed(ActionEvent e) {
  			if(eatable instanceof Animal) {
- 				animalStatsFrames.add(new AnimalStatsFrame((IAnimal) eatable, timer, animalStatsFrames));
+ 				animalStatsFrames.add(new AnimalStatsFrame((IAnimal) eatable, animalStatsFrames));
  			}
  		}
  	}
@@ -129,7 +129,7 @@ public class FieldPanel extends JPanel{
  	/**
  	 * Aktaulizuje stan każdego z przycisków. Pożywienie umieszcza w prawym dolnym przycisku
  	 */
- 	public void updateButtons() {
+ 	public void update() {
  		for(EatableButton button : eatableButtons) {
  			button.setVisible(false);
  		}
@@ -146,6 +146,11 @@ public class FieldPanel extends JPanel{
 	 				eatableButtons.get(3).setVisible(true);
 	 			}
 	 		}
+ 		}
+ 		if(animalStatsFrames.size() > 0) {
+ 			for(AnimalStatsFrame frame : animalStatsFrames) {
+ 				frame.update();
+ 			}
  		}
  	}
 

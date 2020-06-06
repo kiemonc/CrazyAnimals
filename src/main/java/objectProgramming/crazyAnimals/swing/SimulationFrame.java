@@ -12,7 +12,6 @@ import javax.swing.border.Border;
 import java.util.List;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -52,7 +51,7 @@ public class SimulationFrame extends JFrame {
 	private void updateState() {
 		simulation.doIteration();
 		for(FieldPanel field : panels) {
-			field.updateButtons();
+			field.update();
 		}
 		stats.update(simulation.getItertionNum());
 	}
@@ -86,8 +85,9 @@ public class SimulationFrame extends JFrame {
 
 		timer.start();
 		ControlPanel controlPanel = new ControlPanel(timer,this);
-		add(controlPanel);
 		controlPanel.setBounds(dimension.height - dimension.height/10, 200, dimension.width - dimension.height, 50);
+		add(controlPanel);
+		
 
 	}
 	
@@ -111,17 +111,6 @@ public class SimulationFrame extends JFrame {
 		for(int i = 0; i < height; i++) {
 			for(int j = 0; j < width; j++) {
 				Border blackline = BorderFactory.createLineBorder(Color.BLACK,1);
-				/**
-				if(i==0 && j!= width-1) {
-					blackline = BorderFactory.createMatteBorder(1, 1, 1, 0, Color.BLACK);
-				} else if(i==0 && j== width-1) {
-					blackline = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK);
-				} else if(j < width - 1){
-					blackline = BorderFactory.createMatteBorder(0, 1, 1, 0, Color.BLACK);
-				} else {
-					blackline = BorderFactory.createMatteBorder(0, 1, 1, 1, Color.BLACK);
-				}
-				**/
 				FieldPanel field = new FieldPanel(fieldSize, fields.get(i).get(j), timer);
 				panels.add(field);
 				field.setBounds(offset+(fieldSize)*j, offset+(fieldSize)*i, fieldSize, fieldSize);
@@ -134,7 +123,7 @@ public class SimulationFrame extends JFrame {
 	
 	public void update() {
 		for(FieldPanel field : panels) {
-			field.updateButtons();
+			field.update();
 		}
 		stats.update(simulation.getItertionNum());
 	}
@@ -145,7 +134,7 @@ public class SimulationFrame extends JFrame {
 		JOptionPane.showMessageDialog(frame,"End of simulation");
 		try {
 			SaveAsCSV.saveToFile(parameters);
-			JOptionPane.showMessageDialog(frame,"File with statistics saved.\nPath: " + parameters.path + ".csv");
+			JOptionPane.showMessageDialog(frame,"File with statistics saved.\nPath: " + parameters.path);
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(frame,"Saving file failed","Error",  JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
