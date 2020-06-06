@@ -65,12 +65,13 @@ public class StartPanel extends JPanel{
 
 		ParametersButton() {
  			super("Configure parameters");
- 			frame = new ParametersFrame(panel, parameters);
+ 			
  			addActionListener(this);
  		}
  
  		@Override
  		public void actionPerformed(ActionEvent e) {
+ 			frame = new ParametersFrame(panel, parameters);
  			frame.showFrame();
  		}
  	}

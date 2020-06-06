@@ -45,7 +45,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		setResizable(false);
 		setLocation(200, 200);
 		setLayout(null);
-		
+		this.startPanel = panel;
 		showLabels(initiateLabels());
 		textFieldList = initiateTextFields();
 		showTextFields(textFieldList);
