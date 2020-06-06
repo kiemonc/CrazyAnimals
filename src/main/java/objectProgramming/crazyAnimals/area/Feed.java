@@ -18,14 +18,14 @@ public final class Feed implements IEatable {
 	private static int[] numMax = {0,0};
 	private static int[] numEaten = {0,0};
 	private static int[] numDestroyed = {0,0};
-	
+	private boolean alreadyRemoved;
 	private String name;
 /**
  * Konstruktor klasy Feed tworzy pożywienie, nadaje mu odpowiednią losową nazwę oraz dolicza kolejne obiekty do statystyki
  * @param random - referencja do wspólnego dla całej symulacji obiektu random
  */
 	public Feed(Random random) {
-
+		alreadyRemoved = false;
 		if(random.nextBoolean()) {
 			this.name = "grass";
 			numAll[0]++;
@@ -96,14 +96,16 @@ public final class Feed implements IEatable {
  * Metoda dolicza obiekt do statystyki obiektów zjedzonych i niszczy obiekt w polu, na którym obecnie się znajduje
  */
 	public void beEaten() {
+		
 		if(name=="grass") {
 			numEaten[0]++;
-			numAll[0]--;
+			if(!alreadyRemoved) numAll[0]--;
 		}
 		if(name=="cheese") {
 			numEaten[1]++;
 			numAll[1]--;
 		}
+		alreadyRemoved= true;
 	}
 	
 /**
@@ -112,12 +114,13 @@ public final class Feed implements IEatable {
 	public void beDestroyed() {
 		if(name=="grass") {
 			numDestroyed[0]++;
-			numAll[0]--;
+			if(!alreadyRemoved) numAll[0]--;
 		}
 		if(name=="cheese") {
 			numDestroyed[1]++;
-			numAll[1]--;
+			if(!alreadyRemoved) numAll[1]--;
 		}
+		alreadyRemoved= true;
 	}
 	
 /**

@@ -15,8 +15,8 @@ import javax.swing.JOptionPane;
  @SuppressWarnings("serial")
 public class StartPanel extends JPanel{
  
-	public static final int HEIGHT = 100;
- 	public static final int WIDTH = 200;
+	public static final int HEIGHT = 190;
+ 	public static final int WIDTH = 220;
  	private JButton startButton;
  	private JButton parametersButton;
  	private JButton infoButton;
@@ -31,12 +31,15 @@ public class StartPanel extends JPanel{
  		startButton = new StartButton();
  		parametersButton = new ParametersButton();
  		infoButton = new InfoButton();
- 		setLayout(new GridLayout(3,1,10,10));
+ 		setLayout(null);
  		setPreferredSize(new Dimension(WIDTH, HEIGHT));
  		add(startButton);
  		add(parametersButton);
  		add(infoButton);
  		panel = this;
+ 		startButton.setBounds(10,10,200,50);
+ 		parametersButton.setBounds(10,70,200,50);
+ 		infoButton.setBounds(10,130,200,50);
  	}
  	/**
  	 * Ustawia referencje do parametrów

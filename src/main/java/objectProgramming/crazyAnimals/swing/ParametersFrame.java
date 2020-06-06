@@ -26,8 +26,8 @@ import objectProgramming.crazyAnimals.main.Parameters;
  * Klasa pozwalająca wyświetlić okno do zadawania parametrów początkowych symulacji
  * @author jakub
  */
+@SuppressWarnings("serial")
 public class ParametersFrame extends JFrame implements ActionListener{
-	private static final long serialVersionUID = 1L;
 	
 	private List<JFormattedTextField> textFieldList = new LinkedList<>();
 	private JButton confirm = new JButton("Confirm"), close = new JButton("Close"), setFilePath = new JButton("Set file path"), setDefaults = new JButton("Set defaults");
@@ -349,4 +349,15 @@ public class ParametersFrame extends JFrame implements ActionListener{
 	public void showFrame() {
 		setVisible(true);
 	}
+	
+	/**
+	class TextField extends JFormattedTextField implements FocusListener {
+	   textField.addFocusListener(new FocusListener(){
+	       @Override
+	       public void focusGained(FocusEvent e){
+	           textField.setText("");
+	       }
+	    });
+	}
+	**/
 }
