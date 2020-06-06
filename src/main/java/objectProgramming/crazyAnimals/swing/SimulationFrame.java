@@ -128,7 +128,7 @@ public class SimulationFrame extends JFrame {
 	}
 	
 	void gameOver() {
-		updateState();
+		//updateState();
 		for(FieldPanel panel : panels) {
 			panel.finilize();
 		}

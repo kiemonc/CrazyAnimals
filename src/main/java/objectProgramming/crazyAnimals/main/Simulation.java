@@ -11,6 +11,7 @@ import objectProgramming.crazyAnimals.animal.AnimalCreator;
 import objectProgramming.crazyAnimals.animal.AnimalStats;
 import objectProgramming.crazyAnimals.animal.IAnimal;
 import objectProgramming.crazyAnimals.animal.IAnimalCreator;
+import objectProgramming.crazyAnimals.area.Feed;
 import objectProgramming.crazyAnimals.area.Meadow;
 
 
@@ -33,6 +34,7 @@ public final class Simulation {
 	
 	public Simulation(Parameters parameters, Random random) {
 		new AnimalStats();
+		Feed.clearStatistics();
 		this.parameters = parameters;
 		meadow = new Meadow(parameters.meadowWidth, parameters.meadowHeight, parameters.numWaterholes, parameters.meadowHeight*parameters.meadowWidth/10, random);
 		animalCreator = new AnimalCreator();

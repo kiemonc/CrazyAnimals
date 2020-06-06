@@ -9,11 +9,10 @@ public class StartFrame extends JFrame {
 
 	public StartFrame(Parameters parameters) {
 		super("Crazy Animals");
-
 		JPanel startPanel = new StartPanel(this, parameters);
 		add(startPanel);
 		setResizable(false);
-
+		setSize(380,260);
  		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
