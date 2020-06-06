@@ -28,11 +28,13 @@ public class AnimalStatsFrame extends JFrame implements ActionListener{
 	private JButton close = new JButton("Close");
 	private Timer timer;
 	private IAnimal animal;
+	private List<AnimalStatsFrame> animalStatsFrames;
 	/**
 	 * Konstruktor tworzy okienko oraz umieszcza na nim etykiety z wartościami parametrów zwierzęcia podanego jako argument
 	 * @param animal referencja do zwierzęcia, dla którego wyświetlane są statystyki
+	 * @param animalStatsFrames 
 	 */
-	public AnimalStatsFrame(IAnimal animal, Timer timer) {
+	public AnimalStatsFrame(IAnimal animal, Timer timer, List<AnimalStatsFrame> animalStatsFrames) {
 		super("Animal stats");
 		setLocation(200, 200);
 		setSize(250, 280);
@@ -43,6 +45,7 @@ public class AnimalStatsFrame extends JFrame implements ActionListener{
 		setAlwaysOnTop(true);
 		this.animal = animal;
 		this.timer = timer;
+		this.animalStatsFrames = animalStatsFrames;
 		values = animal.getStats();
 		
 		species = new JLabel("Species: " + (animal instanceof Cat ? "cat" : (animal instanceof Cow ? "cow" : (animal instanceof Mouse ? "mouse" : (animal instanceof Sheep ? "sheep" : (animal instanceof Wolf ? "wolf" : ""))))));

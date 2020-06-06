@@ -24,6 +24,7 @@ public class FieldPanel extends JPanel{
  	private JPanel panel;
  	private IField field;
  	private Timer timer;
+ 	public List<AnimalStatsFrame> animalStatsFrames;
  	
  	/**
  	 * Ustawia kolor panelu w zależności od typu pola, który symbolizuje 
@@ -33,6 +34,7 @@ public class FieldPanel extends JPanel{
  	public FieldPanel(int size, IField field, Timer timer) {
  		panel = this;
  		this.field = field;
+ 		this.timer = timer;
  		setLayout(null);
  		setSize(new Dimension(size, size));
  		if(field instanceof objectProgramming.crazyAnimals.area.Waterhole) {
@@ -41,6 +43,7 @@ public class FieldPanel extends JPanel{
  			setBackground(Color.green);
  		}
  		initializeButtons(size);
+ 		animalStatsFrames = new LinkedList<>();
  	}
  
  	
@@ -94,7 +97,7 @@ public class FieldPanel extends JPanel{
  		@Override
  		public void actionPerformed(ActionEvent e) {
  			if(eatable instanceof Animal) {
- 				new AnimalStatsFrame((IAnimal) eatable, timer);
+ 				animalStatsFrames.add(new AnimalStatsFrame((IAnimal) eatable, timer, animalStatsFrames));
  			}
  		}
  	}

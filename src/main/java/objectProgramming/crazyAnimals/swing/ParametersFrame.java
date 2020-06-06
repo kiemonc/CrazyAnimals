@@ -87,7 +87,6 @@ public class ParametersFrame extends JFrame implements ActionListener{
 				parameters.setParametrs();
 				error.setBounds(110, 500, 180, 20);
 				confirmed.setBounds(130, 380, 180, 20);
-				//TODO wyrzuca się wyjątek NullPointerException mimo że parametery są poprawne
 				startPanel.setParameters(parameters);
 			}
 			catch (NumberFormatException | BadParametersException e) {

@@ -103,7 +103,7 @@ public final class Main {
  		EventQueue.invokeLater(new Runnable() {
  			@Override
  			public void run() {
- 				new SimulationFrame(simulation, startFrame);
+ 				new SimulationFrame(simulation, startFrame, parameters);
  			}
  		});
 	}
