@@ -144,14 +144,15 @@ public class FieldPanel extends JPanel implements MouseListener{
  	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		IAnimal clickedAnimal = getClickedAnimal(e.getX(),e.getY());
-		if(clickedAnimal != null) {
-			animalStatsFrames.add(new AnimalStatsFrame(clickedAnimal, animalStatsFrames));
-		}
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
+		IAnimal clickedAnimal = getClickedAnimal(e.getX(),e.getY());
+		if(clickedAnimal != null) {
+			animalStatsFrames.add(new AnimalStatsFrame(clickedAnimal, animalStatsFrames));
+		}
 	}
 
 	@Override
@@ -160,6 +161,7 @@ public class FieldPanel extends JPanel implements MouseListener{
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
+
 	}
 
 	@Override
