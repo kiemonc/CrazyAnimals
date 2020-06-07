@@ -118,7 +118,7 @@ public abstract class Animal implements IAnimal{
 	public void beEaten() {die();}
 	@Override
 	public int [] getStats() {
-		return new int[] {hunger, thirst, age, (isMale ? 1 : 0), iterationsToMove};
+		return new int[] {hunger, thirst, age, (isMale ? 1 : 0), iterationsToMove, number, field.getCoordinates()[0], field.getCoordinates()[1]};
 	}
 	
 	/**

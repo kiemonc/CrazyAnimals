@@ -19,8 +19,8 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 /**
- * GĹ‚Ăłwne okno symulacji. Grupuje panele niezbÄ™dne do przeprowadzenia sumulacji: panel opisu oznaczeĹ„, panele poszczegĂłlnych pĂłl, panel kontroli oraz panel statystyk.
- * @author MikoĹ‚aj
+ * Główne okno symulacji. Grupuje panele niezbędne do przeprowadzenia sumulacji: panel opisu oznaczeń, panele poszczególnych pól, panel kontroli oraz panel statystyk.
+ * @author Mikołaj
  *
  */
 @SuppressWarnings("serial")
@@ -48,11 +48,11 @@ public class SimulationFrame extends JFrame {
 	});
 	
 	/**
-	 * Konstruktor okienka gĹ‚Ăłwnego symulacji. Ustawia podstawowe wĹ‚aĹ›ciwoĹ›ci okienka. Dodaje wymienione w opisie panele.
-	 * Ustawia rozmiar okna na caĹ‚Ä… wielkoĹ›Ä‡ ekranu.
+	 * Konstruktor okienka głównego symulacji. Ustawia podstawowe właściwości okienka. Dodaje wymienione w opisie panele.
+	 * Ustawia rozmiar okna na całą wielkość ekranu.
 	 * @param simulation - referencja do aktualnie przeprowadzanej symulacji
 	 * @param startFrame - referencja do startowego okienka aplikacji
-	 * @param parameters - referencja do przyjÄ™tych parametrĂłw
+	 * @param parameters - referencja do przyjętych parametrów
 	 */
 	public SimulationFrame(Simulation simulation, StartFrame startFrame, Parameters parameters) {
 		super("Crazy Animals");
@@ -92,7 +92,7 @@ public class SimulationFrame extends JFrame {
 	}
 	
 	/**
-	 * CzynnoĹ›ci wykonywane podczas symulacji. Sprawdza czy nastÄ…piĹ‚ koniec symulacji.
+	 * Czynności wykonywane podczas symulacji. Sprawdza czy nastąpił koniec symulacji.
 	 */
 	void doIteration() {
 		if(!simulation.ifEnd()) {
@@ -115,8 +115,8 @@ public class SimulationFrame extends JFrame {
 	
 	/**
 	 * Inicjalizuje pola w okienku. Oblicza wymiary i odpowienio je rozmieszcza
-	 * @param meadow - referencja do Ĺ‚Ä…ki
-	 * @param maxSize - wysokoĹ›Ä‡ ekranu w px
+	 * @param meadow - referencja do łąki
+	 * @param maxSize - wysokość ekranu w px
 	 */
 	private void initalizePanels(Meadow meadow, int maxSize) {
 		panels = new LinkedList<>();
@@ -143,7 +143,7 @@ public class SimulationFrame extends JFrame {
 	}
 	
 	/**
-	 * KoĹ„czenie symulacji. Zapisuje plik statystyk. WyĹ›wietla komunikat o koĹ„cu symulacji. Zamyka otwarte okna pomocnicze.
+	 * Kończenie symulacji. Zapisuje plik statystyk. Wyświetla komunikat o końcu symulacji. Zamyka otwarte okna pomocnicze.
 	 */
 	void gameOver() {
 		//updateState();
