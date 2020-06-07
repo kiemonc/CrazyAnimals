@@ -26,7 +26,7 @@ import java.util.LinkedList;
 @SuppressWarnings("serial")
 public class SimulationFrame extends JFrame {
 	
-	List<FieldPanel> panels;
+	List<FieldPanel2> panels;
 	StatsPanel stats;
 	LegendPanel legend;
 	private JFrame frame;
@@ -38,7 +38,7 @@ public class SimulationFrame extends JFrame {
 	/**
 	 * Steruje wykonywaniem kolejnych iteracji symulacji
 	 */
-	private Timer timer = new Timer(500, new ActionListener() {
+	private Timer timer = new Timer(100, new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			doIteration();
@@ -99,7 +99,7 @@ public class SimulationFrame extends JFrame {
 	 */
 	private void updateState() {
 		simulation.doIteration();
-		for(FieldPanel field : panels) {
+		for(FieldPanel2 field : panels) {
 			field.update();
 		}
 		stats.update(simulation.getItertionNum());
@@ -125,7 +125,7 @@ public class SimulationFrame extends JFrame {
 		for(int i = 0; i < height; i++) {
 			for(int j = 0; j < width; j++) {
 				Border blackline = BorderFactory.createLineBorder(Color.BLACK,1);
-				FieldPanel field = new FieldPanel(fieldSize, fields.get(i).get(j));
+				FieldPanel2 field = new FieldPanel2(fieldSize, fields.get(i).get(j));
 				panels.add(field);
 				field.setBounds(offset+(fieldSize)*j, offset+(fieldSize)*i, fieldSize, fieldSize);
 				field.setBorder(blackline);
@@ -139,7 +139,7 @@ public class SimulationFrame extends JFrame {
 	 */
 	void gameOver() {
 		//updateState();
-		for(FieldPanel panel : panels) {
+		for(FieldPanel2 panel : panels) {
 			panel.finilize();
 		}
 		timer.stop();

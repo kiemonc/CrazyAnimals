@@ -15,6 +15,7 @@ public class SaveAsCSVTest {
 	@SuppressWarnings("resource")
 	@Test
 	public void test() {
+		for(int i = 0; i < 100; i++) {
 		Parameters parameters = new Parameters(new Random());
 		try {
 			parameters.initializeNumAnimals();
@@ -49,6 +50,7 @@ public class SaveAsCSVTest {
 			assertTrue("No next rows", !scanner.hasNextLine());
 		} catch (FileNotFoundException e) {
 			fail("FileNotFoundException");
+		}
 		}
 	}
 	/**
