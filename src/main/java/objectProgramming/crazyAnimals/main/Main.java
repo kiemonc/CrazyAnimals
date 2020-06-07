@@ -44,13 +44,21 @@ public final class Main {
 		} catch (ParameterException e) {
 			System.out.println("Wrong format of parameters");
 			System.exit(-1);
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("Wrong format list of parameters");
+			System.exit(-1);
 		}
 		if(parameters.help) {
 			commander.usage();
 			System.exit(-1);
 		}
 		try {
+			try {
 			parameters.initializeNumAnimals();
+			}  catch (NumberFormatException e) {
+				System.out.println("Wrong format of number in list");
+				System.exit(-1);
+			}
 			parameters.setParametrs();
 		} catch (BadParametersException e) {
 			System.out.println("Parameters' conflict");
