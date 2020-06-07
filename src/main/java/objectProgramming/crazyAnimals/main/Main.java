@@ -80,7 +80,6 @@ public final class Main {
 				parameters.setParametrs();
 			} catch (BadParametersException e) {
 				System.out.println("Bad parameters");
-				e.printStackTrace();
 			}
 			simulation = new Simulation(parameters, random);
 			simulation.runSimulation();
@@ -106,7 +105,6 @@ public final class Main {
 			parameters.setParametrs();
 		} catch (BadParametersException e) {
 			JOptionPane.showMessageDialog(startFrame, "Invalid parameters","Error", JOptionPane.ERROR_MESSAGE);
-			e.printStackTrace();
 		}
 		simulation = new Simulation(parameters, random);
  		EventQueue.invokeLater(new Runnable() {
