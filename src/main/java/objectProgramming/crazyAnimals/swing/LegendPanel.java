@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 public class LegendPanel extends JPanel {
 	
 	private String [] names = {"Cat", "Cow", "Mouse", "Sheep", "Wolf", "Grass", "Cheese", "Meadow", "Waterhole"};
-	private Color [] colors = {Color.black, Color.magenta, Color.gray, Color.white, Color.orange, new Color(0, 100, 0), Color.yellow, Color.green, Color.cyan};
+	private Color [] colors = {Color.black, Color.magenta, Color.gray, Color.white, Color.red, new Color(0, 100, 0), Color.yellow, Color.green, Color.cyan};
 	private JPanel buttonAndName;
 	/**
 	 * Konstruktor tworzy panel pokazujący legendę oznaczeń na łące
@@ -27,6 +27,7 @@ public class LegendPanel extends JPanel {
 			JButton tmp = new JButton("");
 			buttonAndName = new JPanel();
 			tmp.setBackground(colors[i]);
+			tmp.setEnabled(false);
 			buttonAndName.add(tmp);
 			buttonAndName.add(new JLabel(" - " + names[i] + " "));
 			add(buttonAndName);

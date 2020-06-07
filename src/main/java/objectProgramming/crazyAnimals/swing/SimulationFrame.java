@@ -33,6 +33,7 @@ public class SimulationFrame extends JFrame {
 	private Simulation simulation;
 	private StartFrame startFrame;
 	private Parameters parameters;
+	private JLabel canClick = new JLabel("Clicking on the animal shows a window with its statistics"), simulationStats = new JLabel("Simulation statistics: ");
 	boolean gameOver;
 	
 	/**
@@ -75,9 +76,14 @@ public class SimulationFrame extends JFrame {
 		legend = new LegendPanel();
 		add(stats);
 		add(legend);
-		stats.setBounds(dimension.height - dimension.height/10, 50, dimension.width - dimension.height, 50);
-		legend.setBounds(dimension.height - dimension.height/10, 100, dimension.width - dimension.height, 300);
 
+		add(canClick);
+		add(simulationStats);
+		stats.setBounds(dimension.height - dimension.height/10, 80, dimension.width - dimension.height, 70);
+		legend.setBounds(dimension.height - dimension.height/10, 150, dimension.width - dimension.height, 400);
+		canClick.setBounds(50, dimension.height - 50, 500, 20);
+		simulationStats.setBounds(dimension.height - dimension.height/10 + 50, 60, dimension.width - dimension.height, 20);
+		
 		ControlPanel controlPanel = new ControlPanel(timer,this,parameters.runAtStart);
 		if(parameters.runAtStart) {
 			timer.start();
