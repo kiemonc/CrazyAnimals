@@ -39,7 +39,7 @@ public class ParametersTest {
 		
 		parameters = new Parameters(random);
 		commander = new Builder().addObject(parameters).build();
-		commander.parse("-w", "9", "-h", "11", "-sMin", "8,60,10,10,10", "-sMax", "9,60,10,10,10");
+		commander.parse("-w", "9", "-h", "11", "-sMin", "8,60,10,10,10", "-sMax", "10,60,10,10,10");
 		try {
 			parameters.initializeNumAnimals();
 			parameters.setParametrs();

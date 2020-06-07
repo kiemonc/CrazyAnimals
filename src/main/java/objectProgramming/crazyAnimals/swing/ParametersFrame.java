@@ -254,18 +254,27 @@ public class ParametersFrame extends JFrame implements ActionListener{
 				ifThrow = true;
 			}
 			param.numWaterholes = getTextFieldValue(index++);
-			if(param.numWaterholes < 0 || param.numWaterholes > param.meadowHeight * param.meadowWidth) {
+			if(param.numWaterholes < 1) { 
 				setRedBackground(index - 1);
 				ifThrow = true;
 			}
+			if(param.numWaterholes > 2 * (param.meadowHeight + param.meadowWidth - 2)) {
+				for(int i = 0; i < 3; i++)
+					setRedBackground(index - 1 - i);
+				ifThrow = true;
+			}
 			param.maxIterationNum = getTextFieldValue(index++);
-			if(param.maxIterationNum < 2 || param.maxIterationNum > 1000000) {
+			if(param.maxIterationNum <= 0) {
 				setRedBackground(index - 1);
 				ifThrow = true;
 			}
 			for(int i = 0; i < 5; i++) {
 				param.startMinNum[i] = getTextFieldValue(index++);
 				param.startMaxNum[i] = getTextFieldValue(index++);
+				if(param.startMinNum[i] < 0) {
+					setRedBackground(index - 2);
+					ifThrow = true;
+				}
 				if(param.startMaxNum[i] < param.startMinNum[i]) {
 					setRedBackground(index - 1);
 					setRedBackground(index - 2);
@@ -275,6 +284,14 @@ public class ParametersFrame extends JFrame implements ActionListener{
 			for(int i = 0; i < 5; i++) {
 				param.endMinNum[i] = getTextFieldValue(index++);
 				param.endMaxNum[i] = getTextFieldValue(index++);
+				if(param.endMinNum[i] < -1) {
+					setRedBackground(index - 2);
+					ifThrow = true;
+				}
+				if(param.endMaxNum[i] < -1) {
+					setRedBackground(index - 1);
+					ifThrow = true;
+				}
 				if((param.endMaxNum[i] != -1 && param.endMinNum[i] != -1) && (param.endMaxNum[i] < param.endMinNum[i])) {
 					setRedBackground(index - 1);
 					setRedBackground(index - 2);
@@ -293,10 +310,18 @@ public class ParametersFrame extends JFrame implements ActionListener{
 					ifThrow = true;
 				}
 			}
-			int sum = 0;
+			int startMinNum = 0;
 			for(int i = 0; i < 5; i++)
-				sum += param.startMaxNum[i];
-			if(sum > param.meadowHeight * param.meadowWidth) {
+				startMinNum += param.startMinNum[i];
+			if(startMinNum <= 0) {
+				for(int i = 0; i< 5; i++)
+					setRedBackground(4 + 2 * i);
+				ifThrow = true;
+			}
+			int startMaxNum = 0;
+			for(int i = 0; i < 5; i++)
+				startMaxNum += param.startMaxNum[i];
+			if(startMaxNum > param.meadowHeight * param.meadowWidth) {
 				setRedBackground(0);
 				setRedBackground(1);
 				for(int i = 0; i< 5; i++)
