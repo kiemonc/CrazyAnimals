@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JButton;
@@ -19,7 +20,7 @@ import objectProgramming.crazyAnimals.animal.*;
  * @author jakub
  */
 @SuppressWarnings("serial")
-public class AnimalStatsFrame extends JFrame implements ActionListener{
+public class AnimalStatsFrame extends JFrame implements ActionListener {
 
 	private int [] values;
 	private JLabel nr, xy, species, hunger, thirst, age, isMale, iterationsToMove;
@@ -71,7 +72,15 @@ public class AnimalStatsFrame extends JFrame implements ActionListener{
 		close.setBounds(60, 270, 100, 20);
 		close.addActionListener(this);
 		add(close);
+		addWindowListener(new java.awt.event.WindowAdapter() {
+		    @Override
+		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+		    	((Animal)animal).setHasPanel(false);
+				animalStatsFrames.remove(this);
+		    }
+		});
 		}
+	
 	/**
 	 * Metoda przechwytuje zdarzenie i zamyka okienko jeżeli jego źródłem jest przycisk close
 	 * @param e przechwycone zdarzenie
@@ -81,6 +90,8 @@ public class AnimalStatsFrame extends JFrame implements ActionListener{
 		Object source = e.getSource();
 		if(source == close) {
 			dispose();
+			((Animal)animal).setHasPanel(false);
+			animalStatsFrames.remove(this);
 		}
 	}
 	/**
@@ -89,6 +100,7 @@ public class AnimalStatsFrame extends JFrame implements ActionListener{
 	public void update() {
 		if(animal.isDead()) {
 			this.dispose();
+			((Animal)animal).setHasPanel(false);
 			animalStatsFrames.remove(this);
 			return;
 		}
@@ -102,4 +114,5 @@ public class AnimalStatsFrame extends JFrame implements ActionListener{
 		isMale.setText("Gender: " + (values[3] == 0 ? "female" : "male"));
 		iterationsToMove.setText("Iterations to move: " + values[4]);
 	}
+	
 }
