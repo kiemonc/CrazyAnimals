@@ -110,7 +110,7 @@ public class FieldPanel extends JPanel implements MouseListener{
  	}
  	
  	/**
- 	 * Zamyka wszystkie okna pomocnicze sulacji otwarte z poziomy danego pola
+ 	 * Zamyka wszystkie okna pomocnicze sulacji otwarte z poziomy danego pola.
  	 */
  	public void finilize() {
  		for(AnimalStatsFrame frame : animalStatsFrames) {
@@ -118,6 +118,12 @@ public class FieldPanel extends JPanel implements MouseListener{
  		}
  	}
  	
+ 	/**
+ 	 * Określa, które zwierzę jest przypisane do współrzędnych danych w parametrach
+ 	 * @param x - pozycja x
+ 	 * @param y - pozycja y
+ 	 * @return - kliknięte zwierzę
+ 	 */
  	private IAnimal getClickedAnimal(int x, int y) {
  		int clickedPosition;
  		
@@ -145,14 +151,16 @@ public class FieldPanel extends JPanel implements MouseListener{
   		}
  	}
  	
- 	/**
- 	 * Reaguje na kliknięcie myszki na dany panel
- 	 */
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
 	}
-
+	
+ 	/**
+ 	 * Reaguje na kliknięcie myszki na dany panel
+ 	 * Otwiera okno ze statystykami zwierzęcia jeśli kliknięto w zwierzę
+ 	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
 		IAnimal clickedAnimal = getClickedAnimal(e.getX(),e.getY());
