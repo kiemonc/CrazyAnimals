@@ -8,7 +8,7 @@ import objectProgramming.crazyAnimals.area.IField;
 import objectProgramming.crazyAnimals.area.IMeadow;
 
 /**
- * Klasa zawiera wspĂłlne parametry i operacje ktĂłre mogÄ… zostaÄ‡ wykonane na kaĹĽdym zwierzÄ™ciu
+ * Klasa zawiera wspólne parametry i operacje które mogą zostać wykonane na każdym zwierzęciu
  * @author jakub
  */
 public abstract class Animal implements IAnimal{
@@ -18,14 +18,13 @@ public abstract class Animal implements IAnimal{
 	IField field;
 	IAnimal child;
 	Random random;
-	
 	/**
-	 * Konstruktor tworzy zwierzÄ™, nadaje mu poczÄ…tkowe parametry i umieszcza na podanym polu
-	 * @param hunger poczÄ…tkowy gĹ‚Ăłd
-	 * @param thirst poczÄ…tkowe pragnienie
+	 * Konstruktor tworzy zwierzę, nadaje mu początkowe parametry i umieszcza na podanym polu
+	 * @param hunger początkowy głód
+	 * @param thirst początkowe pragnienie
 	 * @param age wiek
-	 * @param isMale zmienna logiczna odpowiadajÄ…ca na pytanie: czy zwierzÄ™ jest pĹ‚ci mÄ™skiej?
-	 * @param field pole na ktĂłrym zostanie umieszczone zwierzÄ™
+	 * @param isMale zmienna logiczna odpowiadająca na pytanie: czy zwierzę jest płci męskiej?
+	 * @param field pole na którym zostanie umieszczone zwierzę
 	 * @param random referencja do zmiennnej typu Random
 	 */
 	public Animal(int hunger, int thirst, int age, boolean isMale, IField field, Random random) {
@@ -63,7 +62,7 @@ public abstract class Animal implements IAnimal{
 	public void doIteration() {
 		if(field == null)
 			return;
-		if(age >= 200 || hunger >= 100 || thirst >= 100){
+		if(age >= 100 || hunger >= 100 || thirst >= 100){
 			die();
 			return;
 		}
@@ -118,9 +117,9 @@ public abstract class Animal implements IAnimal{
 	}
 	
 	/**
-	 * Pozwala stwierdziÄ‡ czy zwierzÄ™ moĹĽe ruszyÄ‡ siÄ™ na zadane pole
+	 * Pozwala stwierdzić czy zwierzę może ruszyć się na zadane pole
 	 * @param field sprawdzane pole
-	 * @return true - moĹĽe siÄ™ ruszyÄ‡, false - nie moĹĽe siÄ™ ruszyÄ‡
+	 * @return true - może się ruszyć, false - nie może się ruszyć
 	 */
 	boolean canMoveThere(IField field) {
 		if(field.anyAnimal()){
@@ -140,7 +139,7 @@ public abstract class Animal implements IAnimal{
 		return true;
 	}
 	/**
-	 * Sprawia, ĹĽe obiekt zostaje zjedzony przez zwierzÄ™
+	 * Sprawia, że obiekt zostaje zjedzony przez zwierzę
 	 * @param target - jedzony obiekt
 	 */
 	void eat(IEatable target) {
@@ -148,11 +147,11 @@ public abstract class Animal implements IAnimal{
 		hunger = (hunger > 50) ? hunger - 50 : 0;
 	}
 	/**
-	 * UzupeĹ‚nia pragnienie zwierzÄ™cia
+	 * Uzupełnia pragnienie zwierzęcia
 	 */
 	void drink() {thirst = (thirst > 50) ? thirst - 50 : 0;}
 	/**
-	 * Usuwa zwierzÄ™ z pola i uwzglÄ™dnia to w statystykach
+	 * Usuwa zwierzę z pola i uwzględnia to w statystykach
 	 */
 	void die() {
 		if(isDead()) 
@@ -171,7 +170,7 @@ public abstract class Animal implements IAnimal{
 		isDead = true;
 	}
 	/**
-	 * Dodaje gĹ‚Ăłd w zaleĹĽnoĹ›ci od gatunku
+	 * Dodaje głód w zależności od gatunku
 	 */
 	void addHunger() {
 		if(this instanceof Cat || this instanceof Wolf)

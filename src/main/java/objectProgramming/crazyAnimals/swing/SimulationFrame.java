@@ -38,7 +38,7 @@ public class SimulationFrame extends JFrame {
 	/**
 	 * Steruje wykonywaniem kolejnych iteracji symulacji
 	 */
-	private Timer timer = new Timer(500, new ActionListener() {
+	private Timer timer = new Timer(100, new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			doIteration();
