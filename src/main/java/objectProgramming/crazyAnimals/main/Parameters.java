@@ -50,11 +50,13 @@ public final class Parameters {
 			startMaxNumAnimals += startMaxNum[i]; 
 			startMinNumAnimals += startMinNum[i];
 			endMinNumAnimals += endMinNum[i];
+			/**
 			if(endMaxNum[i]>0) {
 			endMaxNumAnimals += endMaxNum[i];
 			}
+			**/
 		}
-		if(maxIterationNum <= 0 || meadowHeight < 2 || meadowWidth < 2 || startMinNumAnimals <= 0 || endMinNumAnimals < -5 || startMaxNumAnimals >= meadowHeight*meadowWidth || endMaxNumAnimals >= 3* meadowHeight*meadowWidth) {
+		if(maxIterationNum <= 0 || meadowHeight < 2 || meadowWidth < 2 || startMinNumAnimals <= 0 || endMinNumAnimals < -5 || startMaxNumAnimals >= meadowHeight*meadowWidth) {// || endMaxNumAnimals >= 3* meadowHeight*meadowWidth) {
 			throw new BadParametersException();
 		}
 		if(numWaterholes > 2*(meadowHeight+meadowWidth-2) || numWaterholes < 1) {
@@ -159,6 +161,9 @@ public final class Parameters {
 	@Parameter(names = {"--path","-p"}, description = "Path to the file with statistics")
 	public String path = "data.csv";
 	
+	
+	@Parameter(names = {"--run","-r"}, description = "Started simulation just after run the program")
+	public boolean runAtStart = false;
 	
 	/**
 	 * Inicjalizuje początkowe oraz końcowe graniczne liczebności zwierząt.

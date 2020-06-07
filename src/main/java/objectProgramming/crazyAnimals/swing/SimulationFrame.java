@@ -19,8 +19,8 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 /**
- * Główne okno symulacji. Grupuje panele niezbędne do przeprowadzenia sumulacji: panel opisu oznaczeń, panele poszczególnych pól, panel kontroli oraz panel statystyk.
- * @author Mikołaj
+ * GĹ‚Ăłwne okno symulacji. Grupuje panele niezbÄ™dne do przeprowadzenia sumulacji: panel opisu oznaczeĹ„, panele poszczegĂłlnych pĂłl, panel kontroli oraz panel statystyk.
+ * @author MikoĹ‚aj
  *
  */
 @SuppressWarnings("serial")
@@ -33,6 +33,7 @@ public class SimulationFrame extends JFrame {
 	private Simulation simulation;
 	private StartFrame startFrame;
 	private Parameters parameters;
+	private JLabel canClick = new JLabel("Clicking on the animal shows a window with its statistics"), simulationStats = new JLabel("Simulation statistics: ");
 	boolean gameOver;
 	
 	/**
@@ -47,11 +48,11 @@ public class SimulationFrame extends JFrame {
 	});
 	
 	/**
-	 * Konstruktor okienka głównego symulacji. Ustawia podstawowe właściwości okienka. Dodaje wymienione w opisie panele.
-	 * Ustawia rozmiar okna na całą wielkość ekranu.
+	 * Konstruktor okienka gĹ‚Ăłwnego symulacji. Ustawia podstawowe wĹ‚aĹ›ciwoĹ›ci okienka. Dodaje wymienione w opisie panele.
+	 * Ustawia rozmiar okna na caĹ‚Ä… wielkoĹ›Ä‡ ekranu.
 	 * @param simulation - referencja do aktualnie przeprowadzanej symulacji
 	 * @param startFrame - referencja do startowego okienka aplikacji
-	 * @param parameters - referencja do przyjętych parametrów
+	 * @param parameters - referencja do przyjÄ™tych parametrĂłw
 	 */
 	public SimulationFrame(Simulation simulation, StartFrame startFrame, Parameters parameters) {
 		super("Crazy Animals");
@@ -73,10 +74,17 @@ public class SimulationFrame extends JFrame {
 		legend = new LegendPanel();
 		add(stats);
 		add(legend);
-		stats.setBounds(dimension.height - dimension.height/10, 50, dimension.width - dimension.height, 50);
-		legend.setBounds(dimension.height - dimension.height/10, 100, dimension.width - dimension.height, 200);
-
-		ControlPanel controlPanel = new ControlPanel(timer,this);
+		add(canClick);
+		add(simulationStats);
+		stats.setBounds(dimension.height - dimension.height/10, 80, dimension.width - dimension.height, 50);
+		legend.setBounds(dimension.height - dimension.height/10, 130, dimension.width - dimension.height, 200);
+		canClick.setBounds(50, dimension.height - 50, 500, 20);
+		simulationStats.setBounds(dimension.height - dimension.height/10 + 50, 60, dimension.width - dimension.height, 20);
+		
+		ControlPanel controlPanel = new ControlPanel(timer,this,parameters.runAtStart);
+		if(parameters.runAtStart) {
+			timer.start();
+		}
 		controlPanel.setBounds(dimension.height - dimension.height/10, 200, dimension.width - dimension.height, 50);
 		add(controlPanel);
 		
@@ -84,7 +92,7 @@ public class SimulationFrame extends JFrame {
 	}
 	
 	/**
-	 * Czynności wykonywane podczas symulacji. Sprawdza czy nastąpił koniec symulacji.
+	 * CzynnoĹ›ci wykonywane podczas symulacji. Sprawdza czy nastÄ…piĹ‚ koniec symulacji.
 	 */
 	void doIteration() {
 		if(!simulation.ifEnd()) {
@@ -107,8 +115,8 @@ public class SimulationFrame extends JFrame {
 	
 	/**
 	 * Inicjalizuje pola w okienku. Oblicza wymiary i odpowienio je rozmieszcza
-	 * @param meadow - referencja do łąki
-	 * @param maxSize - wysokość ekranu w px
+	 * @param meadow - referencja do Ĺ‚Ä…ki
+	 * @param maxSize - wysokoĹ›Ä‡ ekranu w px
 	 */
 	private void initalizePanels(Meadow meadow, int maxSize) {
 		panels = new LinkedList<>();
@@ -135,7 +143,7 @@ public class SimulationFrame extends JFrame {
 	}
 	
 	/**
-	 * Kończenie symulacji. Zapisuje plik statystyk. Wyświetla komunikat o końcu symulacji. Zamyka otwarte okna pomocnicze.
+	 * KoĹ„czenie symulacji. Zapisuje plik statystyk. WyĹ›wietla komunikat o koĹ„cu symulacji. Zamyka otwarte okna pomocnicze.
 	 */
 	void gameOver() {
 		//updateState();
@@ -143,7 +151,11 @@ public class SimulationFrame extends JFrame {
 			panel.finilize();
 		}
 		timer.stop();
-		JOptionPane.showMessageDialog(frame,"End of simulation");
+		String endMessage = simulation.getEndMessage();
+		if(endMessage == null) {
+			endMessage = "user ingeration";
+		}
+		JOptionPane.showMessageDialog(frame,"End of simulation\nReason: " + endMessage + ".");
 		try {
 			SaveAsCSV.saveToFile(parameters);
 			JOptionPane.showMessageDialog(frame,"File with statistics saved.\nPath: " + parameters.path);
@@ -152,6 +164,8 @@ public class SimulationFrame extends JFrame {
 			e.printStackTrace();
 		}
 		this.dispose();
-		startFrame.setVisible(true);
+		if(startFrame != null) {
+			startFrame.setVisible(true);
+		}
 	}
 }

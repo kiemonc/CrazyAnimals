@@ -30,7 +30,14 @@ public final class Simulation {
 	Meadow meadow;
 	private IAnimalCreator animalCreator;
 	private List<IAnimal> animals;
+	private String endMessage;
+	private String[] animalNames = {"cats","cows","mice","sheep","wolfs"};
 	
+	/**
+	 * Zeruje statystyki, tworzy łąke i wyzwala tworzenie zwierząt. Zeruje nr iteracji
+	 * @param parameters - parametery początkowe
+	 * @param random - referencja to zmiennej losowej
+	 */
 	public Simulation(Parameters parameters, Random random) {
 		new AnimalStats();
 		Feed.clearStatistics();
@@ -58,11 +65,13 @@ public final class Simulation {
 		
 		try{
 			SaveAsCSV.saveToFile(parameters);
+			System.out.println("Parameters saved at: " + parameters.path);
 		}
 		catch(IOException e) {
 			System.out.println("Saving failed");
 		}
-		System.out.println("Koniec symulacji");
+		System.out.println("End of simulation");
+		System.out.println("Reason: " + endMessage);
 	}
 	
 /**
@@ -134,10 +143,15 @@ public final class Simulation {
  */
 	public boolean ifEnd() {
 		for(int i = 0; i < 5; i++) {
-			if(objectProgramming.crazyAnimals.animal.AnimalStats.getCurrentPopulation()[i] < parameters.endMinNum[i] || (parameters.endMaxNum[i]!= -1 && objectProgramming.crazyAnimals.animal.AnimalStats.getCurrentPopulation()[i] > parameters.endMaxNum[i])) {
+			if(objectProgramming.crazyAnimals.animal.AnimalStats.getCurrentPopulation()[i] < parameters.endMinNum[i]) {
+				endMessage = "min number of " + animalNames[i];
+				return true;
+			} else if(parameters.endMaxNum[i]!= -1 && objectProgramming.crazyAnimals.animal.AnimalStats.getCurrentPopulation()[i] > parameters.endMaxNum[i]) {
+				endMessage = "max number of " + animalNames[i];
 				return true;
 			}
 		if(parameters.maxIterationNum <= numIteration) {
+			endMessage = "max number of iterations";
 			return true;
 		}
 		}
@@ -156,10 +170,26 @@ public final class Simulation {
 		System.out.println(" /    \\    / - two neighbouring waterholes");
 	}
 	
+	/**
+	 * Zwraca wiadomość końcową opisująco powód zakończenia symulacji
+	 * @return wiadomość końcowa
+	 */
+	public String getEndMessage() {
+		return endMessage;
+	}
+	
+	/**
+	 * Zwraca referncje do aktualnie wykorzystywanej łaki
+	 * @return referencja do łąki
+	 */
 	public Meadow getMeadow() {
 		return meadow;
 	}
 
+	/**
+	 * Zwraca numer iteracji
+	 * @return numer iteracji
+	 */
 	public int getItertionNum() {
 		return numIteration;
 	}
