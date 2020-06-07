@@ -19,6 +19,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 	private JButton startStop;
 	private JButton nextStep = new JButton("NEXT");
 	private JButton end = new JButton("END");
+	private JButton exit = new JButton("EXIT");
 	private SimulationFrame parent;
 	private Timer timer;
 	
@@ -44,9 +45,11 @@ public class ControlPanel extends JPanel implements ActionListener {
 		add(startStop);
 		add(nextStep);
 		add(end);
+		add(exit);
 		startStop.addActionListener(this);
 		nextStep.addActionListener(this);
 		end.addActionListener(this);
+		exit.addActionListener(this);
 
 	}
 	
@@ -71,6 +74,9 @@ public class ControlPanel extends JPanel implements ActionListener {
 			parent.doIteration();
 		} else if (source == end) {
 			parent.gameOver();
+		}
+		if(source == exit) {
+			System.exit(0);
 		}
 	}
 }

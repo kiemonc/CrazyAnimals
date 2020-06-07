@@ -61,7 +61,9 @@ public class SimulationFrame extends JFrame {
 		this.parameters = parameters;
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		setResizable(false);
-		setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		frame.setUndecorated(true);
+		setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH); 
+		
  		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
