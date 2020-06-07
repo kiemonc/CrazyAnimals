@@ -8,7 +8,7 @@ import objectProgramming.crazyAnimals.area.IField;
 import objectProgramming.crazyAnimals.area.IMeadow;
 
 /**
- * Klasa zawiera wspólne parametry i operacje które mogą zostać wykonane na każdym zwierzęciu
+ * Klasa zawiera wspĂłlne parametry i operacje ktĂłre mogÄ… zostaÄ‡ wykonane na kaĹĽdym zwierzÄ™ciu
  * @author jakub
  */
 public abstract class Animal implements IAnimal{
@@ -20,12 +20,12 @@ public abstract class Animal implements IAnimal{
 	Random random;
 	
 	/**
-	 * Konstruktor tworzy zwierzę, nadaje mu początkowe parametry i umieszcza na podanym polu
-	 * @param hunger początkowy głód
-	 * @param thirst początkowe pragnienie
+	 * Konstruktor tworzy zwierzÄ™, nadaje mu poczÄ…tkowe parametry i umieszcza na podanym polu
+	 * @param hunger poczÄ…tkowy gĹ‚Ăłd
+	 * @param thirst poczÄ…tkowe pragnienie
 	 * @param age wiek
-	 * @param isMale zmienna logiczna odpowiadająca na pytanie: czy zwierzę jest płci męskiej?
-	 * @param field pole na którym zostanie umieszczone zwierzę
+	 * @param isMale zmienna logiczna odpowiadajÄ…ca na pytanie: czy zwierzÄ™ jest pĹ‚ci mÄ™skiej?
+	 * @param field pole na ktĂłrym zostanie umieszczone zwierzÄ™
 	 * @param random referencja do zmiennnej typu Random
 	 */
 	public Animal(int hunger, int thirst, int age, boolean isMale, IField field, Random random) {
@@ -63,7 +63,7 @@ public abstract class Animal implements IAnimal{
 	public void doIteration() {
 		if(field == null)
 			return;
-		if(age >= 100 || hunger >= 100 || thirst >= 100){
+		if(age >= 200 || hunger >= 100 || thirst >= 100){
 			die();
 			return;
 		}
@@ -118,9 +118,9 @@ public abstract class Animal implements IAnimal{
 	}
 	
 	/**
-	 * Pozwala stwierdzić czy zwierzę może ruszyć się na zadane pole
+	 * Pozwala stwierdziÄ‡ czy zwierzÄ™ moĹĽe ruszyÄ‡ siÄ™ na zadane pole
 	 * @param field sprawdzane pole
-	 * @return true - może się ruszyć, false - nie może się ruszyć
+	 * @return true - moĹĽe siÄ™ ruszyÄ‡, false - nie moĹĽe siÄ™ ruszyÄ‡
 	 */
 	boolean canMoveThere(IField field) {
 		if(field.anyAnimal()){
@@ -128,28 +128,35 @@ public abstract class Animal implements IAnimal{
 			if(animals.size() >= 2)
 				return false;
 			for(int i = 0; i < animals.size(); i++){
-				if(!(canEat(animals.get(i)) || canMultiply(animals.get(i))))
-					return false;
+				if(this instanceof Wolf) {
+					if(animals.get(i) instanceof Wolf && animals.get(i).isMale() == this.isMale())
+						return false;
+				}
+				else 
+					if(!(canEat(animals.get(i)) || canMultiply(animals.get(i))))
+						return false;
 			}
 		}
 		return true;
 	}
 	/**
-	 * Sprawia, że obiekt zostaje zjedzony przez zwierzę
+	 * Sprawia, ĹĽe obiekt zostaje zjedzony przez zwierzÄ™
 	 * @param target - jedzony obiekt
 	 */
 	void eat(IEatable target) {
 		target.beEaten();
-		hunger = (hunger > 70) ? hunger - 70 : 0;
+		hunger = (hunger > 50) ? hunger - 50 : 0;
 	}
 	/**
-	 * Uzupełnia pragnienie zwierzęcia
+	 * UzupeĹ‚nia pragnienie zwierzÄ™cia
 	 */
 	void drink() {thirst = (thirst > 50) ? thirst - 50 : 0;}
 	/**
-	 * Usuwa zwierzę z pola i uwzględnia to w statystykach
+	 * Usuwa zwierzÄ™ z pola i uwzglÄ™dnia to w statystykach
 	 */
 	void die() {
+		if(isDead()) 
+			return;
 		if(this instanceof Cat)
 			AnimalStats.takeAnimal(0);
 		else if(this instanceof Cow)
@@ -164,7 +171,7 @@ public abstract class Animal implements IAnimal{
 		isDead = true;
 	}
 	/**
-	 * Dodaje głód w zależności od gatunku
+	 * Dodaje gĹ‚Ăłd w zaleĹĽnoĹ›ci od gatunku
 	 */
 	void addHunger() {
 		if(this instanceof Cat || this instanceof Wolf)

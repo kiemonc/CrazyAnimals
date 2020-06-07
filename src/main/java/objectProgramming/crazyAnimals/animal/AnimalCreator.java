@@ -37,29 +37,29 @@ public class AnimalCreator implements IAnimalCreator{
 	 * @param field pole na którym ma zostać umieszczony kot
 	 * @return referencja do utworzonego kota
 	 */
-	private Cat createCat(IField field) 	{ return new Cat  (0, 0, 0, random.nextBoolean(), field, random); }
+	private Cat createCat(IField field) 	{ return new Cat  (random.nextInt(80), random.nextInt(80), random.nextInt(80), random.nextBoolean(), field, random); }
 	/**
 	 * Tworzy jedną krowę i umieszcza ją na podanym polu
 	 * @param field pole na którym ma zostać umieszczona krowa
 	 * @return referencja do utworzonej krowy
 	 */
-	private Cow createCow(IField field)     { return new Cow  (0, 0, 0, random.nextBoolean(), field, random); }
+	private Cow createCow(IField field)     { return new Cow  (random.nextInt(80), random.nextInt(80), random.nextInt(80), random.nextBoolean(), field, random); }
 	/**
 	 * Tworzy jednego wilka i umieszcza go na podanym polu
 	 * @param field pole na którym ma zostać umieszczony wilk
 	 * @return referencja do utworzonego wilka
 	 */
-	private Wolf createWolf(IField field)   { return new Wolf (0, 0, 0, random.nextBoolean(), field, random); }
+	private Wolf createWolf(IField field)   { return new Wolf (random.nextInt(80), random.nextInt(80), random.nextInt(80), random.nextBoolean(), field, random); }
 	/**
 	 * Tworzy jedną mysz i umieszcza ją na podanym polu
 	 * @param field pole na którym ma zostać umieszczona mysz
 	 * @return referencja do utworzonej myszy
 	 */
-	private Mouse createMouse(IField field) { return new Mouse(0, 0, 0, random.nextBoolean(), field, random); }
+	private Mouse createMouse(IField field) { return new Mouse(random.nextInt(80), random.nextInt(80), random.nextInt(80), random.nextBoolean(), field, random); }
 	/**
 	 * Tworzy jedną owcę i umieszcza ją na podanym polu
 	 * @param field pole na którym ma zostać umieszczona owca
 	 * @return referencja do utworzonej owcy
 	 */
-	private Sheep createSheep(IField field) { return new Sheep(0, 0, 0, random.nextBoolean(), field, random); }
+	private Sheep createSheep(IField field) { return new Sheep(random.nextInt(80), random.nextInt(80), random.nextInt(80), random.nextBoolean(), field, random); }
 }

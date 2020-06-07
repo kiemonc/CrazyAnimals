@@ -8,19 +8,19 @@ import java.util.Random;
 import objectProgramming.crazyAnimals.area.IField;
 
 /**
- * Klasa przechowuje wartość prędkości z jaką poruszają sią wilki oraz operacje charakterystyczne dla tego gatunku.
- * Pozwala odróżnić wilki od innych zwierząt
+ * Klasa przechowuje wartoĹ›Ä‡ prÄ™dkoĹ›ci z jakÄ… poruszajÄ… siÄ… wilki oraz operacje charakterystyczne dla tego gatunku.
+ * Pozwala odrĂłĹĽniÄ‡ wilki od innych zwierzÄ…t
  * @author jakub
  */
 public class Wolf extends Animal {
-	static final int movementSpeed = 3;
+	static final int movementSpeed = 2;
 	/**
-	 * Konstruktor tworzy wilka, nadaje mu początkowe parametry i umieszcza na podanym polu
-	 * @param hunger początkowy głód
-	 * @param thirst początkowe pragnienie
+	 * Konstruktor tworzy wilka, nadaje mu poczÄ…tkowe parametry i umieszcza na podanym polu
+	 * @param hunger poczÄ…tkowy gĹ‚Ăłd
+	 * @param thirst poczÄ…tkowe pragnienie
 	 * @param age wiek
-	 * @param isMale zmienna logiczna odpowiadająca na pytanie: czy zwierzę jest płci męskiej?
-	 * @param field pole na którym zostanie umieszczone zwierzę
+	 * @param isMale zmienna logiczna odpowiadajÄ…ca na pytanie: czy zwierzÄ™ jest pĹ‚ci mÄ™skiej?
+	 * @param field pole na ktĂłrym zostanie umieszczone zwierzÄ™
 	 * @param random referencja do zmiennej typu Random
 	 */
 	public Wolf(int hunger, int thirst, int age, boolean isMale, IField field, Random random){
@@ -29,10 +29,10 @@ public class Wolf extends Animal {
 	}
 	@Override
 	public boolean canEat(IEatable target) {
-		if(target instanceof Mouse)     return true;
-		else if(target instanceof Cat)  return (random.nextInt() % 10 < 8 ? true : false);//80%
-		else if(target instanceof Sheep)return (random.nextInt() % 10 < 6 ? true : false);//60%
-		else if(target instanceof Cow)  return (random.nextInt() % 10 < 4 ? true : false);//40%
+		if(target instanceof Mouse)     return (random.nextInt() % 10 < 8 ? true : false);//80%
+		else if(target instanceof Cat)  return (random.nextInt() % 10 < 6 ? true : false);//60%
+		else if(target instanceof Sheep)return (random.nextInt() % 10 < 4 ? true : false);//40%
+		else if(target instanceof Cow)  return (random.nextInt() % 10 < 2 ? true : false);//20%
 		return false;
 		}
 	@Override
