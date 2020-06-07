@@ -42,7 +42,7 @@ public final class Parameters {
 
 		
 		startNum = new int[5];
-		int startMinNumAnimals = 0, startMaxNumAnimals = 0, endMaxNumAnimals = 0, endMinNumAnimals = 0;
+		int startMinNumAnimals = 0, startMaxNumAnimals = 0,  endMinNumAnimals = 0; //endMaxNumAnimals = 0,
 		for(int i = 0; i < 5; i++) {
 			if(startMinNum[i] < endMinNum[i] || (startMaxNum[i] > endMaxNum[i] && endMaxNum[i] >= 0) || startMaxNum[i] - startMinNum[i] < 0 || startMinNum[i] < 0 || endMinNum[i] < -1 || endMaxNum[i] < -1) {
 				throw new BadParametersException();
