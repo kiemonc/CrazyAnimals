@@ -20,7 +20,7 @@ import objectProgramming.crazyAnimals.animal.*;
 public class AnimalStatsFrame extends JFrame implements ActionListener{
 
 	private int [] values;
-	private JLabel species, hunger, thirst, age, isMale, iterationsToMove;
+	private JLabel nr, xy, species, hunger, thirst, age, isMale, iterationsToMove;
 	private List<JLabel> labelsList = new LinkedList<>();
 	private JButton close = new JButton("Close");
 	private IAnimal animal;
@@ -33,7 +33,7 @@ public class AnimalStatsFrame extends JFrame implements ActionListener{
 	public AnimalStatsFrame(IAnimal animal, List<AnimalStatsFrame> animalStatsFrames) {
 		super("Animal stats");
 		setLocation(200, 200);
-		setSize(250, 280);
+		setSize(250, 340);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setVisible(true);
 		setLayout(null);
@@ -43,6 +43,10 @@ public class AnimalStatsFrame extends JFrame implements ActionListener{
 		this.animalStatsFrames = animalStatsFrames;
 		values = animal.getStats();
 		
+		nr = new JLabel("Number: " + values[5]);
+		labelsList.add(nr);
+		xy = new JLabel("Position (x, y): (" + values[6] + ", " + values[7] + ")");
+		labelsList.add(xy);
 		species = new JLabel("Species: " + (animal instanceof Cat ? "cat" : (animal instanceof Cow ? "cow" : (animal instanceof Mouse ? "mouse" : (animal instanceof Sheep ? "sheep" : (animal instanceof Wolf ? "wolf" : ""))))));
 		labelsList.add(species);
 		hunger = new JLabel("Hunger: " + values[0]);
@@ -61,7 +65,7 @@ public class AnimalStatsFrame extends JFrame implements ActionListener{
 			labelsList.get(i).setBounds(30, 20 + i * 30, 150, 30);
 		}
 		
-		close.setBounds(60, 210, 100, 20);
+		close.setBounds(60, 270, 100, 20);
 		close.addActionListener(this);
 		add(close);
 		}
@@ -86,6 +90,8 @@ public class AnimalStatsFrame extends JFrame implements ActionListener{
 			return;
 		}
 		values = animal.getStats();
+		nr.setText("Number: " + values[5]);
+		xy.setText("Position (x, y): (" + values[6] + ", " + values[7] + ")");
 		species.setText("Species: " + (animal instanceof Cat ? "cat" : (animal instanceof Cow ? "cow" : (animal instanceof Mouse ? "mouse" : (animal instanceof Sheep ? "sheep" : (animal instanceof Wolf ? "wolf" : ""))))));
 		hunger.setText("Hunger: " + values[0]);
 		thirst.setText("Thirst: " + values[1]);
