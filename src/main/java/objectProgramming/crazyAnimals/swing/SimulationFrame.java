@@ -74,7 +74,7 @@ public class SimulationFrame extends JFrame {
 		add(stats);
 		add(legend);
 		stats.setBounds(dimension.height - dimension.height/10, 50, dimension.width - dimension.height, 50);
-		legend.setBounds(dimension.height - dimension.height/10, 100, dimension.width - dimension.height, 200);
+		legend.setBounds(dimension.height - dimension.height/10, 100, dimension.width - dimension.height, 300);
 
 		ControlPanel controlPanel = new ControlPanel(timer,this,parameters.runAtStart);
 		if(parameters.runAtStart) {
@@ -124,7 +124,7 @@ public class SimulationFrame extends JFrame {
 		} else {
 			fieldSize = maxSize*4/5/height;
 		}
-		int offset = maxSize/20;
+		int offset = maxSize/15;
 		for(int i = 0; i < height; i++) {
 			for(int j = 0; j < width; j++) {
 				Border blackline = BorderFactory.createLineBorder(Color.BLACK,1);
