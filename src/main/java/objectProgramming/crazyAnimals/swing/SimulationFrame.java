@@ -26,7 +26,7 @@ import java.util.LinkedList;
 @SuppressWarnings("serial")
 public class SimulationFrame extends JFrame {
 	
-	List<FieldPanel2> panels;
+	List<FieldPanel> panels;
 	StatsPanel stats;
 	LegendPanel legend;
 	private JFrame frame;
@@ -99,7 +99,7 @@ public class SimulationFrame extends JFrame {
 	 */
 	private void updateState() {
 		simulation.doIteration();
-		for(FieldPanel2 field : panels) {
+		for(FieldPanel field : panels) {
 			field.update();
 		}
 		stats.update(simulation.getItertionNum());
@@ -125,7 +125,7 @@ public class SimulationFrame extends JFrame {
 		for(int i = 0; i < height; i++) {
 			for(int j = 0; j < width; j++) {
 				Border blackline = BorderFactory.createLineBorder(Color.BLACK,1);
-				FieldPanel2 field = new FieldPanel2(fieldSize, fields.get(i).get(j));
+				FieldPanel field = new FieldPanel(fieldSize, fields.get(i).get(j));
 				panels.add(field);
 				field.setBounds(offset+(fieldSize)*j, offset+(fieldSize)*i, fieldSize, fieldSize);
 				field.setBorder(blackline);
@@ -139,7 +139,7 @@ public class SimulationFrame extends JFrame {
 	 */
 	void gameOver() {
 		//updateState();
-		for(FieldPanel2 panel : panels) {
+		for(FieldPanel panel : panels) {
 			panel.finilize();
 		}
 		timer.stop();
