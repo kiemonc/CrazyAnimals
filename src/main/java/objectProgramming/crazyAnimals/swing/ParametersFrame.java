@@ -117,9 +117,15 @@ public class ParametersFrame extends JFrame implements ActionListener{
 			catch(NullPointerException e) {
 				
 			}
+			error.setBounds(110, 500, 180, 20);
+			confirmed.setBounds(130, 500, 180, 20);
 		}
 		if(source == setDefaults) {
 			setValues(null);
+			error.setBounds(110, 500, 180, 20);
+			confirmed.setBounds(130, 500, 180, 20);
+			for(int i = 0; i < textFieldList.size(); i++) 
+				setWhiteBackground(i);
 		}
 	}
 	/**
@@ -238,9 +244,9 @@ public class ParametersFrame extends JFrame implements ActionListener{
 	private void setParameters() throws NumberFormatException{
 		int index = 0;
 		boolean ifThrow = false;
-		for(int i = 0; i < textFieldList.size(); i++) {
+		for(int i = 0; i < textFieldList.size(); i++) 
 			setWhiteBackground(i);
-		}
+		
 		try {
 			Parameters param = new Parameters(new Random(1));
 			param.meadowWidth = getTextFieldValue(index++);
@@ -397,7 +403,8 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		@Override
 		public void focusGained(FocusEvent e) {
 			this.selectAll();
-			
+			error.setBounds(110, 500, 180, 20);
+			confirmed.setBounds(130, 500, 180, 20);
 		}
 
 		@Override
