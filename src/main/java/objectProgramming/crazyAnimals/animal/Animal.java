@@ -194,6 +194,7 @@ public abstract class Animal implements IAnimal{
 	
 	/**
 	 * Ustawia informacje czy zwierzę ma już owarty swój panel.
+	 * @param panel - wartośc logiczna czy panel jest otwarty
 	 */
 	public void setHasPanel(boolean panel) {
 		hasPanel = panel;

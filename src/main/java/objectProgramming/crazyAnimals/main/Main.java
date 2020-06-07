@@ -26,7 +26,7 @@ public final class Main {
 	/**
 	 * Referencja do obiektu random, umożliwiająca ustwienie wartości seed, która determinuje całą symulacje.
 	 */
-	private static Random random = new Random(1);
+	private static Random random = new Random();
 	private static Simulation simulation;
 	static Parameters parameters;
 	static private StartFrame startFrame;
