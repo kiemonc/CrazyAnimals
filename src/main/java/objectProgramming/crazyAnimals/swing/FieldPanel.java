@@ -103,8 +103,8 @@ public class FieldPanel extends JPanel implements MouseListener{
  			repaint();
  		}
  		if(animalStatsFrames.size() > 0) {
- 			for(AnimalStatsFrame frame : animalStatsFrames) {
- 					frame.update();
+ 			for(int i = 0; i < animalStatsFrames.size(); i++) {
+ 				animalStatsFrames.get(i).update();
  			}
  		}
  	}

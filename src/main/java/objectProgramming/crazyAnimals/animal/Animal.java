@@ -207,4 +207,8 @@ public abstract class Animal implements IAnimal{
 	public boolean getHasPanel() {
 		return hasPanel;
 	}
+	
+	public static void clearAnimalNum() {
+		lastNumber = 0;
+	}
 }

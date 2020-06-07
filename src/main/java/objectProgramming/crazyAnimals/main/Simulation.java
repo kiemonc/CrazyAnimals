@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Random;
 
-
+import objectProgramming.crazyAnimals.animal.Animal;
 import objectProgramming.crazyAnimals.animal.AnimalCreator;
 import objectProgramming.crazyAnimals.animal.AnimalStats;
 import objectProgramming.crazyAnimals.animal.IAnimal;
@@ -41,6 +41,7 @@ public final class Simulation {
 	public Simulation(Parameters parameters, Random random) {
 		new AnimalStats();
 		Feed.clearStatistics();
+		Animal.clearAnimalNum();
 		this.parameters = parameters;
 		meadow = new Meadow(parameters.meadowWidth, parameters.meadowHeight, parameters.numWaterholes, parameters.meadowHeight*parameters.meadowWidth/10, random);
 		animalCreator = new AnimalCreator();

@@ -7,7 +7,6 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JButton;
@@ -73,7 +72,8 @@ public class AnimalStatsFrame extends JFrame implements ActionListener {
 		close.addActionListener(this);
 		add(close);
 		addWindowListener(new java.awt.event.WindowAdapter() {
-		    @Override
+		    @SuppressWarnings("unlikely-arg-type")
+			@Override
 		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
 		    	((Animal)animal).setHasPanel(false);
 				animalStatsFrames.remove(this);
