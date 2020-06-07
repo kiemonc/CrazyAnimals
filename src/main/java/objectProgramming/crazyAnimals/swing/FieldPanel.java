@@ -52,6 +52,7 @@ public class FieldPanel extends JPanel implements MouseListener{
  		darkGreen = new Color(0, 100, 0);
  		addMouseListener(this);
  		animalStatsFrames = new LinkedList<>();
+ 		update();
  	}
 
  	/**

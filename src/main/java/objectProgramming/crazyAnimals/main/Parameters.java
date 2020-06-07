@@ -42,8 +42,6 @@ public final class Parameters {
 
 		
 		startNum = new int[5];
-		
-		//TODO nieużywany parametr, do usunięcia?
 		int startMinNumAnimals = 0, startMaxNumAnimals = 0, endMaxNumAnimals = 0, endMinNumAnimals = 0;
 		for(int i = 0; i < 5; i++) {
 			if(startMinNum[i] < endMinNum[i] || (startMaxNum[i] > endMaxNum[i] && endMaxNum[i] >= 0) || startMaxNum[i] - startMinNum[i] < 0 || startMinNum[i] < 0 || endMinNum[i] < -1 || endMaxNum[i] < -1) {
@@ -52,9 +50,11 @@ public final class Parameters {
 			startMaxNumAnimals += startMaxNum[i]; 
 			startMinNumAnimals += startMinNum[i];
 			endMinNumAnimals += endMinNum[i];
+			if(endMaxNum[i]>0) {
 			endMaxNumAnimals += endMaxNum[i];
+			}
 		}
-		if(maxIterationNum <= 0 || meadowHeight < 2 || meadowWidth < 2 || startMinNumAnimals <= 0 || endMinNumAnimals < -5 || startMaxNumAnimals >= meadowHeight*meadowWidth) { // || endMaxNumAnimals >= 2* meadowHeight*meadowWidth) {
+		if(maxIterationNum <= 0 || meadowHeight < 2 || meadowWidth < 2 || startMinNumAnimals <= 0 || endMinNumAnimals < -5 || startMaxNumAnimals >= meadowHeight*meadowWidth || endMaxNumAnimals >= 3* meadowHeight*meadowWidth) {
 			throw new BadParametersException();
 		}
 		if(numWaterholes > 2*(meadowHeight+meadowWidth-2) || numWaterholes < 1) {
