@@ -30,6 +30,7 @@ public class ParametersTest {
 		commander = new Builder().addObject(parameters).build();
 		commander.parse("-w", "9", "-h", "11", "-wh", "37");
 		try {
+			parameters.initializeNumAnimals();
 			parameters.setParametrs();
 			fail("Number of waterholes");
 		} catch (BadParametersException e) {

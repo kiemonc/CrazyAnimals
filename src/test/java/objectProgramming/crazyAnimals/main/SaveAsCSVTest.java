@@ -17,6 +17,7 @@ public class SaveAsCSVTest {
 	public void test() {
 		Parameters parameters = new Parameters(new Random());
 		try {
+			parameters.initializeNumAnimals();
 			parameters.setParametrs();
 		} catch (BadParametersException e) {
 			fail("BadParametersException");
