@@ -5,8 +5,6 @@ import java.awt.*;
  
  import javax.swing.JButton;
  import javax.swing.JPanel;
-import javax.swing.Timer;
-
 import objectProgramming.crazyAnimals.animal.*;
 import objectProgramming.crazyAnimals.area.IField;
 import objectProgramming.crazyAnimals.area.Feed;
@@ -86,7 +84,7 @@ public class FieldPanel extends JPanel{
 	 				setBackground(Color.orange);
 	 			} else if(eatable instanceof Feed) {
 	 				if(((Feed) eatable).getName()=="grass") {
-	 					setBackground(Color.pink);
+	 					setBackground(new Color(0, 100, 0));
 	 				} else if(((Feed) eatable).getName()=="cheese") {
 	 					setBackground(Color.yellow);
 	 				}

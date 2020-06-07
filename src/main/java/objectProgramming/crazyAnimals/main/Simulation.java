@@ -1,7 +1,6 @@
 package objectProgramming.crazyAnimals.main;
 
 import java.util.List;
-import java.awt.Graphics;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Random;

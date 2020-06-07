@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -39,16 +38,17 @@ public class ParametersFrame extends JFrame implements ActionListener{
 	
 	/**
 	 * Konstruktor klasy tworzy nowe okienko o odpowiednich parametrach oraz wywyłuje metody rozmieszczające na nim poszczególne elementy
+	 * @param panel referencja do panelu startowego
+	 * @param parameters referencja do parametrów które zostaną wyświetlone przy pokazaniu się okna
 	 */
 	ParametersFrame(StartPanel panel, Parameters parameters){
 		super("Parameters");
-		startPanel=panel;
+		startPanel = panel;
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(390, 480);
 		setResizable(false);
 		setLocation(200, 200);
 		setLayout(null);
-		this.startPanel = panel;
 		showLabels(initiateLabels());
 		textFieldList = initiateTextFields();
 		showTextFields(textFieldList);
@@ -80,7 +80,10 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		setValues(parameters);
 		setParameters();
 		}
-	
+	/**
+	 * Przechwytuje zdarzenia i wykonuje odpowiednie operacje w zależności od ich źródła
+	 * @param event przechwycone zdarzenie
+	 */
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		Object source = event.getSource();
@@ -121,7 +124,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 	}
 	/**
 	 * Metoda ustawia wszystkie pola na wartości domyślne lub zapisane w argumencie
-	 * @param parameters obiekt zawierający parametry symulacji (gdy null pobierane są wartości domyślne)
+	 * @param parameters obiekt zawierający parametry symulacji (gdy parameters == null wartości ustawiane są na domyślne)
 	 */
 	private void setValues(Parameters parameters) {
 		if(parameters == null)
@@ -229,7 +232,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		}
 	}
 	/**
-	 * Zapisuje wartości pól do zmiennej parameters
+	 * Sprawedza poprawność parametrów i zapisuje wartości pól do zmiennej parameters
 	 * @throws NumberFormatException gdy w którymś polu są niepoprawne dane
 	 */
 	private void setParameters() throws NumberFormatException{
@@ -300,11 +303,11 @@ public class ParametersFrame extends JFrame implements ActionListener{
 					setRedBackground(5 + 2 * i);
 				ifThrow = true;
 			}
+			param.path = parameters.path;
 			if(ifThrow)
 				throw(new NumberFormatException());
 			parameters = param;
 		}
-		//TODO dodać ustawienie wartości parameters.path
 		catch (NumberFormatException e) {
 			throw e;
 		}
@@ -313,7 +316,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 	 * Pozwala pobrać wartość z danego pola tekstowego
 	 * @param index odpowiedni indeks pola w liście pól tekstowych
 	 * @return wartość pola
-	 * @throws NumberFormatException gdy w polu znajdzie się liczba
+	 * @throws NumberFormatException gdy w polu nie znajdzie się liczba
 	 */
 	private int getTextFieldValue(int index) throws NumberFormatException{
 		int tmp;
@@ -341,7 +344,7 @@ public class ParametersFrame extends JFrame implements ActionListener{
 		textFieldList.get(index).setBackground(Color.white);
 	}
 	/**
-	 * Pozwala pobrać parametry zapisane podczas wyświetlania tego okna
+	 * Pozwala pobrać parametry zapisane w zmiennej parameters
 	 * @return parametry symulacji
 	 */
 	public Parameters getParameters() {

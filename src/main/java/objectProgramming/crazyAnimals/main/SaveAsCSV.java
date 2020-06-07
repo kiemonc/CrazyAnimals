@@ -31,7 +31,8 @@ public class SaveAsCSV {
 			+ "max population of cats, max population of cows, max population of mouses, max population of sheeps, max population of wolves";
 	/**
 	 * Zapisuje parametry i statystyki symulacji do pliku
-	 * @param parameters obiekt z parametrami poczÄ…tkowymi symulacji
+	 * @param parameters obiekt z parametrami początkowymi symulacji
+	 * @throws IOException gdy zapis pliku się nie powiódł
 	 */
 	public static void saveToFile(Parameters parameters) throws IOException{
 		String tmp = parameters.path;
@@ -54,9 +55,9 @@ public class SaveAsCSV {
 		}
 	}
 	/**
-	 * Pobiera parametry poczÄ…tkowe i statystyki symulacji
-	 * @param parameters obiekt z parametrami poczÄ…tkowymi symulacji
-	 * @return wartoĹ›ci oddzielone przecinkami
+	 * Pobiera parametry początkowe i statystyki symulacji
+	 * @param parameters obiekt z parametrami początkowymi symulacji
+	 * @return wartości oddzielone przecinkami
 	 */
 	private static String getParamsAndStats(Parameters parameters) {
 		String params = new String("");
