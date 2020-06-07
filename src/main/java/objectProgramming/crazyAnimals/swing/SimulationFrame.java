@@ -164,7 +164,6 @@ public class SimulationFrame extends JFrame {
 			JOptionPane.showMessageDialog(frame,"File with statistics saved.\nPath: " + parameters.path);
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(frame,"Saving file failed","Error",  JOptionPane.ERROR_MESSAGE);
-			e.printStackTrace();
 		}
 		this.dispose();
 		if(startFrame != null) {
