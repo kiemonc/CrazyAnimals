@@ -3,6 +3,8 @@
  */
 package objectProgramming.crazyAnimals.swing;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
@@ -32,7 +34,8 @@ public class AnimalStatsFrame extends JFrame implements ActionListener{
 	 */
 	public AnimalStatsFrame(IAnimal animal, List<AnimalStatsFrame> animalStatsFrames) {
 		super("Animal stats");
-		setLocation(200, 200);
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		setLocation(dimension.width*4/7, dimension.height*1/7);
 		setSize(250, 340);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setVisible(true);

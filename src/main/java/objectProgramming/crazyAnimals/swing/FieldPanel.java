@@ -144,7 +144,9 @@ public class FieldPanel extends JPanel implements MouseListener{
   				clickedPosition = 3;
   			}
  		}
-  		if(clickedPosition < eatableList.size() && eatableList.get(clickedPosition) instanceof Animal) {
+  		if(eatableList == null) {
+  			return null;
+  		} else if(clickedPosition < eatableList.size() && eatableList.get(clickedPosition) instanceof Animal) {
   			return (IAnimal) eatableList.get(clickedPosition);
   		} else {
   			return null;
