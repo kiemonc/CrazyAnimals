@@ -3,7 +3,6 @@
  */
 package objectProgramming.crazyAnimals.swing;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 
@@ -19,7 +18,7 @@ import javax.swing.JPanel;
 public class LegendPanel extends JPanel {
 	
 	private String [] names = {"Cat", "Cow", "Mouse", "Sheep", "Wolf", "Grass", "Cheese", "Meadow", "Waterhole"};
-	private Color [] colors = {Color.black, Color.magenta, Color.gray, Color.white, Color.orange, new Color(0, 100, 0), Color.yellow, Color.green, Color.cyan};
+	private Color [] colors = {Color.black, Color.magenta, Color.gray, Color.white, Color.red, new Color(0, 100, 0), Color.yellow, Color.green, Color.cyan};
 	private JPanel buttonAndName;
 	/**
 	 * Konstruktor tworzy panel pokazujący legendę oznaczeń na łące

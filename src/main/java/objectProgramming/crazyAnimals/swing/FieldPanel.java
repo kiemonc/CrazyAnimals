@@ -74,7 +74,7 @@ public class FieldPanel extends JPanel implements MouseListener{
 		 			} else if(eatable instanceof Sheep) {
 		 				g.setColor(Color.white);
 		 			} else if(eatable instanceof Wolf) {
-		 				g.setColor(Color.orange);
+		 				g.setColor(Color.red);
 		 			}
 	 				g.fillRect(position[i%2], position[i/2], eatableSize, eatableSize);
 	 				i++;
@@ -104,7 +104,7 @@ public class FieldPanel extends JPanel implements MouseListener{
  		}
  		if(animalStatsFrames.size() > 0) {
  			for(AnimalStatsFrame frame : animalStatsFrames) {
- 				frame.update();
+ 					frame.update();
  			}
  		}
  	}
@@ -165,7 +165,11 @@ public class FieldPanel extends JPanel implements MouseListener{
 	public void mousePressed(MouseEvent e) {
 		IAnimal clickedAnimal = getClickedAnimal(e.getX(),e.getY());
 		if(clickedAnimal != null) {
-			animalStatsFrames.add(new AnimalStatsFrame(clickedAnimal, animalStatsFrames));
+			if(((Animal)clickedAnimal).getHasPanel() == false) { 
+				animalStatsFrames.add(new AnimalStatsFrame(clickedAnimal, animalStatsFrames));
+				((Animal)clickedAnimal).setHasPanel(true);
+			} else {
+			}
 		}
 	}
 

@@ -16,6 +16,7 @@ public abstract class Animal implements IAnimal{
 	private boolean isMale, isDead = false, movedAfterMultiplying = true;
 	private static int lastNumber = 0;
 	private int number;
+	private boolean hasPanel;
 	IField field;
 	IAnimal child;
 	Random random;
@@ -39,6 +40,7 @@ public abstract class Animal implements IAnimal{
 		lastNumber++;
 		number = lastNumber;
 		child = null;
+		hasPanel = false;
 	}
 	@Override
 	public boolean wantToMove() {return (iterationsToMove == 0 ? true : false);}
@@ -182,7 +184,26 @@ public abstract class Animal implements IAnimal{
 			hunger += 5;
 	}
 	
+	/**
+	 * Zwraca inukalny numer zwierzęcia
+	 * @return unikalny numer
+	 */
 	public int getAnimalNumber() {
 		return number;
+	}
+	
+	/**
+	 * Ustawia informacje czy zwierzę ma już owarty swój panel.
+	 */
+	public void setHasPanel(boolean panel) {
+		hasPanel = panel;
+	}
+	
+	/**
+	 * Daje informacje czy zwierzę ma już owarty swój panel.
+	 * @return wartość zmiennej hasPanel
+	 */
+	public boolean getHasPanel() {
+		return hasPanel;
 	}
 }
