@@ -76,7 +76,10 @@ public class SimulationFrame extends JFrame {
 		stats.setBounds(dimension.height - dimension.height/10, 50, dimension.width - dimension.height, 50);
 		legend.setBounds(dimension.height - dimension.height/10, 100, dimension.width - dimension.height, 200);
 
-		ControlPanel controlPanel = new ControlPanel(timer,this);
+		ControlPanel controlPanel = new ControlPanel(timer,this,parameters.runAtStart);
+		if(parameters.runAtStart) {
+			timer.start();
+		}
 		controlPanel.setBounds(dimension.height - dimension.height/10, 200, dimension.width - dimension.height, 50);
 		add(controlPanel);
 		
@@ -143,7 +146,11 @@ public class SimulationFrame extends JFrame {
 			panel.finilize();
 		}
 		timer.stop();
-		JOptionPane.showMessageDialog(frame,"End of simulation");
+		String endMessage = simulation.getEndMessage();
+		if(endMessage == null) {
+			endMessage = "user ingeration";
+		}
+		JOptionPane.showMessageDialog(frame,"End of simulation\nReason: " + endMessage + ".");
 		try {
 			SaveAsCSV.saveToFile(parameters);
 			JOptionPane.showMessageDialog(frame,"File with statistics saved.\nPath: " + parameters.path);
@@ -152,6 +159,8 @@ public class SimulationFrame extends JFrame {
 			e.printStackTrace();
 		}
 		this.dispose();
-		startFrame.setVisible(true);
+		if(startFrame != null) {
+			startFrame.setVisible(true);
+		}
 	}
 }

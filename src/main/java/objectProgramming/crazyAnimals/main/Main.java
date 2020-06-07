@@ -26,7 +26,7 @@ public final class Main {
 	/**
 	 * Referencja do obiektu random, umożliwiająca ustwienie wartości seed, która determinuje całą symulacje.
 	 */
-	private static Random random = new Random(100);
+	private static Random random = new Random(1);
 	private static Simulation simulation;
 	static Parameters parameters;
 	static private StartFrame startFrame;
@@ -66,6 +66,8 @@ public final class Main {
  * Symulację determinujemy zmianą wartości seed w konstruktorze powyższej zmiennej Random random
  * Aby uruchomić sumylacje z parametrami można skorzystać z parsowania argumentów tekstowych. 
  * Po wpisaniu "--help" wyświetla się instrukcja
+ * Po wpisaniu "-c" wyświetla się symulacja w konsoli
+ * Po wpisaniu "-r" uruchamia się symulacja w GUI i odrazu startuje
  * Przykładowe parametry: "-h 10 -w 10 -i 20 -sMin 1,1,1,1,1 -sMax 5,5,5,5,5 -eMin -1,-1,-1,-1,-1 -eMax 10,10,10,10,10 -wh 15"
  * @param args - parametry startowe aplikacji
  */
@@ -82,8 +84,10 @@ public final class Main {
 			}
 			simulation = new Simulation(parameters, random);
 			simulation.runSimulation();
+		} else if(parameters.runAtStart) {
+			runSimulation();
 		} else {
- 		EventQueue.invokeLater(new Runnable() {
+			EventQueue.invokeLater(new Runnable() {
  			@Override
  			public void run() {
  				startFrame = new StartFrame(parameters);

@@ -62,29 +62,31 @@ public class FieldPanel extends JPanel implements MouseListener{
  	public void paintComponent(Graphics g) {
  		super.paintComponent(g);
  		int i = 0;
- 		for(IEatable eatable : eatableList) {
- 			if(eatable instanceof Animal) {
- 				if(eatable instanceof Cat) {
- 					g.setColor(Color.black);
-	 			} else if(eatable instanceof Cow) {
-	 				g.setColor(Color.magenta);
-	 			} else if(eatable instanceof Mouse) {
-	 				g.setColor(Color.gray);
-	 			} else if(eatable instanceof Sheep) {
-	 				g.setColor(Color.white);
-	 			} else if(eatable instanceof Wolf) {
-	 				g.setColor(Color.orange);
+ 		if(eatableList != null) {
+	 		for(IEatable eatable : eatableList) {
+	 			if(eatable instanceof Animal) {
+	 				if(eatable instanceof Cat) {
+	 					g.setColor(Color.black);
+		 			} else if(eatable instanceof Cow) {
+		 				g.setColor(Color.magenta);
+		 			} else if(eatable instanceof Mouse) {
+		 				g.setColor(Color.gray);
+		 			} else if(eatable instanceof Sheep) {
+		 				g.setColor(Color.white);
+		 			} else if(eatable instanceof Wolf) {
+		 				g.setColor(Color.orange);
+		 			}
+	 				g.fillRect(position[i%2], position[i/2], eatableSize, eatableSize);
+	 				i++;
+	 			} else {
+	 				if(((Feed) eatable).getName()=="grass") {
+	 					g.setColor(darkGreen);
+	 				} else if(((Feed) eatable).getName()=="cheese") {
+	 					g.setColor(Color.yellow);
+	 				}
+	 				g.fillRect(position[1], position[1], eatableSize, eatableSize);
 	 			}
- 				g.fillRect(position[i%2], position[i/2], eatableSize, eatableSize);
- 				i++;
- 			} else {
- 				if(((Feed) eatable).getName()=="grass") {
- 					g.setColor(darkGreen);
- 				} else if(((Feed) eatable).getName()=="cheese") {
- 					g.setColor(Color.yellow);
- 				}
- 				g.fillRect(position[1], position[1], eatableSize, eatableSize);
- 			}
+	 		}
  		}
  	}
  	
@@ -93,7 +95,10 @@ public class FieldPanel extends JPanel implements MouseListener{
  	 */
  	void update() {
  		List<IEatable> newList = field.getEatable();
- 		if(newList != null && !eatableList.equals(newList)) {
+ 		if(eatableList == null) {
+ 			eatableList = newList;
+ 			repaint();
+ 		} else if(!eatableList.equals(newList)) {
  			eatableList = newList;
  			repaint();
  		}

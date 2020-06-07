@@ -16,7 +16,7 @@ import javax.swing.Timer;
 @SuppressWarnings("serial")
 public class ControlPanel extends JPanel implements ActionListener {
 	
-	private JButton startStop = new JButton("START");
+	private JButton startStop;
 	private JButton nextStep = new JButton("NEXT");
 	private JButton end = new JButton("END");
 	private SimulationFrame parent;
@@ -27,18 +27,26 @@ public class ControlPanel extends JPanel implements ActionListener {
 	 * @param timer - referencja do timera odpowiedzalnego za iterowanie symulacji.
 	 * @param parent - referencja do głównego okna symulacji
 	 */
-	ControlPanel(Timer timer, SimulationFrame parent) {
+	ControlPanel(Timer timer, SimulationFrame parent, boolean started) {
 		this.timer = timer;
 		this.parent = parent;
 		setLayout(new FlowLayout());
-		startStop.addActionListener(this);
-		nextStep.addActionListener(this);
-		end.addActionListener(this);
+		
+		
+		if(started) {
+			startStop = new JButton("STOP");
+			nextStep.setVisible(false);
+		} else {
+			startStop = new JButton("START");
+			nextStep.setVisible(true);
+		}
+		setVisible(true);
 		add(startStop);
 		add(nextStep);
 		add(end);
-		nextStep.setVisible(true);
-		setVisible(true);
+		startStop.addActionListener(this);
+		nextStep.addActionListener(this);
+		end.addActionListener(this);
 
 	}
 	

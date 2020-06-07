@@ -14,7 +14,8 @@ import objectProgramming.crazyAnimals.area.IMeadow;
 public abstract class Animal implements IAnimal{
 	private int hunger, thirst, age, iterationsToMove;
 	private boolean isMale, isDead = false, movedAfterMultiplying = true;
-	
+	private static int lastNumber = 0;
+	private int number;
 	IField field;
 	IAnimal child;
 	Random random;
@@ -36,6 +37,8 @@ public abstract class Animal implements IAnimal{
 		this.field = field;
 		this.random = random;
 		field.seatAnimal(this);
+		lastNumber++;
+		number = lastNumber;
 		child = null;
 	}
 	@Override
@@ -178,5 +181,9 @@ public abstract class Animal implements IAnimal{
 			hunger += 3;
 		else if(this instanceof Cow || this instanceof Mouse || this instanceof Sheep)
 			hunger += 5;
+	}
+	
+	public int getAnimalNumber() {
+		return number;
 	}
 }
