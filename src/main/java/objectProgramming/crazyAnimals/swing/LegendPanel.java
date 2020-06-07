@@ -3,7 +3,9 @@
  */
 package objectProgramming.crazyAnimals.swing;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -23,6 +25,7 @@ public class LegendPanel extends JPanel {
 	 * Konstruktor tworzy panel pokazujący legendę oznaczeń na łące
 	 */
 	public LegendPanel() {
+		this.setLayout(new GridLayout());
 		for(int i = 0; i < 9; i++) {
 			JButton tmp = new JButton("");
 			buttonAndName = new JPanel();
