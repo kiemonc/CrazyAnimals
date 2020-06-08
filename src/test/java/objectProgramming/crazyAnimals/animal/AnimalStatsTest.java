@@ -21,7 +21,7 @@ public class AnimalStatsTest {
 		stats.takeAnimal();
 		assertTrue("Zero current, one max", arraysEqual(stats.getStats(), new int[]{0, 1}));
 		stats.clearStats();
-		assertTrue("0 after clear method", arraysEqual(stats.getStats(), new int[]{0, 1}));
+		assertTrue("0 after clear method", arraysEqual(stats.getStats(), new int[]{0, 0}));
 	} 
 	/**
 	 * Metoda porównuje dwie tablice liczb całkowitych

@@ -3,14 +3,13 @@
  */
 package objectProgramming.crazyAnimals.swing;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import objectProgramming.crazyAnimals.animal.Cat;
-import objectProgramming.crazyAnimals.animal.Cow;
-import objectProgramming.crazyAnimals.animal.Mouse;
-import objectProgramming.crazyAnimals.animal.Sheep;
-import objectProgramming.crazyAnimals.animal.Wolf;
+import objectProgramming.crazyAnimals.animal.Species;
 import objectProgramming.crazyAnimals.area.Feed;
 
 /**
@@ -20,8 +19,8 @@ import objectProgramming.crazyAnimals.area.Feed;
 @SuppressWarnings("serial")
 public class StatsPanel extends JPanel {
 	
-	private static final String [] animalsNames = {"Cats", "Cows", "Mouses", "Sheeps", "Wolves"}, feedNames = {"Grass", "Cheese"};
-	private JLabel [] animals = new JLabel[5], feed = new JLabel[2];
+	private static final String [] feedNames = {"Grass", "Cheese"};
+	private List<JLabel>  animals = new LinkedList<>(), feed = new LinkedList<>();
 	private JLabel iterationNr;
 	/**
 	 * Konstruktor tworzy etykiety pokazujące aktualne statystyki zwierząt i jedzenia
@@ -30,19 +29,16 @@ public class StatsPanel extends JPanel {
 	public StatsPanel(int iterNr) {
 		iterationNr = new JLabel("Iteration number: " + iterNr);
 		add(iterationNr);
-		for(int i = 0; i < 5; i++) {
-			switch(i) {
-			case 0: animals[i] = new JLabel(animalsNames[i] + ": " + Cat.stats.getStats()[0]); break;
-			case 1: animals[i] = new JLabel(animalsNames[i] + ": " + Cow.stats.getStats()[0]); break;
-			case 2: animals[i] = new JLabel(animalsNames[i] + ": " + Mouse.stats.getStats()[0]); break;
-			case 3: animals[i] = new JLabel(animalsNames[i] + ": " + Sheep.stats.getStats()[0]); break;
-			case 4: animals[i] = new JLabel(animalsNames[i] + ": " + Wolf.stats.getStats()[0]); break;
-			}
-			add(animals[i]);
-		}
+		
+		for(Species species : Species.values()) 
+			animals.add(new JLabel(species.getName() + ": " + species.getStats()[0])); 
+		
+		for(JLabel animal : animals)
+			add(animal);
+		
 		for(int i = 0; i < 2; i++) {
-			feed[i] = new JLabel(feedNames[i] + ": " + Feed.getNumAll(i == 0 ? "grass" : "cheese"));
-			add(feed[i]);
+			feed.add(new JLabel(feedNames[i] + ": " + Feed.getNumAll(i == 0 ? "grass" : "cheese")));
+			add(feed.get(i));
 		}
 	}
 	/**
@@ -51,15 +47,11 @@ public class StatsPanel extends JPanel {
 	 */
 	public void update(int iterNr) {
 		iterationNr.setText("Iteration number: " + iterNr);
-		for(int i = 0; i < 5; i++)
-			switch(i) {
-			case 0: animals[i].setText(animalsNames[i] + ": " + Cat.stats.getStats()[0]); break;
-			case 1: animals[i].setText(animalsNames[i] + ": " + Cow.stats.getStats()[0]); break;
-			case 2: animals[i].setText(animalsNames[i] + ": " + Mouse.stats.getStats()[0]); break;
-			case 3: animals[i].setText(animalsNames[i] + ": " + Sheep.stats.getStats()[0]); break;
-			case 4: animals[i].setText(animalsNames[i] + ": " + Wolf.stats.getStats()[0]); break;
-			}
+		int index = 0;
+		for(Species species : Species.values())
+			animals.get(index++).setText(species.getName() + ": " + species.getStats()[0]); 
+			
 		for(int i = 0; i < 2; i++) 
-			feed[i].setText(feedNames[i] + ": " + Feed.getNumAll(i == 0 ? "grass" : "cheese"));
+			feed.get(i).setText(feedNames[i] + ": " + Feed.getNumAll(i == 0 ? "grass" : "cheese"));
 	}
 }

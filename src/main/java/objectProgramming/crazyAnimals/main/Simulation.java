@@ -5,11 +5,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Random;
 
-import objectProgramming.crazyAnimals.animal.Animal;
-import objectProgramming.crazyAnimals.animal.AnimalCreator;
-import objectProgramming.crazyAnimals.animal.AnimalStats;
-import objectProgramming.crazyAnimals.animal.IAnimal;
-import objectProgramming.crazyAnimals.animal.IAnimalCreator;
+import objectProgramming.crazyAnimals.animal.*;
 import objectProgramming.crazyAnimals.area.Feed;
 import objectProgramming.crazyAnimals.area.Meadow;
 
@@ -31,7 +27,6 @@ public final class Simulation {
 	private IAnimalCreator animalCreator;
 	private List<IAnimal> animals;
 	private String endMessage;
-	private String[] animalNames = {"cats","cows","mice","sheep","wolfs"};
 	
 	/**
 	 * Zeruje statystyki, tworzy łąke i wyzwala tworzenie zwierząt. Zeruje nr iteracji
@@ -39,7 +34,7 @@ public final class Simulation {
 	 * @param random - referencja to zmiennej losowej
 	 */
 	public Simulation(Parameters parameters, Random random) {
-		new AnimalStats();
+
 		Feed.clearStatistics();
 		Animal.clearAnimalNum();
 		this.parameters = parameters;
@@ -47,6 +42,8 @@ public final class Simulation {
 		animalCreator = new AnimalCreator();
 		animals = animalCreator.createAnimals(parameters.startNum[0], parameters.startNum[1], parameters.startNum[2], parameters.startNum[3], parameters.startNum[4], meadow, random);
 		numIteration = 0;
+		for(Species species : Species.values())
+			species.clearStats();
 	}
 	
 /**
@@ -60,8 +57,8 @@ public final class Simulation {
 			mainLoop();
 		}
 		showDescription();
-		//TODO może przenieść metodę AnimalStats.getString() w inne miejsce? Jest używana tylko tutaj
-		System.out.println(AnimalStats.getString());
+
+		System.out.println(getStatsString());
 
 
 		
@@ -144,18 +141,20 @@ public final class Simulation {
  * @return Wartość logiczna odpowiadająca na pytanie czy nastąpił koniec symulacji
  */
 	public boolean ifEnd() {
-		for(int i = 0; i < 5; i++) {
-			if(objectProgramming.crazyAnimals.animal.AnimalStats.getCurrentPopulation()[i] < parameters.endMinNum[i]) {
-				endMessage = "min number of " + animalNames[i];
+		int i = 0;
+		for(Species species : Species.values()) {
+			if(species.getStats()[0] < parameters.endMinNum[i]) {
+				endMessage = "min number of " + species.getName().toLowerCase();
 				return true;
-			} else if(parameters.endMaxNum[i]!= -1 && objectProgramming.crazyAnimals.animal.AnimalStats.getCurrentPopulation()[i] > parameters.endMaxNum[i]) {
-				endMessage = "max number of " + animalNames[i];
+			} else if(parameters.endMaxNum[i]!= -1 && species.getStats()[0] > parameters.endMaxNum[i]) {
+				endMessage = "max number of " + species.getName().toLowerCase();
 				return true;
 			}
+			i++;
+		}
 		if(parameters.maxIterationNum <= numIteration) {
 			endMessage = "max number of iterations";
 			return true;
-		}
 		}
 		return false;
 	}
@@ -196,4 +195,19 @@ public final class Simulation {
 		return numIteration;
 	}
 	
+	/**
+	 * Pozwala pobrać statystyki w postaci wartości z opisami
+	 * @return ciąg znaków zawierający statystyki dla wszystkich zwierząt
+	 */
+	public String getStatsString() {
+		String stats = "";
+		for(int i = 0; i < 2; i++) {
+			stats += (i == 0 ? "\nCurrent population: " : "\n\nMax population: ");
+			for(Species species : Species.values()) {
+				stats += "\n" + species.getName() + ": " + species.getStats()[i];
+			}
+		}
+		stats += "\n";
+		return stats;
+	}
 }

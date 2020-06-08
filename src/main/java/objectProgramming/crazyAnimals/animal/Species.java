@@ -30,7 +30,7 @@ public enum Species {
 			Cow.stats.clearStats();
 		}
 	},
-	MOUSE("Mouses"){
+	MOUSE("Mice"){
 		@Override
 		public int[] getStats() {
 			return Mouse.stats.getStats();
@@ -63,10 +63,11 @@ public enum Species {
 			Wolf.stats.clearStats();
 		}
 	};
-	public String name;
+	String name;
 	Species(String name){
 		this.name = name;
 	}
 	public abstract int [] getStats();
 	public abstract void clearStats();
+	public String getName() {return name;}
 }

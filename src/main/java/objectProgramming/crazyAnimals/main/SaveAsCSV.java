@@ -78,13 +78,10 @@ public class SaveAsCSV {
 			params += "; " + Feed.getNumEaten(i == 0 ? "cheese" : "grass");
 			params += "; " + Feed.getNumDestroyed(i == 0 ? "cheese" : "grass");
 		}
-		for(int i = 0; i < 2; i++) {
-			params += "; " + Cat.stats.getStats()[i];
-			params += "; " + Cow.stats.getStats()[i];
-			params += "; " + Mouse.stats.getStats()[i];
-			params += "; " + Sheep.stats.getStats()[i];
-			params += "; " + Wolf.stats.getStats()[i];
-		}
+		for(int i = 0; i < 2; i++) 
+			for(Species species : Species.values()){
+				params += "; " + species.getStats()[i];
+			}
 		return params;
 	}
 }

@@ -33,21 +33,5 @@ public class AnimalStats {
 	 * @return tablica ze statystykami [obecna populacja, maksymalna populacja]
 	 */
 	public int [] getStats() {return new int [] {currentPopulation, maxPopulation};}
-	/**
-	 * Pozwala pobrać statystyki w postaci wartości z opisami
-	 * @return ciąg znaków zawierający statystyki dla wszystkich zwierząt
-	 */
-	public static String getString() {
-		String stats = "";
-		for(int i = 0; i < 2; i++) {
-			stats += (i == 0 ? "\nCurrent population: " : "\n\nMax population: ");
-			stats += "\nCats: " + Cat.stats.getStats()[i];
-			stats += "\nCows: " + Cow.stats.getStats()[i];
-			stats += "\nMouses: " + Mouse.stats.getStats()[i];
-			stats += "\nSheeps: " + Sheep.stats.getStats()[i];
-			stats += "\nWolves: " + Wolf.stats.getStats()[i];
-		}
-		stats += "\n";
-		return stats;
-	}
+
 }
