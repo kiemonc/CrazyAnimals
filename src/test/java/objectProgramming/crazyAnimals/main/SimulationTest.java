@@ -2,15 +2,12 @@ package objectProgramming.crazyAnimals.main;
 
 import static org.junit.Assert.*;
 
-import java.util.Arrays;
 import java.util.Random;
 
 import org.junit.Test;
-
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.JCommander.Builder;
-
-import objectProgramming.crazyAnimals.animal.AnimalStats;
+import objectProgramming.crazyAnimals.animal.Species;
 
 public class SimulationTest {
 
@@ -42,10 +39,20 @@ public class SimulationTest {
 		while(!simulation.ifEnd()) {
 			simulation.meadow.doIteration();
 			simulation.numIteration++;
-			int length = AnimalStats.getCurrentPopulation().length; 
-			int[] numAll = Arrays.copyOf(AnimalStats.getCurrentPopulation(), length);
+			int [] currentPopulation = new int[5];
+			int[] numAll = new int[5];
+			int i = 0;
+			for(Species species : Species.values()) {
+				currentPopulation[i] = species.getStats()[0];
+				i++;
+			}
 			simulation.removeOrMoveAnimals();
-			assertTrue("Removing animals", compareTables(numAll, AnimalStats.getCurrentPopulation())==-1 || compareTables(numAll, AnimalStats.getCurrentPopulation())==0);
+			i = 0;
+			for(Species species : Species.values()) {
+				currentPopulation[i] = species.getStats()[0];
+				i++;
+			}
+			assertTrue("Removing animals", compareTables(numAll, currentPopulation)==-1 || compareTables(numAll, currentPopulation)==0);
 			simulation.interactionsBetweenAnimals();
 		}
 	}
