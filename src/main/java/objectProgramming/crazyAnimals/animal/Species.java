@@ -4,8 +4,8 @@
 package objectProgramming.crazyAnimals.animal;
 
 /**
+ * Typ wyliczeniowy umożliwia pobranie nazwy gatunku zwierzęcia oraz wykonanie metod pobrania i wyczyszczenia statystyk dla każdego z nich
  * @author jakub
- *
  */
 public enum Species {
 	CAT("Cats"){
@@ -64,10 +64,25 @@ public enum Species {
 		}
 	};
 	String name;
+	/**
+	 * Konstruktor pozwala zainicjalizować nazwę gatunku
+	 * @param name nazwa gatunku
+	 */
 	Species(String name){
 		this.name = name;
 	}
+	/**
+	 * Pozwala pobrać statystyki dla danego gatunku
+	 * @return dwuwymiarowa tablica zawierająca statystyki
+	 */
 	public abstract int [] getStats();
+	/**
+	 * Wywołuje metodę clearStats() na klasie gatunku
+	 */
 	public abstract void clearStats();
+	/**
+	 * Pozwala pobrać nazwę gatunku
+	 * @return nazwa gatunku
+	 */
 	public String getName() {return name;}
 }
