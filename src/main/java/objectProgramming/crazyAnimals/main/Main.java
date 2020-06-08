@@ -9,6 +9,7 @@ import com.beust.jcommander.JCommander;
 import com.beust.jcommander.JCommander.Builder;
 
 import objectProgramming.crazyAnimals.animal.AnimalStats;
+import objectProgramming.crazyAnimals.animal.Species;
 import objectProgramming.crazyAnimals.swing.SimulationFrame;
 import objectProgramming.crazyAnimals.swing.StartFrame;
 
@@ -81,8 +82,8 @@ public final class Main {
  */
 	public static void main(String[] args) {
 		setParameters(args);
-		//TODO inny sposób czyszczenia statystyk
-		new AnimalStats();
+		for(Species species : Species.values())
+			species.clearStats();
 		
 		if(parameters.console) {
 			try {
