@@ -8,24 +8,25 @@ import java.util.Random;
 import objectProgramming.crazyAnimals.area.IField;
 
 /**
- * Klasa przechowuje wartoĹ›Ä‡ prÄ™dkoĹ›ci z jakÄ… poruszajÄ… siÄ… wilki oraz operacje charakterystyczne dla tego gatunku.
- * Pozwala odrĂłĹĽniÄ‡ wilki od innych zwierzÄ…t
+ * Klasa przechowuje wartość prędkości z jaką poruszają sią wilki oraz operacje charakterystyczne dla tego gatunku.
+ * Pozwala odróżnić wilki od innych zwierząt
  * @author jakub
  */
 public class Wolf extends Animal {
 	static final int movementSpeed = 2;
+	public static AnimalStats stats;
 	/**
-	 * Konstruktor tworzy wilka, nadaje mu poczÄ…tkowe parametry i umieszcza na podanym polu
-	 * @param hunger poczÄ…tkowy gĹ‚Ăłd
-	 * @param thirst poczÄ…tkowe pragnienie
+	 * Konstruktor tworzy wilka, nadaje mu początkowe parametry i umieszcza na podanym polu
+	 * @param hunger początkowy głód
+	 * @param thirst początkowe pragnienie
 	 * @param age wiek
-	 * @param isMale zmienna logiczna odpowiadajÄ…ca na pytanie: czy zwierzÄ™ jest pĹ‚ci mÄ™skiej?
-	 * @param field pole na ktĂłrym zostanie umieszczone zwierzÄ™
+	 * @param isMale zmienna logiczna odpowiadająca na pytanie: czy zwierzę jest płci męskiej?
+	 * @param field pole na którym zostanie umieszczone zwierzę
 	 * @param random referencja do zmiennej typu Random
 	 */
 	public Wolf(int hunger, int thirst, int age, boolean isMale, IField field, Random random){
 		super(hunger, thirst, age, isMale, field, random);
-		AnimalStats.addAnimal(4);
+		stats.addAnimal();
 	}
 	@Override
 	public boolean canEat(IEatable target) {

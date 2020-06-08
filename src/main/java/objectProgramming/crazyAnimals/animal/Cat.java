@@ -11,6 +11,7 @@ import objectProgramming.crazyAnimals.area.IField;
  */
 public class Cat extends Animal {
 	static final int movementSpeed = 3;
+	public static AnimalStats stats;
 	/**
 	 * Konstruktor tworzy kota, nadaje mu początkowe parametry i umieszcza na podanym polu
 	 * @param hunger początkowy głód
@@ -22,7 +23,7 @@ public class Cat extends Animal {
 	 */
 	public Cat(int hunger, int thirst, int age, boolean isMale, IField field, Random random){
 		super(hunger, thirst, age, isMale, field, random);
-		AnimalStats.addAnimal(0);
+		stats.addAnimal();
 	}
 	@Override
 	public boolean canEat(IEatable target) {

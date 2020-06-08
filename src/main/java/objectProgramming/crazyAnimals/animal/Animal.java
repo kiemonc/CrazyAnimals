@@ -162,15 +162,15 @@ public abstract class Animal implements IAnimal{
 		if(isDead()) 
 			return;
 		if(this instanceof Cat)
-			AnimalStats.takeAnimal(0);
+			Cat.stats.takeAnimal();
 		else if(this instanceof Cow)
-			AnimalStats.takeAnimal(1);
+			Cow.stats.takeAnimal();
 		else if(this instanceof Mouse)
-			AnimalStats.takeAnimal(2);
+			Mouse.stats.takeAnimal();
 		else if(this instanceof Sheep)
-			AnimalStats.takeAnimal(3);
+			Sheep.stats.takeAnimal();
 		else if(this instanceof Wolf)
-			AnimalStats.takeAnimal(4);
+			Wolf.stats.takeAnimal();
 		field.destroyEatable(this);
 		isDead = true;
 	}

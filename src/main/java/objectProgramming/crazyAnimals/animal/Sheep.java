@@ -15,6 +15,7 @@ import objectProgramming.crazyAnimals.area.IField;
  */
 public class Sheep extends Animal {
 	static final int movementSpeed = 4;
+	public static AnimalStats stats;
 	/**
 	 * Konstruktor tworzy owcę, nadaje jej początkowe parametry i umieszcza na podanym polu
 	 * @param hunger początkowy głód
@@ -26,7 +27,7 @@ public class Sheep extends Animal {
 	 */
 	public Sheep(int hunger, int thirst, int age, boolean isMale, IField field, Random random){
 		super(hunger, thirst, age, isMale, field, random);
-		AnimalStats.addAnimal(3);
+		stats.addAnimal();
 	}
 	@Override
 	public boolean canEat(IEatable target) {

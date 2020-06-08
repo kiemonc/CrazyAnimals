@@ -81,6 +81,7 @@ public final class Main {
  */
 	public static void main(String[] args) {
 		setParameters(args);
+		//TODO inny sposób czyszczenia statystyk
 		new AnimalStats();
 		
 		if(parameters.console) {

@@ -8,63 +8,45 @@ package objectProgramming.crazyAnimals.animal;
  * @author jakub
  */
 public class AnimalStats {
-	//0 - Cat, 1 - Cow, 2 - Mouse, 3 - Sheep, 4 - Wolf
-	private static int [] currentPopulation = {0, 0, 0, 0, 0}, maxPopulation = {0, 0, 0, 0, 0};
+	private int currentPopulation = 0, maxPopulation = 0;
 	/**
-	 * Konstruktor klasy zeruje wszystkie statystyki
+	 * Metoda odpowiada za zerowanie statystyk
 	 */
-	public AnimalStats() {
-		currentPopulation = new int []{0, 0, 0, 0, 0};
-		maxPopulation = new int[]{0, 0, 0, 0, 0};
+	public void clearStats() {
+		currentPopulation = 0;
+		maxPopulation = 0;
 	}
 	/**
-	 * Dodaje zwierzę danego gatunku do statystyk
-	 * @param animal gatunek zwierzęcia (0 - kot, 1 - krowa, 2 - mysz, 3 - owca, 4 - wilk)
+	 * Dodaje jedno zwierzę do statystyk
 	 */
-	public static void addAnimal(int animal) {
-		currentPopulation[animal]++;
-		if(currentPopulation[animal] > maxPopulation[animal])
-			maxPopulation[animal] = currentPopulation[animal];
+	public void addAnimal() {
+		currentPopulation++;
+		if(currentPopulation > maxPopulation)
+			maxPopulation = currentPopulation;
 	}
 	/**
-	 * Odejmuje zwierzę danego gatunku od statystyk
-	 * @param animal gatunek zwierzęcia (0 - kot, 1 - krowa, 2 - mysz, 3 - owca, 4 - wilk)
+	 * Odejmuje jedno zwierzę od statystyk
 	 */
-	public static void takeAnimal(int animal) {
-		currentPopulation[animal]--;
-	}
+	public void takeAnimal() {currentPopulation--;}
 	/**
-	 * Pozwala pobrać aktualną populację dla wszystkich gatunków
-	 * @return statystyki dotyczące obecnej populacji
+	 * Pozwala pobrać statystyki gatunku
+	 * @return tablica ze statystykami [obecna populacja, maksymalna populacja]
 	 */
-	public static int [] getCurrentPopulation() {
-		return currentPopulation;
-	}
-	/**
-	 * Pozwala pobrać maksymalną populację dla wszystkich gatunków
-	 * @return statystyki dotyczące maksymalnej populacji
-	 */
-	public static int [] getMaxPopulation() {
-		return maxPopulation;
-	}
+	public int [] getStats() {return new int [] {currentPopulation, maxPopulation};}
 	/**
 	 * Pozwala pobrać statystyki w postaci wartości z opisami
 	 * @return ciąg znaków zawierający statystyki dla wszystkich zwierząt
 	 */
 	public static String getString() {
-		String stats = "Current population: ";
-		stats += "\nCats: " + getCurrentPopulation()[0];
-		stats += "\nCows: " + getCurrentPopulation()[1];
-		stats += "\nMouses: " + getCurrentPopulation()[2];
-		stats += "\nSheeps: " + getCurrentPopulation()[3];
-		stats += "\nWolves: " + getCurrentPopulation()[4];
-		
-		stats += "\n\nMax population: ";
-		stats += "\nCats: " + getMaxPopulation()[0];
-		stats += "\nCows: " + getMaxPopulation()[1];
-		stats += "\nMouses: " + getMaxPopulation()[2];
-		stats += "\nSheeps: " + getMaxPopulation()[3];
-		stats += "\nWolves: " + getMaxPopulation()[4];
+		String stats = "";
+		for(int i = 0; i < 2; i++) {
+			stats += (i == 0 ? "\nCurrent population: " : "\n\nMax population: ");
+			stats += "\nCats: " + Cat.stats.getStats()[i];
+			stats += "\nCows: " + Cow.stats.getStats()[i];
+			stats += "\nMouses: " + Mouse.stats.getStats()[i];
+			stats += "\nSheeps: " + Sheep.stats.getStats()[i];
+			stats += "\nWolves: " + Wolf.stats.getStats()[i];
+		}
 		stats += "\n";
 		return stats;
 	}

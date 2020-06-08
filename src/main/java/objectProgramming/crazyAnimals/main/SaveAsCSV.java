@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import objectProgramming.crazyAnimals.animal.AnimalStats;
+import objectProgramming.crazyAnimals.animal.*;
 import objectProgramming.crazyAnimals.area.Feed;
 
 /**
@@ -78,10 +78,13 @@ public class SaveAsCSV {
 			params += "; " + Feed.getNumEaten(i == 0 ? "cheese" : "grass");
 			params += "; " + Feed.getNumDestroyed(i == 0 ? "cheese" : "grass");
 		}
-		for(int i = 0; i < 5; i++)
-			params += "; " + AnimalStats.getCurrentPopulation()[i];
-		for(int i = 0; i < 5; i++)
-			params += "; " + AnimalStats.getMaxPopulation()[i];
+		for(int i = 0; i < 2; i++) {
+			params += "; " + Cat.stats.getStats()[i];
+			params += "; " + Cow.stats.getStats()[i];
+			params += "; " + Mouse.stats.getStats()[i];
+			params += "; " + Sheep.stats.getStats()[i];
+			params += "; " + Wolf.stats.getStats()[i];
+		}
 		return params;
 	}
 }

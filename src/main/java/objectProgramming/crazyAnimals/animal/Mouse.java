@@ -15,6 +15,7 @@ import objectProgramming.crazyAnimals.area.IField;
  */
 public class Mouse extends Animal {
 	static final int movementSpeed = 2;
+	public static AnimalStats stats;
 	/**
 	 * Konstruktor tworzy mysz, nadaje jej początkowe parametry i umieszcza na podanym polu
 	 * @param hunger początkowy głód
@@ -26,7 +27,7 @@ public class Mouse extends Animal {
 	 */
 	public Mouse(int hunger, int thirst, int age, boolean isMale, IField field, Random random){
 		super(hunger, thirst, age, isMale, field, random);
-		AnimalStats.addAnimal(2);
+		stats.addAnimal();
 	}
 	@Override
 	public boolean canEat(IEatable target) {

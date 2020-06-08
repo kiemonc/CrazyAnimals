@@ -14,28 +14,14 @@ import org.junit.Test;
 public class AnimalStatsTest {
 	@Test
 	public void test() {
-		new AnimalStats();
-		assertTrue("No animals at the begining", arraysEqual(AnimalStats.getCurrentPopulation(), new int[]{0, 0, 0, 0, 0}));
-		assertTrue("Max population at the begining", arraysEqual(AnimalStats.getMaxPopulation(), new int[]{0, 0, 0, 0, 0}));
-		AnimalStats.addAnimal(0);
-		assertTrue("One cat", arraysEqual(AnimalStats.getCurrentPopulation(), new int[]{1, 0, 0, 0, 0}));
-		AnimalStats.addAnimal(1);
-		AnimalStats.takeAnimal(0);
-		assertTrue("One cow", arraysEqual(AnimalStats.getCurrentPopulation(), new int[]{0, 1, 0, 0, 0}));
-		AnimalStats.addAnimal(2);
-		AnimalStats.takeAnimal(1);
-		assertTrue("One mouse", arraysEqual(AnimalStats.getCurrentPopulation(), new int[]{0, 0, 1, 0, 0}));
-		AnimalStats.addAnimal(3);
-		AnimalStats.takeAnimal(2);
-		assertTrue("One sheep", arraysEqual(AnimalStats.getCurrentPopulation(), new int[]{0, 0, 0, 1, 0}));
-		AnimalStats.addAnimal(4);
-		AnimalStats.takeAnimal(3);
-		assertTrue("One wolf", arraysEqual(AnimalStats.getCurrentPopulation(), new int[]{0, 0, 0, 0, 1}));
-		AnimalStats.takeAnimal(4);
-		assertTrue("No animals at the end", arraysEqual(AnimalStats.getCurrentPopulation(), new int[]{0, 0, 0, 0, 0}));
-		assertTrue("Max population at the end", arraysEqual(AnimalStats.getMaxPopulation(), new int[]{1, 1, 1, 1, 1}));
-		new AnimalStats();
-		assertTrue("Max population = 0 after constructor", arraysEqual(AnimalStats.getMaxPopulation(), new int[]{0, 0, 0, 0, 0}));
+		AnimalStats stats = new AnimalStats();
+		assertTrue("0 stats at the begining", arraysEqual(stats.getStats(), new int[]{0, 0}));
+		stats.addAnimal();
+		assertTrue("One current, one max", arraysEqual(stats.getStats(), new int[]{1, 1}));
+		stats.takeAnimal();
+		assertTrue("Zero current, one max", arraysEqual(stats.getStats(), new int[]{0, 1}));
+		stats.clearStats();
+		assertTrue("0 after clear method", arraysEqual(stats.getStats(), new int[]{0, 1}));
 	} 
 	/**
 	 * Metoda porównuje dwie tablice liczb całkowitych

@@ -60,6 +60,7 @@ public final class Simulation {
 			mainLoop();
 		}
 		showDescription();
+		//TODO może przenieść metodę AnimalStats.getString() w inne miejsce? Jest używana tylko tutaj
 		System.out.println(AnimalStats.getString());
 
 
