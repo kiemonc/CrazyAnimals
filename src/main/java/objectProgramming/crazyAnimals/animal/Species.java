@@ -8,6 +8,9 @@ package objectProgramming.crazyAnimals.animal;
  * @author jakub
  */
 public enum Species {
+	/**
+	 * Kot
+	 */
 	CAT("Cats"){
 		@Override
 		public int [] getStats() {
@@ -18,7 +21,10 @@ public enum Species {
 		public void clearStats() {
 			Cat.stats.clearStats();
 		}
-	},	
+	},
+	/**
+	 * Krowa
+	 */
 	COW("Cows") {
 		@Override
 		public int[] getStats() {
@@ -30,6 +36,9 @@ public enum Species {
 			Cow.stats.clearStats();
 		}
 	},
+	/**
+	 * Mysz
+	 */
 	MOUSE("Mice"){
 		@Override
 		public int[] getStats() {
@@ -41,6 +50,9 @@ public enum Species {
 			Mouse.stats.clearStats();
 		}
 	},
+	/**
+	 * Owca
+	 */
 	SHEEP("Sheeps"){
 		@Override
 		public int[] getStats() {
@@ -52,6 +64,9 @@ public enum Species {
 			Sheep.stats.clearStats();
 		}
 	},
+	/**
+	 * Wilk
+	 */
 	WOLF("Wolves"){
 		@Override
 		public int[] getStats() {
