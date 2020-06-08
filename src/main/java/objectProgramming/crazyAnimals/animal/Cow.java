@@ -15,7 +15,7 @@ import objectProgramming.crazyAnimals.area.IField;
  */
 public class Cow extends Animal {
 	static final int movementSpeed = 4;
-	public static AnimalStats stats;
+	public static AnimalStats stats = new AnimalStats();
 	/**
 	 * Konstruktor tworzy krowę, nadaje jej początkowe parametry i umieszcza na podanym polu
 	 * @param hunger początkowy głód
