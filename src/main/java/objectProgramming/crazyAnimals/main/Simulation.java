@@ -27,6 +27,7 @@ public final class Simulation {
 	private IAnimalCreator animalCreator;
 	private List<IAnimal> animals;
 	private String endMessage;
+	private static int numSim = 0;
 	
 	/**
 	 * Zeruje statystyki, tworzy łąke i wyzwala tworzenie zwierząt. Zeruje nr iteracji
@@ -34,7 +35,10 @@ public final class Simulation {
 	 * @param random - referencja to zmiennej losowej
 	 */
 	public Simulation(Parameters parameters, Random random) {
-
+		if(numSim>0) {
+			for(Species species : Species.values())
+				species.clearStats();
+		}
 		Feed.clearStatistics();
 		Animal.clearAnimalNum();
 		this.parameters = parameters;
@@ -42,8 +46,7 @@ public final class Simulation {
 		animalCreator = new AnimalCreator();
 		animals = animalCreator.createAnimals(parameters.startNum[0], parameters.startNum[1], parameters.startNum[2], parameters.startNum[3], parameters.startNum[4], meadow, random);
 		numIteration = 0;
-		for(Species species : Species.values())
-			species.clearStats();
+		numSim++;
 	}
 	
 /**

@@ -65,7 +65,7 @@ public final class Parameters {
 		
 		for(int i = 0; i < 5; i++) {
 			if(startMaxNum[i] - startMinNum[i] > 0) {
-				startNum[i] = random.nextInt(this.startMaxNum[i] - this.startMinNum[i]) + this.startMinNum[i];
+				startNum[i] = random.nextInt(this.startMaxNum[i] - this.startMinNum[i] + 1) + this.startMinNum[i];
 			}
 			else startNum[i] = startMinNum[i];
 		}
