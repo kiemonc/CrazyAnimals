@@ -12,6 +12,7 @@ import java.util.Scanner;
 import org.junit.Test;
 
 import objectProgramming.crazyAnimals.animal.AnimalStats;
+import objectProgramming.crazyAnimals.animal.Species;
 import objectProgramming.crazyAnimals.area.Feed;
 
 public class SaveAsCSVTest {
@@ -32,7 +33,8 @@ public class SaveAsCSVTest {
 			file = new File(parameters.path);
 		}
 		Feed.clearStatistics();
-		new AnimalStats();
+		for(Species species : Species.values())
+			species.clearStats();
 		try {
 			SaveAsCSV.saveToFile(parameters);
 		} catch (IOException e) {

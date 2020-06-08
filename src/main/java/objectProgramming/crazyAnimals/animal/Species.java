@@ -63,7 +63,7 @@ public enum Species {
 			Wolf.stats.clearStats();
 		}
 	};
-	public String name;
+	String name;
 	Species(String name){
 		this.name = name;
 	}
