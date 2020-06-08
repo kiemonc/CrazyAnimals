@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.JCommander.Builder;
 
-import objectProgramming.crazyAnimals.animal.Species;
+
 import objectProgramming.crazyAnimals.swing.SimulationFrame;
 import objectProgramming.crazyAnimals.swing.StartFrame;
 

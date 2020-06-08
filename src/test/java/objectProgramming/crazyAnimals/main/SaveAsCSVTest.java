@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 import org.junit.Test;
 
-import objectProgramming.crazyAnimals.animal.AnimalStats;
+
 import objectProgramming.crazyAnimals.animal.Species;
 import objectProgramming.crazyAnimals.area.Feed;
 
