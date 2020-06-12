@@ -1,0 +1,333 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{natbib}
+\usepackage{geometry}
+\newgeometry{tmargin=3cm, bmargin=3cm, lmargin=3cm, rmargin=3cm}
+\begin{document}
+\section{Karty CRC}
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} Animal} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} none} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} Cat, Cow, Mouse, Sheep, Wolf} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+The class contains parameters and operations that can be performed on each animal. & Field, Meadow, Simulation \\
+\hline
+\end{tabular}
+\\ \\ \\
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} AnimalCreator} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} none} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+The class is responsible for creating a given number of animals and placing them randomly on the meadow. & Cat, Cow, Mouse, Sheep, Wolf, Field, Meadow \\
+\hline
+\end{tabular}
+\\ \\ \\
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} AnimalStats} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} none} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+The class is responsible for collecting statistics on animal populations during the simulation. & Cat, Cow, Mouse, Sheep, Wolf \\
+\hline
+\end{tabular}
+\\ \\ \\
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} Cat} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} Animal} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+The class stores the value of the speed at which cats move, and operations specific to this species. It makes it possible to distinguish between cats and other animals. & AnimalStats \\
+%
+\hline
+\end{tabular}
+\\ \\ \\
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} Cow} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} Animal} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+The class stores the value of the speed at which cows move, and operations specific to this species. It makes it possible to distinguish between cows and other animals. & AnimalStats \\
+\hline
+\end{tabular}
+\\ \\ \\
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} Mouse} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} Animal} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+The class stores the value of the speed at which mouses move, and operations specific to this species. It makes it possible to distinguish between mouses and other animals. & AnimalStats \\
+\hline
+\end{tabular}
+\\ \\ \\
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} Sheep} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} Animal} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+The class stores the value of the speed at which sheeps move, and operations specific to this species. It makes it possible to distinguish between sheeps and other animals. & AnimalStats \\
+\hline
+\end{tabular}
+\\ \\ \\
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} Species} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} none} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+It makes it possible to get species names and perform methods for obtaining and clearing statistics for each of them. & Cat, Cow, Mouse, Sheep, Wolf, SaveAsCSV \\
+\hline
+\end{tabular}
+\\ \\ \\
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} Wolf} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} Animal} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+The class stores the value of the speed at which wolves move, and operations specific to this species. It makes it possible to distinguish between wolves and other animals. & AnimalStats \\
+\hline
+\end{tabular}
+\\ \\ \\
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} Feed} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} none} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+The class stores information on given type of food, i.e. current number, maximum number, number of eaten and number of destroyed & Field, SaveAsCSV \\
+\hline
+\end{tabular}
+\\ \\ \\
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} Field} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} none} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} Waterhole} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+The class stores information about the content of a given field in a meadow. It contains information on whether there is food for animals in a given field and stores this food. It also stores its position on meadow & Animal, Feed, Meadow\\
+\hline
+\end{tabular}
+\\ \\ \\
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} Meadow} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} none} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+The class stores meadow state information, consists of subfields, arranges waterholes and food during board initialization and arranges new food during the simulation. & Field, Simulation \\
+\hline
+\end{tabular}
+\\ \\ \\
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} Waterhole} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} Field} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+The class stores information on the number of waterholes in the meadow. It makes it possible to distinguish between a waterhole and a regular field. & none \\
+\hline
+\end{tabular}
+\\ \\ \\
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} Main} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} none} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+The class is responsible for starting and ending the simulation. Stores the path to the statistics output file. The class generates and stores statistics after the simulation. & Simulation, Parameters\\
+\hline
+\end{tabular}
+\\ \\ \\
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} Parameters} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} none} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+The class sets, stores and validates initial parameters, i.e. the minimum and maximum numbers of each animal species, the dimensions of the meadow and the number of waterholes. & Main, SaveAsCSV\\
+\hline
+\end{tabular}
+\\ \\ \\
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} SaveAsCSV} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} none} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+The class is responsible for saving simulation parameters and statistics in a .csv file. & Species, Feed, Parameters\\
+\hline
+\end{tabular}
+\\ \\ \\
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} Simulation} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} none} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+The class is responsible for the simulation. In it there is the main simulation loop. It coordinates the actions of animals and forces interactions between them, such as reproduction, quenching thirst or hunger. Generates animals and gives the signal to the Meadow class to initialize. Displays the current state of the simulation. It is responsible for checking the end conditions of the simulation. & Meadow, Animal, Control \\
+\hline
+\end{tabular}
+\\ \\ \\
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} StringConverter} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} none} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+The class that supports the parser. Converts a string to a list. & none \\
+\hline
+\end{tabular}
+\\ \\ \\
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} AnimalStatsFrame} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} JFrame} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+The class is responsible for displaying the statistics window for a given animal & Animal \\
+\hline
+\end{tabular}
+\\ \\ \\
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} ControlPanel} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} JPanel} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+The class groups buttons needed to control the simulation. & none \\
+\hline
+\end{tabular}
+\\ \\ \\
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} FieldPanel} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} JPanel} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+Single field panel. Groups the field information and displays the field. & Field \\
+\hline
+\end{tabular}
+\\ \\ \\
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} LegendPanel} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} JPanel} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+Helps the user understand the meaning of individual fields and colors. & none \\
+\hline
+\end{tabular}
+\\ \\ \\
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} ParametersFrame} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} JFrame} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+Class that displays a window in which the user can set initial parameters of the simulation. & Parameters, StartPanel \\
+\hline
+\end{tabular}
+\\ \\ \\
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} SimulationFrame} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} JFrame} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+Main simulation window. Groups the panels necessary to run simulation: legend panel, panels of individual fields, control panel and statistics panel. & Simulation, Parameters, StartFrame, StatsPanel \\
+\hline
+\end{tabular}
+\\ \\ \\
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} StartFrame} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} JFrame} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+Starting simulation window. Displays the start panel. & StartPanel \\
+\hline
+\end{tabular}
+\\ \\ \\
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} StartPanel} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} JPanel} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+The start panel groups 3 buttons: start simulation, configuration and project information. Clicking on one of them calls the appropriate actions. & StartFrame, ParametersFrame \\
+\hline
+\end{tabular}
+\\ \\ \\
+\begin{tabular}{|p{0.55\linewidth}|p{0.2\linewidth}|}
+\hline
+\multicolumn{2}{|l|}{\textbf{Classname:} StatsPanel} \\
+\hline
+\multicolumn{2}{|l|}{\textbf{Superclass:} JPanel} \\
+\multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
+\hline
+\textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
+A panel displaying statistics: iteration number, number of animals and food for each species. & SimulationFrame \\
+\hline
+\end{tabular}
+\end{document}

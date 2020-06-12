@@ -9,7 +9,7 @@ import objectProgramming.crazyAnimals.animal.IEatable;
 
 /**
  * 
- * Klasa, która przechowuje informacje o zawartości danego pola na łące. Przechowuje informację o tym czy na danym polu znajduje się pożywienie dla zwierząt oraz przechowuje to pożywienie.
+ * Klasa, która przechowuje informacje o zawartości danego pola na łące. Przechowuje informację o tym czy na danym polu znajduje się pożywienie dla zwierząt oraz przechowuje to pożywienie.//TODO + przechowuje zwierzęta?
  * @author Mikołaj
  */
 

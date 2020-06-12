@@ -24,7 +24,7 @@ import objectProgramming.crazyAnimals.main.BadParametersException;
 import objectProgramming.crazyAnimals.main.Parameters;
 
 /**
- * Klasa pozwalająca wyświetlić okno do zadawania parametrów początkowych symulacji
+ * Klasa pozwalająca wyświetlić okno w którym użytkownik może zadać parametry początkowe symulacji
  * @author jakub
  */
 @SuppressWarnings("serial")

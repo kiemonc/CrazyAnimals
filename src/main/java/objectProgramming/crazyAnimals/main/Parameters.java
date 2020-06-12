@@ -10,7 +10,7 @@ import java.util.Random;
 /**
  * 
  * Ustawia i przechowuje parametry początkowe, czyli minialne i maksymalne liczebności każdego gatunku zwierząt, wymiary łąki oraz liczbę wodopojów.
- * Przechwytuje sparsowane argumenty funkcji Control.maio(String args);
+ * Przechwytuje sparsowane argumenty funkcji //TODO Control.maio(String args);
  * Sprawdza poprawność agrumentów.
  * Przedział możliwej początkowej liczbeności gatunku musi zawierać się w przedziale końcowym liczebności.
  * Na łące początkowo musi znajdować się conajmniej 1 zwierzę.

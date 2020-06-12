@@ -18,7 +18,7 @@ import java.awt.EventQueue;
 /**
  * 
  * Główna klasa projektu.
- * Klasa odpowiada za startowanie i konczenie symulacji. Przechowuje ścieżkę do pliku wyjściowego statystyk.  Klasa generuje i zapisuje statystyki po zakończeniu symualcji.
+ * Klasa odpowiada za startowanie i konczenie symulacji. //TODO Przechowuje ścieżkę do pliku wyjściowego statystyk.  Klasa generuje i zapisuje statystyki po zakończeniu symualcji.
  * @author Mikołaj
  */
 public final class Main {
