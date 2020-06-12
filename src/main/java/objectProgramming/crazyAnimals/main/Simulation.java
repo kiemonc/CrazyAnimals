@@ -16,6 +16,7 @@ import objectProgramming.crazyAnimals.area.Meadow;
  * Generuje zwierzęta i daje sygnał klasie Meadow do inicjalizacji.
  * Wyświetla aktualny stan symulacji.
  * Odpowiada za sprawdzanie warunków końca symulacji.
+ * Współpraca: Meadow, Animal, Main
  * @author Mikołaj
  */
 

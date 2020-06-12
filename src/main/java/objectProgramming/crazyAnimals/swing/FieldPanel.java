@@ -13,7 +13,8 @@ import java.awt.Color;
 
 
 /**
- * Panel pojedyńczego pola. Grupuje informacje o polu i obrazuje pole. 
+ * Panel pojedyńczego pola. Grupuje informacje o polu i obrazuje pole. Po kliknięciu w zwierzę wyświetla statystyki danego zwierzęcia.
+ * Współpraca: AnimalStatsFrame, Field
  * @author Mikołaj
  *
  */
