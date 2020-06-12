@@ -5,9 +5,8 @@ package objectProgramming.crazyAnimals.main;
  * @author Mikołaj
  *
  */
+@SuppressWarnings("serial")
 public class BadParametersException extends Exception {
-
-	private static final long serialVersionUID = -3333591122970459740L;
 
 	public BadParametersException() {
 	}
