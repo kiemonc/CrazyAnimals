@@ -1,0 +1,25 @@
+@startuml
+title GUI
+[*] --> Initialized
+Initialized: Start window is open
+Initialized --> [*] : program closed
+Initialized --> InformationWindow : information
+InformationWindow : Window with informations about program is open
+InformationWindow --> Initialized : window closed
+Initialized --> SettingParameters : configure parameters
+SettingParameters : Window with parameters setting open\nUser can edit parameters and save them
+SettingParameters --> Initialized : window closed
+Initialized --> SimulationStarted : start simulation
+SimulationStarted : Window with simulation is open
+SimulationStarted --> DoingIteration : next
+DoingIteration --> SimulationStarted : end of iteration
+SimulationStarted --> KeepDoingIteration : start
+KeepDoingIteration : While stop
+KeepDoingIteration --> DoingIteration : 100ms have passed
+DoingIteration --> KeepDoingIteration : end of iteration
+KeepDoingIteration --> SimulationStarted : stop
+SimulationStarted --> [*] : exit
+SimulationStarted --> EndingSimulation : end or end conditions are met
+EndingSimulation : Showing information about end of simulation\nSave parameters and statistics to file
+EndingSimulation --> Initialized 
+@enduml

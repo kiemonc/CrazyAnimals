@@ -135,7 +135,7 @@ The class stores information on given type of food, i.e. current number, maximum
 \multicolumn{2}{|l|}{\textbf{Subclass(es):} Waterhole} \\
 \hline
 \textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
-The class stores information about the content of a given field in a meadow. It contains information on whether there is food for animals in a given field and stores this food. It also stores its position on meadow & Animal, Feed, Meadow\\
+The class stores information about the content of a given field in a meadow. It contains information on whether there is food for animals in a given field and stores this food. It also stores its position on meadow and list of animals that are on it. & Animal, Feed, Meadow\\
 \hline
 \end{tabular}
 \\ \\ \\
@@ -171,7 +171,7 @@ The class stores information on the number of waterholes in the meadow. It makes
 \multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
 \hline
 \textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
-The class is responsible for starting and ending the simulation. Stores the path to the statistics output file. The class generates and stores statistics after the simulation. & Simulation, Parameters\\
+The class is responsible for starting and ending the simulation. Stores the path to the statistics output file. The class generates and stores statistics after the simulation. & Simulation, Parameters, StartFrame\\
 \hline
 \end{tabular}
 \\ \\ \\
@@ -183,7 +183,7 @@ The class is responsible for starting and ending the simulation. Stores the path
 \multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
 \hline
 \textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
-The class sets, stores and validates initial parameters, i.e. the minimum and maximum numbers of each animal species, the dimensions of the meadow and the number of waterholes. & Main, SaveAsCSV\\
+The class sets, stores and validates initial parameters, i.e. the minimum and maximum numbers of each animal species, the dimensions of the meadow and the number of waterholes. & SaveAsCSV, StringConverter\\
 \hline
 \end{tabular}
 \\ \\ \\
@@ -207,7 +207,7 @@ The class is responsible for saving simulation parameters and statistics in a .c
 \multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
 \hline
 \textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
-The class is responsible for the simulation. In it there is the main simulation loop. It coordinates the actions of animals and forces interactions between them, such as reproduction, quenching thirst or hunger. Generates animals and gives the signal to the Meadow class to initialize. Displays the current state of the simulation. It is responsible for checking the end conditions of the simulation. & Meadow, Animal, Control \\
+The class is responsible for the simulation. In it there is the main simulation loop. It coordinates the actions of animals and forces interactions between them, such as reproduction, quenching thirst or hunger. Generates animals and gives the signal to the Meadow class to initialize. Displays the current state of the simulation. It is responsible for checking the end conditions of the simulation. & Meadow, Animal, Main \\
 \hline
 \end{tabular}
 \\ \\ \\
@@ -243,7 +243,7 @@ The class is responsible for displaying the statistics window for a given animal
 \multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
 \hline
 \textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
-The class groups buttons needed to control the simulation. & none \\
+The class groups buttons needed to control the simulation. & SimulationFrame \\
 \hline
 \end{tabular}
 \\ \\ \\
@@ -255,7 +255,7 @@ The class groups buttons needed to control the simulation. & none \\
 \multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
 \hline
 \textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
-Single field panel. Groups the field information and displays the field. & Field \\
+Single field panel. Groups the field information and displays the field. & AnimalStatsFrame, Field \\
 \hline
 \end{tabular}
 \\ \\ \\
@@ -291,7 +291,7 @@ Class that displays a window in which the user can set initial parameters of the
 \multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
 \hline
 \textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
-Main simulation window. Groups the panels necessary to run simulation: legend panel, panels of individual fields, control panel and statistics panel. & Simulation, Parameters, StartFrame, StatsPanel \\
+Main simulation window. Groups the panels necessary to run simulation: legend panel, panels of individual fields, control panel and statistics panel. & Simulation, Parameters, StartFrame, StatsPanel, LegendPanel, FieldPanel, ControlPanel \\
 \hline
 \end{tabular}
 \\ \\ \\
@@ -303,7 +303,7 @@ Main simulation window. Groups the panels necessary to run simulation: legend pa
 \multicolumn{2}{|l|}{\textbf{Subclass(es):} none} \\
 \hline
 \textbf{Responsibilities:}  &  \textbf{Collaboration:} \\
-Starting simulation window. Displays the start panel. & StartPanel \\
+Starting simulation window. Displays the start panel. It allows user to display program information, display parameter window and run simulation. & Parameters, StartPanel, ParametersFrame, Main, SimulationFrame \\
 \hline
 \end{tabular}
 \\ \\ \\
