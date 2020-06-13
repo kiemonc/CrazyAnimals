@@ -1,0 +1,42 @@
+@startuml
+participant frame as "simulationFrame:SimulationFrame"
+participant simulation as "simulation:Simulation"
+participant field as "fieldPanel:FieldPanel"
+participant animal as "animalStatsFrame:AnimalStatsFrame"
+participant stats as "animalStatsPanel:AnimalStatsPanel"
+participant legend as "legendPanel:LegendPanel"
+[-> frame : start simulation in GUI
+frame -> simulation : initial simulation
+frame -> field : initial field panels
+frame -> legend : initial legend
+loop until the simulation dosn't end
+frame -> simulation : do iteration
+activate simulation
+simulation -> frame : give current state
+deactivate simulation
+
+frame -> field : update each field
+activate field 
+field -> field :update
+field -> animal : update
+activate animal
+animal -> field
+deactivate animal
+
+field -> frame 
+deactivate field
+
+frame -> stats : update
+activate stats
+stats -> frame
+deactivate stats
+
+frame -> simulation : check if end
+activate simulation
+simulation -> frame : answer
+deactivate simulation
+
+end loop
+frame -> animal : close each frame
+[<- frame : show messagebox with information about end of simulation
+@enduml

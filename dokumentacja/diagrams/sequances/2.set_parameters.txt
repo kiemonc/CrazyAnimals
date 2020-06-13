@@ -1,0 +1,20 @@
+@startuml
+Actor Actor
+participant frame as "parametersFrame:ParametersFrame"
+participant parameters as "parameters:Parameters"
+
+loop utnil given parameters are not valid
+Actor -> frame : set parameters
+
+frame -> frame : check parameters
+alt if parameters are valid
+
+frame -> parameters : set parameters
+activate parameters
+parameters -> parameters : initial number of animals
+parameters -> frame : give parameters
+deactivate parameters
+else if parameters are not valid
+frame -> Actor : show invalid parameters and ask for new parameters
+end loop
+@enduml
