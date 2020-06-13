@@ -4,22 +4,36 @@ title GUI
 Initialized: Start window is open
 Initialized --> [*] : program closed
 Initialized --> InformationWindow : information
+Initialized --> SettingParameters : configure parameters
+Initialized --> SimulationStarted : start simulation
+
 InformationWindow : Window with informations about program is open
 InformationWindow --> Initialized : window closed
-Initialized --> SettingParameters : configure parameters
+
 SettingParameters : Window with parameters setting open\nUser can edit parameters and save them
 SettingParameters --> Initialized : window closed
-Initialized --> SimulationStarted : start simulation
+SettingParameters --> ParametersSaved : parameters are ok
+SettingParameters --> ParametersError : parameters are not ok
+
+ParametersSaved : Information about parameters save appears
+ParametersSaved --> SettingParameters : any change in \nparameters window
+
+ParametersError : Information about bad parameters appears \nBad parameters are marked red
+ParametersError --> SettingParameters : any change in \nparameters window
+
 SimulationStarted : Window with simulation is open
 SimulationStarted --> DoingIteration : next
-DoingIteration --> SimulationStarted : end of iteration
 SimulationStarted --> KeepDoingIteration : start
+SimulationStarted --> EndingSimulation : end or end conditions are met
+SimulationStarted --> [*] : exit
+
+DoingIteration --> SimulationStarted : end of iteration
+DoingIteration --> KeepDoingIteration : end of iteration
+
 KeepDoingIteration : While stop
 KeepDoingIteration --> DoingIteration : 100ms have passed
-DoingIteration --> KeepDoingIteration : end of iteration
 KeepDoingIteration --> SimulationStarted : stop
-SimulationStarted --> [*] : exit
-SimulationStarted --> EndingSimulation : end or end conditions are met
+
 EndingSimulation : Showing information about end of simulation\nSave parameters and statistics to file
 EndingSimulation --> Initialized 
 @enduml
