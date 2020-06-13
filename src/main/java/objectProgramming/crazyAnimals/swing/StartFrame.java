@@ -4,7 +4,8 @@ import javax.swing.*;
 import objectProgramming.crazyAnimals.main.Parameters;
 
 /**
- * Startowe okno symulacji. Wyświetla panel startowy.
+ * Startowe okno symulacji. Wyświetla panel startowy. Umożliwia użytkownikowi podstawowe akcje: wyświetlenie informacji o programie, wyświetlanie okna z nastawą parameteró oraz uruchamianie symulacji
+ * Współpraca: Parameters, StartPanel, ParametersFrame, Main, SimulationFrame
  * @author Mikołaj
  *
  */

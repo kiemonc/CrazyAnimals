@@ -1,0 +1,80 @@
+@startuml
+
+Main *-- Simulation : simulation
+Simulation *-- SaveAsCSV : saveAsCSV
+class Simulation [[java:objectProgramming.crazyAnimals.main.Simulation]] {
+	~int numIteration
+	~Meadow meadow
+	-IAnimalCreator animalCreator
+	-List<IAnimal> animals
+	-String endMessage
+	-{static}int numSim
+	+Simulation(Parameters parameters, Random random)
+	+void runSimulation()
+	~void mainLoop()
+	+void doIteration()
+	~void removeOrMoveAnimals()
+	~void interactionsBetweenAnimals()
+	~void showCurrentState()
+	+boolean ifEnd()
+	-void showDescription()
+	+String getEndMessage()
+	+Meadow getMeadow()
+	+int getItertionNum()
+	+String getStatsString()
+}
+class Parameters [[java:objectProgramming.crazyAnimals.main.Parameters]] {
+}
+Main *-- Parameters : parameters
+class StringConverter [[java:objectProgramming.crazyAnimals.main.StringConverter]] {
+	+List<String> split(String value)
+}
+interface IParameterSplitter [[java:com.beust.jcommander.converters.IParameterSplitter]] {
+}
+IParameterSplitter <|.. StringConverter
+class Parameters [[java:objectProgramming.crazyAnimals.main.Parameters]] {
+	-Random random
+	~boolean help
+	+int meadowWidth
+	+int meadowHeight
+	+int numWaterholes
+	+int maxIterationNum
+	+int[] startNum
+	~List<String> startMaxNumList
+	+int[] startMaxNum
+	~List<String> startMinNumList
+	+int[] startMinNum
+	~List<String> endMaxNumList
+	+int[] endMaxNum
+	~boolean console
+	~List<String> endMinNumList
+	+int[] endMinNum
+	+String path
+	+boolean runAtStart
+	+Parameters(Random random)
+	+void setParametrs()
+	-int[] listToTable(List<String> list)
+	+void initializeNumAnimals()
+}
+class SaveAsCSV [[java:objectProgramming.crazyAnimals.main.SaveAsCSV]] {
+	-{static}String firstRow
+	+{static}void saveToFile(Parameters parameters)
+	-{static}String getParamsAndStats(Parameters parameters)
+}
+class Main [[java:objectProgramming.crazyAnimals.main.Main]] {
+	-{static}Random random
+	-{static}Simulation simulation
+	~{static}Parameters parameters
+	-{static}StartFrame startFrame
+	~{static}void setParameters(String[] args)
+	+{static}void main(String[] args)
+	+{static}void runSimulation(Parameters parameters)
+	+{static}void runSimulation()
+}
+class BadParametersException [[java:objectProgramming.crazyAnimals.main.BadParametersException]] {
+	+BadParametersException()
+}
+class Exception [[java:com.sun.tools.jdi.JDWP$Event$Composite$Events$Exception]] {
+}
+Exception <|-- BadParametersException
+@enduml

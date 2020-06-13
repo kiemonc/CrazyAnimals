@@ -1,0 +1,185 @@
+@startuml
+
+StartFrame *-- "1" StartPanel : startPanel
+class StartFrame [[java:objectProgramming.crazyAnimals.swing.StartFrame]] {
+	+StartFrame(Parameters parameters)
+}
+class JFrame [[java:javax.swing.JFrame]] {
+}
+JFrame <|-- StartFrame
+class ParametersFrame [[java:objectProgramming.crazyAnimals.swing.ParametersFrame]] {
+	-List<TextField> textFieldList
+	-JButton confirm
+	-JButton close
+	-JButton setFilePath
+	-JButton setDefaults
+	-JLabel error
+	-JLabel confirmed
+	-JLabel filePath
+	-JLabel info
+	-Parameters parameters
+	~ParametersFrame(StartPanel panel, Parameters parameters)
+	+void actionPerformed(ActionEvent event)
+	-void setValues(Parameters parameters)
+	-List<JLabel> initiateLabels()
+	-void showLabels(List<JLabel> labelList)
+	-List<TextField> initiateTextFields()
+	-void showTextFields(List<TextField> textList)
+	-void setParameters()
+	-int getTextFieldValue(int index)
+	-void setRedBackground(int index)
+	-void setWhiteBackground(int index)
+	+Parameters getParameters()
+	+void showFrame()
+}
+class StartPanel [[java:objectProgramming.crazyAnimals.swing.StartPanel]] {
+}
+StartPanel *--   ParametersFrame : startPanel
+class JFrame [[java:javax.swing.JFrame]] {
+}
+JFrame <|-- ParametersFrame
+interface ActionListener [[java:java.awt.event.ActionListener]] {
+}
+ActionListener <|.. ParametersFrame
+class StartPanel [[java:objectProgramming.crazyAnimals.swing.StartPanel]] {
+	+{static}int HEIGHT
+	+{static}int WIDTH
+	-JButton startButton
+	-JButton parametersButton
+	-JButton infoButton
+	-JFrame parent
+	-Parameters parameters
+	+StartPanel(JFrame frame, Parameters parameters)
+	+void setParameters(Parameters parameters)
+	+void actionPerformed(ActionEvent e)
+}
+class StartPanel [[java:objectProgramming.crazyAnimals.swing.StartPanel]] {
+}
+
+class JPanel [[java:javax.swing.JPanel]] {
+}
+JPanel <|-- StartPanel
+interface ActionListener [[java:java.awt.event.ActionListener]] {
+}
+ActionListener <|.. StartPanel
+class SimulationFrame [[java:objectProgramming.crazyAnimals.swing.SimulationFrame]] {
+	-JFrame frame
+	-Simulation simulation
+	-Parameters parameters
+	-JLabel canClick
+	-JLabel simulationStats
+	~boolean gameOver
+	-Timer timer
+	+SimulationFrame(Simulation simulation, StartFrame startFrame, Parameters parameters)
+	~void doIteration()
+	-void updateState()
+	-void initalizePanels(Meadow meadow, int maxSize)
+	~void gameOver()
+}
+class FieldPanel [[java:objectProgramming.crazyAnimals.swing.FieldPanel]] {
+}
+SimulationFrame *-- "*" FieldPanel : panels
+class StatsPanel [[java:objectProgramming.crazyAnimals.swing.StatsPanel]] {
+}
+SimulationFrame *-- "1" StatsPanel : stats
+class LegendPanel [[java:objectProgramming.crazyAnimals.swing.LegendPanel]] {
+}
+SimulationFrame *-- "1" LegendPanel : legend
+class StartFrame [[java:objectProgramming.crazyAnimals.swing.StartFrame]] {
+}
+StartPanel *-- "1" SimulationFrame : startFrame
+class JFrame [[java:javax.swing.JFrame]] {
+}
+JFrame <|-- SimulationFrame
+class AnimalStatsFrame [[java:objectProgramming.crazyAnimals.swing.AnimalStatsFrame]] {
+	-int[] values
+	-JLabel nr
+	-JLabel xy
+	-JLabel species
+	-JLabel hunger
+	-JLabel thirst
+	-JLabel age
+	-JLabel isMale
+	-JLabel iterationsToMove
+	-List<JLabel> labelsList
+	-JButton close
+	-IAnimal animal
+	+AnimalStatsFrame(IAnimal animal, List<AnimalStatsFrame> animalStatsFrames)
+	+void actionPerformed(ActionEvent e)
+	+void update()
+}
+class AnimalStatsFrame [[java:objectProgramming.crazyAnimals.swing.AnimalStatsFrame]] {
+}
+
+class JFrame [[java:javax.swing.JFrame]] {
+}
+JFrame <|-- AnimalStatsFrame
+interface ActionListener [[java:java.awt.event.ActionListener]] {
+}
+ActionListener <|.. AnimalStatsFrame
+class FieldPanel [[java:objectProgramming.crazyAnimals.swing.FieldPanel]] {
+	-int eatableSize
+	-int[] position
+	-IField field
+	-List<IEatable> eatableList
+	-Color darkGreen
+	-int size
+	+FieldPanel(int size, IField field)
+	+void paintComponent(Graphics g)
+	~void update()
+	+void finilize()
+	-IAnimal getClickedAnimal(int x, int y)
+	+void mouseClicked(MouseEvent e)
+	+void mousePressed(MouseEvent e)
+	+void mouseReleased(MouseEvent e)
+	+void mouseEntered(MouseEvent e)
+	+void mouseExited(MouseEvent e)
+}
+class AnimalStatsFrame [[java:objectProgramming.crazyAnimals.swing.AnimalStatsFrame]] {
+}
+FieldPanel *-- "*" AnimalStatsFrame : animalStatsFrames
+class JPanel [[java:javax.swing.JPanel]] {
+}
+JPanel <|-- FieldPanel
+interface MouseListener [[java:java.awt.event.MouseListener]] {
+}
+MouseListener <|.. FieldPanel
+class StatsPanel [[java:objectProgramming.crazyAnimals.swing.StatsPanel]] {
+	-{static}String[] feedNames
+	-List<JLabel> animals
+	-List<JLabel> feed
+	-JLabel iterationNr
+	+StatsPanel(int iterNr)
+	+void update(int iterNr)
+}
+class JPanel [[java:javax.swing.JPanel]] {
+}
+JPanel <|-- StatsPanel
+class ControlPanel [[java:objectProgramming.crazyAnimals.swing.ControlPanel]] {
+	-JButton startStop
+	-JButton nextStep
+	-JButton end
+	-JButton exit
+	-Timer timer
+	~ControlPanel(Timer timer, SimulationFrame parent, boolean started)
+	+void actionPerformed(ActionEvent event)
+}
+class SimulationFrame [[java:objectProgramming.crazyAnimals.swing.SimulationFrame]] {
+}
+SimulationFrame *-- "1" ControlPanel  : parent
+class JPanel [[java:javax.swing.JPanel]] {
+}
+JPanel <|-- ControlPanel
+interface ActionListener [[java:java.awt.event.ActionListener]] {
+}
+ActionListener <|.. ControlPanel
+class LegendPanel [[java:objectProgramming.crazyAnimals.swing.LegendPanel]] {
+	-String[] names
+	-Color[] colors
+	-JPanel buttonAndName
+	+LegendPanel()
+}
+class JPanel [[java:javax.swing.JPanel]] {
+}
+JPanel <|-- LegendPanel
+@enduml

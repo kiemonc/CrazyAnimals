@@ -1,0 +1,165 @@
+@startuml
+Animal *-- AnimalStats : stats
+class AnimalStats [[java:objectProgramming.crazyAnimals.animal.AnimalStats]] {
+	-int currentPopulation
+	-int maxPopulation
+	+void clearStats()
+	+void addAnimal()
+	+void takeAnimal()
+	+int[] getStats()
+}
+class Cow [[java:objectProgramming.crazyAnimals.animal.Cow]] {
+	~{static}int movementSpeed
+	+{static}AnimalStats stats
+	+Cow(int hunger, int thirst, int age, boolean isMale, IField field, Random random)
+	+boolean canEat(IEatable target)
+	+boolean canMultiply(IAnimal animal)
+	+void multiply()
+	+int getMovementSpeed()
+	+String toString()
+}
+class Animal [[java:objectProgramming.crazyAnimals.animal.Animal]] {
+}
+Animal <|-- Cow
+class Wolf [[java:objectProgramming.crazyAnimals.animal.Wolf]] {
+	~{static}int movementSpeed
+	+{static}AnimalStats stats
+	+Wolf(int hunger, int thirst, int age, boolean isMale, IField field, Random random)
+	+boolean canEat(IEatable target)
+	+boolean canMultiply(IAnimal animal)
+	+void multiply()
+	+int getMovementSpeed()
+	+String toString()
+}
+class Animal [[java:objectProgramming.crazyAnimals.animal.Animal]] {
+}
+Animal <|-- Wolf
+class Sheep [[java:objectProgramming.crazyAnimals.animal.Sheep]] {
+	~{static}int movementSpeed
+	+{static}AnimalStats stats
+	+Sheep(int hunger, int thirst, int age, boolean isMale, IField field, Random random)
+	+boolean canEat(IEatable target)
+	+boolean canMultiply(IAnimal animal)
+	+void multiply()
+	+int getMovementSpeed()
+	+String toString()
+}
+class Animal [[java:objectProgramming.crazyAnimals.animal.Animal]] {
+}
+Animal <|-- Sheep
+abstract class Animal [[java:objectProgramming.crazyAnimals.animal.Animal]] {
+	-int hunger
+	-int thirst
+	-int age
+	-int iterationsToMove
+	-boolean isMale
+	-boolean isDead
+	-boolean movedAfterMultiplying
+	-{static}int lastNumber
+	-int number
+	-boolean hasPanel
+	~IField field
+	~Random random
+	+Animal(int hunger, int thirst, int age, boolean isMale, IField field, Random random)
+	+boolean wantToMove()
+	+void move(IMeadow meadow)
+	+void doIteration()
+	+IAnimal hasChild()
+	+boolean isMale()
+	+boolean isDead()
+	+void setMovedAfterMultiplying(boolean value)
+	+boolean getMovedAfterMultiplying()
+	+void beEaten()
+	+int[] getStats()
+	~boolean canMoveThere(IField field)
+	~void eat(IEatable target)
+	~void drink()
+	~void die()
+	~void addHunger()
+	+int getAnimalNumber()
+	+void setHasPanel(boolean panel)
+	+boolean getHasPanel()
+	+{static}void clearAnimalNum()
+}
+class IAnimal [[java:objectProgramming.crazyAnimals.animal.IAnimal]] {
+}
+interface IAnimal [[java:objectProgramming.crazyAnimals.animal.IAnimal]] {
+}
+IAnimal <|.. Animal
+IEatable <|.. Animal
+class AnimalCreator [[java:objectProgramming.crazyAnimals.animal.AnimalCreator]] {
+	-Random random
+	+List<IAnimal> createAnimals(int nrOfCats, int nrOfCows, int nrOfMouses, int nrOfSheeps, int nrOfWolves, IMeadow meadow, Random random)
+	-Cat createCat(IField field)
+	-Cow createCow(IField field)
+	-Wolf createWolf(IField field)
+	-Mouse createMouse(IField field)
+	-Sheep createSheep(IField field)
+}
+interface IAnimalCreator [[java:objectProgramming.crazyAnimals.animal.IAnimalCreator]] {
+}
+IAnimalCreator <|.. AnimalCreator
+interface IAnimal [[java:objectProgramming.crazyAnimals.animal.IAnimal]] {
+	boolean wantToMove()
+	void move(objectProgramming.crazyAnimals.area.IMeadow meadow)
+	void doIteration()
+	IAnimal hasChild()
+	boolean isMale()
+	boolean isDead()
+	void setMovedAfterMultiplying(boolean value)
+	boolean getMovedAfterMultiplying()
+	boolean canEat(IEatable target)
+	boolean canMultiply(IAnimal animal)
+	void multiply()
+	int getMovementSpeed()
+	int[] getStats()
+	String toString()
+}
+interface IEatable [[java:objectProgramming.crazyAnimals.animal.IEatable]] {
+}
+
+class Mouse [[java:objectProgramming.crazyAnimals.animal.Mouse]] {
+	~{static}int movementSpeed
+	+{static}AnimalStats stats
+	+Mouse(int hunger, int thirst, int age, boolean isMale, IField field, Random random)
+	+boolean canEat(IEatable target)
+	+boolean canMultiply(IAnimal animal)
+	+void multiply()
+	+int getMovementSpeed()
+	+String toString()
+}
+class Animal [[java:objectProgramming.crazyAnimals.animal.Animal]] {
+}
+Animal <|-- Mouse
+class Cat [[java:objectProgramming.crazyAnimals.animal.Cat]] {
+	~{static}int movementSpeed
+	+{static}AnimalStats stats
+	+Cat(int hunger, int thirst, int age, boolean isMale, IField field, Random random)
+	+boolean canEat(IEatable target)
+	+boolean canMultiply(IAnimal animal)
+	+void multiply()
+	+int getMovementSpeed()
+	+String toString()
+}
+class Animal [[java:objectProgramming.crazyAnimals.animal.Animal]] {
+}
+Animal <|-- Cat
+interface IAnimalCreator [[java:objectProgramming.crazyAnimals.animal.IAnimalCreator]] {
+	List<IAnimal> createAnimals(int nrOfCats, int nrOfCows, int nrOfMouses, int nrOfSheeps, int nrOfWolves, IMeadow meadow, Random random)
+}
+enum Species [[java:objectProgramming.crazyAnimals.animal.Species]] {
+	CAT
+	COW
+	MOUSE
+	SHEEP
+	WOLF
+	name
+	~Species(String name)
+	+{abstract}int[] getStats()
+	+{abstract}void clearStats()
+	+String getName()
+}
+interface IEatable [[java:objectProgramming.crazyAnimals.animal.IEatable]] {
+	void beEaten()
+}
+@enduml

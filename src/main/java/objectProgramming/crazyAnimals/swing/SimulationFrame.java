@@ -20,6 +20,7 @@ import java.util.LinkedList;
 
 /**
  * Główne okno symulacji. Grupuje panele niezbędne do przeprowadzenia sumulacji: panel opisu oznaczeń, panele poszczególnych pól, panel kontroli oraz panel statystyk.
+ * Współpraca: Simulation, Parameters, StartFrame, StatsPanel, LegendPanel, FieldPanel, ControlPanel
  * @author Mikołaj
  *
  */

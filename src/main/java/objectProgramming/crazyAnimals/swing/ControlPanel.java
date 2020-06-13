@@ -10,6 +10,8 @@ import javax.swing.Timer;
 
 /**
  * Grupuje przyciski potrzebne do sterowania symulacją. 
+ * Steruje postępem symulacji.
+ * Wpsółpraca: SimulationFrame
  * @author Mikołaj
  *
  */

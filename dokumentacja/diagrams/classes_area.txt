@@ -1,0 +1,92 @@
+@startuml
+
+Meadow *-- "*" Field :fields 
+
+class Feed [[java:objectProgramming.crazyAnimals.area.Feed]] {
+	-{static}int[] numAll
+	-{static}int[] numMax
+	-{static}int[] numEaten
+	-{static}int[] numDestroyed
+	-boolean alreadyRemoved
+	-String name
+	+Feed(Random random)
+	+String getName()
+	+{static}int getNumAll(String name)
+	+{static}int getNumMax(String name)
+	+{static}int getNumEaten(String name)
+	+{static}int getNumDestroyed(String name)
+	+void beEaten()
+	+void beDestroyed()
+	+String toString()
+	+{static}void clearStatistics()
+}
+interface IEatable [[java:objectProgramming.crazyAnimals.animal.IEatable]] {
+}
+IEatable <|.. Feed
+class Waterhole [[java:objectProgramming.crazyAnimals.area.Waterhole]] {
+	#{static}int number
+	+Waterhole(int positionX, int positionY, Random random)
+	~{static}int getNumber()
+}
+class Field [[java:objectProgramming.crazyAnimals.area.Field]] {
+}
+Field <|-- Waterhole
+interface IMeadow [[java:objectProgramming.crazyAnimals.area.IMeadow]] {
+	List<IField> getNeighbours(IField field)
+	List<IField> getRandomFields(int numFields)
+	void doIteration()
+}
+class Meadow [[java:objectProgramming.crazyAnimals.area.Meadow]] {
+	-int width
+	-int height
+	#LinkedList<LinkedList<IField>> fields
+	-LinkedList<IField> fieldsWithoutFeed
+	-Random random
+	+Meadow(int width, int height, int numWaterholes, int numFeeds, Random random)
+	-void initialFeed(int numFeeds)
+	-void initialWaterholes(int numWaterholes)
+	+LinkedList<IField> getNeighbours(IField field)
+	-void spreadNewFeed()
+	+void doIteration()
+	+LinkedList<IField> getRandomFields(int numFields)
+	+String toString()
+	-String printLine()
+	+LinkedList<LinkedList<IField>> getAllFields()
+}
+interface IMeadow [[java:objectProgramming.crazyAnimals.area.IMeadow]] {
+}
+IMeadow <|.. Meadow
+interface IField [[java:objectProgramming.crazyAnimals.area.IField]] {
+	List<IEatable> getEatable()
+	void destroyEatable(IEatable eatable)
+	List<IAnimal> getAnimals()
+	void seatAnimal(IAnimal animal)
+	void putNewFeed()
+	int[] getCoordinates()
+	boolean anyFeed()
+	boolean anyAnimal()
+}
+class Field [[java:objectProgramming.crazyAnimals.area.Field]] {
+	-List<IAnimal> animals
+	-int positionX
+	-int positionY
+	-Random random
+	+Field(int positionX, int positionY, Random random)
+	+boolean anyFeed()
+	+boolean anyAnimal()
+	+List<IEatable> getEatable()
+	-void addAnimalsToList(List<IEatable> list)
+	+List<IAnimal> getAnimals()
+	+void seatAnimal(IAnimal animal)
+	+void putNewFeed()
+	+void destroyEatable(IEatable eatable)
+	+int[] getCoordinates()
+	+String toString()
+}
+class Feed [[java:objectProgramming.crazyAnimals.area.Feed]] {
+}
+Field *-- Feed
+interface IField [[java:objectProgramming.crazyAnimals.area.IField]] {
+}
+IField <|.. Field
+@enduml
