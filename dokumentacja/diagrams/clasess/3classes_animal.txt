@@ -18,7 +18,7 @@ class Cow [[java:objectProgramming.crazyAnimals.animal.Cow]] {
 	+int getMovementSpeed()
 	+String toString()
 }
-class Animal [[java:objectProgramming.crazyAnimals.animal.Animal]] {
+abstract class Animal [[java:objectProgramming.crazyAnimals.animal.Animal]] {
 }
 Animal <|-- Cow
 class Wolf [[java:objectProgramming.crazyAnimals.animal.Wolf]] {
@@ -31,7 +31,7 @@ class Wolf [[java:objectProgramming.crazyAnimals.animal.Wolf]] {
 	+int getMovementSpeed()
 	+String toString()
 }
-class Animal [[java:objectProgramming.crazyAnimals.animal.Animal]] {
+abstract class Animal [[java:objectProgramming.crazyAnimals.animal.Animal]] {
 }
 Animal <|-- Wolf
 class Sheep [[java:objectProgramming.crazyAnimals.animal.Sheep]] {
@@ -44,7 +44,7 @@ class Sheep [[java:objectProgramming.crazyAnimals.animal.Sheep]] {
 	+int getMovementSpeed()
 	+String toString()
 }
-class Animal [[java:objectProgramming.crazyAnimals.animal.Animal]] {
+abstract class Animal [[java:objectProgramming.crazyAnimals.animal.Animal]] {
 }
 Animal <|-- Sheep
 abstract class Animal [[java:objectProgramming.crazyAnimals.animal.Animal]] {
@@ -128,7 +128,7 @@ class Mouse [[java:objectProgramming.crazyAnimals.animal.Mouse]] {
 	+int getMovementSpeed()
 	+String toString()
 }
-class Animal [[java:objectProgramming.crazyAnimals.animal.Animal]] {
+abstract class Animal [[java:objectProgramming.crazyAnimals.animal.Animal]] {
 }
 Animal <|-- Mouse
 class Cat [[java:objectProgramming.crazyAnimals.animal.Cat]] {
@@ -141,7 +141,7 @@ class Cat [[java:objectProgramming.crazyAnimals.animal.Cat]] {
 	+int getMovementSpeed()
 	+String toString()
 }
-class Animal [[java:objectProgramming.crazyAnimals.animal.Animal]] {
+abstract class Animal [[java:objectProgramming.crazyAnimals.animal.Animal]] {
 }
 Animal <|-- Cat
 interface IAnimalCreator [[java:objectProgramming.crazyAnimals.animal.IAnimalCreator]] {

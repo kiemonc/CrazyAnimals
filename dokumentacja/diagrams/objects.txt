@@ -4,12 +4,12 @@
 
 
 object "simulation : Simulation" as Simulation {
-	startTime = 1588195080
 	numIteration = 51
 	meadow = "meadow"
 	animals[]
 }
 object "parameters : Parameters" as Parameters {
+	statisticsPath = "C:\statistics.csv"
 	meadowWidth = 5
 	meadowHeight = 5
 	numWaterholes = 1
@@ -19,14 +19,14 @@ object "parameters : Parameters" as Parameters {
 	endMinNum[0..4] = 0
 
 }
-object "control : Control" as Control {
-	statisticsPath = "C:\statistics.txt"
+object "main : Main" as Main {
+	
 	parameters = "parameters"
 	simulation = "simulation"
 }
 
-Control *-- Simulation : executes_iterations
-Control *-- Parameters : sets_parameters
+Main *-- Simulation : executes_iterations
+Main *-- Parameters : sets_parameters
 
 
 

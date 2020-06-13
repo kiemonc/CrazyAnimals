@@ -181,5 +181,18 @@ class LegendPanel [[java:objectProgramming.crazyAnimals.swing.LegendPanel]] {
 }
 class JPanel [[java:javax.swing.JPanel]] {
 }
+
+FieldPanel *- IField : field
+SimulationFrame *-- Simulation : simulation
+SimulationFrame *-- Parameters : parameters
+AnimalStatsFrame *-- IAnimal : animal
+interface IField {
+}
+class Simulation {
+}
+class Parameters {
+}
+interface IAnimal {
+}
 JPanel <|-- LegendPanel
 @enduml

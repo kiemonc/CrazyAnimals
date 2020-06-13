@@ -1,7 +1,6 @@
 @startuml
 
 Main *-- Simulation : simulation
-Simulation *-- SaveAsCSV : saveAsCSV
 class Simulation [[java:objectProgramming.crazyAnimals.main.Simulation]] {
 	~int numIteration
 	~Meadow meadow
@@ -77,4 +76,14 @@ class BadParametersException [[java:objectProgramming.crazyAnimals.main.BadParam
 class Exception [[java:com.sun.tools.jdi.JDWP$Event$Composite$Events$Exception]] {
 }
 Exception <|-- BadParametersException
+Simulation *-- "*" IAnimal : animals
+Simulation *-- "1" IMeadow : meadow
+Main *-- StartFrame : startFrame
+interface IAnimal [[java:objectProgramming.crazyAnimals.animal.IAnimal]] {
+}
+interface IMeadow [[java:objectProgramming.crazyAnimals.area.IMeadow]] {
+}
+class StartFrame [[java:objectProgramming.crazyAnimals.swing.StartFrame]] {
+	+StartFrame(Parameters parameters)
+}
 @enduml

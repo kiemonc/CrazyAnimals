@@ -1,7 +1,7 @@
 @startuml
 
-Meadow *-- "*" Field :fields 
-
+Meadow *-- "*" IField : fields 
+Field o-- "*" IAnimal : animals
 class Feed [[java:objectProgramming.crazyAnimals.area.Feed]] {
 	-{static}int[] numAll
 	-{static}int[] numMax
@@ -89,4 +89,9 @@ Field *-- Feed
 interface IField [[java:objectProgramming.crazyAnimals.area.IField]] {
 }
 IField <|.. Field
+interface IAnimal [[java:objectProgramming.crazyAnimals.animal.IAnimal]] {
+}
+interface IEatable [[java:objectProgramming.crazyAnimals.animal.IEatable]] {
+	void beEaten()
+}
 @enduml
