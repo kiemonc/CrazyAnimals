@@ -1,0 +1,174 @@
+@startuml
+
+
+object "startFrame : StartFrame" as StartFrame  {
+	title = "Crazy Animals"
+	height = 260
+	width = 380
+}
+
+object "parametersFrame : ParametersFrame" as ParametersFrame {
+	visible = false
+
+}
+
+
+
+
+
+object "startPanel : StartPanel" as StartPanel {
+	{static}int HEIGHT = 260
+	{static}int WIDTH = 380
+	startButton = "start simulation"
+	parametersButton = "set parameters"
+	infoButton = "info"
+	parent = startFrame
+	parameters = parameters
+
+}
+
+
+
+object "simulationFrame : SimulationFrame" as SimulationFrame  {
+	frame = this
+	simulation = simulation
+	parameters = parameters
+	canClick = "Clicking on the animal shows a window with its statistics"
+	simulationStats = "Simulation statistics: "
+	gameOver = false
+	timer = simulationTimer
+
+}
+
+object "animalStatsFrame : AnimalStatsFrame" as AnimalStatsFrame {
+	values[0] = 10
+	values[1] = 15
+	values[2] = 18
+	values[3] = 1 
+	values[4] = 3
+	values[5] = 5
+	values[6] = 0
+	values[7] = 1
+	nr = "Number: "
+	xy = "Position (x,y): "
+	species = "Species: "
+	hunger = "Hunger: "
+	thirst = "Thirst: "
+	age = "Age: "
+	isMale = "Gender: "
+	iterationsToMove = "Iterations to move: "
+	close = "Close"
+	animal = "Sheep"
+
+}
+object "fieldPanel : FieldPanel" as FieldPanel {
+	eatableSize = 75
+	field = emptyField
+	eatableList = null
+	color = green
+	size = 190
+
+}
+object "waterholePanel : FieldPanel" as WaterholePanel {
+	eatableSize = 75
+	field = emptyField
+	eatableList = null
+	color = blue
+	size = 190
+
+}
+
+object "statsPanel : StatsPanel" as StatsPanel {
+	-{static}String[] feedNames
+	animals[0] = 1
+	animals[1] = 2
+	animals[2] = 1
+	animals[3] = 2
+	animals[4] = 3
+	feed[0] = 1
+	feed[1] = 1
+	iterationNr = 51
+
+}
+object "controlPanel : ControlPanel" as ControlPanel {
+	startStop = "stop"
+	nextStep = ""
+	end = "end"
+	exit = "exit"
+	timer = simulationTimer (started)
+}
+
+
+object "legendPanel : LegendPanel" as LegendPanel {
+	name[0] = cat
+	name[1] = cow
+	name[2] = mouse
+	name[3] = sheep
+	name[4] = wolf
+	name[5] = grass
+	name[6] = cheese
+	name[7] = meadow
+	name[8] = waterhole
+	color[0] = black
+	color[1] = pink
+	color[2] = grey
+	color[3] = white
+	color[4] = red
+	color[5] = dark green
+	color[6] = yellow
+	color[7] = green
+	color[8] = blue
+}
+
+object "field1 : Field" as IField {
+animalList = null
+}
+object "waterhole : Waterhole" as Waterhole {
+animalList = null
+}
+object "simulation : Simulation" as Simulation {
+}
+object "parameters : Parameters" as Parameters {
+}
+object "sheep1 : Sheep" as IAnimal {
+}
+
+
+object "field2 : Field" as Field {
+animalList = some animal
+}
+
+object "fieldPanelSheep : fieldPanel" as FieldPanelSheep {
+	eatableSize = 75
+	field = emptyField
+	eatableList = null
+	color = green
+	size = 190
+}
+
+object "fieldPanelAnimal : fieldPanel" as FieldPanelAnimal {
+	eatableSize = 75
+	field = emptyField
+	eatableList = null
+	color = green
+	size = 190
+}
+
+SimulationFrame *-- "1" WaterholePanel : waterhole
+WaterholePanel o-- "1" Waterhole : field
+StartFrame *-- "1" StartPanel : startPanel
+FieldPanel o-- "1" IField : field
+SimulationFrame o-- "1" Simulation : simulation
+SimulationFrame o-- "1" Parameters : parameters
+AnimalStatsFrame o-- "1" IAnimal : animal
+StartPanel o--   ParametersFrame : startPanel
+SimulationFrame *-- "22" FieldPanel : empty panels
+SimulationFrame *-- "1" StatsPanel : stats
+SimulationFrame *-- "1" LegendPanel : legend
+StartPanel o-- "1" SimulationFrame : startFrame
+SimulationFrame *--"1" FieldPanelSheep : field panel with animal
+FieldPanelSheep o-- AnimalStatsFrame : animal stats frames
+SimulationFrame *-- "1" ControlPanel  : parent
+SimulationFrame *-- "8" FieldPanelAnimal : field panel
+FieldPanelAnimal o-- "1" Field : field with animal
+@enduml

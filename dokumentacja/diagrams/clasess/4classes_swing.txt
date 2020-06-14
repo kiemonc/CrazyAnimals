@@ -34,7 +34,7 @@ class ParametersFrame [[java:objectProgramming.crazyAnimals.swing.ParametersFram
 }
 class StartPanel [[java:objectProgramming.crazyAnimals.swing.StartPanel]] {
 }
-StartPanel *--   ParametersFrame : startPanel
+StartPanel o--   ParametersFrame : startPanel
 class JFrame [[java:javax.swing.JFrame]] {
 }
 JFrame <|-- ParametersFrame
@@ -87,7 +87,7 @@ class LegendPanel [[java:objectProgramming.crazyAnimals.swing.LegendPanel]] {
 SimulationFrame *-- "1" LegendPanel : legend
 class StartFrame [[java:objectProgramming.crazyAnimals.swing.StartFrame]] {
 }
-StartPanel *-- "1" SimulationFrame : startFrame
+StartPanel o-- "1" SimulationFrame : startFrame
 class JFrame [[java:javax.swing.JFrame]] {
 }
 JFrame <|-- SimulationFrame
@@ -137,7 +137,7 @@ class FieldPanel [[java:objectProgramming.crazyAnimals.swing.FieldPanel]] {
 }
 class AnimalStatsFrame [[java:objectProgramming.crazyAnimals.swing.AnimalStatsFrame]] {
 }
-FieldPanel *-- "*" AnimalStatsFrame : animalStatsFrames
+FieldPanel o-- "*" AnimalStatsFrame : animalStatsFrames
 class JPanel [[java:javax.swing.JPanel]] {
 }
 JPanel <|-- FieldPanel
@@ -182,9 +182,9 @@ class LegendPanel [[java:objectProgramming.crazyAnimals.swing.LegendPanel]] {
 class JPanel [[java:javax.swing.JPanel]] {
 }
 
-FieldPanel *- IField : field
-SimulationFrame *-- Simulation : simulation
-SimulationFrame *-- Parameters : parameters
+FieldPanel o- IField : field
+SimulationFrame o-- Simulation : simulation
+SimulationFrame o-- Parameters : parameters
 AnimalStatsFrame *-- IAnimal : animal
 interface IField {
 }
