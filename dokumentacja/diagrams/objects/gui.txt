@@ -131,6 +131,7 @@ object "simulation : Simulation" as Simulation {
 object "parameters : Parameters" as Parameters {
 }
 object "sheep1 : Sheep" as IAnimal {
+	hasPanel = true
 }
 
 
