@@ -1,0 +1,47 @@
+@startuml
+title Simulation frame
+
+start
+:initial simulation;
+:initial field panels;
+:initial initial legend panel;
+:initial stats panel;
+
+:wait until the "start" button click;
+
+repeat
+	:simulation does iteration;
+	:update each field panel;
+	:update stats panel;
+	:update each animal stats frame;
+	
+	if(the timer is stopped) then (yes)
+		:wait for "next" button click;
+	else (no)
+		:wait for timer;
+	endif
+	
+	if("stop" button was clicked) then (yes)
+		:set button text "start";
+		:show "next" button;
+		:stop the timer;
+	endif
+	
+	if("start" button was clicked) then (yes)
+		:set button text "stop";
+		:hide "next" button;
+		:start the timer;
+	endif
+	
+	if("exit" button was clicked) then (yes)
+		stop
+	endif
+	
+repeat while (finish parameters achieved or "end" button was clicked) is (no)
+:close each animal stats frame;
+:show information about reason of finishing the simulation;
+:save CSV file with statistics;
+:dispose simulationFrame;
+:show startFrame;
+stop
+@enduml

@@ -1,0 +1,38 @@
+@startuml
+title Starting program
+
+start
+:set parameters;
+if(parameters are valid) then (yes)
+	if (Choosen methos is GUI) then (yes) 
+		:show start frame;
+		
+		if("set parameters" button was clicked) then (yes)
+			:show parametersFrame;
+			:set parameters;
+		endif
+		
+		if("info" button was clicked) then (yes)
+			:show messagebox with information about authors;
+		endif
+		
+		if("start simulation" button was clicked) then (yes)
+			:show simulationFrame;
+			:dispose startFrame;
+		endif
+		
+	else (no)
+		:set parameters from args;
+		:evaluate a simulation;
+		:show the meadow in the console;
+		:save statistics in CSV file;
+	endif
+
+else (no)
+	:show information about invalid parameters;
+endif
+stop
+
+
+
+@enduml

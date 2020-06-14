@@ -16,5 +16,5 @@ parameters -> frame : give parameters
 deactivate parameters
 else if parameters are not valid
 frame -> Actor : show invalid parameters and ask for new parameters
-end loop
+end
 @enduml

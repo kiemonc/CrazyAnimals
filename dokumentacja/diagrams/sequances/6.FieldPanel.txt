@@ -1,0 +1,40 @@
+@startuml
+participant panel as "fieldPanel:FieldPanel"
+participant field as "field:Field"
+participant animal as "animalStatsFrame:AnimalStatsFrame"
+
+[-> panel : update
+activate panel
+
+panel -> animal : update opened frames
+activate animal
+panel <- animal
+deactivate animal
+
+panel -> field : check new animals
+activate field
+panel <- field : answer
+deactivate field
+
+panel -> field : check new feed
+activate field
+panel <- field : answer
+deactivate field
+
+alt if new animals or feed
+panel -> panel : draw new squers
+else if no animals and no feed
+panel -> panel : clear
+end
+
+alt if panel was pressed, where animal stands, and the animals haven't his stats frame opened
+panel -> animal : show new animla stats frame
+activate animal
+panel <- animal 
+deactivate animal
+
+end
+[<- panel : show new state
+deactivate panel
+
+@enduml

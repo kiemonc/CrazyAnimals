@@ -1,5 +1,5 @@
 @startuml
-title Main activity
+title Simulation activity
 start
 :Set start and finish parameters;
 :Initialize meadow and animals;
