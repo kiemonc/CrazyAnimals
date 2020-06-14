@@ -40,12 +40,23 @@ object "meadow : Meadow" as Meadow {
 }
 object "field1 : Field" as Field1 {
 	feed = "grass1"
+	animals = null
 }
 object "field2 : Field" as Field2 {
 	feed = "cheese1"
+	animals = null
 }
 object "field3 : Field" as Field3 {
 	feed = null
+	animals = null
+}
+object "field3 : Field" as Field3 {
+	feed = null
+	animlas = null
+}
+object "field4 : Field" as Field4 {
+	feed = null
+	animlas = some animal
 }
 
 object "grass1 : Feed" as Feed1 {
@@ -78,7 +89,8 @@ Field2 *-- Feed2 : is_included
 
 Meadow *-- Field1 : is_part
 Meadow *-- Field2 : is_part
-Meadow *-- "22" Field3 : is_part
+Meadow *-- "9" Field4 : is_part
+Meadow *-- "13" Field3 : is_part
 
 object "waterhole1 : Waterhole" as Waterhole {
 	{static}number = 1

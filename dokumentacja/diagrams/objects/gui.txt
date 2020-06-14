@@ -155,21 +155,21 @@ object "fieldPanelAnimal : fieldPanel" as FieldPanelAnimal {
 	size = 190
 }
 
-SimulationFrame *-- "1" WaterholePanel : waterhole
-WaterholePanel o-- "1" Waterhole : field
-StartFrame *-- "1" StartPanel : startPanel
-FieldPanel o-- "1" IField : field
-SimulationFrame o-- "1" Simulation : simulation
-SimulationFrame o-- "1" Parameters : parameters
-AnimalStatsFrame o-- "1" IAnimal : animal
-StartPanel o--   ParametersFrame : startPanel
-SimulationFrame *-- "22" FieldPanel : empty panels
-SimulationFrame *-- "1" StatsPanel : stats
-SimulationFrame *-- "1" LegendPanel : legend
-StartPanel o-- "1" SimulationFrame : startFrame
-SimulationFrame *--"1" FieldPanelSheep : field panel with animal
-FieldPanelSheep o-- AnimalStatsFrame : animal stats frames
+SimulationFrame *-- "1" WaterholePanel : part_of
+WaterholePanel o-- "1" Waterhole : gives_informations
+StartFrame *-- "1" StartPanel : group_buttons
+FieldPanel o-- "1" IField : gives_informations
+SimulationFrame o-- "1" Simulation : gives_infromations
+SimulationFrame o-- "1" Parameters : gives_infromations
+AnimalStatsFrame o-- "1" IAnimal : gives_informations_about_animal
+StartPanel o--   ParametersFrame : sets_parameters
+SimulationFrame *-- "22" FieldPanel : part_of
+SimulationFrame *-- "1" StatsPanel : shows_statistics
+SimulationFrame *-- "1" LegendPanel : shows_legend
+StartPanel o-- "1" SimulationFrame : show_simulation
+SimulationFrame *--"1" FieldPanelSheep : field_panel_with_animal
+FieldPanelSheep o-- AnimalStatsFrame : animal_stats_frame
 SimulationFrame *-- "1" ControlPanel  : parent
-SimulationFrame *-- "8" FieldPanelAnimal : field panel
-FieldPanelAnimal o-- "1" Field : field with animal
+SimulationFrame *-- "8" FieldPanelAnimal : field_panel
+FieldPanelAnimal o-- "1" Field : field_with_animal
 @enduml
